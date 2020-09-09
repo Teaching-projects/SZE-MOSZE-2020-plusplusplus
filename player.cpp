@@ -24,7 +24,7 @@ bool Player::Attack(Player *otherPlayer)
 
 void Player::Print()
 {
-    std::cout << this->name << ": HP=" << this->hp << ", DMG=" << this->damage << '\n';
+    std::cout << this->name << ": HP: " << this->hp << ", DMG: " << this->damage << '\n';
 }
 
 std::string Player::GetName()

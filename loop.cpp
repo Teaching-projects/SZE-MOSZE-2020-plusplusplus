@@ -13,7 +13,7 @@ Loop::Loop(char **argv)
 
 void Loop::Play()
 {
-    int victim = this->currentPlayer + 1 < NUMBER_OF_PLAYERS ? this->currentPlayer + 1 : 0;
+    int victim = this->getVictim();
 
     std::cout << this->players[this->currentPlayer].GetName() << " -> " << this->players[victim].GetName() << '\n';
 
@@ -46,8 +46,10 @@ void Loop::ShowPlayers()
 
 void Loop::ShowWinner()
 {
-    int victim = this->currentPlayer + 1 < NUMBER_OF_PLAYERS ? this->currentPlayer + 1 : 0;
-
-    std::cout << this->players[victim].GetName() << " died. ";
+    std::cout << this->players[this->getVictim()].GetName() << " died. ";
     std::cout << this->players[this->currentPlayer].GetName() << " wins.\n";
+}
+
+unsigned short Loop::getVictim() {
+	return this->currentPlayer + 1 < NUMBER_OF_PLAYERS ? this->currentPlayer + 1 : 0;
 }

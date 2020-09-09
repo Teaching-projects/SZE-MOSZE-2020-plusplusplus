@@ -14,4 +14,7 @@ public:
     void Play();
     void ShowPlayers();
     void ShowWinner();
+
+private:
+    unsigned short getVictim();
 };
