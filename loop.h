@@ -13,4 +13,7 @@ public:
     explicit Loop(char **argv);
     void Play();
     void ShowWinner();
+
+private:
+    unsigned short getVictim();
 };
