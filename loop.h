@@ -12,5 +12,6 @@ class Loop
 public:
     explicit Loop(char **argv);
     void Play();
+    void ShowPlayers();
     void ShowWinner();
 };

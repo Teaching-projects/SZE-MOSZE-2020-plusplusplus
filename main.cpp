@@ -26,7 +26,7 @@ int main(int argc, char **argv)
     }
 
     Loop loop = Loop(argv);
-
+    loop.ShowPlayers();
     loop.Play();
     loop.ShowWinner();
 

@@ -27,15 +27,20 @@ void Loop::Play()
         this->currentPlayer = victim;
     }
 
-    for (unsigned short i = 0; i < NUMBER_OF_PLAYERS; i++)
-    {
-        this->players[i].Print();
-    }
+    this->ShowPlayers();
     std::cout << '\n';
 
     if (!gameEnd)
     {
         this->Play();
+    }
+}
+
+void Loop::ShowPlayers()
+{
+    for (unsigned short i = 0; i < NUMBER_OF_PLAYERS; i++)
+    {
+        this->players[i].Print();
     }
 }
 
