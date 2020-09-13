@@ -18,16 +18,11 @@ bool Player::Attack(Player *otherPlayer)
         return true;
     }
 
-    otherPlayer->hp = otherPlayer->hp - this->damage;
+    otherPlayer->hp -= this->damage;
     return false;
 }
 
 void Player::Print()
 {
     std::cout << this->name << ": HP: " << this->hp << ", DMG: " << this->damage << '\n';
-}
-
-std::string Player::GetName()
-{
-    return this->name;
 }

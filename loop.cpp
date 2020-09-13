@@ -28,7 +28,6 @@ void Loop::Play()
     }
 
     this->ShowPlayers();
-    std::cout << '\n';
 
     if (!gameEnd)
     {

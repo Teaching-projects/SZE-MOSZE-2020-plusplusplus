@@ -12,5 +12,5 @@ public:
     void Read(char **argv, int nthPlayer);
     bool Attack(Player *otherPlayer);
     void Print();
-    std::string GetName();
+    std::string GetName() const { return name; };
 };
