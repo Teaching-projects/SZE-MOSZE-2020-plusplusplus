@@ -55,5 +55,5 @@ Player Loop::getPlayer(char** argv, int nthPlayer)
 }
 
 unsigned short Loop::getVictim() {
-    return this->currentPlayer + 1 % 2;
+    return (this->currentPlayer + 1) % 2;
 }
