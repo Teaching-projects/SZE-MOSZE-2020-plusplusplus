@@ -2,19 +2,22 @@
 
 #include "player.h"
 
+#include <vector>
+
 constexpr auto NUMBER_OF_PLAYERS = 2;
 
 class Loop
 {
-    Player *players;
+    std::vector<Player> players;
     unsigned short currentPlayer = 0;
 
 public:
-    explicit Loop(char **argv);
+    explicit Loop(char** argv);
     void Play();
     void ShowPlayers();
     void ShowWinner();
 
 private:
+    Player getPlayer(char** argv, int nthPlayer);
     unsigned short getVictim();
 };

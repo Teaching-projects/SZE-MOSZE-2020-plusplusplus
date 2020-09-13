@@ -9,8 +9,8 @@ class Player
     unsigned short damage;
 
 public:
-    void Read(char **argv, int nthPlayer);
-    bool Attack(Player *otherPlayer);
-    void Print();
+    explicit Player(std::string name, unsigned short hp, unsigned short damage);
+    bool Attack(Player* otherPlayer);
+    void Print() const;
     std::string GetName() const { return name; };
 };

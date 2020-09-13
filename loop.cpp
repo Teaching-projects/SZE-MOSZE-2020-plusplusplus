@@ -2,12 +2,11 @@
 
 #include <iostream>
 
-Loop::Loop(char **argv)
+Loop::Loop(char** argv)
 {
-    this->players = new Player[NUMBER_OF_PLAYERS]();
-    for (unsigned short i = 0; i < NUMBER_OF_PLAYERS; i++)
+    for (int i = 0; i < NUMBER_OF_PLAYERS; i++)
     {
-        this->players[i].Read(argv, i);
+        this->players.push_back(this->getPlayer(argv, i));
     }
 }
 
@@ -37,9 +36,9 @@ void Loop::Play()
 
 void Loop::ShowPlayers()
 {
-    for (unsigned short i = 0; i < NUMBER_OF_PLAYERS; i++)
+    for (auto player : this->players)
     {
-        this->players[i].Print();
+        player.Print();
     }
 }
 
@@ -49,6 +48,12 @@ void Loop::ShowWinner()
     std::cout << this->players[this->currentPlayer].GetName() << " wins.\n";
 }
 
+Player Loop::getPlayer(char** argv, int nthPlayer)
+{
+    int start = 1 + (nthPlayer * 3);
+    return Player(argv[start], atoi(argv[start + 1]), atoi(argv[start + 2]));
+}
+
 unsigned short Loop::getVictim() {
-	return this->currentPlayer + 1 < NUMBER_OF_PLAYERS ? this->currentPlayer + 1 : 0;
+    return this->currentPlayer + 1 % 2;
 }

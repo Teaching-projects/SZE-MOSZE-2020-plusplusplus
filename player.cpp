@@ -2,15 +2,14 @@
 
 #include <iostream>
 
-void Player::Read(char **argv, int nthPlayer)
+Player::Player(std::string name, unsigned short hp, unsigned short damage)
 {
-    int start = 1 + (nthPlayer * 3);
-    this->name = argv[start];
-    this->hp = atoi(argv[start + 1]);
-    this->damage = atoi(argv[start + 2]);
+    this->name = name;
+    this->hp = hp;
+    this->damage = damage;
 }
 
-bool Player::Attack(Player *otherPlayer)
+bool Player::Attack(Player* otherPlayer)
 {
     if (otherPlayer->hp <= this->damage)
     {
@@ -22,7 +21,7 @@ bool Player::Attack(Player *otherPlayer)
     return false;
 }
 
-void Player::Print()
+void Player::Print() const
 {
     std::cout << this->name << ": HP: " << this->hp << ", DMG: " << this->damage << '\n';
 }
