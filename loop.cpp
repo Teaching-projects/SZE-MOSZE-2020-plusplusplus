@@ -36,7 +36,7 @@ void Loop::Play()
 
 void Loop::ShowPlayers() const
 {
-    for (auto player : this->players)
+    for (const auto& player : this->players)
     {
         player.Print();
     }
@@ -48,7 +48,7 @@ void Loop::ShowWinner() const
     std::cout << players[this->currentPlayer].GetName() << " wins.\n";
 }
 
-Player Loop::getPlayer(char** argv, int nthPlayer)
+Player Loop::getPlayer(char** argv, int nthPlayer) const
 {
     int start = 1 + (nthPlayer * 3);
     return Player(argv[start], atoi(argv[start + 1]), atoi(argv[start + 2]));

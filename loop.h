@@ -18,6 +18,6 @@ public:
     void ShowWinner() const;
 
 private:
-    Player getPlayer(char** argv, int nthPlayer);
+    Player getPlayer(char** argv, int nthPlayer) const;
     unsigned short getVictim() const;
 };

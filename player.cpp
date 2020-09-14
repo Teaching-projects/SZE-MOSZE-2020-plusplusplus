@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-Player::Player(std::string name, unsigned short hp, unsigned short damage) : name {name}, hp {hp}, damage {damage}
+Player::Player(const std::string& name, unsigned short hp, unsigned short damage) : name {name}, hp {hp}, damage {damage}
 {
 
 }
