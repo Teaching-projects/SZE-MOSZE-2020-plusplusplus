@@ -6,7 +6,7 @@ Loop::Loop(char** argv)
 {
     for (int i = 0; i < NUMBER_OF_PLAYERS; i++)
     {
-        this->players.push_back(this->getPlayer(argv, i));
+        this->players.emplace_back(this->getPlayer(argv, i));
     }
 }
 
@@ -34,7 +34,7 @@ void Loop::Play()
     }
 }
 
-void Loop::ShowPlayers()
+void Loop::ShowPlayers() const
 {
     for (auto player : this->players)
     {
@@ -42,10 +42,10 @@ void Loop::ShowPlayers()
     }
 }
 
-void Loop::ShowWinner()
+void Loop::ShowWinner() const
 {
-    std::cout << this->players[this->getVictim()].GetName() << " died. ";
-    std::cout << this->players[this->currentPlayer].GetName() << " wins.\n";
+    std::cout << players[this->getVictim()].GetName() << " died. ";
+    std::cout << players[this->currentPlayer].GetName() << " wins.\n";
 }
 
 Player Loop::getPlayer(char** argv, int nthPlayer)
@@ -54,6 +54,6 @@ Player Loop::getPlayer(char** argv, int nthPlayer)
     return Player(argv[start], atoi(argv[start + 1]), atoi(argv[start + 2]));
 }
 
-unsigned short Loop::getVictim() {
-    return (this->currentPlayer + 1) % 2;
+unsigned short Loop::getVictim() const {
+    return (this->currentPlayer + 1) % NUMBER_OF_PLAYERS;
 }

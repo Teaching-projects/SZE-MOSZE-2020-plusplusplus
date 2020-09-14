@@ -2,14 +2,12 @@
 
 #include <iostream>
 
-Player::Player(std::string name, unsigned short hp, unsigned short damage)
+Player::Player(std::string name, unsigned short hp, unsigned short damage) : name {name}, hp {hp}, damage {damage}
 {
-    this->name = name;
-    this->hp = hp;
-    this->damage = damage;
+
 }
 
-bool Player::Attack(Player* otherPlayer)
+bool Player::Attack(Player* otherPlayer) const
 {
     if (otherPlayer->hp <= this->damage)
     {

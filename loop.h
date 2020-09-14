@@ -14,10 +14,10 @@ class Loop
 public:
     explicit Loop(char** argv);
     void Play();
-    void ShowPlayers();
-    void ShowWinner();
+    void ShowPlayers() const;
+    void ShowWinner() const;
 
 private:
     Player getPlayer(char** argv, int nthPlayer);
-    unsigned short getVictim();
+    unsigned short getVictim() const;
 };
