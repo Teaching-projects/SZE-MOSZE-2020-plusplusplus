@@ -10,7 +10,8 @@ class Player
 
 public:
     explicit Player(const std::string &name, unsigned short hp, unsigned short damage);
-    bool Attack(Player* otherPlayer) const;
+    bool Attack(Player *otherPlayer) const;
     void Print() const;
     const std::string &GetName() const { return name; };
+    const short GetHP() const { return hp; };
 };
