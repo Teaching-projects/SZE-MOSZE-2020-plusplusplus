@@ -45,8 +45,8 @@ void Loop::ShowWinner() const
 
 Player Loop::getPlayer(char **argv, int nthPlayer) const
 {
-    int start = 1 + (nthPlayer * 3);
-    return Player(argv[start], atoi(argv[start + 1]), atoi(argv[start + 2]));
+    int start = 1 + nthPlayer;
+    return Player::parseUnit(argv[start]);
 }
 
 unsigned short Loop::getVictim() const

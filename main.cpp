@@ -18,7 +18,7 @@
 
 int main(int argc, char **argv)
 {
-    if (argc != 7)
+    if (argc != 3)
     {
         std::cout << "Please give two players. Example: ./executable player1.json player2.json\n";
 
