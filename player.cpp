@@ -15,6 +15,12 @@ Player Player::parseUnit(const std::string &fileName)
 
     std::ifstream jsonFile(fileName);
 
+    if (jsonFile.fail())
+    {
+        const std::string errMessage("Error: No such file: " + fileName);
+        throw std::runtime_error(errMessage);
+    }
+
     while (getline(jsonFile, lineString))
     {
         jsonString += lineString;
