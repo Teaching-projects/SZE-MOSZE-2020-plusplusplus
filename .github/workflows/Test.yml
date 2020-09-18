@@ -9,4 +9,4 @@ jobs:
         steps:
             - uses: actions/checkout@v2
             - name: Build
-                run: g++ -std=c++17 *.cpp
+              run: g++ -std=c++17 *.cpp
