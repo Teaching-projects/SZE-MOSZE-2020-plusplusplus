@@ -10,9 +10,6 @@ Player::Player(const std::string &name, unsigned short hp, unsigned short damage
 
 Player Player::parseUnit(const std::string &fileName)
 {
-    std::string lineString;
-    std::string jsonString;
-
     std::ifstream jsonFile(fileName);
 
     if (jsonFile.fail())
@@ -21,6 +18,8 @@ Player Player::parseUnit(const std::string &fileName)
         throw std::runtime_error(errMessage);
     }
 
+    std::string jsonString;
+    std::string lineString;
     while (getline(jsonFile, lineString))
     {
         jsonString += lineString;
@@ -28,32 +27,20 @@ Player Player::parseUnit(const std::string &fileName)
 
     jsonFile.close();
 
-    const std::string spaceRegex("^ +| +$|( ) +");
-    const std::string specialCharacterRegex("[{}\"]");
+    const std::regex regex("\\s*\"([a-z]*)\"\\s*:\\s*\"?([A-Za-z0-9]*)\"?[,}]\\s*");
+    std::smatch matches;
 
-    jsonString = std::regex_replace(jsonString, std::regex(spaceRegex), "");
-    jsonString = std::regex_replace(jsonString, std::regex(specialCharacterRegex), "");
-    jsonString = std::regex_replace(jsonString, std::regex(","), ":");
-
-    std::vector<std::string> properties;
-    std::string aValue{""};
-
-    // Split
-    for (char character : jsonString)
+    std::map<std::string, std::string> properties;
+    while (std::regex_search(jsonString, matches, regex))
     {
-        if (character != ':')
-            aValue += character;
-        else if (character == ':' && aValue != "")
+        if (matches.size() == 3)
         {
-            properties.push_back(std::regex_replace(aValue, std::regex(spaceRegex), ""));
-            aValue = "";
+            properties[matches[1]] = matches[2];
         }
+        jsonString = matches.suffix();
     }
 
-    if (aValue != "")
-        properties.push_back(std::regex_replace(aValue, std::regex(spaceRegex), ""));
-
-    return Player(properties[1], stoi(properties[3]), stoi(properties[5]));
+    return Player(properties["name"], stoi(properties["hp"]), stoi(properties["dmg"]));
 }
 
 bool Player::Attack(Player *otherPlayer) const
