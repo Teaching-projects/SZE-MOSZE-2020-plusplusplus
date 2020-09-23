@@ -17,4 +17,4 @@ do
         echo "Test fail. Quitting."
         exit 1
     fi
-done < "./units/results.csv"
+done < "./units/expected_results.csv"
