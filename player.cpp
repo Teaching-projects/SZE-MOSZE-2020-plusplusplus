@@ -2,12 +2,11 @@
 
 #include <iostream>
 #include <fstream>
+#include <regex>
 
 Player::Player(const std::string &name, unsigned short hp, unsigned short damage) : name{name}, hp{hp}, damage{damage}
 {
 }
-
-std::regex Player::jsonParseRegex("\\s*\"([a-z]*)\"\\s*:\\s*\"?([\\w]*)\"?\\s*[,}]\\s*");
 
 Player Player::parseUnit(const std::string &fileName)
 {
@@ -30,8 +29,9 @@ Player Player::parseUnit(const std::string &fileName)
 
     std::smatch matches;
 
+    static const std::regex jsonParseRegex("\\s*\"([a-z]*)\"\\s*:\\s*\"?([\\w]*)\"?\\s*[,}]\\s*");
     std::map<std::string, std::string> properties;
-    while (std::regex_search(jsonString, matches, Player::jsonParseRegex))
+    while (std::regex_search(jsonString, matches, jsonParseRegex))
     {
         if (matches.size() == 3)
         {
