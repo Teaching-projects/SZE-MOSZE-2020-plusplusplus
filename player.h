@@ -1,12 +1,14 @@
 #pragma once
 
 #include <string>
+#include <regex>
 
 class Player
 {
     std::string name;
     unsigned short hp;
     unsigned short damage;
+    static std::regex jsonParseRegex;
 
 public:
     explicit Player(const std::string &name, unsigned short hp, unsigned short damage);
