@@ -40,6 +40,15 @@ Player Player::parseUnit(const std::string &fileName)
         jsonString = matches.suffix();
     }
 
+    const std::vector<std::string> props{"name", "hp", "dmg"};
+    for (int i = 0; i < props.size(); i++)
+    {
+        if (properties.find(props[i]) == properties.end())
+        {
+            throw std::invalid_argument("File does not contain all property for the Player initalization: " + fileName);
+        }
+    }
+
     return Player(properties["name"], stoi(properties["hp"]), stoi(properties["dmg"]));
 }
 
