@@ -18,17 +18,24 @@
 
 int main(int argc, char **argv)
 {
-    if (argc != 7)
+    if (argc != 3)
     {
-        std::cout << "Please give two players. Example: ./executable Maple 150 10 Sally 45 30\n";
+        std::cout << "Please give two players. Example: ./executable player1.json player2.json\n";
 
         return 1;
     }
 
-    Loop loop = Loop(argv);
-    loop.ShowPlayers();
-    loop.Play();
-    loop.ShowWinner();
+    try
+    {
+        Loop loop = Loop(argv);
+        loop.Play();
+        loop.ShowWinner();
+    }
+    catch (const std::exception &e)
+    {
+        std::cout << e.what() << '\n';
+        return 1;
+    }
 
     return 0;
 };

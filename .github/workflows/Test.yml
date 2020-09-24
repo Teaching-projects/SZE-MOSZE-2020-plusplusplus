@@ -1,0 +1,13 @@
+name: Test Workflow
+
+on: push
+
+jobs:
+  build_and_test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build
+        run: g++ -std=c++17 *.cpp
+      - name: Test
+        run: ./run_all.sh
