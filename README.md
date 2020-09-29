@@ -12,13 +12,14 @@
 
 ### Executing application
 
-Compiled application should be called with 2 parameters, each pointing to a json file with a player defined (name, hp, dmg).
+Compiled application should be called with 2 parameters, each pointing to a json file with a player defined (name, hp, dmg, attackcooldown).
 
 ```json
 {
   "name": "Player",
   "hp": 100,
-  "dmg": 10
+  "dmg": 10,
+  "attackcooldown": 12.3
 }
 ```
 
