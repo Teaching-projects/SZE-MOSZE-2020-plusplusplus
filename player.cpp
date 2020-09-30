@@ -29,7 +29,7 @@ Player Player::parseUnit(const std::string &fileName)
 
     std::smatch matches;
 
-    static const std::regex jsonParseRegex("\\s*\"([a-z]*)\"\\s*:\\s*\"?(\\w*.?\\w)\"?\\s*[,}]\\s*");
+    static const std::regex jsonParseRegex("\\s*\"([a-z]*)\"\\s*:\\s*\"?(\\w*.?\\w+)\"?\\s*[,}]\\s*");
     std::map<std::string, std::string> properties;
     while (std::regex_search(jsonString, matches, jsonParseRegex))
     {
