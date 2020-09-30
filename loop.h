@@ -12,12 +12,13 @@ class Loop
     unsigned short currentPlayer = 0;
 
 public:
-    explicit Loop(char** argv);
+    explicit Loop(char **argv);
     void Play();
     void ShowPlayers() const;
     void ShowWinner() const;
 
 private:
-    Player getPlayer(char** argv, int nthPlayer) const;
-    unsigned short getVictim() const;
+    Player getPlayer(char **argv, int nthPlayer) const;
+    unsigned short getOther() const;
+    unsigned short getNextAttacker() const;
 };

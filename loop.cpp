@@ -12,20 +12,11 @@ Loop::Loop(char **argv)
 
 void Loop::Play()
 {
-    int victim = this->getVictim();
+    const unsigned short victim = this->getOther();
 
-    bool gameEnd = false;
-    if (this->players[this->currentPlayer].Attack(&this->players[victim]))
+    if (!this->players[this->currentPlayer].Attack(&this->players[victim]))
     {
-        gameEnd = true;
-    }
-    else
-    {
-        this->currentPlayer = victim;
-    }
-
-    if (!gameEnd)
-    {
+        this->currentPlayer = this->getNextAttacker();
         this->Play();
     }
 }
@@ -49,7 +40,19 @@ Player Loop::getPlayer(char **argv, int nthPlayer) const
     return Player::parseUnit(argv[start]);
 }
 
-unsigned short Loop::getVictim() const
+unsigned short Loop::getOther() const
 {
     return (this->currentPlayer + 1) % NUMBER_OF_PLAYERS;
+}
+
+unsigned short Loop::getNextAttacker() const
+{
+    if (players[this->currentPlayer].GetNextAttack() <= players[this->getOther()].GetNextAttack())
+    {
+        return this->currentPlayer;
+    }
+    else
+    {
+        return this->getOther();
+    }
 }

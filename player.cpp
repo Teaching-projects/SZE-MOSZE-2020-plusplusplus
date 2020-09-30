@@ -61,10 +61,16 @@ bool Player::Attack(Player *otherPlayer) const
     }
 
     otherPlayer->hp -= this->damage;
+    this->attackCounter++;
     return false;
 }
 
 void Player::Print() const
 {
     std::cout << this->name << ": HP: " << this->hp << ", DMG: " << this->damage << '\n';
+}
+
+float Player::GetNextAttack() const
+{
+    return this->attackCooldown * this->attackCounter;
 }

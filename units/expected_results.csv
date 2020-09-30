@@ -1,6 +1,6 @@
-unit1.json;unit2.json;Gollum wins. Remaining HP: 10333
-unit1.json;unit3.json;FredBoat wins. Remaining HP: 2010
-unit2.json;unit1.json;Gollum wins. Remaining HP: 10563
-unit2.json;unit3.json;FredBoat wins. Remaining HP: 700
-unit3.json;unit1.json;FredBoat wins. Remaining HP: 2240
-unit3.json;unit2.json;FredBoat wins. Remaining HP: 800
+unit1.json;unit2.json;Gollum wins. Remaining HP: 2754
+unit1.json;unit3.json;FredBoat wins. Remaining HP: 848
+unit2.json;unit1.json;Gollum wins. Remaining HP: 2754
+unit2.json;unit3.json;Gollum wins. Remaining HP: 1970
+unit3.json;unit1.json;FredBoat wins. Remaining HP: 848
+unit3.json;unit2.json;Gollum wins. Remaining HP: 1970
