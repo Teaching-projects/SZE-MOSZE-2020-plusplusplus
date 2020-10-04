@@ -12,9 +12,14 @@ Player::Player(const std::string &name, unsigned short maxhp, unsigned short dam
 
 Player Player::parseUnit(const std::string &fileName)
 {
-    std::map<std::string, std::string> properties = Json::ParseJson(fileName);
+    std::map<std::string, std::any> properties = Json::ParseJson(fileName);
 
-    return Player(properties["name"], stoi(properties["hp"]), stoi(properties["dmg"]), stof(properties["attackcooldown"]), 0);
+    return Player(
+        std::any_cast<std::string>(properties["name"]),
+        std::any_cast<int>(properties["hp"]),
+        std::any_cast<int>(properties["dmg"]),
+        std::any_cast<float>(properties["cooldown"]),
+        0);
 }
 
 bool Player::hit(Player *otherPlayer)
