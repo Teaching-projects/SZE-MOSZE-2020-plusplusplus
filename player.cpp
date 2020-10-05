@@ -52,7 +52,7 @@ Player Player::parseUnit(const std::string &fileName)
     return Player(properties["name"], stoi(properties["hp"]), stoi(properties["dmg"]), stof(properties["attackcooldown"]));
 }
 
-bool Player::Attack(Player *otherPlayer) const
+bool Player::attack(Player *otherPlayer) const
 {
     if (otherPlayer->hp <= this->damage)
     {
@@ -70,7 +70,38 @@ void Player::Print() const
     std::cout << this->name << ": HP: " << this->hp << ", DMG: " << this->damage << '\n';
 }
 
-float Player::GetNextAttack() const
+Player Player::DuelWith(Player *other)
+{
+    if (this->attack(other))
+    {
+        return *this;
+    }
+    else
+    {
+        if (this == Player::GetNextAttacker(this, other))
+        {
+            return this->DuelWith(other);
+        }
+        else
+        {
+            return other->DuelWith(this);
+        }
+    }
+}
+
+float Player::getNextAttack() const
 {
     return this->attackCooldown * this->attackCounter;
+}
+
+Player *Player::GetNextAttacker(Player *prev, Player *other)
+{
+    if (prev->getNextAttack() <= other->getNextAttack())
+    {
+        return prev;
+    }
+    else
+    {
+        return other;
+    }
 }

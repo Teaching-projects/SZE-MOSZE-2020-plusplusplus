@@ -12,13 +12,7 @@ Loop::Loop(char **argv)
 
 void Loop::Play()
 {
-    const unsigned short victim = this->getOther();
-
-    if (!this->players[this->currentPlayer].Attack(&this->players[victim]))
-    {
-        this->currentPlayer = this->getNextAttacker();
-        this->Play();
-    }
+    this->showWinner(this->players[this->currentPlayer].DuelWith(&this->players[this->getOther()]));
 }
 
 void Loop::ShowPlayers() const
@@ -29,9 +23,9 @@ void Loop::ShowPlayers() const
     }
 }
 
-void Loop::ShowWinner() const
+void Loop::showWinner(Player player) const
 {
-    std::cout << players[this->currentPlayer].GetName() << " wins. Remaining HP: " << players[this->currentPlayer].GetHP() << std::endl;
+    std::cout << player.GetName() << " wins. Remaining HP: " << player.GetHP() << std::endl;
 }
 
 Player Loop::getPlayer(char **argv, int nthPlayer) const
@@ -43,16 +37,4 @@ Player Loop::getPlayer(char **argv, int nthPlayer) const
 unsigned short Loop::getOther() const
 {
     return (this->currentPlayer + 1) % NUMBER_OF_PLAYERS;
-}
-
-unsigned short Loop::getNextAttacker() const
-{
-    if (players[this->currentPlayer].GetNextAttack() <= players[this->getOther()].GetNextAttack())
-    {
-        return this->currentPlayer;
-    }
-    else
-    {
-        return this->getOther();
-    }
 }
