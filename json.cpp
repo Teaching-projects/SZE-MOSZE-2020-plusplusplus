@@ -1,10 +1,9 @@
 #include "json.h"
+#include "jsonFileReadError.h"
 
 #include <fstream>
 #include <regex>
 
-// Can accept json as parameter or a filename which will be read from the filesystem
-// The parameter will be threated as Json if includes a { character
 std::map<std::string, std::any> Json::ParseJson(const std::string &inputOrFile)
 {
     if (inputOrFile.find_first_of("{") != std::string::npos)
@@ -15,8 +14,7 @@ std::map<std::string, std::any> Json::ParseJson(const std::string &inputOrFile)
     std::ifstream jsonFile(inputOrFile);
     if (jsonFile.fail())
     {
-        const std::string errMessage("Error: No such file: " + inputOrFile);
-        throw std::runtime_error(errMessage);
+        throw JsonFileReadError(inputOrFile);
     }
 
     return ParseJson(jsonFile);
