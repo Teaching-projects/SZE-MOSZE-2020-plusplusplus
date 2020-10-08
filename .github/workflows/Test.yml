@@ -11,10 +11,14 @@ jobs:
         run: g++ -std=c++17 *.cpp
       - name: Test
         run: ./run_all.sh
+  code_analysis:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
       - name: Code analysis (error, warning)
         run: ./run_code_analysis.sh
       - name: Code analysis (performance, style)
         run: ./run_code_analysis_secondary.sh
-        uses: actions/upload-artifact@v2
-          with:
-            path: ./perf_and_style_analysis.txt
+      - uses: actions/upload-artifact@v2
+        with:
+          path: ./perf_and_style_analysis.txt
