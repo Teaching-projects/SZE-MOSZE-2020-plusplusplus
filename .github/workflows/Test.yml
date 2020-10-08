@@ -11,9 +11,12 @@ jobs:
         run: g++ -std=c++17 *.cpp
       - name: Test
         run: ./run_all.sh
+
   code_analysis:
     runs-on: ubuntu-latest
     steps:
+      - name: Install cppcheck
+        run: sudo apt-get install cppcheck
       - uses: actions/checkout@v2
       - name: Code analysis (error, warning)
         run: ./run_code_analysis.sh
