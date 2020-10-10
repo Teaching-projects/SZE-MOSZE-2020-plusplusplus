@@ -52,7 +52,7 @@ Player Player::parseUnit(const std::string &fileName)
     return Player(properties["name"], stoi(properties["hp"]), stoi(properties["dmg"]), stof(properties["attackcooldown"]));
 }
 
-bool Player::attack(Player *otherPlayer) const
+bool Player::hit(Player *otherPlayer) const
 {
     if (otherPlayer->hp <= this->damage)
     {
@@ -72,7 +72,11 @@ void Player::Print() const
 
 Player Player::DuelWith(Player *other)
 {
-    if (this->attack(other))
+    if (this == other)
+    {
+        throw std::invalid_argument("The attacker Player cannot be the attacked one too");
+    }
+    if (this->hit(other))
     {
         return *this;
     }
