@@ -25,3 +25,9 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           path: ./perf_and_style_analysis.txt
+
+  memory_leak_check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install valgrind
+        run: sudo apt-get install valgrind
