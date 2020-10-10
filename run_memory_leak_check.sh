@@ -1,7 +1,7 @@
 #!/bin/bash
 
-check="$(valgrind --log-file=memory_leak.txt)"
 echo $check
+check="$(valgrind --tool=memcheck --log-file=memory_leak.txt)"
 if [ -s ./memory_leak.txt ]
 then
     echo "Memory leak found."
