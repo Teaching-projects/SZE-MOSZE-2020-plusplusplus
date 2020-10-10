@@ -14,6 +14,7 @@ jobs:
             - uses: actions/checkout@master
             - name: Install Doxygen deps
               run: sudo apt-get install doxygen
+            - name: Install Graphviz deps
               run: sudo apt-get install graphviz
 
             - name: Generate docs
