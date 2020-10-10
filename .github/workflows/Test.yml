@@ -31,3 +31,6 @@ jobs:
     steps:
       - name: Install valgrind
         run: sudo apt-get install valgrind
+      - uses: actions/checkout@v2
+      - name: Memory leak check
+        run: ./run_memory_leak_check.sh
