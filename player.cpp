@@ -88,10 +88,6 @@ void Player::increaseXP(unsigned short amount)
 
 void Player::levelUp(unsigned short newLevel)
 {
-    // TODO: Remove after memory leak checker test
-    int *test = new int;
-    // TODO END
-
     this->level = newLevel;
     this->maxHp = round(this->maxHp * 1.1);
     this->hp = this->maxHp;

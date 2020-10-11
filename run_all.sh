@@ -7,7 +7,7 @@ do
     echo "Player 1: ${data[0]}"
     echo "Player 2: ${data[1]}"
     echo "Expected Result: \"${expect}\""
-    real="$(valgrind --leak-check=yes --exit-on-first-error=yes --error-exitcode=1 --log-file=memory_leak_check.txt ./a.out units/${data[0]} units/${data[1]})"
+    real="$(valgrind --leak-check=yes --log-file=memory_leak_check.txt ./a.out units/${data[0]} units/${data[1]})"
     echo "Real Result: \"$real\""
     if [ "$expect" == "$real" ]
     then
