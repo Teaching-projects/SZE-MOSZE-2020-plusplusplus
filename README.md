@@ -38,3 +38,7 @@ Only the final state of the game is printed, showing who won.
 ### Output test
 
 There are predefined players in the `units/` folder and a `expected_results.csv` file. The variations in the `csv` file can be executed automatically using the `./run_all.sh` script. If a test fails (results not equal) the script quits with error code.
+
+### Code documentation
+
+> Url of the Doxygen code documentation: [Go to documentation](https://teaching-projects.github.io/SZE-MOSZE-2020-plusplusplus/pages.html).
