@@ -7,6 +7,6 @@ then
     echo "Errors or/and warnings found."
     exit 1
 else
-    echo "No problems found."
+    echo "No errors or warnings found."
     echo
 fi
