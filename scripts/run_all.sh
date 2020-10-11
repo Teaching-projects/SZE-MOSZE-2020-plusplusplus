@@ -7,7 +7,7 @@ do
     echo "Player 1: ${data[0]}"
     echo "Player 2: ${data[1]}"
     echo "Expected Result: \"${expect}\""
-    real="$(./a.out units/${data[0]} units/${data[1]})"
+    real="$(../a.out ../units/${data[0]} ../units/${data[1]})"
     echo "Real Result: \"$real\""
     if [ "$expect" == "$real" ]
     then
@@ -17,4 +17,4 @@ do
         echo "Test fail. Quitting."
         exit 1
     fi
-done < "./units/expected_results.csv"
+done < "../units/expected_results.csv"

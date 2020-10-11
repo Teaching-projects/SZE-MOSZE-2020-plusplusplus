@@ -1,10 +1,12 @@
 #!/bin/bash
 
-echo $check
-check="$(valgrind --tool=memcheck --log-file=memory_leak.txt)"
-if [ -s ./memory_leak.txt ]
+scripts="../scripts"
+results="../out/results"
+cmd="$(valgrind --tool=memcheck --leak-check=full --show-leak-kinds=all --log-file=$results/memory_leak.txt $scripts/run_all.sh)"
+echo $cmd
+if [ -s $results/memory_leak.txt ]
 then
-    echo "Memory leak found."
+    echo "Memory leak(s) found."
     exit 1
 else
     echo "No memory leak found."

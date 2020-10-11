@@ -1,8 +1,9 @@
 #!/bin/bash
 
-check="$(cppcheck *.cpp --enable=warning --output-file=error_and_warning_analysis.txt)"
-echo $check
-if [ -s ./error_and_warning_analysis.txt ]
+results="../out/results"
+cmd="$(cppcheck ../*.cpp --enable=warning --output-file=$results/code_analysis_primary.txt)"
+echo $cmd
+if [ -s $results/code_analysis_primary.txt ]
 then
     echo "Errors or/and warnings found."
     exit 1
