@@ -12,7 +12,7 @@ jobs:
       - name: Install valgrind
         run: sudo apt-get install valgrind
       - name: Run program with memory leak check
-        run: ./run_memory_leak_check.sh
+        run: ./run_all_with_memory_leak_check.sh
       - uses: actions/upload-artifact@v2
         with:
           path: ./memory_leak_check.txt
@@ -29,4 +29,6 @@ jobs:
         run: ./run_code_analysis_secondary.sh
       - uses: actions/upload-artifact@v2
         with:
-          path: ./code_analysis_secondary.txt
+          path: |
+            ./code_analysis_primary.txt
+            ./code_analysis_secondary.txt
