@@ -77,10 +77,6 @@ bool Player::hit(Player *otherPlayer)
 
 void Player::increaseXP(unsigned short amount)
 {
-    // TODO: REMOVE
-    int *test_leak = new int;
-    //
-
     this->xp += amount;
     unsigned short properLevel = (this->xp / LEVEL_SIZE) + 1;
 
