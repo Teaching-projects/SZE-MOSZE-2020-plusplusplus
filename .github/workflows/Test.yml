@@ -9,10 +9,12 @@ jobs:
       - uses: actions/checkout@v2
       - name: Build
         run: g++ -std=c++17 *.cpp
+      - name: Test
+        run: ./run_all.sh
       - name: Install valgrind
         run: sudo apt-get install valgrind
-      - name: Run program with memory leak check
-        run: ./run_all_with_memory_leak_check.sh
+      - name: Memory leak check
+        run: ./run_memory_leak_check.sh
       - uses: actions/upload-artifact@v2
         with:
           path: ./memory_leak_check.txt
