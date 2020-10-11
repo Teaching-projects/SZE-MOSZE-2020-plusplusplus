@@ -78,8 +78,8 @@ $(function() {
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a940a6646b327cc6fdc839a0c6e254c80"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPlayer.html#a940a6646b327cc6fdc839a0c6e254c80">Player</a> (const std::string &amp;name, unsigned short hp, unsigned short damage, float attackCooldown)</td></tr>
 <tr class="separator:a940a6646b327cc6fdc839a0c6e254c80"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afbfc37fe51d3854e241c64fee3fa1545"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPlayer.html#afbfc37fe51d3854e241c64fee3fa1545">Print</a> () const</td></tr>
-<tr class="separator:afbfc37fe51d3854e241c64fee3fa1545"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a51a630be3249659ae790976c601870be"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPlayer.html#a51a630be3249659ae790976c601870be">Print</a> (std::ostream &amp;stream) const</td></tr>
+<tr class="separator:a51a630be3249659ae790976c601870be"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acdfeb90811d8a0c826d526b97eeb0d94"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPlayer.html#acdfeb90811d8a0c826d526b97eeb0d94">GetName</a> () const</td></tr>
 <tr class="separator:acdfeb90811d8a0c826d526b97eeb0d94"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa69264f8bbe4ec943df625beb4ef74d1"><td class="memItemLeft" align="right" valign="top">const short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPlayer.html#aa69264f8bbe4ec943df625beb4ef74d1">GetHP</a> () const</td></tr>
@@ -329,8 +329,8 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="afbfc37fe51d3854e241c64fee3fa1545"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afbfc37fe51d3854e241c64fee3fa1545">&#9670;&nbsp;</a></span>Print()</h2>
+<a id="a51a630be3249659ae790976c601870be"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a51a630be3249659ae790976c601870be">&#9670;&nbsp;</a></span>Print()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -338,12 +338,18 @@ Static Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">void Player::Print </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>stream</em></td><td>)</td>
           <td> const</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Prints to the output the player's name and current status. </p>
+<p>Prints to the output the player's name and current status. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">stream</td><td>The destination output stream </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
