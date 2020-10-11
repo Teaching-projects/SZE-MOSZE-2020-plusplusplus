@@ -15,10 +15,6 @@ jobs:
         run: sudo apt-get install valgrind
       - name: Memory leak check
         run: ./run_memory_leak_check.sh
-      - uses: actions/upload-artifact@v2
-        with:
-          name: Artifact_of_memory_leak_check
-          path: ./memory_leak_check.txt
 
   code_analysis:
     runs-on: ubuntu-latest
