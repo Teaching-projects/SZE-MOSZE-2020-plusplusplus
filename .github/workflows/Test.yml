@@ -3,7 +3,7 @@ name: Test Workflow
 on: push
 
 jobs:
-  build_and_test_with_memory_leak_check:
+  build_and_test_and_memory_leak_check:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -31,6 +31,4 @@ jobs:
         run: ./run_code_analysis_secondary.sh
       - uses: actions/upload-artifact@v2
         with:
-          path: |
-            ./code_analysis_primary.txt
-            ./code_analysis_secondary.txt
+          path: ./code_analysis_secondary.txt

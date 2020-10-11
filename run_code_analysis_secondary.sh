@@ -8,4 +8,3 @@ then
 else
     echo "No performance or style problems found."
 fi
-echo

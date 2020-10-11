@@ -8,5 +8,4 @@ then
     exit 1
 else
     echo "No errors or warnings found."
-    echo
 fi
