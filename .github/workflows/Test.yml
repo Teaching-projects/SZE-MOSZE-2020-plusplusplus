@@ -3,51 +3,27 @@ name: Test Workflow
 on: push
 
 jobs:
-  build:
+  build_and_test_with_memory_leak_check:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: Build
         run: g++ -std=c++17 *.cpp
-
-  test:
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        shell: bash
-        working-directory: ./scripts
-    steps:
-      - uses: actions/checkout@v2
-      - name: Test
-        run: ./run_all.sh
+      - name: Install valgrind
+        run: sudo apt-get install valgrind
+      - name: Run program with memory leak check
+        run: ./run_memory_leak_check.sh
 
   code_analysis:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        shell: bash
-        working-directory: ./scripts
     steps:
       - name: Install cppcheck
         run: sudo apt-get install cppcheck
       - uses: actions/checkout@v2
       - name: Code analysis primary (error, warning)
-        run: ./run_code_analysis.sh
+        run: ./run_code_analysis_primary.sh
       - name: Code analysis secondary (performance, style)
         run: ./run_code_analysis_secondary.sh
       - uses: actions/upload-artifact@v2
         with:
-          path: ./out/results/code_analysis_secondary.txt
-
-  memory_leak_check:
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        shell: bash
-        working-directory: ./scripts
-    steps:
-      - name: Install valgrind
-        run: sudo apt-get install valgrind
-      - uses: actions/checkout@v2
-      - name: Memory leak check
-        run: ./run_memory_leak_check.sh
+          path: ./code_analysis_secondary.txt

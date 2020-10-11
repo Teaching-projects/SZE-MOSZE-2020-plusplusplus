@@ -1,10 +1,8 @@
 #!/bin/bash
 
-root=".."
-results="../out/results"
-cmd="$(cppcheck $root/*.cpp --enable=performance,style --output-file=$results/code_analysis_secondary.txt)"
+cmd="$(cppcheck *.cpp --enable=performance,style --output-file=code_analysis_secondary.txt)"
 echo $cmd
-if [ -s $results/code_analysis_secondary.txt ]
+if [ -s ./code_analysis_secondary.txt ]
 then
     echo "Performance or/and style problems found."
 else
