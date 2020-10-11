@@ -3,18 +3,18 @@ name: Test Workflow
 on: push
 
 jobs:
-  build_and_test_and_memory_leak_check:
+  build_and_test_with_memory_leak_check:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: Build
         run: g++ -std=c++17 *.cpp
-      - name: Test
-        run: ./run_all.sh
+      - name: Install valgrind
+        run: sudo apt list -a valgrind
       - name: Install valgrind
         run: sudo apt-get install valgrind
-      - name: Memory leak check
-        run: ./run_memory_leak_check.sh
+      - name: Test with memory leak check
+        run: ./run_all.sh
       - uses: actions/upload-artifact@v2
         with:
           path: ./memory_leak_check.txt
