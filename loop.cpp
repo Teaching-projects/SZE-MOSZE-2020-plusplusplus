@@ -19,7 +19,7 @@ void Loop::ShowPlayers() const
 {
     for (const auto &player : this->players)
     {
-        player.Print();
+        player.Print(std::cout);
     }
 }
 

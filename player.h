@@ -2,6 +2,7 @@
 #pragma once
 
 #include <string>
+#include <iostream>
 
 /**
  * @class Player 
@@ -29,7 +30,7 @@ class Player
     /**
      * The name of the character.
      */
-    std::string name;
+    const std::string name;
 
     /**
      * The health point of the character.
@@ -39,12 +40,12 @@ class Player
     /**
      * The damage of the character.
      */
-    unsigned short damage;
+    const unsigned short damage;
 
     /**
      * The attack cooldown of the character.
      */
-    float attackCooldown;
+    const float attackCooldown;
 
     /**
      * Count of the attacks. Zero by default.
@@ -74,8 +75,9 @@ public:
 
     /**
      * Prints to the output the player's name and current status.
+     * @param stream The destination output stream
      */
-    void Print() const;
+    void Print(std::ostream &stream) const;
 
     /**
      * Gets name of the player.

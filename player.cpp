@@ -1,6 +1,5 @@
 #include "player.h"
 
-#include <iostream>
 #include <fstream>
 #include <regex>
 
@@ -41,7 +40,7 @@ Player Player::parseUnit(const std::string &fileName)
     }
 
     const std::vector<std::string> expectedProps{"name", "hp", "dmg", "attackcooldown"};
-    for (int i = 0; i < expectedProps.size(); i++)
+    for (unsigned int i = 0; i < expectedProps.size(); i++)
     {
         if (properties.find(expectedProps[i]) == properties.end())
         {
@@ -65,9 +64,9 @@ bool Player::hit(Player *otherPlayer) const
     return false;
 }
 
-void Player::Print() const
+void Player::Print(std::ostream &stream) const
 {
-    std::cout << this->name << ": HP: " << this->hp << ", DMG: " << this->damage << '\n';
+    stream << this->name << ": HP: " << this->hp << ", DMG: " << this->damage << '\n';
 }
 
 Player Player::DuelWith(Player *other)
