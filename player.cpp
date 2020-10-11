@@ -1,10 +1,9 @@
 #include "player.h"
 
-#include <iostream>
 #include <fstream>
 #include <regex>
 
-Player::Player(const std::string &name, unsigned short hp, unsigned short damage) : name{name}, hp{hp}, damage{damage}
+Player::Player(const std::string &name, unsigned short hp, unsigned short damage, float attackCooldown) : name{name}, hp{hp}, damage{damage}, attackCooldown{attackCooldown}
 {
 }
 
@@ -29,7 +28,7 @@ Player Player::parseUnit(const std::string &fileName)
 
     std::smatch matches;
 
-    static const std::regex jsonParseRegex("\\s*\"([a-z]*)\"\\s*:\\s*\"?([\\w]*)\"?\\s*[,}]\\s*");
+    static const std::regex jsonParseRegex("\\s*\"([a-z]*)\"\\s*:\\s*\"?(\\w*.?\\w+)\"?\\s*[,}]\\s*");
     std::map<std::string, std::string> properties;
     while (std::regex_search(jsonString, matches, jsonParseRegex))
     {
@@ -40,19 +39,19 @@ Player Player::parseUnit(const std::string &fileName)
         jsonString = matches.suffix();
     }
 
-    const std::vector<std::string> expectedProps{"name", "hp", "dmg"};
-    for (int i = 0; i < expectedProps.size(); i++)
+    const std::vector<std::string> expectedProps{"name", "hp", "dmg", "attackcooldown"};
+    for (unsigned int i = 0; i < expectedProps.size(); i++)
     {
         if (properties.find(expectedProps[i]) == properties.end())
         {
-            throw std::invalid_argument("File does not contain all property for the Player initalization: " + fileName);
+            throw std::invalid_argument("File does not contain all property for the Player initalization: " + fileName + " " + expectedProps[i]);
         }
     }
 
-    return Player(properties["name"], stoi(properties["hp"]), stoi(properties["dmg"]));
+    return Player(properties["name"], stoi(properties["hp"]), stoi(properties["dmg"]), stof(properties["attackcooldown"]));
 }
 
-bool Player::Attack(Player *otherPlayer) const
+bool Player::hit(Player *otherPlayer) const
 {
     if (otherPlayer->hp <= this->damage)
     {
@@ -61,10 +60,51 @@ bool Player::Attack(Player *otherPlayer) const
     }
 
     otherPlayer->hp -= this->damage;
+    this->attackCounter++;
     return false;
 }
 
-void Player::Print() const
+void Player::Print(std::ostream &stream) const
 {
-    std::cout << this->name << ": HP: " << this->hp << ", DMG: " << this->damage << '\n';
+    stream << this->name << ": HP: " << this->hp << ", DMG: " << this->damage << '\n';
+}
+
+Player Player::DuelWith(Player *other)
+{
+    if (this == other)
+    {
+        throw std::invalid_argument("The attacker Player cannot be the attacked one too");
+    }
+    if (this->hit(other))
+    {
+        return *this;
+    }
+    else
+    {
+        if (this == Player::GetNextAttacker(this, other))
+        {
+            return this->DuelWith(other);
+        }
+        else
+        {
+            return other->DuelWith(this);
+        }
+    }
+}
+
+float Player::getNextAttack() const
+{
+    return this->attackCooldown * this->attackCounter;
+}
+
+Player *Player::GetNextAttacker(Player *prev, Player *other)
+{
+    if (prev->getNextAttack() <= other->getNextAttack())
+    {
+        return prev;
+    }
+    else
+    {
+        return other;
+    }
 }

@@ -1,5 +1,6 @@
 {
     "name": "Alma",
-    "hp": 10000,
-    "dmg": 230
+    "hp": 3200,
+    "dmg": 52,
+    "attackcooldown": 1.5
 }

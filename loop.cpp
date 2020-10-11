@@ -12,35 +12,20 @@ Loop::Loop(char **argv)
 
 void Loop::Play()
 {
-    int victim = this->getVictim();
-
-    bool gameEnd = false;
-    if (this->players[this->currentPlayer].Attack(&this->players[victim]))
-    {
-        gameEnd = true;
-    }
-    else
-    {
-        this->currentPlayer = victim;
-    }
-
-    if (!gameEnd)
-    {
-        this->Play();
-    }
+    this->showWinner(this->players[this->currentPlayer].DuelWith(&this->players[this->getOther()]));
 }
 
 void Loop::ShowPlayers() const
 {
     for (const auto &player : this->players)
     {
-        player.Print();
+        player.Print(std::cout);
     }
 }
 
-void Loop::ShowWinner() const
+void Loop::showWinner(Player player) const
 {
-    std::cout << players[this->currentPlayer].GetName() << " wins. Remaining HP: " << players[this->currentPlayer].GetHP() << std::endl;
+    std::cout << player.GetName() << " wins. Remaining HP: " << player.GetHP() << std::endl;
 }
 
 Player Loop::getPlayer(char **argv, int nthPlayer) const
@@ -49,7 +34,7 @@ Player Loop::getPlayer(char **argv, int nthPlayer) const
     return Player::parseUnit(argv[start]);
 }
 
-unsigned short Loop::getVictim() const
+unsigned short Loop::getOther() const
 {
     return (this->currentPlayer + 1) % NUMBER_OF_PLAYERS;
 }
