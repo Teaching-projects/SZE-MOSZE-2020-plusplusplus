@@ -46,12 +46,12 @@ class Player
     /**
      * The attack cooldown of the character.
      */
-    const float attackCooldown;
+    float attackCooldown;
 
     /**
      * Count of the attacks. Zero by default.
      */
-    mutable unsigned short attackCounter = 0;
+    float nextAttack = 0;
 
     /**
      * The maximum health point of the character.
@@ -62,8 +62,6 @@ class Player
      * The xp of the character.
      */
     unsigned short xp;
-
-    unsigned short level;
 
 public:
     /**
@@ -134,9 +132,7 @@ public:
      */
     static Player *GetNextAttacker(Player *prev, Player *other);
 
-    // TODO: doc, move
-    void increaseXP(unsigned short amount);
-    void levelUp(unsigned short newLevel);
+    // TODO: doc
     const short GetLevel() const { return (xp / LEVEL_SIZE) + 1; };
 
 private:
@@ -151,7 +147,11 @@ private:
 
     /**
      * It determine the time one the next attack by the attack counter.
-     * @return Player's attack cooldown multipled by the attack count.
+     * @return next attack identifier.
      */
-    float getNextAttack() const;
+    float getNextAttack() { return nextAttack; };
+
+    void increaseXP(unsigned short amount);
+
+    void levelUp(unsigned short newLevel);
 };

@@ -68,7 +68,7 @@ bool Player::hit(Player *otherPlayer)
         fatality = false;
     }
 
-    this->attackCounter++;
+    this->nextAttack += this->attackCooldown;
     // Increase XP
     this->increaseXP(this->damage);
 
@@ -94,6 +94,7 @@ void Player::levelUp(unsigned short newLevel)
     this->maxHp = round(this->maxHp * 1.1);
     this->hp = this->maxHp;
     this->damage = round(this->damage * 1.1);
+    this->attackCooldown = this->attackCooldown * 0.9;
 }
 
 void Player::Print(std::ostream &stream) const
@@ -103,6 +104,7 @@ void Player::Print(std::ostream &stream) const
            << ", HP: " << this->hp
            << ", DMG: " << this->damage
            << ", XP: " << this->xp
+           << ", COOLDOWN: " << this->attackCooldown
            << ", LEVEL: " << this->GetLevel();
 }
 
@@ -127,11 +129,6 @@ Player *Player::DuelWith(Player *other)
             return other->DuelWith(this);
         }
     }
-}
-
-float Player::getNextAttack() const
-{
-    return this->attackCooldown * this->attackCounter;
 }
 
 Player *Player::GetNextAttacker(Player *prev, Player *other)
