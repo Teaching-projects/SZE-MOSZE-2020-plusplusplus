@@ -123,7 +123,7 @@ public:
      * @throw std::invalid_argument When the the attacked Player equals with the attacker
      * @return The winner player of the fight
      */
-    Player DuelWith(Player *other);
+    Player *DuelWith(Player *other);
 
     /**
      * Determines from two player, who will be the next attacker.

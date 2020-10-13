@@ -29,6 +29,7 @@ int main(int argc, char **argv)
     {
         Loop loop = Loop(argv);
         loop.Play();
+        loop.ShowWinnerAndVictim();
     }
     catch (const std::exception &e)
     {

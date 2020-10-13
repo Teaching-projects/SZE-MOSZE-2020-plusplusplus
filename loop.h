@@ -54,6 +54,11 @@ public:
      */
     void ShowPlayers() const;
 
+    /**
+     * Displays the winner and victim.
+     */
+    void ShowWinnerAndVictim() const;
+
 private:
     /**
      * Create the player from the arguments.
@@ -69,10 +74,4 @@ private:
      * @return Index of the other player.
      */
     unsigned short getOther() const;
-
-    /**
-     * Displays the player as winner and its remainging health point.
-     * @param player The winner player.
-     */
-    void showWinner(Player player) const;
 };

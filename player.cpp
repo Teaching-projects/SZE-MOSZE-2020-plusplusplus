@@ -100,11 +100,10 @@ void Player::Print(std::ostream &stream) const
            << ": MAX HP: " << this->maxHp
            << ", HP: " << this->hp
            << ", DMG: " << this->damage
-           << ", XP: " << this->xp
-           << '\n';
+           << ", XP: " << this->xp;
 }
 
-Player Player::DuelWith(Player *other)
+Player *Player::DuelWith(Player *other)
 {
     if (this == other)
     {
@@ -112,7 +111,7 @@ Player Player::DuelWith(Player *other)
     }
     if (this->hit(other))
     {
-        return *this;
+        return this;
     }
     else
     {
