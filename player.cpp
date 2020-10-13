@@ -77,18 +77,20 @@ bool Player::hit(Player *otherPlayer)
 
 void Player::increaseXP(unsigned short amount)
 {
+    unsigned short currentLevel = this->GetLevel();
     this->xp += amount;
-    unsigned short properLevel = (this->xp / LEVEL_SIZE) + 1;
+    unsigned short properLevel = this->GetLevel();
+    unsigned short requiredLevelUpCount = properLevel - currentLevel;
 
-    if (properLevel > this->level)
+    while (requiredLevelUpCount > 0)
     {
         this->levelUp(properLevel);
+        requiredLevelUpCount--;
     }
 }
 
 void Player::levelUp(unsigned short newLevel)
 {
-    this->level = newLevel;
     this->maxHp = round(this->maxHp * 1.1);
     this->hp = this->maxHp;
     this->damage = round(this->damage * 1.1);
@@ -100,7 +102,8 @@ void Player::Print(std::ostream &stream) const
            << ": MAX HP: " << this->maxHp
            << ", HP: " << this->hp
            << ", DMG: " << this->damage
-           << ", XP: " << this->xp;
+           << ", XP: " << this->xp
+           << ", LEVEL: " << this->GetLevel();
 }
 
 Player *Player::DuelWith(Player *other)

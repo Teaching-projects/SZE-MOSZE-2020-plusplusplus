@@ -134,8 +134,10 @@ public:
      */
     static Player *GetNextAttacker(Player *prev, Player *other);
 
+    // TODO: doc, move
     void increaseXP(unsigned short amount);
     void levelUp(unsigned short newLevel);
+    const short GetLevel() const { return (xp / LEVEL_SIZE) + 1; };
 
 private:
     /**
