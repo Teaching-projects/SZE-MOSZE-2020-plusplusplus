@@ -55,18 +55,20 @@ Player Player::parseUnit(const std::string &fileName)
 
 bool Player::hit(Player *otherPlayer)
 {
-    bool fatality = false;
+    bool fatality;
 
     if (otherPlayer->hp <= this->damage)
     {
         otherPlayer->hp = 0;
         fatality = true;
     }
+    else
+    {
+        otherPlayer->hp -= this->damage;
+        fatality = false;
+    }
 
-    otherPlayer->hp -= this->damage;
     this->attackCounter++;
-    return false;
-
     // Increase XP
     this->increaseXP(this->damage);
 
@@ -86,6 +88,7 @@ void Player::increaseXP(unsigned short amount)
 
 void Player::levelUp(unsigned short newLevel)
 {
+    this->level = newLevel;
     this->maxHp = round(this->maxHp * 1.1);
     this->hp = this->maxHp;
     this->damage = round(this->damage * 1.1);
