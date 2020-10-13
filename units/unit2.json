@@ -1,6 +1,6 @@
 {
-    "name": "Gollum",
-    "hp": 3950,
-    "dmg": 75,
-    "attackcooldown": 0.8
+  "name": "Gollum",
+  "hp": 80,
+  "dmg": 75,
+  "attackcooldown": 0.8
 }

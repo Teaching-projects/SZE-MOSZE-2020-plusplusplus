@@ -3,6 +3,7 @@
 
 #include <string>
 #include <iostream>
+#define LEVEL_SIZE 100
 
 /**
  * @class Player 
@@ -40,7 +41,7 @@ class Player
     /**
      * The damage of the character.
      */
-    const unsigned short damage;
+    unsigned short damage;
 
     /**
      * The attack cooldown of the character.
@@ -52,6 +53,18 @@ class Player
      */
     mutable unsigned short attackCounter = 0;
 
+    /**
+     * The maximum health point of the character.
+     */
+    unsigned short maxHp;
+
+    /**
+     * The xp of the character.
+     */
+    unsigned short xp;
+
+    unsigned short level;
+
 public:
     /**
      * Player constructor.
@@ -61,7 +74,7 @@ public:
      * @param damage Attack damage of Player.
      * @param attackCooldown Attack cooldown of Player. **Minimum** time intervall between two attack.
      */
-    explicit Player(const std::string &name, unsigned short hp, unsigned short damage, float attackCooldown);
+    explicit Player(const std::string &name, unsigned short maxhp, unsigned short damage, float attackCooldown, unsigned short xp);
 
     /**
      * It parse a JSON object (from a JSON file) to a Player instance.
@@ -86,10 +99,22 @@ public:
     const std::string &GetName() const { return name; };
 
     /**
+     * Gets maximum health points of the player.
+     * @return Player Max HP.
+     */
+    const short GetMaxHP() const { return maxHp; };
+
+    /**
      * Gets remaining health points of the player.
      * @return Player HP.
      */
     const short GetHP() const { return hp; };
+
+    /**
+     * Gets xp of the player.
+     * @return Player XP.
+     */
+    const short GetXP() const { return xp; };
 
     /**
      * Duel with an other player.
@@ -109,6 +134,9 @@ public:
      */
     static Player *GetNextAttacker(Player *prev, Player *other);
 
+    void increaseXP(unsigned short amount);
+    void levelUp(unsigned short newLevel);
+
 private:
     /**
      * The player hit an other player.
@@ -117,7 +145,7 @@ private:
      * @param otherPlayer The hit player.
      * @return The attacked player died in the attack or not.
      */
-    bool hit(Player *otherPlayer) const;
+    bool hit(Player *otherPlayer);
 
     /**
      * It determine the time one the next attack by the attack counter.

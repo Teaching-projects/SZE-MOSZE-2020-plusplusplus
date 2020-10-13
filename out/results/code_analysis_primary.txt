@@ -1,0 +1,3 @@
+player.cpp:99:1: error: Memory leak: test [memleak]
+}
+^

@@ -2,8 +2,10 @@
 
 #include <fstream>
 #include <regex>
+#include <map>
+#include <math.h>
 
-Player::Player(const std::string &name, unsigned short hp, unsigned short damage, float attackCooldown) : name{name}, hp{hp}, damage{damage}, attackCooldown{attackCooldown}
+Player::Player(const std::string &name, unsigned short maxhp, unsigned short damage, float attackCooldown, unsigned short xp) : name{name}, maxHp{maxhp}, hp{maxhp}, attackCooldown{attackCooldown}, damage{damage}, xp{xp}
 {
 }
 
@@ -48,25 +50,55 @@ Player Player::parseUnit(const std::string &fileName)
         }
     }
 
-    return Player(properties["name"], stoi(properties["hp"]), stoi(properties["dmg"]), stof(properties["attackcooldown"]));
+    return Player(properties["name"], stoi(properties["hp"]), stoi(properties["dmg"]), stof(properties["attackcooldown"]), 0);
 }
 
-bool Player::hit(Player *otherPlayer) const
+bool Player::hit(Player *otherPlayer)
 {
+    bool fatality = false;
+
     if (otherPlayer->hp <= this->damage)
     {
         otherPlayer->hp = 0;
-        return true;
+        fatality = true;
     }
 
     otherPlayer->hp -= this->damage;
     this->attackCounter++;
     return false;
+
+    // Increase XP
+    this->increaseXP(this->damage);
+
+    return fatality;
+}
+
+void Player::increaseXP(unsigned short amount)
+{
+    this->xp += amount;
+    unsigned short properLevel = (this->xp / LEVEL_SIZE) + 1;
+
+    if (properLevel > this->level)
+    {
+        this->levelUp(properLevel);
+    }
+}
+
+void Player::levelUp(unsigned short newLevel)
+{
+    this->maxHp = round(this->maxHp * 1.1);
+    this->hp = this->maxHp;
+    this->damage = round(this->damage * 1.1);
 }
 
 void Player::Print(std::ostream &stream) const
 {
-    stream << this->name << ": HP: " << this->hp << ", DMG: " << this->damage << '\n';
+    stream << this->name
+           << ": MAX HP: " << this->maxHp
+           << ", HP: " << this->hp
+           << ", DMG: " << this->damage
+           << ", XP: " << this->xp
+           << '\n';
 }
 
 Player Player::DuelWith(Player *other)
