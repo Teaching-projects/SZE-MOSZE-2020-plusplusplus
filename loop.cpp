@@ -35,6 +35,7 @@ void Loop::ShowWinnerAndVictim() const
     players[this->currentPlayer].Print(std::cout);
     std::cout << " | ";
     players[victim].Print(std::cout);
+    std::cout << std::endl;
 }
 
 Player Loop::getPlayer(char **argv, int nthPlayer) const

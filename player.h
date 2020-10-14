@@ -34,6 +34,11 @@ class Player
     const std::string name;
 
     /**
+     * The maximum health point of the character.
+     */
+    unsigned short maxHp;
+
+    /**
      * The health point of the character.
      */
     unsigned short hp;
@@ -53,11 +58,6 @@ class Player
      * Zero by default.
      */
     float nextAttack = 0;
-
-    /**
-     * The maximum health point of the character.
-     */
-    unsigned short maxHp;
 
     /**
      * The xp of the character.
