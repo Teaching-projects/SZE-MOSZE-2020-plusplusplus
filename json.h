@@ -13,13 +13,24 @@
 class Json
 {
 public:
-    /** Parse the given string input or read it from file
+    /** Parse the given string input
      * 
-     * The function can accept json string as parameter or a filename which will be
-     * read from the filesystem. The parameter will be threated as json if includes
-     * a "{" character (because filenames cannot include)
+     * The function accepts a json string as parameter 
      * 
-     * @param inputOrFile json input string or filename
+     * @param input json input string
+     * @return A map with string keys and values in `std::any` type. `int` and `float`
+     * is parsed and can be casted
+     * @throws invalid_argument is thrown if the number to be parsed format not correct
+     * @throws out_of_range is thrown if the number to be parsed too large
+     * @relatealso parseFromString
+     */
+    static std::map<std::string, std::any> ParseString(const std::string &input);
+
+    /** Parse the given file
+     * 
+     * The function accepts a filename which will be read from the filesystem. 
+     * 
+     * @param filename a file on the local filesystem
      * @return A map with string keys and values in `std::any` type. `int` and `float`
      * is parsed and can be casted
      * @throws JsonFileReadError is thrown is the given file does not exists or cannot be read
@@ -27,7 +38,7 @@ public:
      * @throws out_of_range is thrown if the number to be parsed too large
      * @relatealso parseFromString
      */
-    static std::map<std::string, std::any> ParseJson(const std::string &inputOrFile);
+    static std::map<std::string, std::any> ParseFile(const std::string &filename);
 
     /** Parse the given stream to map
      * 
@@ -41,7 +52,7 @@ public:
      * @throws out_of_range is thrown if the number to be parsed too large
      * @relatealso parseFromString
      */
-    static std::map<std::string, std::any> ParseJson(std::istream &stream);
+    static std::map<std::string, std::any> ParseStream(std::istream &stream);
 
 private:
     /** Handle the real parsing

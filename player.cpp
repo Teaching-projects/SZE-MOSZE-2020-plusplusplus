@@ -12,7 +12,7 @@ Player::Player(const std::string &name, unsigned short maxhp, unsigned short dam
 
 Player Player::parseUnit(const std::string &fileName)
 {
-    std::map<std::string, std::any> properties = Json::ParseJson(fileName);
+    std::map<std::string, std::any> properties = Json::ParseFile(fileName);
 
     return Player(
         std::any_cast<std::string>(properties["name"]),

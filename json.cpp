@@ -4,23 +4,23 @@
 #include <fstream>
 #include <regex>
 
-std::map<std::string, std::any> Json::ParseJson(const std::string &inputOrFile)
+std::map<std::string, std::any> Json::ParseString(const std::string &inputOrFile)
 {
-    if (inputOrFile.find_first_of("{") != std::string::npos)
-    {
-        return parseFromString(inputOrFile);
-    }
-
-    std::ifstream jsonFile(inputOrFile);
-    if (jsonFile.fail())
-    {
-        throw JsonFileReadError(inputOrFile);
-    }
-
-    return ParseJson(jsonFile);
+    return parseFromString(inputOrFile);
 }
 
-std::map<std::string, std::any> Json::ParseJson(std::istream &stream)
+std::map<std::string, std::any> Json::ParseFile(const std::string &filename)
+{
+    std::ifstream jsonFile(filename);
+    if (jsonFile.fail())
+    {
+        throw JsonFileReadError(filename);
+    }
+
+    return ParseStream(jsonFile);
+}
+
+std::map<std::string, std::any> Json::ParseStream(std::istream &stream)
 {
     return parseFromString(std::string(std::istreambuf_iterator<char>(stream), {}));
 }
