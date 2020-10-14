@@ -84,12 +84,12 @@ void Player::increaseXP(unsigned short amount)
 
     while (requiredLevelUpCount > 0)
     {
-        this->levelUp(properLevel);
+        this->levelUp();
         requiredLevelUpCount--;
     }
 }
 
-void Player::levelUp(unsigned short newLevel)
+void Player::levelUp()
 {
     this->maxHp = round(this->maxHp * 1.1);
     this->hp = this->maxHp;

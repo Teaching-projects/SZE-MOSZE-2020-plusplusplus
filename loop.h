@@ -45,7 +45,7 @@ public:
 
     /**
      * Start the game.
-     * Dueling the players with each other and display the winner.
+     * Dueling the players with each other and display the winner and the loser.
      */
     void Play();
 

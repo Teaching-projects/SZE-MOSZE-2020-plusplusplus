@@ -49,7 +49,8 @@ class Player
     float attackCooldown;
 
     /**
-     * Count of the attacks. Zero by default.
+     * The time of the next attack (**in seconds**).
+     * Zero by default.
      */
     float nextAttack = 0;
 
@@ -71,6 +72,7 @@ public:
      * @param hp Health points of Player.
      * @param damage Attack damage of Player.
      * @param attackCooldown Attack cooldown of Player. **Minimum** time intervall between two attack.
+     * @param xp Starter experience point of the character.
      */
     explicit Player(const std::string &name, unsigned short maxhp, unsigned short damage, float attackCooldown, unsigned short xp);
 
@@ -117,9 +119,9 @@ public:
     /**
      * Duel with an other player.
      * The two player going to hit each other until the first death.
-     * @param other The attacked player
-     * @throw std::invalid_argument When the the attacked Player equals with the attacker
-     * @return The winner player of the fight
+     * @param other The attacked player.
+     * @throw std::invalid_argument When the the attacked Player equals with the attacker.
+     * @return The winner player of the fight.
      */
     Player *DuelWith(Player *other);
 
@@ -132,26 +134,38 @@ public:
      */
     static Player *GetNextAttacker(Player *prev, Player *other);
 
-    // TODO: doc
+    /**
+     * Gets the character's current level determined from the character's XP score.
+     */
     const short GetLevel() const { return (xp / LEVEL_SIZE) + 1; };
 
 private:
     /**
      * The player hit an other player.
      * The attacked person's health points will less by the attacker's damage.
-     * The HP cannot be less than zero.
+     * *The HP cannot be less than zero*.
      * @param otherPlayer The hit player.
      * @return The attacked player died in the attack or not.
      */
     bool hit(Player *otherPlayer);
 
     /**
-     * It determine the time one the next attack by the attack counter.
+     * It returns with the next attack's time (**in seconds**). 
      * @return next attack identifier.
      */
-    float getNextAttack() { return nextAttack; };
+    float getNextAttack() const { return nextAttack; };
 
+    /**
+     * Increase the character's XP by the given amount.
+     * @param amount Addation XP score.
+     */
     void increaseXP(unsigned short amount);
 
-    void levelUp(unsigned short newLevel);
+    /**
+     * Modify the character settings for the next level.
+     * Increase maximum HP and damage by **10%**.
+     * **Refill** the current HP to the new maximum.
+     * Decrease CD by **10%**.
+     */
+    void levelUp();
 };
