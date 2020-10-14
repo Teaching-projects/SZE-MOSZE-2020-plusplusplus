@@ -1,5 +1,6 @@
 #include "../json.h"
 #include "../jsonFileReadError.h"
+#include "../jsonParseError.h"
 
 #include <gtest/gtest.h>
 
@@ -42,6 +43,18 @@ TEST(JsonTest, KeyValuePair)
 
     ASSERT_NO_THROW(std::any_cast<int>(parsed["number"]));
     ASSERT_EQ(std::any_cast<int>(parsed["number"]), 65553342);
+}
+
+TEST(JsonTest, ParseError)
+{
+    // } instead of ,
+    ASSERT_THROW(Json::ParseString("{\"good\": \"start\"} \"bad\": \"end\"}"), JsonParseError);
+    // extra } before ,
+    ASSERT_THROW(Json::ParseString("{\"good\": \"start\"}, \"bad\": \"end\"}"), JsonParseError);
+    // missing value
+    ASSERT_THROW(Json::ParseString("{\"good\": \"start\", \"bad\": }"), JsonParseError);
+    // missing key
+    ASSERT_THROW(Json::ParseString("{\"good\": \"start\", \"bad\" }"), JsonParseError);
 }
 
 int main(int argc, char **argv)
