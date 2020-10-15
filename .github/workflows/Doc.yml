@@ -3,7 +3,7 @@ name: Documentation workflow
 on:
     push:
         branches:
-            - attackspeed
+            - master
             - gh-pages
 
 jobs:
