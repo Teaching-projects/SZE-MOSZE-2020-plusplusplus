@@ -3,7 +3,7 @@
 #include <fstream>
 #include <regex>
 #include <map>
-#include <math.h>
+#include <cmath>
 
 Player::Player(const std::string &name, unsigned short maxhp, unsigned short damage, float attackCooldown, unsigned short xp) : name{name}, maxHp{maxhp}, hp{maxhp}, damage{damage}, attackCooldown{attackCooldown}, xp{xp}
 {
@@ -56,21 +56,25 @@ Player Player::parseUnit(const std::string &fileName)
 bool Player::hit(Player *otherPlayer)
 {
     bool fatality;
+    unsigned short damageAmount;
 
     if (otherPlayer->hp <= this->damage)
     {
+        damageAmount = otherPlayer->hp;
         otherPlayer->hp = 0;
         fatality = true;
     }
     else
     {
+        damageAmount = this->damage;
         otherPlayer->hp -= this->damage;
         fatality = false;
     }
 
     this->nextAttack += this->attackCooldown;
+
     // Increase XP
-    this->increaseXP(this->damage);
+    this->increaseXP(damageAmount);
 
     return fatality;
 }
