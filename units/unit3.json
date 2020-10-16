@@ -1,6 +1,6 @@
 {
-    "name": "FredBoat",
-    "hp": 2200,
-    "dmg": 90,
-    "attackcooldown": 1.1
+  "name": "FredBoat",
+  "hp": 130,
+  "dmg": 15,
+  "attackcooldown": 1.1
 }

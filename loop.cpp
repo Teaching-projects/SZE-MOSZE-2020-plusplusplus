@@ -12,7 +12,11 @@ Loop::Loop(char **argv)
 
 void Loop::Play()
 {
-    this->showWinner(this->players[this->currentPlayer].DuelWith(&this->players[this->getOther()]));
+    Player *winner = this->players[this->currentPlayer].DuelWith(&this->players[this->getOther()]);
+    if (winner != &this->players[currentPlayer])
+    {
+        currentPlayer = getOther();
+    }
 }
 
 void Loop::ShowPlayers() const
@@ -23,9 +27,15 @@ void Loop::ShowPlayers() const
     }
 }
 
-void Loop::showWinner(Player player) const
+void Loop::ShowWinnerAndVictim() const
 {
-    std::cout << player.GetName() << " wins. Remaining HP: " << player.GetHP() << std::endl;
+    int victim = this->getOther();
+
+    std::cout << players[this->currentPlayer].GetName() << " wins. ";
+    players[this->currentPlayer].Print(std::cout);
+    std::cout << " | ";
+    players[victim].Print(std::cout);
+    std::cout << std::endl;
 }
 
 Player Loop::getPlayer(char **argv, int nthPlayer) const

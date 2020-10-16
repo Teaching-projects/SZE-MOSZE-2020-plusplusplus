@@ -45,7 +45,7 @@ public:
 
     /**
      * Start the game.
-     * Dueling the players with each other and display the winner.
+     * Dueling the players with each other and display the winner and the loser.
      */
     void Play();
 
@@ -53,6 +53,11 @@ public:
      * Displays all player's current status.
      */
     void ShowPlayers() const;
+
+    /**
+     * Displays the winner and victim.
+     */
+    void ShowWinnerAndVictim() const;
 
 private:
     /**
@@ -69,10 +74,4 @@ private:
      * @return Index of the other player.
      */
     unsigned short getOther() const;
-
-    /**
-     * Displays the player as winner and its remainging health point.
-     * @param player The winner player.
-     */
-    void showWinner(Player player) const;
 };

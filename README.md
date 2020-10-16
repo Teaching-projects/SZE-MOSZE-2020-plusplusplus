@@ -42,3 +42,9 @@ There are predefined players in the `units/` folder and a `expected_results.csv`
 ### Code documentation
 
 > Url of the Doxygen code documentation: [Go to documentation](https://teaching-projects.github.io/SZE-MOSZE-2020-plusplusplus/pages.html).
+
+#### Generation
+
+- Install doxygen and graphviz pacakages
+- Run the next command: `doxygen doxygenconf`
+- Use the generated documents from the `/docs`

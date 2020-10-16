@@ -2,8 +2,10 @@
 
 #include <fstream>
 #include <regex>
+#include <map>
+#include <cmath>
 
-Player::Player(const std::string &name, unsigned short hp, unsigned short damage, float attackCooldown) : name{name}, hp{hp}, damage{damage}, attackCooldown{attackCooldown}
+Player::Player(const std::string &name, unsigned short maxhp, unsigned short damage, float attackCooldown, unsigned short xp) : name{name}, maxHp{maxhp}, hp{maxhp}, damage{damage}, attackCooldown{attackCooldown}, xp{xp}
 {
 }
 
@@ -48,28 +50,69 @@ Player Player::parseUnit(const std::string &fileName)
         }
     }
 
-    return Player(properties["name"], stoi(properties["hp"]), stoi(properties["dmg"]), stof(properties["attackcooldown"]));
+    return Player(properties["name"], stoi(properties["hp"]), stoi(properties["dmg"]), stof(properties["attackcooldown"]), 0);
 }
 
-bool Player::hit(Player *otherPlayer) const
+bool Player::hit(Player *otherPlayer)
 {
+    bool fatality;
+    unsigned short damageAmount;
+
     if (otherPlayer->hp <= this->damage)
     {
+        damageAmount = otherPlayer->hp;
         otherPlayer->hp = 0;
-        return true;
+        fatality = true;
+    }
+    else
+    {
+        damageAmount = this->damage;
+        otherPlayer->hp -= this->damage;
+        fatality = false;
     }
 
-    otherPlayer->hp -= this->damage;
-    this->attackCounter++;
-    return false;
+    this->nextAttack += this->attackCooldown;
+
+    // Increase XP
+    this->increaseXP(damageAmount);
+
+    return fatality;
+}
+
+void Player::increaseXP(unsigned short amount)
+{
+    unsigned short currentLevel = this->GetLevel();
+    this->xp += amount;
+    unsigned short properLevel = this->GetLevel();
+    unsigned short requiredLevelUpCount = properLevel - currentLevel;
+
+    while (requiredLevelUpCount > 0)
+    {
+        this->levelUp();
+        requiredLevelUpCount--;
+    }
+}
+
+void Player::levelUp()
+{
+    this->maxHp = round(this->maxHp * 1.1);
+    this->hp = this->maxHp;
+    this->damage = round(this->damage * 1.1);
+    this->attackCooldown = this->attackCooldown * 0.9;
 }
 
 void Player::Print(std::ostream &stream) const
 {
-    stream << this->name << ": HP: " << this->hp << ", DMG: " << this->damage << '\n';
+    stream << this->name
+           << ": MAX HP: " << this->maxHp
+           << ", HP: " << this->hp
+           << ", DMG: " << this->damage
+           << ", XP: " << this->xp
+           << ", COOLDOWN: " << this->attackCooldown
+           << ", LEVEL: " << this->GetLevel();
 }
 
-Player Player::DuelWith(Player *other)
+Player *Player::DuelWith(Player *other)
 {
     if (this == other)
     {
@@ -77,7 +120,7 @@ Player Player::DuelWith(Player *other)
     }
     if (this->hit(other))
     {
-        return *this;
+        return this;
     }
     else
     {
@@ -90,11 +133,6 @@ Player Player::DuelWith(Player *other)
             return other->DuelWith(this);
         }
     }
-}
-
-float Player::getNextAttack() const
-{
-    return this->attackCooldown * this->attackCounter;
 }
 
 Player *Player::GetNextAttacker(Player *prev, Player *other)

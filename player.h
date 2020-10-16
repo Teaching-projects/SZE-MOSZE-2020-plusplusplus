@@ -3,6 +3,7 @@
 
 #include <string>
 #include <iostream>
+#define LEVEL_SIZE 100
 
 /**
  * @class Player 
@@ -33,6 +34,11 @@ class Player
     const std::string name;
 
     /**
+     * The maximum health point of the character.
+     */
+    unsigned short maxHp;
+
+    /**
      * The health point of the character.
      */
     unsigned short hp;
@@ -40,17 +46,23 @@ class Player
     /**
      * The damage of the character.
      */
-    const unsigned short damage;
+    unsigned short damage;
 
     /**
      * The attack cooldown of the character.
      */
-    const float attackCooldown;
+    float attackCooldown;
 
     /**
-     * Count of the attacks. Zero by default.
+     * The time of the next attack (**in seconds**).
+     * Zero by default.
      */
-    mutable unsigned short attackCounter = 0;
+    float nextAttack = 0;
+
+    /**
+     * The xp of the character.
+     */
+    unsigned short xp;
 
 public:
     /**
@@ -60,8 +72,9 @@ public:
      * @param hp Health points of Player.
      * @param damage Attack damage of Player.
      * @param attackCooldown Attack cooldown of Player. **Minimum** time intervall between two attack.
+     * @param xp Starter experience point of the character.
      */
-    explicit Player(const std::string &name, unsigned short hp, unsigned short damage, float attackCooldown);
+    explicit Player(const std::string &name, unsigned short maxhp, unsigned short damage, float attackCooldown, unsigned short xp);
 
     /**
      * It parse a JSON object (from a JSON file) to a Player instance.
@@ -86,19 +99,31 @@ public:
     const std::string &GetName() const { return name; };
 
     /**
+     * Gets maximum health points of the player.
+     * @return Player Max HP.
+     */
+    const short GetMaxHP() const { return maxHp; };
+
+    /**
      * Gets remaining health points of the player.
      * @return Player HP.
      */
     const short GetHP() const { return hp; };
 
     /**
+     * Gets xp of the player.
+     * @return Player XP.
+     */
+    const short GetXP() const { return xp; };
+
+    /**
      * Duel with an other player.
      * The two player going to hit each other until the first death.
-     * @param other The attacked player
-     * @throw std::invalid_argument When the the attacked Player equals with the attacker
-     * @return The winner player of the fight
+     * @param other The attacked player.
+     * @throw std::invalid_argument When the the attacked Player equals with the attacker.
+     * @return The winner player of the fight.
      */
-    Player DuelWith(Player *other);
+    Player *DuelWith(Player *other);
 
     /**
      * Determines from two player, who will be the next attacker.
@@ -109,19 +134,38 @@ public:
      */
     static Player *GetNextAttacker(Player *prev, Player *other);
 
+    /**
+     * Gets the character's current level determined from the character's XP score.
+     */
+    const short GetLevel() const { return (xp / LEVEL_SIZE) + 1; };
+
 private:
     /**
      * The player hit an other player.
      * The attacked person's health points will less by the attacker's damage.
-     * The HP cannot be less than zero.
+     * *The HP cannot be less than zero*.
      * @param otherPlayer The hit player.
      * @return The attacked player died in the attack or not.
      */
-    bool hit(Player *otherPlayer) const;
+    bool hit(Player *otherPlayer);
 
     /**
-     * It determine the time one the next attack by the attack counter.
-     * @return Player's attack cooldown multipled by the attack count.
+     * It returns with the next attack's time (**in seconds**). 
+     * @return next attack identifier.
      */
-    float getNextAttack() const;
+    float getNextAttack() const { return nextAttack; };
+
+    /**
+     * Increase the character's XP by the given amount.
+     * @param amount Addation XP score.
+     */
+    void increaseXP(unsigned short amount);
+
+    /**
+     * Modify the character settings for the next level.
+     * Increase maximum HP and damage by **10%**.
+     * **Refill** the current HP to the new maximum.
+     * Decrease CD by **10%**.
+     */
+    void levelUp();
 };

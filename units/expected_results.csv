@@ -1,6 +1,6 @@
-unit1.json;unit2.json;Gollum wins. Remaining HP: 2754
-unit1.json;unit3.json;FredBoat wins. Remaining HP: 848
-unit2.json;unit1.json;Gollum wins. Remaining HP: 2754
-unit2.json;unit3.json;Gollum wins. Remaining HP: 1970
-unit3.json;unit1.json;FredBoat wins. Remaining HP: 848
-unit3.json;unit2.json;Gollum wins. Remaining HP: 1970
+unit1.json;unit2.json;Gollum wins. Gollum: MAX HP: 88, HP: 88, DMG: 83, XP: 100, COOLDOWN: 0.72, LEVEL: 2 | Alma: MAX HP: 100, HP: 0, DMG: 25, XP: 25, COOLDOWN: 1.5, LEVEL: 1
+unit1.json;unit3.json;Alma wins. Alma: MAX HP: 121, HP: 87, DMG: 31, XP: 271, COOLDOWN: 1.215, LEVEL: 3 | FredBoat: MAX HP: 143, HP: 0, DMG: 17, XP: 190, COOLDOWN: 0.99, LEVEL: 2
+unit2.json;unit1.json;Gollum wins. Gollum: MAX HP: 88, HP: 88, DMG: 83, XP: 100, COOLDOWN: 0.72, LEVEL: 2 | Alma: MAX HP: 100, HP: 0, DMG: 25, XP: 25, COOLDOWN: 1.5, LEVEL: 1
+unit2.json;unit3.json;Gollum wins. Gollum: MAX HP: 88, HP: 88, DMG: 83, XP: 130, COOLDOWN: 0.72, LEVEL: 2 | FredBoat: MAX HP: 130, HP: 0, DMG: 15, XP: 15, COOLDOWN: 1.1, LEVEL: 1
+unit3.json;unit1.json;Alma wins. Alma: MAX HP: 121, HP: 87, DMG: 31, XP: 271, COOLDOWN: 1.215, LEVEL: 3 | FredBoat: MAX HP: 143, HP: 0, DMG: 17, XP: 190, COOLDOWN: 0.99, LEVEL: 2
+unit3.json;unit2.json;Gollum wins. Gollum: MAX HP: 88, HP: 88, DMG: 83, XP: 130, COOLDOWN: 0.72, LEVEL: 2 | FredBoat: MAX HP: 130, HP: 0, DMG: 15, XP: 15, COOLDOWN: 1.1, LEVEL: 1
