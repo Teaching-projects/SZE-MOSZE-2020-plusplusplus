@@ -18,7 +18,7 @@ Player Player::parseUnit(const std::string &fileName)
         std::any_cast<std::string>(properties["name"]),
         std::any_cast<int>(properties["hp"]),
         std::any_cast<int>(properties["dmg"]),
-        std::any_cast<float>(properties["cooldown"]),
+        std::any_cast<float>(properties["attackcooldown"]),
         0);
 }
 
