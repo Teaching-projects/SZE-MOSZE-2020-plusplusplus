@@ -14,6 +14,15 @@ Player Player::parseUnit(const std::string &fileName)
 {
     std::map<std::string, std::any> properties = Json::ParseFile(fileName);
 
+    const std::vector<std::string> expectedProps{"name", "hp", "dmg", "attackcooldown"};
+    for (unsigned int i = 0; i < expectedProps.size(); i++)
+    {
+        if (properties.find(expectedProps[i]) == properties.end())
+        {
+            throw std::invalid_argument("File does not contain all property for the Player initalization: " + fileName + " " + expectedProps[i]);
+        }
+    }
+
     return Player(
         std::any_cast<std::string>(properties["name"]),
         std::any_cast<int>(properties["hp"]),
