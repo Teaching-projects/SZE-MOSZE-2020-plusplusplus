@@ -1,0 +1,17 @@
+name: Unit Tests
+
+on: push
+
+jobs:
+  unit_testing:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install gtest
+        run: sudo apt install libgtest-dev && cd /usr/src/gtest && sudo cmake . && sudo make && sudo cp *.a /usr/lib && sudo ln -s /usr/lib/libgtest.a /usr/local/lib/libgtest.a && sudo ln -s /usr/lib/libgtest_main.a /usr/local/lib/libgtest_main.a
+      - uses: actions/checkout@v2
+      - name: cmake
+        run: cd tests && cmake .
+      - name: make
+        run: cd tests && make
+      - name: Run Test
+        run: cd tests && ./tests
