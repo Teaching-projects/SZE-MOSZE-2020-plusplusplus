@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['player',['Player',['../classPlayer.html',1,'']]]
+  ['loop',['Loop',['../classLoop.html',1,'']]]
 ];

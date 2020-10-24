@@ -1,9 +1,9 @@
 var indexSectionsWithContent =
 {
-  0: "dglmprs",
-  1: "lp",
+  0: "dgjlmprs",
+  1: "jlp",
   2: "m",
-  3: "dglps",
+  3: "dgjlps",
   4: "r"
 };
 
