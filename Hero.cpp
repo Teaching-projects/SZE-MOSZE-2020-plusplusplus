@@ -1,18 +1,18 @@
-#include "player.h"
-#include "json.h"
+#include "Hero.h"
+#include "JSON.h"
 
 #include <fstream>
 #include <regex>
 #include <map>
 #include <cmath>
 
-Player::Player(const std::string &name, unsigned short maxhp, unsigned short damage, float attackCooldown, unsigned short xp) : name{name}, maxHp{maxhp}, hp{maxhp}, damage{damage}, attackCooldown{attackCooldown}, xp{xp}
+Hero::Hero(const std::string &name, unsigned short maxhp, unsigned short damage, float attackCooldown, unsigned short xp) : name{name}, maxHp{maxhp}, hp{maxhp}, damage{damage}, attackCooldown{attackCooldown}, xp{xp}
 {
 }
 
-Player Player::parseUnit(const std::string &fileName)
+Hero Hero::parse(const std::string &fileName)
 {
-    std::map<std::string, std::any> properties = Json::ParseFile(fileName);
+    std::map<std::string, std::any> properties = JSON::parseFromFile(fileName);
 
     const std::vector<std::string> expectedProps{"name", "hp", "dmg", "attackcooldown"};
     for (unsigned int i = 0; i < expectedProps.size(); i++)
@@ -23,7 +23,7 @@ Player Player::parseUnit(const std::string &fileName)
         }
     }
 
-    return Player(
+    return Hero(
         std::any_cast<std::string>(properties["name"]),
         std::any_cast<int>(properties["hp"]),
         std::any_cast<int>(properties["dmg"]),
@@ -31,7 +31,7 @@ Player Player::parseUnit(const std::string &fileName)
         0);
 }
 
-bool Player::hit(Player *otherPlayer)
+bool Hero::hit(Hero *otherPlayer)
 {
     bool fatality;
     unsigned short damageAmount;
@@ -57,11 +57,11 @@ bool Player::hit(Player *otherPlayer)
     return fatality;
 }
 
-void Player::increaseXP(unsigned short amount)
+void Hero::increaseXP(unsigned short amount)
 {
-    unsigned short currentLevel = this->GetLevel();
+    unsigned short currentLevel = this->getLevel();
     this->xp += amount;
-    unsigned short properLevel = this->GetLevel();
+    unsigned short properLevel = this->getLevel();
     unsigned short requiredLevelUpCount = properLevel - currentLevel;
 
     while (requiredLevelUpCount > 0)
@@ -71,7 +71,7 @@ void Player::increaseXP(unsigned short amount)
     }
 }
 
-void Player::levelUp()
+void Hero::levelUp()
 {
     this->maxHp = round(this->maxHp * 1.1);
     this->hp = this->maxHp;
@@ -79,7 +79,7 @@ void Player::levelUp()
     this->attackCooldown = this->attackCooldown * 0.9;
 }
 
-void Player::Print(std::ostream &stream) const
+void Hero::print(std::ostream &stream) const
 {
     stream << this->name
            << ": MAX HP: " << this->maxHp
@@ -87,33 +87,33 @@ void Player::Print(std::ostream &stream) const
            << ", DMG: " << this->damage
            << ", XP: " << this->xp
            << ", COOLDOWN: " << this->attackCooldown
-           << ", LEVEL: " << this->GetLevel();
+           << ", LEVEL: " << this->getLevel();
 }
 
-Player *Player::DuelWith(Player *other)
+void Hero::fightTilDeath(Hero other)
 {
-    if (this == other)
+    if (this == &other)
     {
         throw std::invalid_argument("The attacker Player cannot be the attacked one too");
     }
-    if (this->hit(other))
+    if (this->hit(&other))
     {
-        return this;
+        return;
     }
     else
     {
-        if (this == Player::GetNextAttacker(this, other))
+        if (this == Hero::getNextAttacker(this, &other))
         {
-            return this->DuelWith(other);
+            fightTilDeath(other);
         }
         else
         {
-            return other->DuelWith(this);
+            other.fightTilDeath(*this);
         }
     }
 }
 
-Player *Player::GetNextAttacker(Player *prev, Player *other)
+Hero *Hero::getNextAttacker(Hero *prev, Hero *other)
 {
     if (prev->getNextAttack() <= other->getNextAttack())
     {

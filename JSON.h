@@ -5,9 +5,9 @@
 #include <any>
 
 /**
- * @class Json
+ * @class JSON
  * 
- * @brief Json parser class, parse to map with casts
+ * @brief JSON parser class, parse to map with casts
  * 
  * The class includes functions to parse a string / file / stream to a map.
  * The returned map always has `std::string` keys and `std::any` values.
@@ -16,21 +16,21 @@
  * @author +++ Team
  * 
  */
-class Json
+class JSON
 {
 public:
     /** Parse the given string input
      * 
-     * The function accepts a json string as parameter 
+     * The function accepts a JSON string as parameter 
      * 
-     * @param input json input string
+     * @param input JSON input string
      * @return A map with string keys and values in `std::any` type. `int` and `float`
      * is parsed and can be casted
      * @throws invalid_argument is thrown if the number to be parsed format not correct
      * @throws out_of_range is thrown if the number to be parsed too large
      * @relatealso parseFromString
      */
-    static std::map<std::string, std::any> ParseString(const std::string &input);
+    static std::map<std::string, std::any> parseFromString(const std::string &input);
 
     /** Parse the given file
      * 
@@ -44,7 +44,7 @@ public:
      * @throws out_of_range is thrown if the number to be parsed too large
      * @relatealso parseFromString
      */
-    static std::map<std::string, std::any> ParseFile(const std::string &filename);
+    static std::map<std::string, std::any> parseFromFile(const std::string &filename);
 
     /** Parse the given stream to map
      * 
@@ -58,7 +58,17 @@ public:
      * @throws out_of_range is thrown if the number to be parsed too large
      * @relatealso parseFromString
      */
-    static std::map<std::string, std::any> ParseStream(std::istream &stream);
+    static std::map<std::string, std::any> parseFromStream(std::istream &stream);
+
+    /** JsonParseError exception to be called on invalid input
+ */
+    class ParseException : virtual public std::runtime_error
+    {
+    public:
+        /** Constructor which takes a description as parameter
+     */
+        explicit ParseException(const std::string &description) : std::runtime_error("Parsing error occured: " + description) {}
+    };
 
 private:
     /** Handle the real parsing
@@ -74,5 +84,5 @@ private:
      * @throws invalid_argument is thrown if the number to be parsed format not correct
      * @throws out_of_range is thrown if the number to be parsed too large
      */
-    static std::map<std::string, std::any> parseFromString(const std::string &input);
+    static std::map<std::string, std::any> parse(const std::string &input);
 };

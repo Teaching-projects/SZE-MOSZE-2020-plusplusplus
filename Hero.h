@@ -1,4 +1,3 @@
-
 #pragma once
 
 #include <string>
@@ -12,7 +11,7 @@
  * 
  * It contains the main **data** what are describe the Player and all available **actions** what the player can do or could happen with itself.
  * 
- * The Player can duel with other players. The winner will be the player who has more damage or more health, but important paramter the attack cooldown.
+ * The Hero can duel with other heroes. The winner will be the player who has more damage or more health, but important paramter the attack cooldown.
  * With smaller cooldown the player hit the other player faster.
  * 
  * @note It contains recursive solutions
@@ -26,8 +25,9 @@
  * Created on: 2020-10-07
  * 
 */
-class Player
+class Hero
 {
+protected:
     /**
      * The name of the character.
      */
@@ -74,7 +74,7 @@ public:
      * @param attackCooldown Attack cooldown of Player. **Minimum** time intervall between two attack.
      * @param xp Starter experience point of the character.
      */
-    explicit Player(const std::string &name, unsigned short maxhp, unsigned short damage, float attackCooldown, unsigned short xp);
+    explicit Hero(const std::string &name, unsigned short maxhp, unsigned short damage, float attackCooldown, unsigned short xp);
 
     /**
      * It parse a JSON object (from a JSON file) to a Player instance.
@@ -84,37 +84,37 @@ public:
      * @throw std::invalid_argument When the file does not contain a required field
      * @return Created Player instance.
      */
-    static Player parseUnit(const std::string &fileName);
+    static Hero parse(const std::string &fileName);
 
     /**
      * Prints to the output the player's name and current status.
      * @param stream The destination output stream
      */
-    void Print(std::ostream &stream) const;
+    void print(std::ostream &stream) const;
 
     /**
      * Gets name of the player.
      * @return Player name.
      */
-    const std::string &GetName() const { return name; };
+    const std::string &getName() const { return name; };
 
     /**
      * Gets maximum health points of the player.
      * @return Player Max HP.
      */
-    const short GetMaxHP() const { return maxHp; };
+    short getMaxHP() const { return maxHp; };
 
     /**
      * Gets remaining health points of the player.
      * @return Player HP.
      */
-    const short GetHP() const { return hp; };
+    short getHealthPoints() const { return hp; };
 
     /**
      * Gets xp of the player.
      * @return Player XP.
      */
-    const short GetXP() const { return xp; };
+    short getXP() const { return xp; };
 
     /**
      * Duel with an other player.
@@ -123,7 +123,7 @@ public:
      * @throw std::invalid_argument When the the attacked Player equals with the attacker.
      * @return The winner player of the fight.
      */
-    Player *DuelWith(Player *other);
+    void fightTilDeath(Hero other);
 
     /**
      * Determines from two player, who will be the next attacker.
@@ -132,12 +132,17 @@ public:
      * @param other Other player.
      * @return The player whose next attack's time is less than the other's.
      */
-    static Player *GetNextAttacker(Player *prev, Player *other);
+    static Hero *getNextAttacker(Hero *prev, Hero *other);
 
     /**
      * Gets the character's current level determined from the character's XP score.
      */
-    const short GetLevel() const { return (xp / LEVEL_SIZE) + 1; };
+    short getLevel() const { return (xp / LEVEL_SIZE) + 1; };
+
+    bool isAlive() const
+    {
+        return this->getHealthPoints() != 0;
+    }
 
 private:
     /**
@@ -147,7 +152,7 @@ private:
      * @param otherPlayer The player who has been hit.
      * @return The attacked player died in the attack or not.
      */
-    bool hit(Player *otherPlayer);
+    bool hit(Hero *otherPlayer);
 
     /**
      * It returns with the next attack's time (**in seconds**). 

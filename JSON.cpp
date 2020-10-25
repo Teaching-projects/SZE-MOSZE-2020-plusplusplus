@@ -1,16 +1,15 @@
-#include "json.h"
+#include "JSON.h"
 #include "jsonFileReadError.h"
-#include "jsonParseError.h"
 
 #include <fstream>
 #include <regex>
 
-std::map<std::string, std::any> Json::ParseString(const std::string &inputOrFile)
+std::map<std::string, std::any> JSON::parseFromString(const std::string &inputOrFile)
 {
-    return parseFromString(inputOrFile);
+    return parse(inputOrFile);
 }
 
-std::map<std::string, std::any> Json::ParseFile(const std::string &filename)
+std::map<std::string, std::any> JSON::parseFromFile(const std::string &filename)
 {
     std::ifstream jsonFile(filename);
     if (jsonFile.fail())
@@ -18,15 +17,15 @@ std::map<std::string, std::any> Json::ParseFile(const std::string &filename)
         throw JsonFileReadError(filename);
     }
 
-    return ParseStream(jsonFile);
+    return parseFromStream(jsonFile);
 }
 
-std::map<std::string, std::any> Json::ParseStream(std::istream &stream)
+std::map<std::string, std::any> JSON::parseFromStream(std::istream &stream)
 {
-    return parseFromString(std::string(std::istreambuf_iterator<char>(stream), {}));
+    return parse(std::string(std::istreambuf_iterator<char>(stream), {}));
 }
 
-std::map<std::string, std::any> Json::parseFromString(const std::string &input)
+std::map<std::string, std::any> JSON::parse(const std::string &input)
 {
     static const std::regex jsonParseRegex("\\s*\"([a-z]*)\"\\s*:\\s*([0-9]*\\.?[0-9]+|\"[\\w\\s]+\")\\s*([,}])\\s*");
 
@@ -38,7 +37,7 @@ std::map<std::string, std::any> Json::parseFromString(const std::string &input)
     {
         if (foundLast)
         {
-            throw JsonParseError("Data found after closing tag");
+            throw JSON::ParseException("Data found after closing tag");
         }
 
         if (matches.size() == 4)
@@ -69,7 +68,7 @@ std::map<std::string, std::any> Json::parseFromString(const std::string &input)
 
     if (worker.length() > 0)
     {
-        throw JsonParseError("Wrong format: Missing key or value");
+        throw JSON::ParseException("Wrong format: Missing key or value");
     }
 
     return properties;
