@@ -102,19 +102,19 @@ public:
      * Gets maximum health points of the player.
      * @return Hero Max HP.
      */
-    short getMaxHP() const { return maxHp; };
+    unsigned short getMaxHP() const { return maxHp; };
 
     /**
      * Gets remaining health points of the player.
      * @return Hero HP.
      */
-    short getHealthPoints() const { return hp; };
+    unsigned short getHealthPoints() const { return hp; };
 
     /**
      * Gets xp of the player.
      * @return Hero XP.
      */
-    short getXP() const { return xp; };
+    unsigned short getXP() const { return xp; };
 
     /**
      * Duel with an other player.
@@ -123,7 +123,7 @@ public:
      * @throw std::invalid_argument When the the attacked Hero equals with the attacker.
      * @return The winner player of the fight.
      */
-    void fightTilDeath(Hero other);
+    void fightTilDeath(Hero &other);
 
     /**
      * Determines from two player, who will be the next attacker.
@@ -137,7 +137,7 @@ public:
     /**
      * Gets the character's current level determined from the character's XP score.
      */
-    short getLevel() const { return (xp / LEVEL_SIZE) + 1; };
+    unsigned short getLevel() const { return (xp / LEVEL_SIZE) + 1; };
 
     bool isAlive() const
     {

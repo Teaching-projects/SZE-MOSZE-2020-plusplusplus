@@ -27,7 +27,7 @@ std::map<std::string, std::any> JSON::parseFromStream(std::istream &stream)
 
 std::map<std::string, std::any> JSON::parse(const std::string &input)
 {
-    static const std::regex jsonParseRegex("\\s*\"([a-z]*)\"\\s*:\\s*([0-9]*\\.?[0-9]+|\"[\\w\\s]+\")\\s*([,}])\\s*");
+    static const std::regex jsonParseRegex("\\s*\"([a-z_]*)\"\\s*:\\s*([0-9]*\\.?[0-9]+|\"[\\w\\s\\./]+\")\\s*([,}])\\s*");
 
     bool foundLast = false;
     std::string worker(input);

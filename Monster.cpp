@@ -14,7 +14,7 @@ Monster Monster::parse(const std::string &fileName)
 {
     std::map<std::string, std::any> properties = JSON::parseFromFile(fileName);
 
-    const std::vector<std::string> expectedProps{"name", "hp", "dmg", "attackcooldown"};
+    const std::vector<std::string> expectedProps{"name", "health_points", "damage", "attack_cooldown"};
     for (unsigned int i = 0; i < expectedProps.size(); i++)
     {
         if (properties.find(expectedProps[i]) == properties.end())
@@ -25,8 +25,8 @@ Monster Monster::parse(const std::string &fileName)
 
     return Monster(
         std::any_cast<std::string>(properties["name"]),
-        std::any_cast<int>(properties["hp"]),
-        std::any_cast<int>(properties["dmg"]),
-        std::any_cast<float>(properties["attackcooldown"]),
+        std::any_cast<int>(properties["health_points"]),
+        std::any_cast<int>(properties["damage"]),
+        std::any_cast<float>(properties["attack_cooldown"]),
         0);
 }

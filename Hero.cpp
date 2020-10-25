@@ -14,7 +14,7 @@ Hero Hero::parse(const std::string &fileName)
 {
     std::map<std::string, std::any> properties = JSON::parseFromFile(fileName);
 
-    const std::vector<std::string> expectedProps{"name", "hp", "dmg", "attackcooldown"};
+    const std::vector<std::string> expectedProps{"name", "base_health_points", "base_damage", "base_attack_cooldown"};
     for (unsigned int i = 0; i < expectedProps.size(); i++)
     {
         if (properties.find(expectedProps[i]) == properties.end())
@@ -25,9 +25,9 @@ Hero Hero::parse(const std::string &fileName)
 
     return Hero(
         std::any_cast<std::string>(properties["name"]),
-        std::any_cast<int>(properties["hp"]),
-        std::any_cast<int>(properties["dmg"]),
-        std::any_cast<float>(properties["attackcooldown"]),
+        std::any_cast<int>(properties["base_health_points"]),
+        std::any_cast<int>(properties["base_damage"]),
+        std::any_cast<float>(properties["base_attack_cooldown"]),
         0);
 }
 
@@ -90,7 +90,7 @@ void Hero::print(std::ostream &stream) const
            << ", LEVEL: " << this->getLevel();
 }
 
-void Hero::fightTilDeath(Hero other)
+void Hero::fightTilDeath(Hero &other)
 {
     if (this == &other)
     {
