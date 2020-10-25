@@ -15,6 +15,11 @@
  * 
  * @author +++ Team
  * 
+ * @version 1.0
+ * 
+ * @date 2020-10-25
+ * 
+ * Created on: 2020-10-25
  */
 class JSON
 {
@@ -60,13 +65,18 @@ public:
      */
     static std::map<std::string, std::any> parseFromStream(std::istream &stream);
 
-    /** JsonParseError exception to be called on invalid input
- */
+    /** 
+     * @class ParseException
+     * 
+     * @brief Parse Error exception to be called on invalid input
+    */
     class ParseException : virtual public std::runtime_error
     {
     public:
-        /** Constructor which takes a description as parameter
-     */
+        /** 
+         * Constructor which takes a description as parameter.
+         * @param description Description of parsing error.
+        */
         explicit ParseException(const std::string &description) : std::runtime_error("Parsing error occured: " + description) {}
     };
 

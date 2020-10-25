@@ -5,11 +5,11 @@
 #define LEVEL_SIZE 100
 
 /**
- * @class Player 
+ * @class Hero 
  * 
- * @brief It defines a RPG attacker Player.
+ * @brief It defines a RPG attacker Hero.
  * 
- * It contains the main **data** what are describe the Player and all available **actions** what the player can do or could happen with itself.
+ * It contains the main **data** what are describe the Hero and all available **actions** what the player can do or could happen with itself.
  * 
  * The Hero can duel with other heroes. The winner will be the player who has more damage or more health, but important paramter the attack cooldown.
  * With smaller cooldown the player hit the other player faster.
@@ -66,23 +66,23 @@ protected:
 
 public:
     /**
-     * Player constructor.
-     * It creates a Player object from the given parameters.
-     * @param name Name of Player.
-     * @param hp Health points of Player.
-     * @param damage Attack damage of Player.
-     * @param attackCooldown Attack cooldown of Player. **Minimum** time intervall between two attack.
+     * Hero constructor.
+     * It creates a Hero object from the given parameters.
+     * @param name Name of Hero.
+     * @param hp Health points of Hero.
+     * @param damage Attack damage of Hero.
+     * @param attackCooldown Attack cooldown of Hero. **Minimum** time intervall between two attack.
      * @param xp Starter experience point of the character.
      */
     explicit Hero(const std::string &name, unsigned short maxhp, unsigned short damage, float attackCooldown, unsigned short xp);
 
     /**
-     * It parse a JSON object (from a JSON file) to a Player instance.
+     * It parse a JSON object (from a JSON file) to a Hero instance.
      * Does not matter the order of the object properties, but it have to contain all required propertiy.
      * @param fileName Json file's path.
      * @throw std::runtime_error When the file does not openable.
      * @throw std::invalid_argument When the file does not contain a required field
-     * @return Created Player instance.
+     * @return Created Hero instance.
      */
     static Hero parse(const std::string &fileName);
 
@@ -94,25 +94,25 @@ public:
 
     /**
      * Gets name of the player.
-     * @return Player name.
+     * @return Hero name.
      */
     const std::string &getName() const { return name; };
 
     /**
      * Gets maximum health points of the player.
-     * @return Player Max HP.
+     * @return Hero Max HP.
      */
     short getMaxHP() const { return maxHp; };
 
     /**
      * Gets remaining health points of the player.
-     * @return Player HP.
+     * @return Hero HP.
      */
     short getHealthPoints() const { return hp; };
 
     /**
      * Gets xp of the player.
-     * @return Player XP.
+     * @return Hero XP.
      */
     short getXP() const { return xp; };
 
@@ -120,7 +120,7 @@ public:
      * Duel with an other player.
      * The two player going to hit each other until the first death.
      * @param other The attacked player.
-     * @throw std::invalid_argument When the the attacked Player equals with the attacker.
+     * @throw std::invalid_argument When the the attacked Hero equals with the attacker.
      * @return The winner player of the fight.
      */
     void fightTilDeath(Hero other);

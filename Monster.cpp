@@ -19,7 +19,7 @@ Monster Monster::parse(const std::string &fileName)
     {
         if (properties.find(expectedProps[i]) == properties.end())
         {
-            throw std::invalid_argument("File does not contain all property for the Player initalization: " + fileName + " " + expectedProps[i]);
+            throw std::invalid_argument("File does not contain all property for the Monster initalization: " + fileName + " " + expectedProps[i]);
         }
     }
 
