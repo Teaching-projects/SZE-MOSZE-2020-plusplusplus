@@ -1,6 +1,5 @@
 #include "../JSON.h"
 #include "../jsonFileReadError.h"
-#include "../jsonParseError.h"
 
 #include <gtest/gtest.h>
 
@@ -48,13 +47,13 @@ TEST(JsonTest, KeyValuePair)
 TEST(JsonTest, ParseError)
 {
     // } instead of ,
-    ASSERT_THROW(JSON::parseFromString("{\"good\": \"start\"} \"bad\": \"end\"}"), JsonParseError);
+    ASSERT_THROW(JSON::parseFromString("{\"good\": \"start\"} \"bad\": \"end\"}"), JSON::ParseException);
     // extra } before ,
-    ASSERT_THROW(JSON::parseFromString("{\"good\": \"start\"}, \"bad\": \"end\"}"), JsonParseError);
+    ASSERT_THROW(JSON::parseFromString("{\"good\": \"start\"}, \"bad\": \"end\"}"), JSON::ParseException);
     // missing value
-    ASSERT_THROW(JSON::parseFromString("{\"good\": \"start\", \"bad\": }"), JsonParseError);
+    ASSERT_THROW(JSON::parseFromString("{\"good\": \"start\", \"bad\": }"), JSON::ParseException);
     // missing key
-    ASSERT_THROW(JSON::parseFromString("{\"good\": \"start\", \"bad\" }"), JsonParseError);
+    ASSERT_THROW(JSON::parseFromString("{\"good\": \"start\", \"bad\" }"), JSON::ParseException);
 }
 
 int main(int argc, char **argv)
