@@ -139,6 +139,11 @@ public:
      */
     unsigned short getLevel() const { return (xp / LEVEL_SIZE) + 1; };
 
+    /**
+     * The player is alive or dead.
+     * It determines from the health points. If it equals with 0, the character is dead.
+     * @return Is alive status.
+     */
     bool isAlive() const
     {
         return this->getHealthPoints() != 0;

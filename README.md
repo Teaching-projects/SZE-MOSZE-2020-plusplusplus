@@ -32,24 +32,77 @@
 
 ### Executing application
 
-Compiled application should be called with 2 parameters, each pointing to a json file with a player defined (name, hp, dmg, attackcooldown).
+#### Inputs:
+
+Compiled application should be called with **1** parameter, what is pointing to a `json` file with a scenario.
+
+This scenario is describing a hero object and his/her enemies (*monsters*) object.
 
 ```json
 {
-  "name": "Player",
-  "hp": 100,
-  "dmg": 10,
-  "attackcooldown": 12.3
+  "hero": "path/to/hero.json",
+  "monsters": "path/to/monster1.json path/to/monster2.json path/to/monster3.json"
 }
 ```
 
-Example command: `./a.out units/unit1.json units/unit2.json`
+The `hero` object is containing a path to the hero's `json` object what is containing all data for the hero.
 
-3 predefined players for testing can be found in the `units` folder.
+Data:
+- Name (*name*)
+- Base health points - **HP** (*base_health_points*)
+- Base damage - **DMG** (*base_damage*)
+- Base attack cooldown - **CD** (*base_attack_cooldown*)
 
-### How it works
+```json
+{
+  "name": "Hero",
+  "base_health_points": 100,
+  "base_damage": 10,
+  "base_attack_cooldown": 12.3
+}
+```
+
+The `monsters` object is containing one ore more paths for monster `json` objects. The paths is separted by a 'space'
+
+Data:
+- Name (*name*)
+- Health points - **HP** (*base_health_point*)
+- Damage - **DMG** (*damage*)
+- Attack cooldown - **CD** (*attack_cooldown*)
+
+```json
+{
+  "name": "Monster",
+  "health_points": 100,
+  "damage": 10,
+  "attack_cooldown": 12.3
+}
+```
+
+Example command: `./a.out scenarios/scenario1.json`
+
+All predefined scenario for the testing can be foind in the `scenarios` folder.
+All predefined hero/monster for testing can be found in the `units` folder.
+
+### How it works:
+
+The program read in the given `sceanrio` and read in the defined `hero` and `monster`.
+The hero start fight with each monster until death.
+If the hero can kill every monster without death, he will be the winner. If he dies, the game is over.
+
+#### Fight:
+
+Every player has a attack cooldown what is defining the time between two hit.
+
+Every player is gaining **XP** (*experience points*) after each hit. The gained **XP** is equal with the dealed damage.
+
+#### Leveling:
 
 Using the predefined main function the `Hero` class handles the logic, using the `Json` class for file parsing.
+
+#### END:
+
+The program prints to the output, that the hero is won or not.
 
 #### Json parser
 
@@ -60,8 +113,9 @@ We use a _bit_ complex regex matcher to find all key/value pairs. It is looping 
 - filename
 - istream
 - string (containing json)
+After an X amount of **XP** the character is leveling up. The new level will give him more base **HP**, **DMG**, refill the his/her current **HP** to maximum and reduce the **CD**.
 
-### Output test
+### Output test:
 
 There are predefined players in the `units/` folder and a `expected_results.csv` file. The variations in the `csv` file can be executed automatically using the `./run_all.sh` script. If a test fails (results not equal) the script quits with error code.
 
