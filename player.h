@@ -79,7 +79,7 @@ public:
     /**
      * It parse a JSON object (from a JSON file) to a Player instance.
      * Does not matter the order of the object properties, but it have to contain all required propertiy.
-     * @param filename Json file's path.
+     * @param fileName Json file's path.
      * @throw std::runtime_error When the file does not openable.
      * @throw std::invalid_argument When the file does not contain a required field
      * @return Created Player instance.
@@ -144,14 +144,14 @@ private:
      * The player hit an other player.
      * The attacked person's health points will less by the attacker's damage.
      * *The HP cannot be less than zero*.
-     * @param otherPlayer The hit player.
+     * @param otherPlayer The player who has been hit.
      * @return The attacked player died in the attack or not.
      */
     bool hit(Player *otherPlayer);
 
     /**
      * It returns with the next attack's time (**in seconds**). 
-     * @return next attack identifier.
+     * @return Next attack time.
      */
     float getNextAttack() const { return nextAttack; };
 

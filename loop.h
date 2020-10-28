@@ -55,16 +55,16 @@ public:
     void ShowPlayers() const;
 
     /**
-     * Displays the winner and victim.
+     * Displays the winner and the victim.
      */
     void ShowWinnerAndVictim() const;
 
 private:
     /**
-     * Create the player from the arguments.
-     * Get correct arguments for the correct player.
+     * Create a player from the arguments.
+     * Select the correct arguments for the currnet player from the argument list.
      * @param argv Array of arguments.
-     * @param nthPlayer Number of the current creating player.
+     * @param nthPlayer Number of the current player.
      * @return Created Player instance.
      */
     Player getPlayer(char **argv, int nthPlayer) const;
