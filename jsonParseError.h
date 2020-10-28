@@ -1,6 +1,13 @@
+#pragma once
+
 #include <stdexcept>
 
-/** JsonParseError exception to be called on invalid input
+/** 
+ * @class JsonParseError 
+ * 
+ * @brief Exception to be called on invalid input
+ * 
+ * @author +++ Team
  */
 class JsonParseError : virtual public std::runtime_error
 {

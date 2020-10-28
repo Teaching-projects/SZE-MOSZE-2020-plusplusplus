@@ -4,11 +4,17 @@
 #include <string>
 #include <any>
 
-/** Json parser class, parse to map
+/**
+ * @class Json
+ * 
+ * @brief Json parser class, parse to map with casts
  * 
  * The class includes functions to parse a string / file / stream to a map.
  * The returned map always has `std::string` keys and `std::any` values.
  * It supports auto parsing to `int` and `float` types (after it, it is castable).
+ * 
+ * @author +++ Team
+ * 
  */
 class Json
 {

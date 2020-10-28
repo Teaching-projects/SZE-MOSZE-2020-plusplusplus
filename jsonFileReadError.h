@@ -1,6 +1,13 @@
+#pragma once
+
 #include <stdexcept>
 
-/** JsonFileReadError exception to be called on file read error
+/** 
+ * @class JsonFileReadError
+ * 
+ * @brief Exception to be called on file read error
+ * 
+ * @author +++ Team
  */
 class JsonFileReadError : virtual public std::runtime_error
 {
