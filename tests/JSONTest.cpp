@@ -54,9 +54,3 @@ TEST(JsonTest, ParseError)
     // missing key
     ASSERT_THROW(JSON::parseFromString("{\"good\": \"start\", \"bad\" }"), JSON::ParseException);
 }
-
-int main(int argc, char **argv)
-{
-    ::testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
-}

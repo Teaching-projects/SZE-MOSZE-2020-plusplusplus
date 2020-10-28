@@ -8,6 +8,11 @@ include_directories(${GTEST_INCLUDE_DIRS})
 get_filename_component(PARENT_DIR ../ ABSOLUTE)
 include_directories(${PARENT_DIR})
 
-add_executable(tests JSONTest.cpp ${PARENT_DIR}/JSON.cpp)
+file(GLOB TEST_SOURCES ./*.cpp)
+file(GLOB SOURCES ../*.cpp)
+
+list(REMOVE_ITEM SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/../main.cpp")
+
+add_executable(tests ${TEST_SOURCES} ${SOURCES})
 target_compile_features(tests PRIVATE cxx_std_17)
 target_link_libraries(tests ${GTEST_LIBRARIES} pthread)
