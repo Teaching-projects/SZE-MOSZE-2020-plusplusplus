@@ -1,5 +1,5 @@
 #include "../player.h"
-#include "../JsonFileReadError.h"
+#include "../jsonFileReadError.h"
 
 #include <gtest/gtest.h>
 
