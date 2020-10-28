@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Hero.h"
+#include "Unit.h"
 
 /**
  * @class Monster 
@@ -8,11 +8,6 @@
  * @brief It defines a RPG Monster, enemy of Hero.
  * 
  * It contains the main **data** what are describe the Monster and all available **actions** what the player can do or could happen with itself.
- * 
- * The Monster can duel with other heroes. The winner will be the player who has more damage or more health, but important paramter the attack cooldown.
- * With smaller cooldown the player hit the other player faster.
- * 
- * @note It contains recursive solutions
  * 
  * @author +++ Team
  * 
@@ -23,7 +18,7 @@
  * Created on: 2020-10-25
  * 
 */
-class Monster : public Hero
+class Monster : public Unit
 {
 public:
     /**
@@ -35,7 +30,7 @@ public:
      * @param attackCooldown Attack cooldown of Monster. **Minimum** time intervall between two attack.
      * @param xp Starter experience point of the character.
      */
-    explicit Monster(const std::string &name, unsigned short maxhp, unsigned short damage, float attackCooldown, unsigned short xp);
+    explicit Monster(const std::string &name, unsigned short maxHp, unsigned short damage, float attackCooldown) : Unit(name, maxHp, damage, attackCooldown){};
 
     /**
      * It parse a JSON object (from a JSON file) to a Monster instance.

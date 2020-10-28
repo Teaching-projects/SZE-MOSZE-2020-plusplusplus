@@ -1,14 +1,8 @@
 #include "Monster.h"
 #include "JSON.h"
 
-#include <fstream>
-#include <regex>
+#include <vector>
 #include <map>
-#include <cmath>
-
-Monster::Monster(const std::string &name, unsigned short maxhp, unsigned short damage, float attackCooldown, unsigned short xp) : Hero(name, maxhp, damage, attackCooldown, xp)
-{
-}
 
 Monster Monster::parse(const std::string &fileName)
 {
@@ -27,6 +21,5 @@ Monster Monster::parse(const std::string &fileName)
         std::any_cast<std::string>(properties["name"]),
         std::any_cast<int>(properties["health_points"]),
         std::any_cast<int>(properties["damage"]),
-        std::any_cast<float>(properties["attack_cooldown"]),
-        0);
+        std::any_cast<float>(properties["attack_cooldown"]));
 }
