@@ -1,0 +1,4 @@
+{
+    "hero": "units/Dark_Wanderer.json",
+    "monsters": "units/Fallen.json  units/Fallen.json  units/Zombie.json  units/Fallen.json"
+}
