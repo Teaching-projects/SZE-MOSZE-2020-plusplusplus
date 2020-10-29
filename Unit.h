@@ -2,17 +2,21 @@
 
 #include <string>
 
-#define LEVEL_SIZE 100
+// By default these are set to 0 to "disable" the feature
+#define LEVEL_SIZE 0
+#define HEALTH_BONUS 0
+#define DAMAGE_BONUS 0
+#define COOLDOWN_MULTIPLIER 1 // 1 to avoid changing value
 
 /**
  * @class Unit 
  * 
  * @brief It defines a RPG attacker Unit.
  * 
- * It contains the main **data** what are describe the Hero and all available **actions** what the unit can do or could happen with itself.
+ * It contains the main properties and **actions** what the unit can do or could happen with it.
  * 
- * The Hero can duel with other heroes. The winner will be the unit who has more damage or more health, but important paramter the attack cooldown.
- * With smaller cooldown the unit hit the other unit faster.
+ * The Unit can duel with other units. The winner will be the unit which has more damage or more health, but the attack cooldown parameter can twist the result.
+ * The lower cooldown makes the Unit faster than the other.
  * 
  * @note It contains recursive solutions
  * 
@@ -65,10 +69,34 @@ private:
      */
     unsigned short xp = 0;
 
+    /**
+     * The experince per level.
+     * Defauls to the define directive
+     */
+    unsigned short xpPerLevel = LEVEL_SIZE;
+
+    /**
+     *  The extra healthpoints added per levelups.
+     *  Defaults to define directive
+     */
+    unsigned short healthBonusPerLevel = HEALTH_BONUS;
+
+    /**
+     *  The extra damage added per levelups.
+     *  Defaults to define directive
+     */
+    unsigned short damageBonusPerLevel = DAMAGE_BONUS;
+
+    /**
+     *  The multiplier of cooldown decrease, per levelup.
+     *  Defaults to define directive
+     */
+    float cooldownMultiplier = COOLDOWN_MULTIPLIER;
+
 protected:
     /**
      * The unit hit an other unit.
-     * The attacked person's health points will less by the attacker's damage.
+     * The attacked Unit's health points will less by the attacker's damage.
      * *The HP cannot be less than zero*.
      * @param otherPlayer The hit unit.
      * @return The attacked unit died in the attack or not.
@@ -96,15 +124,18 @@ protected:
     void levelUp();
 
     /**
-     * Get Unit's damage points.
-     * @return Current damage size.
+     * Decrease current health according to parameter.
      */
-    unsigned short getDamage() const { return this->damage; };
-
     void decreaseHealthPoints(unsigned short damage)
     {
         this->hp -= damage;
     };
+
+    /**
+     * Handle a single fight round. Units will call on each other until
+     * one of the produces a lethal hit
+     */
+    void fight(Unit &other);
 
 public:
     /**
@@ -116,7 +147,21 @@ public:
      * @param attackCooldown Attack cooldown of Unit. **Minimum** time intervall between two attack.
      * @param xp Starter experience point of the character.
      */
-    Unit(const std::string &name, unsigned short maxHp, unsigned short damage, float attackCooldown) : name(name), maxHp(maxHp), hp(maxHp), damage(damage), attackCooldown(attackCooldown){};
+    Unit(const std::string &name, unsigned short maxHp, unsigned short damage, float attackCooldown) : name(name), maxHp(maxHp), hp(maxHp), damage(damage), attackCooldown(attackCooldown), nextAttack(attackCooldown){};
+
+    /**
+     * Unit constructor.
+     * It creates a Unit object from the given parameters.
+     * @param name Name of Unit.
+     * @param hp Health points of Unit.
+     * @param damage Attack damage of Unit.
+     * @param attackCooldown Attack cooldown of Unit. **Minimum** time intervall between two attack.
+     * @param xpPerLevel XP needed for a levelup
+     * @param healthBonusPerLevel The extra healthpoints added per levelups.
+     * @param damageBonusPerLevel The extra damage added per levelups.
+     * @param cooldownMultiplier Multiplier for cooldown on levelup
+     */
+    Unit(const std::string &name, unsigned short maxHp, unsigned short damage, float attackCooldown, unsigned short xpPerLevel, unsigned short healthBonusPerLevel, unsigned short damageBonusPerLevel, float cooldownMultiplier) : name(name), maxHp(maxHp), hp(maxHp), damage(damage), attackCooldown(attackCooldown), nextAttack(attackCooldown), xpPerLevel(xpPerLevel), healthBonusPerLevel(healthBonusPerLevel), damageBonusPerLevel(damageBonusPerLevel), cooldownMultiplier(cooldownMultiplier){};
 
     /**
      * It parse a JSON object (from a JSON file) to a Unit instance.
@@ -132,29 +177,41 @@ public:
      * Prints to the output the unit's name and current status.
      * @param stream The destination output stream
      */
-    void print(std::ostream &stream) const;
+    virtual void print(std::ostream &stream) const;
 
     /**
      * Gets name of the unit.
-     * @return Hero name. 
+     * @return Unit name. 
      */
     const std::string &getName() const { return name; };
 
     /**
-     * Gets maximum health points of the unit.
-     * @return Hero Max HP.
+     * Get Unit's damage points.
+     * @return Current damage size.
      */
-    unsigned short getMaxHP() const { return maxHp; };
+    unsigned short getDamage() const { return this->damage; };
+
+    /**
+     * Gets maximum health points of the unit.
+     * @return Unit Max HP.
+     */
+    unsigned short getMaxHealthPoints() const { return maxHp; };
 
     /**
      * Gets remaining health points of the unit.
-     * @return Hero HP.
+     * @return Unit HP.
      */
     unsigned short getHealthPoints() const { return hp; };
 
     /**
+     * Gets the cooldown of the unit.
+     * @return Unit Attack Cooldown.
+     */
+    float getAttackCoolDown() const { return attackCooldown; };
+
+    /**
      * Gets xp of the unit.
-     * @return Hero XP.
+     * @return Unit XP.
      */
     unsigned short getXP() const { return xp; };
 
@@ -179,7 +236,7 @@ public:
     /**
      * Gets the unit's current level determined from the character's XP score.
      */
-    unsigned short getLevel() const { return (xp / LEVEL_SIZE) + 1; };
+    unsigned short getLevel() const { return xpPerLevel == 0 ? 1 : ((xp / xpPerLevel) + 1); };
 
     /**
      * The unit is alive or dead.

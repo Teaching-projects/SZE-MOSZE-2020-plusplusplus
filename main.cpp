@@ -11,6 +11,7 @@
  *
  * For: MOSZE - GKNB_INTM006
  * 
+ * The code below is included from "refactor_revised_20201129" main.cpp
 */
 #include <iostream>
 #include <map>
@@ -48,19 +49,18 @@ int main(int argc, char **argv)
 
     std::string hero_file;
     std::list<std::string> monster_files;
-
     try
     {
-        auto scenario = JSON::parseFromFile(argv[1]);
+        JSON scenario = JSON::parseFromFile(argv[1]);
         if (!(scenario.count("hero") && scenario.count("monsters")))
             bad_exit(3);
         else
         {
-            hero_file = std::any_cast<std::string>(scenario["hero"]);                      // TODO: Any cast
-            std::istringstream monsters(std::any_cast<std::string>(scenario["monsters"])); // TODO: Any cast
+            hero_file = scenario.get<std::string>("hero");
+            std::istringstream monsters(scenario.get<std::string>("monsters"));
             std::copy(std::istream_iterator<std::string>(monsters),
                       std::istream_iterator<std::string>(),
-                      back_inserter(monster_files));
+                      std::back_inserter(monster_files));
         }
     }
     catch (const JSON::ParseException &e)
@@ -78,7 +78,7 @@ int main(int argc, char **argv)
         while (hero.isAlive() && !monsters.empty())
         {
             std::cout
-                << hero.getName() << "(" << hero.getLevel() << ") " << hero.getHealthPoints()
+                << hero.getName() << "(" << hero.getLevel() << ")"
                 << " vs "
                 << monsters.front().getName()
                 << std::endl;
@@ -86,8 +86,11 @@ int main(int argc, char **argv)
             if (!monsters.front().isAlive())
                 monsters.pop_front();
         }
-
         std::cout << (hero.isAlive() ? "The hero won." : "The hero died.") << std::endl;
+        std::cout << hero.getName() << ": LVL" << hero.getLevel() << std::endl
+                  << "   HP: " << hero.getHealthPoints() << "/" << hero.getMaxHealthPoints() << std::endl
+                  << "  DMG: " << hero.getDamage() << std::endl
+                  << "  ACD: " << hero.getAttackCoolDown() << std::endl;
     }
     catch (const JSON::ParseException &e)
     {

@@ -1,5 +1,4 @@
 #include "../JSON.h"
-#include "../jsonFileReadError.h"
 
 #include <gtest/gtest.h>
 
@@ -17,31 +16,31 @@ TEST(JsonTest, ParseFloats)
 
 TEST(JsonTest, Casts)
 {
-    ASSERT_NO_THROW(std::any_cast<int>(JSON::parseFromString("{\"normalvalue\": 9999}")["normalvalue"]));
-    ASSERT_NO_THROW(std::any_cast<int>(JSON::parseFromString("{\"normalvalue\": 9}")["normalvalue"]));
+    ASSERT_NO_THROW(JSON::parseFromString("{\"normalvalue\": 9999}").get<int>("normalvalue"));
+    ASSERT_NO_THROW(JSON::parseFromString("{\"normalvalue\": 9}").get<int>("normalvalue"));
 
-    ASSERT_NO_THROW(std::any_cast<float>(JSON::parseFromString("{\"normalvalue\": 5.43}")["normalvalue"]));
-    ASSERT_NO_THROW(std::any_cast<float>(JSON::parseFromString("{\"normalvalue\": 522.1}")["normalvalue"]));
+    ASSERT_NO_THROW(JSON::parseFromString("{\"normalvalue\": 5.43}").get<float>("normalvalue"));
+    ASSERT_NO_THROW(JSON::parseFromString("{\"normalvalue\": 522.1}").get<float>("normalvalue"));
 
-    ASSERT_NO_THROW(std::any_cast<std::string>(JSON::parseFromString("{\"value\": \"itsAValue\"}")["value"]));
-    ASSERT_NO_THROW(std::any_cast<std::string>(JSON::parseFromString("{\"value\": \"itsAv   Valu \n\t  e01234\"}")["value"]));
+    ASSERT_NO_THROW(JSON::parseFromString("{\"value\": \"itsAValue\"}").get<std::string>("value"));
+    ASSERT_NO_THROW(JSON::parseFromString("{\"value\": \"itsAv   Valu \n\t  e01234\"}").get<std::string>("value"));
 }
 
 TEST(JsonTest, FileRead)
 {
-    ASSERT_THROW(JSON::parseFromFile("nonexistent.json"), JsonFileReadError);
-    ASSERT_NO_THROW(JSON::parseFromFile("../units/unit1.json"));
+    ASSERT_THROW(JSON::parseFromFile("nonexistent.json"), JSON::ParseException);
+    ASSERT_NO_THROW(JSON::parseFromFile("../units/Fallen.json"));
 }
 
 TEST(JsonTest, KeyValuePair)
 {
-    std::map<std::string, std::any> parsed = JSON::parseFromString("{    \"string\"    \t :  \n  \"a value\"  \t  , \"number\": 65553342      }   ");
+    JSON parsed = JSON::parseFromString("{    \"string\"    \t :  \n  \"a value\"  \t  , \"number\": 65553342      }   ");
 
-    ASSERT_NO_THROW(std::any_cast<std::string>(parsed["string"]));
-    ASSERT_EQ(std::any_cast<std::string>(parsed["string"]), "a value");
+    ASSERT_NO_THROW(parsed.get<std::string>("string"));
+    ASSERT_EQ(parsed.get<std::string>("string"), "a value");
 
-    ASSERT_NO_THROW(std::any_cast<int>(parsed["number"]));
-    ASSERT_EQ(std::any_cast<int>(parsed["number"]), 65553342);
+    ASSERT_NO_THROW(parsed.get<int>("number"));
+    ASSERT_EQ(parsed.get<int>("number"), 65553342);
 }
 
 TEST(JsonTest, ParseError)

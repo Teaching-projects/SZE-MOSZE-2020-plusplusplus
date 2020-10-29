@@ -23,33 +23,33 @@
  */
 class JSON
 {
+    std::map<std::string, std::any> data;
+
 public:
     /** Parse the given string input
      * 
      * The function accepts a JSON string as parameter 
      * 
      * @param input JSON input string
-     * @return A map with string keys and values in `std::any` type. `int` and `float`
-     * is parsed and can be casted
+     * @return a class initialized with the parsed data structure
      * @throws invalid_argument is thrown if the number to be parsed format not correct
      * @throws out_of_range is thrown if the number to be parsed too large
      * @relatealso parseFromString
      */
-    static std::map<std::string, std::any> parseFromString(const std::string &input);
+    static JSON parseFromString(const std::string &input);
 
     /** Parse the given file
      * 
      * The function accepts a filename which will be read from the filesystem. 
      * 
      * @param filename a file on the local filesystem
-     * @return A map with string keys and values in `std::any` type. `int` and `float`
-     * is parsed and can be casted
+     * @return a class initialized with the parsed data structure
      * @throws JsonFileReadError is thrown is the given file does not exists or cannot be read
      * @throws invalid_argument is thrown if the number to be parsed format not correct
      * @throws out_of_range is thrown if the number to be parsed too large
      * @relatealso parseFromString
      */
-    static std::map<std::string, std::any> parseFromFile(const std::string &filename);
+    static JSON parseFromFile(const std::string &filename);
 
     /** Parse the given stream to map
      * 
@@ -57,13 +57,33 @@ public:
      * parsed in that form 
      * 
      * @param stream `istream` which will be read to string
-     * @return A map with string keys and values in `std::any` type. `int` and `float`
-     * is parsed and can be casted
+     * @return a class initialized with the parsed data structure
      * @throws invalid_argument is thrown if the number to be parsed format not correct
      * @throws out_of_range is thrown if the number to be parsed too large
      * @relatealso parseFromString
      */
-    static std::map<std::string, std::any> parseFromStream(std::istream &stream);
+    static JSON parseFromStream(std::istream &stream);
+
+    /**
+     * Check if the given key exists the data map
+     * @return either 0 (not present) or 1 (present)
+     */
+    unsigned int count(const std::string &key)
+    {
+        return data.count(key);
+    }
+
+    /**
+     * Get a key's value from the map casted to the given format
+     * std::string, int and float can be casted, according to the type in the file
+     * @return the casted value
+     * @throws bad_cast if thrown if the given key is not present or is stored in another type
+     */
+    template <typename T>
+    T get(const std::string &key)
+    {
+        return std::any_cast<T>(data[key]);
+    }
 
     /** 
      * @class ParseException
@@ -81,6 +101,8 @@ public:
     };
 
 private:
+    JSON(std::map<std::string, std::any> data) : data(data){};
+
     /** Handle the real parsing
      * 
      * The function uses regex to loop through the file until key: value pairs can
@@ -89,10 +111,9 @@ private:
      * - if it is only numbers, it will be parsed as `int`
      * 
      * @param input json input string
-     * @return A map with string keys and values in `std::any` type. `int` and `float`
-     * is parsed and can be casted
+     * @return a class initialized with the parsed data structure
      * @throws invalid_argument is thrown if the number to be parsed format not correct
      * @throws out_of_range is thrown if the number to be parsed too large
      */
-    static std::map<std::string, std::any> parse(const std::string &input);
+    static JSON parse(const std::string &input);
 };

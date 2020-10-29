@@ -41,4 +41,9 @@ public:
      * @return Created Monster instance.
      */
     static Monster parse(const std::string &fileName);
+
+    /**
+     * Override the parent class method, print custom format.
+     */
+    void print(std::ostream &stream) const;
 };

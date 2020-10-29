@@ -31,17 +31,26 @@ public:
      * @param hp Health points of Hero.
      * @param damage Attack damage of Hero.
      * @param attackCooldown Attack cooldown of Hero. **Minimum** time intervall between two attack.
-     * @param xp Starter experience point of the character.
-     */
-    Hero(const std::string &name, unsigned short maxHp, unsigned short damage, float attackCooldown) : Unit(name, maxHp, damage, attackCooldown){};
+     * @param xpPerLevel XP needed for a levelup
+     * @param healthBonusPerLevel The extra healthpoints added per levelups.
+     * @param damageBonusPerLevel The extra damage added per levelups.
+     * @param cooldownMultiplier Multiplier for cooldown on levelup
+    */
+    Hero(const std::string &name, unsigned short maxHp, unsigned short damage, float attackCooldown, unsigned short xpPerLevel, unsigned short healthBonusPerLevel, unsigned short damageBonusPerLevel, float cooldownMultiplier) : Unit(name, maxHp, damage, attackCooldown, xpPerLevel, healthBonusPerLevel, damageBonusPerLevel, cooldownMultiplier){};
 
     /**
      * It parse a JSON object (from a JSON file) to a Hero instance.
      * Does not matter the order of the object properties, but it have to contain all required propertiy.
-     * @param fileName Json file's path.
-     * @throw std::runtime_error When the file does not openable.
+     * @param filename Json file's path.
+     * @throw JSON::ParseException When the file does not openable or the file format is invalid
+     * @throw out_of_range is thrown if the number to be parsed too large
      * @throw std::invalid_argument When the file does not contain a required field
      * @return Created Hero instance.
      */
     static Hero parse(const std::string &fileName);
+
+    /**
+     * Override the parent class method, print custom format.
+     */
+    void print(std::ostream &stream) const;
 };

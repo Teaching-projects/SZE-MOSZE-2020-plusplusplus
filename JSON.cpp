@@ -1,31 +1,30 @@
 #include "JSON.h"
-#include "jsonFileReadError.h"
 
 #include <fstream>
 #include <regex>
 
-std::map<std::string, std::any> JSON::parseFromString(const std::string &inputOrFile)
+JSON JSON::parseFromString(const std::string &inputOrFile)
 {
     return parse(inputOrFile);
 }
 
-std::map<std::string, std::any> JSON::parseFromFile(const std::string &filename)
+JSON JSON::parseFromFile(const std::string &filename)
 {
     std::ifstream jsonFile(filename);
     if (jsonFile.fail())
     {
-        throw JsonFileReadError(filename);
+        throw JSON::ParseException("File cannot be read");
     }
 
     return parseFromStream(jsonFile);
 }
 
-std::map<std::string, std::any> JSON::parseFromStream(std::istream &stream)
+JSON JSON::parseFromStream(std::istream &stream)
 {
     return parse(std::string(std::istreambuf_iterator<char>(stream), {}));
 }
 
-std::map<std::string, std::any> JSON::parse(const std::string &input)
+JSON JSON::parse(const std::string &input)
 {
     static const std::regex jsonParseRegex("\\s*\"([a-z_]*)\"\\s*:\\s*([0-9]*\\.?[0-9]+|\"[\\w\\s\\./]+\")\\s*([,}])\\s*");
 
@@ -71,5 +70,5 @@ std::map<std::string, std::any> JSON::parse(const std::string &input)
         throw JSON::ParseException("Wrong format: Missing key or value");
     }
 
-    return properties;
+    return JSON(properties);
 }

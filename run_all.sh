@@ -23,10 +23,10 @@ do
             expect="$expect\n${lines[$j]}"
         fi
     done
-    expect="$(echo -e $expect)"
+    expect=$(echo -e "$expect")
     echo "Scenario: ${data[0]}"
     echo "Expected Result: \"${expect}\""
-    real="$(./a.out scenarios/${data[0]})"
+    real="$(./a.out scenarios/${data[0]} 2> /dev/null)"
     echo "Real Result: \"$real\""
 
     if [ "$real" = "$expect" ]

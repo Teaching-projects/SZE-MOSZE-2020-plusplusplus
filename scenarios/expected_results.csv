@@ -1,13 +1,21 @@
-scenario1.json;6
-Prince Aidan of Khanduras(1) 50 vs Fallen
-Prince Aidan of Khanduras(1) 48 vs Fallen
-Prince Aidan of Khanduras(1) 42 vs Zombie
-Prince Aidan of Khanduras(1) 39 vs Fallen
-Prince Aidan of Khanduras(1) 25 vs Blood Raven
-The hero died.
-scenario2.json;5
-Prince Aidan of Khanduras(1) 50 vs Fallen
-Prince Aidan of Khanduras(1) 48 vs Fallen
-Prince Aidan of Khanduras(1) 42 vs Zombie
-Prince Aidan of Khanduras(1) 39 vs Fallen
+scenario1.json;13
+Prince Aidan of Khanduras(1) vs Fallen
+Prince Aidan of Khanduras(1) vs Fallen
+Prince Aidan of Khanduras(1) vs Zombie
+Prince Aidan of Khanduras(1) vs Fallen
+Prince Aidan of Khanduras(2) vs Fallen
+Prince Aidan of Khanduras(2) vs Zombie
+Prince Aidan of Khanduras(2) vs Fallen
+Prince Aidan of Khanduras(3) vs Blood Raven
 The hero won.
+Prince Aidan of Khanduras: LVL8
+   HP: 57/65
+  DMG: 10
+  ACD: 0.526127
+scenario2.json;6
+Prince Aidan of Khanduras(1) vs Blood Raven
+The hero died.
+Prince Aidan of Khanduras: LVL1
+   HP: 0/30
+  DMG: 3
+  ACD: 1.1
