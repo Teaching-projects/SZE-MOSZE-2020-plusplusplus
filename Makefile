@@ -10,16 +10,16 @@ default: build
 build: $(OBJS)
 	$(CC) $(CFLAGS) -o $(OUT) $(OBJS)
 
-loop.o: loop.cpp loop.h player.h
+loop.o: loop.cpp loop.h player.h json.h jsonFileReadError.h jsonParseError.h
 	$(CC) $(CFLAGS) -c loop.cpp
 
-player.o: player.cpp player.h json.h
+player.o: player.cpp player.h json.h jsonFileReadError.h jsonParseError.h
 	$(CC) $(CFLAGS) -c player.cpp
 
 json.o: json.cpp json.h jsonFileReadError.h jsonParseError.h
 	$(CC) $(CFLAGS) -c json.cpp
 
-main.o: main.cpp loop.h
+main.o: main.cpp loop.h player.h json.h jsonFileReadError.h jsonParseError.h
 	$(CC) $(CFLAGS) -c main.cpp
 
 test:
