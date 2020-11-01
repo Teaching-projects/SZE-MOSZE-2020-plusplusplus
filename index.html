@@ -82,17 +82,14 @@ $(function() {
 <p><code>Make</code> is useful to have nice and easy commands to run applications. This is the list of commands we have:</p>
 <ul>
 <li><code>make</code>:<ul>
-<li><code>build</code>: Builds the application (./a.out)</li>
-<li><code>run</code>: Executes the built binary (You [should] add the file parameters)</li>
+<li><code>build</code>: Builds the application (./a.out) (<em>default target</em>)</li>
+<li><code>run</code>: Executes the built binary (You should add the file parameters as <code>UNIT1</code> and <code>UNIT2</code> named arguments)</li>
 <li><code>test</code>: Run all tests</li>
-<li><code>doc</code>: Generate the documentation</li>
-<li>Subcommands:<ul>
-<li><code>test-output</code>: Run output tests</li>
-<li><code>test-leak</code>: Run memory leak test</li>
-<li><code>test-sca</code>: Run primary and secondary static code analysis</li>
-<li><code>test-unit</code>: Run unit tests</li>
-</ul>
-</li>
+<li><code>unittest</code>: Run unit tests</li>
+<li><code>documentation</code>: Generate the documentation</li>
+<li><code>memory_leak_check</code>: Run memory leak test</li>
+<li><code>static_code_analysis</code>: Run primary and secondary static code analysis</li>
+<li><code>clean</code>: Clean built files</li>
 </ul>
 </li>
 </ul>
