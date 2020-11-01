@@ -4,11 +4,33 @@
 
 ### Team: +++ (PlusPlusPlus)
 
+![Test Workflow](https://github.com/Teaching-projects/SZE-MOSZE-2020-plusplusplus/workflows/Test%20Workflow/badge.svg)
+![Unit Tests](https://github.com/Teaching-projects/SZE-MOSZE-2020-plusplusplus/workflows/Unit%20Tests/badge.svg)
+![Documentation](https://github.com/Teaching-projects/SZE-MOSZE-2020-plusplusplus/workflows/Documentation%20workflow/badge.svg)
+[![Documentation](https://img.shields.io/badge/Documentation-Here!-blue)](https://teaching-projects.github.io/SZE-MOSZE-2020-plusplusplus/pages.html)
+
 #### Team Members:
 
 - Balogh Máté
 - Baranyai Bence
 - Karcag Tamás
+
+### Make commands
+
+`Make` is useful to have nice and easy commands to run applications. This is the list of commands we have:
+
+- `make`:
+
+  - `build`: Builds the application (./a.out)
+  - `run`: Executes the built binary (You [should] add the file parameters)
+  - `test`: Run all tests
+  - `doc`: Generate the documentation
+
+  - Subcommands:
+    - `test-output`: Run output tests
+    - `test-leak`: Run memory leak test
+    - `test-sca`: Run primary and secondary static code analysis
+    - `test-unit`: Run unit tests
 
 ### Executing application
 
@@ -29,21 +51,53 @@ Example command: `./a.out units/unit1.json units/unit2.json`
 
 ### How it works
 
-In the `Loop` constructor, the players are read from the parameter list. `Play` is the main game handle, which is recursively called until the game ends (a player has 0 HP).
+Using the predefined main function the `Hero` class handles the logic, using the `Json` class for file parsing.
 
-`Player` attacks other `Player` with a reference given to the other class, Attack returns whether the opponent lost or not.
+#### Json parser
 
-Only the final state of the game is printed, showing who won.
+We use a _bit_ complex regex matcher to find all key/value pairs. It is looping until it finds new pairs and returns error if more data exists beyond that point.
+
+3 types of parameters can be used with the parse:
+
+- filename
+- istream
+- string (containing json)
 
 ### Output test
 
 There are predefined players in the `units/` folder and a `expected_results.csv` file. The variations in the `csv` file can be executed automatically using the `./run_all.sh` script. If a test fails (results not equal) the script quits with error code.
 
+### Unit tests
+
+Under the `tests/` folder cpp test file can be found. The tests use the GTest testing framework and cmake for building.
+
+Usage (without `make`):
+
+- `cd tests`
+- `cmake .`
+- `make`
+- `./tests`
+
+### SCA tests
+
+A workflow automatically runs SCA on the repository with two levels using `cppcheck`. These can be run (without `make`) with the `run_code_analysis_primary.sh` and `run_code_analysis_primary.sh`.
+
+- Primary
+  - Check for errors and warnings
+- Secondary
+  - Check for style and preformance issues
+
+### Memory leak check
+
+`run_memory_leak_check.sh` executes `valgrind` to check for memory leaks.
+
 ### Code documentation
+
+Doxygen automatically generates the documentation for the master branch and it is deployed on GH Pages.
 
 > Url of the Doxygen code documentation: [Go to documentation](https://teaching-projects.github.io/SZE-MOSZE-2020-plusplusplus/pages.html).
 
-#### Generation
+#### Manual Generation
 
 - Install doxygen and graphviz pacakages
 - Run the next command: `doxygen doxygenconf`
