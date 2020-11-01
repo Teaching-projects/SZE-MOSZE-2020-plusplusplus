@@ -10,6 +10,9 @@ default: build
 build: $(OBJS)
 	$(CC) $(CFLAGS) -o $(OUT) $(OBJS)
 
+run: ./$(OUT)
+	./$(OUT) $(UNIT1) $(UNIT2)
+
 loop.o: loop.cpp loop.h player.h json.h jsonFileReadError.h jsonParseError.h
 	$(CC) $(CFLAGS) -c loop.cpp
 
@@ -25,11 +28,6 @@ main.o: main.cpp loop.h player.h json.h jsonFileReadError.h jsonParseError.h
 test:
 	bash -c "./run_all.sh"
 
-unittest:
-	cd tests && cmake .
-	cd tests && make
-	cd tests && ./tests
-	
 memory_leak_check:
 	bash -c "./run_memory_leak_check.sh"
 
@@ -40,5 +38,10 @@ static_code_analysis:
 documentation:
 	doxygen doxygenconf
 
+unittest:
+	cd tests && cmake .
+	cd tests && make
+	cd tests && ./tests
+	
 clean:
 	rm -rf $(OBJS) $(OUT)
