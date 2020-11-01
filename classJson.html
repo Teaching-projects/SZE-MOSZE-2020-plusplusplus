@@ -68,6 +68,9 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
+<p><a class="el" href="classJson.html" title="Json parser class, parse to map with casts. ">Json</a> parser class, parse to map with casts.  
+ <a href="classJson.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="json_8h_source.html">json.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
@@ -80,8 +83,9 @@ Static Public Member Functions</h2></td></tr>
 <tr class="separator:ac05889f5a833058041f4cdc18aa37d74"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p><a class="el" href="classJson.html">Json</a> parser class, parse to map</p>
-<p>The class includes functions to parse a string / file / stream to a map. The returned map always has <code>std::string</code> keys and <code>std::any</code> values. It supports auto parsing to <code>int</code> and <code>float</code> types (after it, it is castable). </p>
+<div class="textblock"><p><a class="el" href="classJson.html" title="Json parser class, parse to map with casts. ">Json</a> parser class, parse to map with casts. </p>
+<p>The class includes functions to parse a string / file / stream to a map. The returned map always has <code>std::string</code> keys and <code>std::any</code> values. It supports auto parsing to <code>int</code> and <code>float</code> types (after it, it is castable).</p>
+<dl class="section author"><dt>Author</dt><dd>+++ Team </dd></dl>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a7424cfb638683f0bdfb5758381f354f2"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7424cfb638683f0bdfb5758381f354f2">&#9670;&nbsp;</a></span>ParseFile()</h2>
@@ -117,7 +121,7 @@ Static Public Member Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>A map with string keys and values in <code>std::any</code> type. <code>int</code> and <code>float</code> is parsed and can be casted </dd></dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
-    <tr><td class="paramname"><a class="el" href="classJsonFileReadError.html">JsonFileReadError</a></td><td>is thrown is the given file does not exists or cannot be read </td></tr>
+    <tr><td class="paramname"><a class="el" href="classJsonFileReadError.html" title="Exception to be called on file read error. ">JsonFileReadError</a></td><td>is thrown is the given file does not exists or cannot be read </td></tr>
     <tr><td class="paramname">invalid_argument</td><td>is thrown if the number to be parsed format not correct </td></tr>
     <tr><td class="paramname">out_of_range</td><td>is thrown if the number to be parsed too large  parseFromString </td></tr>
   </table>

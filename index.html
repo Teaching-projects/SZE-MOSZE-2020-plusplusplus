@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>RPG Game: Main Page</title>
+<title>RPG Game: RPG Game</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -61,10 +61,83 @@ $(function() {
 
 <div class="header">
   <div class="headertitle">
-<div class="title">RPG Game Documentation</div>  </div>
+<div class="title">RPG Game </div>  </div>
 </div><!--header-->
 <div class="contents">
-</div><!-- contents -->
+<div class="textblock"><div class="image">
+<object type="image/svg+xml" data="https://github.com/Teaching-projects/SZE-MOSZE-2020-plusplusplus/workflows/Test%20Workflow/badge.svg" alt="Test Workflow"></object>
+</div>
+ <div class="image">
+<object type="image/svg+xml" data="https://github.com/Teaching-projects/SZE-MOSZE-2020-plusplusplus/workflows/Unit%20Tests/badge.svg" alt="Unit Tests"></object>
+</div>
+ <div class="image">
+<object type="image/svg+xml" data="https://github.com/Teaching-projects/SZE-MOSZE-2020-plusplusplus/workflows/Documentation%20workflow/badge.svg" alt="Documentation"></object>
+</div>
+<p> <a href="https://teaching-projects.github.io/SZE-MOSZE-2020-plusplusplus/pages.html"></a></p>
+<ul>
+<li>Balogh Máté</li>
+<li>Baranyai Bence</li>
+<li>Karcag Tamás</li>
+</ul>
+<p><code>Make</code> is useful to have nice and easy commands to run applications. This is the list of commands we have:</p>
+<ul>
+<li><code>make</code>:<ul>
+<li><code>build</code>: Builds the application (./a.out)</li>
+<li><code>run</code>: Executes the built binary (You [should] add the file parameters)</li>
+<li><code>test</code>: Run all tests</li>
+<li><code>doc</code>: Generate the documentation</li>
+<li>Subcommands:<ul>
+<li><code>test-output</code>: Run output tests</li>
+<li><code>test-leak</code>: Run memory leak test</li>
+<li><code>test-sca</code>: Run primary and secondary static code analysis</li>
+<li><code>test-unit</code>: Run unit tests</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Compiled application should be called with 2 parameters, each pointing to a json file with a player defined (name, hp, dmg, attackcooldown).</p>
+<div class="fragment"><div class="line">{</div><div class="line">  &quot;name&quot;: &quot;Player&quot;,</div><div class="line">  &quot;hp&quot;: 100,</div><div class="line">  &quot;dmg&quot;: 10,</div><div class="line">  &quot;attackcooldown&quot;: 12.3</div><div class="line">}</div></div><!-- fragment --><p>Example command: <code>./a.out units/unit1.json units/unit2.json</code></p>
+<p>3 predefined players for testing can be found in the <code>units</code> folder.</p>
+<p>Using the predefined main function the <code>Hero</code> class handles the logic, using the <code><a class="el" href="classJson.html" title="Json parser class, parse to map with casts. ">Json</a></code> class for file parsing.</p>
+<p>We use a <em>bit</em> complex regex matcher to find all key/value pairs. It is looping until it finds new pairs and returns error if more data exists beyond that point.</p>
+<p>3 types of parameters can be used with the parse:</p>
+<ul>
+<li>filename</li>
+<li>istream</li>
+<li>string (containing json)</li>
+</ul>
+<p>There are predefined players in the <code>units/</code> folder and a <code>expected_results.csv</code> file. The variations in the <code>csv</code> file can be executed automatically using the <code>./run_all.sh</code> script. If a test fails (results not equal) the script quits with error code.</p>
+<p>Under the <code>tests/</code> folder cpp test file can be found. The tests use the GTest testing framework and cmake for building.</p>
+<p>Usage (without <code>make</code>):</p>
+<ul>
+<li><code>cd tests</code></li>
+<li><code>cmake .</code></li>
+<li><code>make</code></li>
+<li><code>./tests</code></li>
+</ul>
+<p>A workflow automatically runs SCA on the repository with two levels using <code>cppcheck</code>. These can be run (without <code>make</code>) with the <code>run_code_analysis_primary.sh</code> and <code>run_code_analysis_primary.sh</code>.</p>
+<ul>
+<li>Primary<ul>
+<li>Check for errors and warnings</li>
+</ul>
+</li>
+<li>Secondary<ul>
+<li>Check for style and preformance issues</li>
+</ul>
+</li>
+</ul>
+<p><code>run_memory_leak_check.sh</code> executes <code>valgrind</code> to check for memory leaks.</p>
+<p>Doxygen automatically generates the documentation for the master branch and it is deployed on GH Pages.</p>
+<blockquote class="doxtable">
+<p>Url of the Doxygen code documentation: <a href="https://teaching-projects.github.io/SZE-MOSZE-2020-plusplusplus/pages.html">Go to documentation</a>. </p>
+</blockquote>
+<ul>
+<li>Install doxygen and graphviz pacakages</li>
+<li>Run the next command: <code>doxygen doxygenconf</code></li>
+<li>Use the generated documents from the <code>/docs</code> </li>
+</ul>
+</div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

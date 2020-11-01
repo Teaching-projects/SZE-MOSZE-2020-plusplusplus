@@ -1,4 +1,4 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classJsonFileReadError.html" title="JsonFileReadError" alt="" coords="5,29,136,56"/>
-<area shape="rect" id="node2" href="$classJsonParseError.html" title="JsonParseError" alt="" coords="184,29,296,56"/>
+<area shape="rect" id="node1" href="$classJsonFileReadError.html" title="Exception to be called on file read error. " alt="" coords="5,29,136,56"/>
+<area shape="rect" id="node2" href="$classJsonParseError.html" title="Exception to be called on invalid input. " alt="" coords="184,29,296,56"/>
 </map>
