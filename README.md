@@ -21,16 +21,14 @@
 
 - `make`:
 
-  - `build`: Builds the application (./a.out)
-  - `run`: Executes the built binary (You [should] add the file parameters)
+  - `build`: Builds the application (./a.out) (_default target_)
+  - `run`: Executes the built binary (You should add the file parameters as `UNIT1` and `UNIT2` named arguments)
   - `test`: Run all tests
-  - `doc`: Generate the documentation
-
-  - Subcommands:
-    - `test-output`: Run output tests
-    - `test-leak`: Run memory leak test
-    - `test-sca`: Run primary and secondary static code analysis
-    - `test-unit`: Run unit tests
+  - `unittest`: Run unit tests
+  - `documentation`: Generate the documentation
+  - `memory_leak_check`: Run memory leak test
+  - `static_code_analysis`: Run primary and secondary static code analysis
+  - `clean`: Clean built files
 
 ### Executing application
 

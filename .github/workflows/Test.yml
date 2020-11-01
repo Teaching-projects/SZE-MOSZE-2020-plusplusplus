@@ -7,25 +7,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Build
-        run: g++ -std=c++17 *.cpp
-      - name: Test
-        run: ./run_all.sh
       - name: Install Valgrind
         run: sudo apt-get install valgrind
+      - name: Build
+        run: make build
       - name: Memory leak check
-        run: ./run_memory_leak_check.sh
+        run: make memory_leak_check
+      - name: Test
+        run: make test
 
   code_analysis:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - name: Install cppcheck
         run: sudo apt-get install cppcheck
-      - uses: actions/checkout@v2
-      - name: Code analysis primary (error, warning)
-        run: ./run_code_analysis_primary.sh
-      - name: Code analysis secondary (performance, style)
-        run: ./run_code_analysis_secondary.sh
+      - name: Static Code analysis
+        run: make static_code_analysis
       - uses: actions/upload-artifact@v2
         with:
           name: Artifact_of_secondary_code_analysis
