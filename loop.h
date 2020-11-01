@@ -62,7 +62,7 @@ public:
 private:
     /**
      * Create a player from the arguments.
-     * Select the correct arguments for the currnet player from the argument list.
+     * Select the correct arguments for the current player from the argument list.
      * @param argv Array of arguments.
      * @param nthPlayer Number of the current player.
      * @return Created Player instance.
