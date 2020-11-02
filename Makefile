@@ -1,6 +1,6 @@
 SHELL=/bin/bash
 
-OBJS = JSON.o Hero.o Monster.o main.o
+OBJS = JSON.o Unit.o Hero.o Monster.o main.o
 OUT = a.out
 CFLAGS = -Wall -std=c++17
 CC = g++-9
@@ -13,16 +13,19 @@ build: $(OBJS)
 run: ./$(OUT)
 	./$(OUT) $(SCENARIO)
 
-Hero.o: Hero.cpp Hero.h JSON.h jsonFileReadError.h
+Unit.o: Unit.cpp Unit.h
+	$(CC) $(CFLAGS) -c Unit.cpp
+
+Hero.o: Hero.cpp Hero.h Unit.h JSON.h
 	$(CC) $(CFLAGS) -c Hero.cpp
 
-Monster.o: Monster.cpp Monster.h Hero.h JSON.h jsonFileReadError.h
+Monster.o: Monster.cpp Monster.h Unit.h JSON.h
 	$(CC) $(CFLAGS) -c Monster.cpp
 
-JSON.o: JSON.cpp JSON.h jsonFileReadError.h
+JSON.o: JSON.cpp JSON.h
 	$(CC) $(CFLAGS) -c JSON.cpp
 
-main.o: main.cpp Hero.h Monster.h JSON.h jsonFileReadError.h
+main.o: main.cpp Hero.h Monster.h JSON.h
 	$(CC) $(CFLAGS) -c main.cpp
 
 test:
