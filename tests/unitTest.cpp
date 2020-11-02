@@ -1,66 +1,87 @@
-#include "../player.h"
-#include "../jsonFileReadError.h"
+#include "../Unit.h"
+#include "../JSON.h"
+#include "../Hero.h"
+#include "../Monster.h"
 
 #include <gtest/gtest.h>
 
-TEST(PlayerTest, FileParse)
+TEST(UnitTest, ConstructTest)
 {
-    ASSERT_THROW(Player::parseUnit("unitthatdoesnotexists.json"), JsonFileReadError);
+    Unit u1("LevelTest", 100, 10, 1.0);
+    ASSERT_EQ(u1.getLevel(), 1);
 
-    ASSERT_NO_THROW(Player::parseUnit("../units/unit1.json"));
-    ASSERT_NO_THROW(Player::parseUnit("../units/unit2.json"));
+    Unit u2("LevelTest", 100, 10, 2.1, 10, 30, 30, 0.7);
+    ASSERT_EQ(u1.getLevel(), 1);
 }
 
-TEST(PlayerTest, LevelTest)
+TEST(UnitTest, DuelUnitUnit)
 {
-    Player p1("LevelTest", 100, 10, 1.0, 0);
-    ASSERT_EQ(p1.GetLevel(), 1);
-    Player p2("LevelTest", 100, 10, 1.0, 780);
-    ASSERT_EQ(p2.GetLevel(), 8);
+    Unit u1("DuelTest1", 200, 10, 0.7);
+    Unit u2("DuelTest2", 100, 60, 1.0);
+
+    ASSERT_THROW(u1.fightTilDeath(u1), std::invalid_argument);
+    ASSERT_NO_THROW(u1.fightTilDeath(u2));
+
+    ASSERT_EQ(u2.getMaxHealthPoints(), 100);
+    ASSERT_EQ(u2.getHealthPoints(), 50);
+    ASSERT_EQ(u2.getXP(), 200);
+    ASSERT_EQ(u2.getLevel(), 1);
+    ASSERT_EQ(u2.isAlive(), true);
+
+    ASSERT_EQ(u1.getMaxHealthPoints(), 200);
+    ASSERT_EQ(u1.getHealthPoints(), 0);
+    ASSERT_EQ(u1.getXP(), 50);
+    ASSERT_EQ(u1.getLevel(), 1);
+    ASSERT_EQ(u1.isAlive(), false);
+
+    Unit u3("DuelTest3", 200, 10, 0.7, 10, 30, 10, 0.5);
+    Unit u4("DuelTest4", 100, 60, 1.0);
+
+    ASSERT_NO_THROW(u3.fightTilDeath(u4));
+
+    ASSERT_EQ(u3.getMaxHealthPoints(), 500);
+    ASSERT_EQ(u3.getHealthPoints(), 500);
+    ASSERT_EQ(u3.getXP(), 100);
+    ASSERT_EQ(u3.getLevel(), 11);
+    ASSERT_EQ(u3.isAlive(), true);
+
+    ASSERT_EQ(u4.getMaxHealthPoints(), 100);
+    ASSERT_EQ(u4.getHealthPoints(), 0);
+    ASSERT_EQ(u4.getXP(), 60);
+    ASSERT_EQ(u4.getLevel(), 1);
+    ASSERT_EQ(u4.isAlive(), false);
 }
 
-TEST(PlayerTest, Duel)
+TEST(UnitTest, DuelHeroMonster)
 {
-    Player p1("DuelTest1", 200, 10, 0.7, 0);
-    Player p2("DuelTest2", 100, 60, 1.0, 0);
-    Player *winner = nullptr;
+    Hero h("H", 100, 10, 2.1, 10, 30, 5, 0.4);
+    Monster m("M", 200, 13, 0.9);
 
-    ASSERT_THROW(p1.DuelWith(&p1), std::invalid_argument);
-    ASSERT_NO_THROW(winner = p1.DuelWith(&p2));
+    ASSERT_NO_THROW(h.fightTilDeath(m));
 
-    ASSERT_EQ(winner->GetName(), "DuelTest2");
-    ASSERT_EQ(winner->GetMaxHP(), 121);
-    ASSERT_EQ(winner->GetHP(), 121);
-    ASSERT_EQ(winner->GetXP(), 200);
-    ASSERT_EQ(winner->GetLevel(), 3);
+    ASSERT_EQ(h.isAlive(), true);
+    ASSERT_EQ(h.getLevel(), 21);
+    ASSERT_EQ(h.getDamage(), 110);
 
-    ASSERT_EQ(p1.GetMaxHP(), 200);
-    ASSERT_EQ(p1.GetHP(), 0);
-    ASSERT_EQ(p1.GetXP(), 50);
-    ASSERT_EQ(p1.GetLevel(), 1);
+    ASSERT_EQ(m.isAlive(), false);
+    ASSERT_EQ(m.getDamage(), 13);
 }
 
-TEST(PlayerTest, PrintFormat)
+TEST(UnitTest, isAlive)
 {
-    Player p1("P1", 201, 11, 0.1, 0122);
-    std::string expect1("P1: MAX HP: 201, HP: 201, DMG: 11, XP: 82, COOLDOWN: 0.1, LEVEL: 1");
+    Unit u1("Alive", 1, 0, 0);
+    ASSERT_EQ(u1.isAlive(), true);
+
+    Unit u2("Dead", 0, 0, 0);
+    ASSERT_EQ(u2.isAlive(), false);
+}
+
+TEST(UnitTest, PrintFormat)
+{
+    Unit u1("U1", 201, 11, 0.1);
+    std::string expect1("U1: MAX HP: 201, HP: 201, DMG: 11, XP: 0, COOLDOWN: 0.1, LEVEL: 1");
 
     std::stringstream res1;
-    p1.Print(res1);
+    u1.print(res1);
     ASSERT_EQ(res1.str(), expect1);
-
-    Player p2("P2", 44, 122, 12.2, 0);
-    std::string expect2("P2: MAX HP: 44, HP: 44, DMG: 122, XP: 0, COOLDOWN: 12.2, LEVEL: 1");
-
-    std::stringstream res2;
-    p2.Print(res2);
-    ASSERT_EQ(res2.str(), expect2);
-
-    // Levelups only occur after a hit
-    Player p3("P3", 58, 5, 10, 1000);
-    std::string expect3("P3: MAX HP: 58, HP: 58, DMG: 5, XP: 1000, COOLDOWN: 10, LEVEL: 11");
-
-    std::stringstream res3;
-    p3.Print(res3);
-    ASSERT_EQ(res3.str(), expect3);
 }
