@@ -93,16 +93,35 @@ $(function() {
 </ul>
 </li>
 </ul>
-<p>Compiled application should be called with 2 parameters, each pointing to a json file with a player defined (name, hp, dmg, attackcooldown).</p>
-<div class="fragment"><div class="line">{</div><div class="line">  &quot;name&quot;: &quot;Player&quot;,</div><div class="line">  &quot;hp&quot;: 100,</div><div class="line">  &quot;dmg&quot;: 10,</div><div class="line">  &quot;attackcooldown&quot;: 12.3</div><div class="line">}</div></div><!-- fragment --><p>Example command: <code>./a.out units/unit1.json units/unit2.json</code></p>
-<p>3 predefined players for testing can be found in the <code>units</code> folder.</p>
-<p>Using the predefined main function the <code>Hero</code> class handles the logic, using the <code><a class="el" href="classJson.html" title="Json parser class, parse to map with casts. ">Json</a></code> class for file parsing.</p>
+<p>Compiled application should be called with <b>1</b> parameter, what is pointing to a <code>json</code> file with a scenario.</p>
+<p>This scenario is describing a hero object and his/her enemies (<em>monsters</em>) object.</p>
+<div class="fragment"><div class="line">{</div><div class="line">  &quot;hero&quot;: &quot;path/to/hero.json&quot;,</div><div class="line">  &quot;monsters&quot;: &quot;path/to/monster1.json path/to/monster2.json path/to/monster3.json&quot;</div><div class="line">}</div></div><!-- fragment --><p>The <code>hero</code> object is containing a path to the hero's <code>json</code> object what is containing all data for the hero.</p>
+<p>Data:</p><ul>
+<li>Name (<em>name</em>)</li>
+<li>Base health points - <b>HP</b> (<em>base_health_points</em>)</li>
+<li>Base damage - <b>DMG</b> (<em>base_damage</em>)</li>
+<li>Base attack cooldown - <b>CD</b> (<em>base_attack_cooldown</em>)</li>
+</ul>
+<div class="fragment"><div class="line">{</div><div class="line">  &quot;name&quot;: &quot;Hero&quot;,</div><div class="line">  &quot;base_health_points&quot;: 100,</div><div class="line">  &quot;base_damage&quot;: 10,</div><div class="line">  &quot;base_attack_cooldown&quot;: 12.3</div><div class="line">}</div></div><!-- fragment --><p>The <code>monsters</code> object is containing one ore more paths for monster <code>json</code> objects. The paths is separted by a 'space'</p>
+<p>Data:</p><ul>
+<li>Name (<em>name</em>)</li>
+<li>Health points - <b>HP</b> (<em>base_health_point</em>)</li>
+<li>Damage - <b>DMG</b> (<em>damage</em>)</li>
+<li>Attack cooldown - <b>CD</b> (<em>attack_cooldown</em>)</li>
+</ul>
+<div class="fragment"><div class="line">{</div><div class="line">  &quot;name&quot;: &quot;Monster&quot;,</div><div class="line">  &quot;health_points&quot;: 100,</div><div class="line">  &quot;damage&quot;: 10,</div><div class="line">  &quot;attack_cooldown&quot;: 12.3</div><div class="line">}</div></div><!-- fragment --><p>Example command: <code>./a.out scenarios/scenario1.json</code></p>
+<p>All predefined scenario for the testing can be foind in the <code>scenarios</code> folder. All predefined hero/monster for testing can be found in the <code>units</code> folder.</p>
+<p>The program read in the given <code>sceanrio</code> and read in the defined <code>hero</code> and <code>monster</code>. The hero start fight with each monster until death. If the hero can kill every monster without death, he will be the winner. If he dies, the game is over.</p>
+<p>Every player has a attack cooldown what is defining the time between two hit.</p>
+<p>Every player is gaining <b>XP</b> (<em>experience points</em>) after each hit. The gained <b>XP</b> is equal with the dealed damage.</p>
+<p>Using the predefined main function the <code><a class="el" href="classHero.html" title="It defines a RPG attacker Hero. ">Hero</a></code> class handles the logic, using the <code>Json</code> class for file parsing.</p>
+<p>The program prints to the output, that the hero is won or not.</p>
 <p>We use a <em>bit</em> complex regex matcher to find all key/value pairs. It is looping until it finds new pairs and returns error if more data exists beyond that point.</p>
 <p>3 types of parameters can be used with the parse:</p>
 <ul>
 <li>filename</li>
 <li>istream</li>
-<li>string (containing json)</li>
+<li>string (containing json) After an X amount of <b>XP</b> the character is leveling up. The new level will give him more base <b>HP</b>, <b>DMG</b>, refill the his/her current <b>HP</b> to maximum and reduce the <b>CD</b>.</li>
 </ul>
 <p>There are predefined players in the <code>units/</code> folder and a <code>expected_results.csv</code> file. The variations in the <code>csv</code> file can be executed automatically using the <code>./run_all.sh</code> script. If a test fails (results not equal) the script quits with error code.</p>
 <p>Under the <code>tests/</code> folder cpp test file can be found. The tests use the GTest testing framework and cmake for building.</p>

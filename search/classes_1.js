@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['loop',['Loop',['../classLoop.html',1,'']]]
+  ['json',['JSON',['../classJSON.html',1,'']]]
 ];

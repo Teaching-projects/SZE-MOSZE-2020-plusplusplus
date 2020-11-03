@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['duelwith',['DuelWith',['../classPlayer.html#afb2c6161df36ee73a4e5a6c2c85c8f61',1,'Player']]]
+  ['count',['count',['../classJSON.html#ae22df5aa0a6f852cc9073de6c04fd9e2',1,'JSON']]]
 ];
