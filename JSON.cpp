@@ -1,34 +1,32 @@
-#include "json.h"
-#include "jsonFileReadError.h"
-#include "jsonParseError.h"
+#include "JSON.h"
 
 #include <fstream>
 #include <regex>
 
-std::map<std::string, std::any> Json::ParseString(const std::string &inputOrFile)
+JSON JSON::parseFromString(const std::string &inputOrFile)
 {
-    return parseFromString(inputOrFile);
+    return parse(inputOrFile);
 }
 
-std::map<std::string, std::any> Json::ParseFile(const std::string &filename)
+JSON JSON::parseFromFile(const std::string &filename)
 {
     std::ifstream jsonFile(filename);
     if (jsonFile.fail())
     {
-        throw JsonFileReadError(filename);
+        throw JSON::ParseException("File cannot be read");
     }
 
-    return ParseStream(jsonFile);
+    return parseFromStream(jsonFile);
 }
 
-std::map<std::string, std::any> Json::ParseStream(std::istream &stream)
+JSON JSON::parseFromStream(std::istream &stream)
 {
-    return parseFromString(std::string(std::istreambuf_iterator<char>(stream), {}));
+    return parse(std::string(std::istreambuf_iterator<char>(stream), {}));
 }
 
-std::map<std::string, std::any> Json::parseFromString(const std::string &input)
+JSON JSON::parse(const std::string &input)
 {
-    static const std::regex jsonParseRegex("\\s*\"([a-z]*)\"\\s*:\\s*([0-9]*\\.?[0-9]+|\"[\\w\\s]+\")\\s*([,}])\\s*");
+    static const std::regex jsonParseRegex("\\s*\"([a-z_]*)\"\\s*:\\s*([0-9]*\\.?[0-9]+|\"[\\w\\s\\./]+\")\\s*([,}])\\s*");
 
     bool foundLast = false;
     std::string worker(input);
@@ -38,7 +36,7 @@ std::map<std::string, std::any> Json::parseFromString(const std::string &input)
     {
         if (foundLast)
         {
-            throw JsonParseError("Data found after closing tag");
+            throw JSON::ParseException("Data found after closing tag");
         }
 
         if (matches.size() == 4)
@@ -69,8 +67,8 @@ std::map<std::string, std::any> Json::parseFromString(const std::string &input)
 
     if (worker.length() > 0)
     {
-        throw JsonParseError("Wrong format: Missing key or value");
+        throw JSON::ParseException("Wrong format: Missing key or value");
     }
 
-    return properties;
+    return JSON(properties);
 }

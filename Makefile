@@ -1,9 +1,9 @@
 SHELL=/bin/bash
 
-OBJS = json.o player.o loop.o main.o
+OBJS = JSON.o Unit.o Hero.o Monster.o main.o
 OUT = a.out
 CFLAGS = -Wall -std=c++17
-CC = g++
+CC = g++-9
 
 default: build
 
@@ -11,18 +11,21 @@ build: $(OBJS)
 	$(CC) $(CFLAGS) -o $(OUT) $(OBJS)
 
 run: ./$(OUT)
-	./$(OUT) $(UNIT1) $(UNIT2)
+	./$(OUT) $(SCENARIO)
 
-loop.o: loop.cpp loop.h player.h json.h jsonFileReadError.h jsonParseError.h
-	$(CC) $(CFLAGS) -c loop.cpp
+Unit.o: Unit.cpp Unit.h
+	$(CC) $(CFLAGS) -c Unit.cpp
 
-player.o: player.cpp player.h json.h jsonFileReadError.h jsonParseError.h
-	$(CC) $(CFLAGS) -c player.cpp
+Hero.o: Hero.cpp Hero.h Unit.h JSON.h
+	$(CC) $(CFLAGS) -c Hero.cpp
 
-json.o: json.cpp json.h jsonFileReadError.h jsonParseError.h
-	$(CC) $(CFLAGS) -c json.cpp
+Monster.o: Monster.cpp Monster.h Unit.h JSON.h
+	$(CC) $(CFLAGS) -c Monster.cpp
 
-main.o: main.cpp loop.h player.h json.h jsonFileReadError.h jsonParseError.h
+JSON.o: JSON.cpp JSON.h
+	$(CC) $(CFLAGS) -c JSON.cpp
+
+main.o: main.cpp Hero.h Monster.h JSON.h
 	$(CC) $(CFLAGS) -c main.cpp
 
 test:

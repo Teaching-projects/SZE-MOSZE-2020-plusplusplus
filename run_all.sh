@@ -1,15 +1,35 @@
 #!/bin/bash
 
+lines=()
+count=0
+
 while IFS= read -r line
 do
-    readarray -d \; -t data <<<"$line"
-    expect="$(sed 's/^[[:space:]]*//g'<<<${data[2]})"
-    echo "Player 1: ${data[0]}"
-    echo "Player 2: ${data[1]}"
+    lines+=("$line")
+    count=$((count+1))
+done < "./scenarios/expected_results.csv"
+
+for (( i=0; i<count; i++))
+do
+    readarray -d \; -t data <<<"${lines[$i]}"
+    c=${data[1]}
+    expect=""
+    for (( j=i+1; j<=i+c; j++))
+    do
+        if [ $j -eq $((i+1)) ]
+        then
+            expect="${lines[$j]}"
+        else
+            expect="$expect\n${lines[$j]}"
+        fi
+    done
+    expect=$(echo -e "$expect")
+    echo "Scenario: ${data[0]}"
     echo "Expected Result: \"${expect}\""
-    real="$(./a.out units/${data[0]} units/${data[1]})"
+    real="$(./a.out scenarios/${data[0]} 2> /dev/null)"
     echo "Real Result: \"$real\""
-    if [ "$expect" == "$real" ]
+
+    if [ "$real" = "$expect" ]
     then
         echo "Test success."
         echo
@@ -17,4 +37,6 @@ do
         echo "Test fail. Quitting."
         exit 1
     fi
-done < "./units/expected_results.csv"
+    
+    i=$((i+c))
+done
