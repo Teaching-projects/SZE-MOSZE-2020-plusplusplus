@@ -32,6 +32,15 @@ TEST(JsonTest, FileRead)
     ASSERT_NO_THROW(JSON::parseFromFile("../units/Fallen.json"));
 }
 
+TEST(JsonTest, KeyExists)
+{
+    JSON parsed = JSON::parseFromString("{\"a\":1,\"a_b_c\": 0.1}");
+
+    ASSERT_EQ(parsed.count("a"), 1);
+    ASSERT_EQ(parsed.count("a_b_c"), 1);
+    ASSERT_EQ(parsed.count("b"), 0);
+}
+
 TEST(JsonTest, KeyValuePair)
 {
     JSON parsed = JSON::parseFromString("{    \"string\"    \t :  \n  \"a value\"  \t  , \"number\": 65553342      }   ");
@@ -53,10 +62,4 @@ TEST(JsonTest, ParseError)
     ASSERT_THROW(JSON::parseFromString("{\"good\": \"start\", \"bad\": }"), JSON::ParseException);
     // missing key
     ASSERT_THROW(JSON::parseFromString("{\"good\": \"start\", \"bad\" }"), JSON::ParseException);
-}
-
-int main(int argc, char **argv)
-{
-    ::testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
 }

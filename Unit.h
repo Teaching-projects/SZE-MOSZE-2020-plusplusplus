@@ -220,7 +220,6 @@ public:
      * The two unit going to hit each other until the first death.
      * @param other The attacked unit.
      * @throw std::invalid_argument When the the attacked Unit equals with the attacker.
-     * @return The winner unit of the fight.
      */
     void fightTilDeath(Unit &other);
 
