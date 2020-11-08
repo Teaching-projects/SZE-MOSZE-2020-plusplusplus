@@ -5,24 +5,22 @@ on: push
 jobs:
   build_and_test_with_memory_leak_check:
     runs-on: ubuntu-latest
+    container: karcagtamas/mosze:latest
     steps:
       - uses: actions/checkout@v2
-      - name: Install Valgrind
-        run: sudo apt-get install valgrind
-      - name: Build
+      - name: Build project
         run: make build
       - name: Memory leak check
         run: make memory_leak_check
-      - name: Test
+      - name: Run I/O tests
         run: make test
 
   code_analysis:
     runs-on: ubuntu-latest
+    container: karcagtamas/mosze:latest
     steps:
       - uses: actions/checkout@v2
-      - name: Install cppcheck
-        run: sudo apt-get install cppcheck
-      - name: Static Code analysis
+      - name: Run static code analysis
         run: make static_code_analysis
       - uses: actions/upload-artifact@v2
         with:
