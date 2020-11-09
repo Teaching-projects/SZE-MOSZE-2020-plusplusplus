@@ -10,16 +10,11 @@ jobs:
     deploy:
         name: Deploye to Github pages
         runs-on: ubuntu-latest
+        container: karcagtamas/mosze:latest
         steps:
             - uses: actions/checkout@master
-            - name: Install Doxygen deps
-              run: sudo apt-get install doxygen
-            - name: Install Graphviz deps
-              run: sudo apt-get install graphviz
-
-            - name: Generate docs
+            - name: Generate documentation
               run: make documentation
-
             - name: Push git subdir branch
               uses: s0/git-publish-subdir-action@v2.4.0
 
