@@ -1,4 +1,4 @@
 <map id="Unit" name="Unit">
-<area shape="rect" id="node2" href="$classHero.html" title="It defines a RPG attacker Hero. " alt="" coords="5,80,56,107"/>
-<area shape="rect" id="node3" href="$classMonster.html" title="It defines a RPG Monster, enemy of Hero. " alt="" coords="80,80,149,107"/>
+<area shape="rect" id="node2" href="$classHero.html" title="It defines a RPG attacker Hero. " alt="" coords="5,80,59,107"/>
+<area shape="rect" id="node3" href="$classMonster.html" title="It defines a RPG Monster, enemy of Hero. " alt="" coords="83,80,157,107"/>
 </map>
