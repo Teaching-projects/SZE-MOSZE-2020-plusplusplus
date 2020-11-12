@@ -78,7 +78,7 @@ JSON::valueVariant JSON::simpleTypeParse(const std::string &match)
 
     if (match.find_first_of('.') != std::string::npos)
     {
-        return stof(match);
+        return stod(match);
     }
 
     return stoi(match);
@@ -96,6 +96,11 @@ JSON::list JSON::arrayParse(const std::string &match)
 
     while (hadComma && std::regex_search(worker, matches, jsonArrayRegex))
     {
+        if (matches.prefix().str().find_first_of(',') != std::string::npos)
+        {
+            throw ParseException("Wrong format: comma found before value");
+        }
+
         if (matches.size() == 3)
         {
             l.emplace_back(simpleTypeParse(matches[1]));
