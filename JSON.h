@@ -12,14 +12,14 @@
  * @brief JSON parser class, parse to map with casts
  * 
  * The class includes functions to parse a string / file / stream to a map.
- * The returned map always has `std::string` keys and `std::any` values.
- * It supports auto parsing to `int` and `double` types (after it, it is castable).
+ * The returned map always has `std::string` keys and `std::variant` values.
+ * It supports auto parsing to `int` and `double` types (`get` can be used to get the value).
  * 
  * @author +++ Team
  * 
- * @version 1.0
+ * @version 1.1
  * 
- * @date 2020-10-25
+ * @date 2020-11-12
  * 
  * Created on: 2020-10-25
  */
@@ -52,7 +52,7 @@ public:
      * 
      * @param filename a file on the local filesystem
      * @return a class initialized with the parsed data structure
-     * @throws JsonFileReadError is thrown is the given file does not exists or cannot be read
+     * @throws JSON::ParseException is thrown if the given file does not exists or cannot be read
      * @throws invalid_argument is thrown if the number to be parsed format not correct
      * @throws out_of_range is thrown if the number to be parsed too large
      * @relatealso parseFromString
@@ -113,22 +113,46 @@ private:
 
     /** Handle the real parsing
      * 
-     * The function uses regex to loop through the file until key: value pairs can
-     * be found. If the value is between " " it will be string, else
-     * - if it is only numbers with a single dot, then it is parsed as `double`
-     * - if it is only numbers, it will be parsed as `int`
+     * The function uses regex to loop through the file until key: value pairs can be found.
      * 
      * @param input json input string
      * @return a class initialized with the parsed data structure
+     * @throws JSON::ParseException if data found after the closing tag or missing a key / value or the array format is invalid
      * @throws invalid_argument is thrown if the number to be parsed format not correct
      * @throws out_of_range is thrown if the number to be parsed too large
+     * @relatealso simpleTypeParse
+     * @relatealso arrayParse
      */
     static JSON parse(const std::string &input);
 
+    /** Parse the match into a string, int or double
+     * 
+     *  Will be parsed as:
+     *  - string: quouted string ("apple")
+     *  - double: contains a dot
+     *  - int: else 
+     * 
+     * @param match a string to be parsed
+     * @throws invalid_argument is thrown if the number to be parsed format not correct
+     * @throws out_of_range is thrown if the number to be parsed too large
+     */
     static valueVariant simpleTypeParse(const std::string &match);
 
+    /** Creates an std::list of the match based on regex pattern
+     * 
+     *  Uses simpleTypeParse to parse the values
+     * 
+     * @param match a string containing values comma separated, without []
+     * @throws JSON::ParseException is thrown if the array format is invalid
+     * @throws invalid_argument is thrown if the number to be parsed format not correct
+     * @throws out_of_range is thrown if the number to be parsed too large
+     * @relatealso simpleTypeParse
+     */
     static list arrayParse(const std::string &match);
 
+    /** Helper struct for variant casting
+     *  used for casting valueVariant to listValueVariant
+     */
     template <class... Args>
     struct variant_cast_proxy
     {
@@ -143,6 +167,9 @@ private:
         }
     };
 
+    /** Helper function for variant casting
+     *  used for casting valueVariant to listValueVariant
+     */
     template <class... Args>
     static auto variant_cast(const std::variant<Args...> &v) -> variant_cast_proxy<Args...>
     {
