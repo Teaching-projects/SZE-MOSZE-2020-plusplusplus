@@ -2,7 +2,9 @@
 
 #include <map>
 #include <string>
-#include <any>
+#include <variant>
+#include <list>
+#include <regex>
 
 /**
  * @class JSON
@@ -11,7 +13,7 @@
  * 
  * The class includes functions to parse a string / file / stream to a map.
  * The returned map always has `std::string` keys and `std::any` values.
- * It supports auto parsing to `int` and `float` types (after it, it is castable).
+ * It supports auto parsing to `int` and `double` types (after it, it is castable).
  * 
  * @author +++ Team
  * 
@@ -23,7 +25,13 @@
  */
 class JSON
 {
-    std::map<std::string, std::any> data;
+public:
+    typedef std::variant<int, double, std::string> valueVariant;
+    typedef std::list<valueVariant> list;
+    typedef std::variant<int, double, std::string, list> listedValueVariant;
+
+private:
+    std::map<std::string, listedValueVariant> data;
 
 public:
     /** Parse the given string input
@@ -75,14 +83,14 @@ public:
 
     /**
      * Get a key's value from the map casted to the given format
-     * std::string, int and float can be casted, according to the type in the file
+     * std::string, int and double can be casted, according to the type in the file
      * @return the casted value
-     * @throws bad_cast if thrown if the given key is not present or is stored in another type
+     * @throws bad_variant_access is thrown if the given key is not present or is stored in another type
      */
     template <typename T>
     T get(const std::string &key)
     {
-        return std::any_cast<T>(data[key]);
+        return std::get<T>(data[key]);
     }
 
     /** 
@@ -101,13 +109,13 @@ public:
     };
 
 private:
-    JSON(std::map<std::string, std::any> data) : data(data){};
+    JSON(std::map<std::string, listedValueVariant> data) : data(data){};
 
     /** Handle the real parsing
      * 
      * The function uses regex to loop through the file until key: value pairs can
      * be found. If the value is between " " it will be string, else
-     * - if it is only numbers with a single dot, then it is parsed as `float`
+     * - if it is only numbers with a single dot, then it is parsed as `double`
      * - if it is only numbers, it will be parsed as `int`
      * 
      * @param input json input string
@@ -116,4 +124,28 @@ private:
      * @throws out_of_range is thrown if the number to be parsed too large
      */
     static JSON parse(const std::string &input);
+
+    static valueVariant simpleTypeParse(const std::string &match);
+
+    static list arrayParse(const std::string &match);
+
+    template <class... Args>
+    struct variant_cast_proxy
+    {
+        std::variant<Args...> v;
+
+        template <class... ToArgs>
+        operator std::variant<ToArgs...>() const
+        {
+            return std::visit(
+                [](auto &&arg) -> std::variant<ToArgs...> { return arg; },
+                v);
+        }
+    };
+
+    template <class... Args>
+    static auto variant_cast(const std::variant<Args...> &v) -> variant_cast_proxy<Args...>
+    {
+        return {v};
+    }
 };

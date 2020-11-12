@@ -37,7 +37,7 @@ void Unit::increaseXP(unsigned short amount)
     }
     unsigned short oldHp = maxHp;
     unsigned short oldDmg = damage;
-    float oldCD = attackCooldown;
+    double oldCD = attackCooldown;
 #endif
 
     while (requiredLevelUpCount > 0)

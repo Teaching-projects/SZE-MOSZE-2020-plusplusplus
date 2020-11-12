@@ -12,6 +12,7 @@
  * For: MOSZE - GKNB_INTM006
  * 
  * The code below is included from "refactor_revised_20201129" main.cpp
+ * Updated with json array parsing
 */
 #include <iostream>
 #include <map>
@@ -57,10 +58,9 @@ int main(int argc, char **argv)
         else
         {
             hero_file = scenario.get<std::string>("hero");
-            std::istringstream monsters(scenario.get<std::string>("monsters"));
-            std::copy(std::istream_iterator<std::string>(monsters),
-                      std::istream_iterator<std::string>(),
-                      std::back_inserter(monster_files));
+            JSON::list monster_file_list = scenario.get<JSON::list>("monsters");
+            for (auto monster_file : monster_file_list)
+                monster_files.push_back(std::get<std::string>(monster_file));
         }
     }
     catch (const JSON::ParseException &e)

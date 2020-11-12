@@ -1,4 +1,4 @@
 {
-    "hero" : "units/Dark_Wanderer.json",
-    "monsters" : " units/Blood_Raven.json "
+  "hero": "units/Dark_Wanderer.json",
+  "monsters": ["units/Blood_Raven.json"]
 }

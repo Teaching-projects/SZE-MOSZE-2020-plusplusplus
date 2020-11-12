@@ -8,7 +8,7 @@ TEST(JsonTest, ParseInts)
     ASSERT_NO_THROW(JSON::parseFromString("{\"normalvalue\": 9999}"));
 }
 
-TEST(JsonTest, ParseFloats)
+TEST(JsonTest, ParseDoubles)
 {
     ASSERT_THROW(JSON::parseFromString("{\"largevalue\": 999999999999999999999999999999999999999.99999}"), std::out_of_range);
     ASSERT_NO_THROW(JSON::parseFromString("{\"normalvalue\": 99.99}"));
@@ -19,8 +19,8 @@ TEST(JsonTest, Casts)
     ASSERT_NO_THROW(JSON::parseFromString("{\"normalvalue\": 9999}").get<int>("normalvalue"));
     ASSERT_NO_THROW(JSON::parseFromString("{\"normalvalue\": 9}").get<int>("normalvalue"));
 
-    ASSERT_NO_THROW(JSON::parseFromString("{\"normalvalue\": 5.43}").get<float>("normalvalue"));
-    ASSERT_NO_THROW(JSON::parseFromString("{\"normalvalue\": 522.1}").get<float>("normalvalue"));
+    ASSERT_NO_THROW(JSON::parseFromString("{\"normalvalue\": 5.43}").get<double>("normalvalue"));
+    ASSERT_NO_THROW(JSON::parseFromString("{\"normalvalue\": 522.1}").get<double>("normalvalue"));
 
     ASSERT_NO_THROW(JSON::parseFromString("{\"value\": \"itsAValue\"}").get<std::string>("value"));
     ASSERT_NO_THROW(JSON::parseFromString("{\"value\": \"itsAv   Valu \n\t  e01234\"}").get<std::string>("value"));

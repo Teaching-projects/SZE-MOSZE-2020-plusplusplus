@@ -1,7 +1,6 @@
 #include "JSON.h"
 
 #include <fstream>
-#include <regex>
 
 JSON JSON::parseFromString(const std::string &inputOrFile)
 {
@@ -26,12 +25,13 @@ JSON JSON::parseFromStream(std::istream &stream)
 
 JSON JSON::parse(const std::string &input)
 {
-    static const std::regex jsonParseRegex("\\s*\"([a-z_]*)\"\\s*:\\s*([0-9]*\\.?[0-9]+|\"[\\w\\s\\./]+\")\\s*([,}])\\s*");
+    //                                              key                 int     double       string                 array            jsonend
+    static const std::regex jsonParseRegex("\\s*\"([a-z_]*)\"\\s*:\\s*([0-9]*\\.?[0-9]+|\"[\\w\\s\\.\\/]+\")?(\\[([\\S\\s]*)\\])?\\s*([,}])\\s*");
 
     bool foundLast = false;
     std::string worker(input);
     std::smatch matches;
-    std::map<std::string, std::any> properties;
+    std::map<std::string, listedValueVariant> properties;
     while (std::regex_search(worker, matches, jsonParseRegex))
     {
         if (foundLast)
@@ -39,27 +39,20 @@ JSON JSON::parse(const std::string &input)
             throw JSON::ParseException("Data found after closing tag");
         }
 
-        if (matches.size() == 4)
+        if (matches.size() == 6)
         {
-            if (matches[3].str() == "}")
+            if (matches[5].str() == "}")
             {
                 foundLast = true;
             }
 
-            std::string value = matches[2].str();
-            if (value.at(0) == '"')
+            if (matches[2].str().size() > 0)
             {
-                value.erase(value.begin());
-                value.erase(value.end() - 1);
-                properties[matches[1]] = value;
-            }
-            else if (value.find_first_of('.') != std::string::npos)
-            {
-                properties[matches[1]] = stof(value);
+                properties[matches[1]] = variant_cast(simpleTypeParse(matches[2]));
             }
             else
             {
-                properties[matches[1]] = stoi(value);
+                properties[matches[1]] = arrayParse(matches[4]);
             }
         }
         worker = matches.suffix();
@@ -71,4 +64,51 @@ JSON JSON::parse(const std::string &input)
     }
 
     return JSON(properties);
+}
+
+JSON::valueVariant JSON::simpleTypeParse(const std::string &match)
+{
+    if (match.at(0) == '"')
+    {
+        std::string value = match;
+        value.erase(value.begin());
+        value.erase(value.end() - 1);
+        return value;
+    }
+
+    if (match.find_first_of('.') != std::string::npos)
+    {
+        return stof(match);
+    }
+
+    return stoi(match);
+}
+
+JSON::list JSON::arrayParse(const std::string &match)
+{
+    //                                          int         double      string            comma
+    static const std::regex jsonArrayRegex("\\s*([0-9]*\\.?[0-9]+|\"[\\w\\s\\.\\/]+\")\\s*(,)?\\s*");
+
+    std::string worker(match);
+    std::smatch matches;
+    bool hadComma = true;
+    std::list<valueVariant> l;
+
+    while (hadComma && std::regex_search(worker, matches, jsonArrayRegex))
+    {
+        if (matches.size() == 3)
+        {
+            l.emplace_back(simpleTypeParse(matches[1]));
+
+            hadComma = matches[2] == ",";
+        }
+        worker = matches.suffix();
+    }
+
+    if (worker.length() > 0 || hadComma)
+    {
+        throw JSON::ParseException("Wrong format: Invalid array format");
+    }
+
+    return l;
 }
