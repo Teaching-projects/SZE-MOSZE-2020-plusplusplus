@@ -93,6 +93,29 @@ public:
         return std::get<T>(data[key]);
     }
 
+    /**
+     * If the given element is exists then gets it.
+     * If does not exists any element with the given key, then it will give back the given default element.
+     * @param key Map element's key.
+     * @param elseEl Other default element
+     * @return The searched element or a default element.
+     */
+    template <typename T>
+    T getOrElse(const std::string &key, T elseEl)
+    {
+        return keyExists(key) ? get<T>(key) : elseEl;
+    }
+
+    /**
+     * Checks the given key existance inside the map.
+     * @param key Map element key.
+     * @return Existance of the key.
+     */
+    bool keyExists(const std::string &key)
+    {
+        return data.find(key) != data.end();
+    }
+
     /** 
      * @class ParseException
      * 

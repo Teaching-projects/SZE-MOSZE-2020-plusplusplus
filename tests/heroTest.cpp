@@ -1,5 +1,6 @@
 #include "../Hero.h"
 #include "../JSON.h"
+#include "../Damage.h"
 
 #include <gtest/gtest.h>
 
@@ -15,8 +16,10 @@ TEST(HeroTest, Parse)
 
 TEST(HeroTest, PrintFormat)
 {
-    Hero h1("H1", 201, 11, 0.1, 10, 20, 10, 0.2, 1, 1);
-    std::string expect1("H1 - LVL1 (HP:201/201, DMG:11, CD:0.1, XP:0, DEFENSE:1)");
+    Damage dmg;
+    dmg.physical = 11;
+    Hero h1("H1", 201, dmg, 0.1, 10, 20, 10, 0.2, 1, 1);
+    std::string expect1("H1 - LVL1 (HP:201/201, PHYSICAL DAMAGE:11, MAGICAL DAMAGE:0, CD:0.1, XP:0, DEFENSE:1)");
 
     std::stringstream res1;
     h1.print(res1);

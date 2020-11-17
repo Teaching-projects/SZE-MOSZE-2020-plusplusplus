@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include "Damage.h"
 
 // By default these are set to 0 to "disable" the feature
 #define LEVEL_SIZE 0
@@ -52,7 +53,7 @@ private:
     /**
      * The damage of the character.
      */
-    unsigned int damage;
+    Damage damage;
 
     /**
      * The attack cooldown of the character.
@@ -172,7 +173,7 @@ public:
      * @param xp Starter experience point of the character.
      * @param defense Defense of the character.
      */
-    Unit(const std::string &name, unsigned int maxHp, unsigned int damage, double attackCooldown, unsigned int defense) : name(name), maxHp(maxHp), hp(maxHp), damage(damage), attackCooldown(attackCooldown), nextAttack(attackCooldown), defense(defense){};
+    Unit(const std::string &name, unsigned int maxHp, Damage damage, double attackCooldown, unsigned int defense) : name(name), maxHp(maxHp), hp(maxHp), damage(damage), attackCooldown(attackCooldown), nextAttack(attackCooldown), defense(defense){};
 
     /**
      * Unit constructor.
@@ -188,7 +189,7 @@ public:
      * @param defense Defense of the character.
      * @param defenseBonusPerLevel The extra defense added per levelups.
      */
-    Unit(const std::string &name, unsigned int maxHp, unsigned int damage, double attackCooldown, unsigned int xpPerLevel, unsigned int healthBonusPerLevel, unsigned int damageBonusPerLevel, double cooldownMultiplier, unsigned int defense, unsigned int defenseBonusPerLevel) : name(name), maxHp(maxHp), hp(maxHp), damage(damage), attackCooldown(attackCooldown), nextAttack(attackCooldown), xpPerLevel(xpPerLevel), healthBonusPerLevel(healthBonusPerLevel), damageBonusPerLevel(damageBonusPerLevel), cooldownMultiplier(cooldownMultiplier), defense(defense), defenseBonusPerLevel(defenseBonusPerLevel){};
+    Unit(const std::string &name, unsigned int maxHp, Damage damage, double attackCooldown, unsigned int xpPerLevel, unsigned int healthBonusPerLevel, unsigned int damageBonusPerLevel, double cooldownMultiplier, unsigned int defense, unsigned int defenseBonusPerLevel) : name(name), maxHp(maxHp), hp(maxHp), damage(damage), attackCooldown(attackCooldown), nextAttack(attackCooldown), xpPerLevel(xpPerLevel), healthBonusPerLevel(healthBonusPerLevel), damageBonusPerLevel(damageBonusPerLevel), cooldownMultiplier(cooldownMultiplier), defense(defense), defenseBonusPerLevel(defenseBonusPerLevel){};
 
     /**
      * It parse a JSON object (from a JSON file) to a Unit instance.
@@ -216,7 +217,10 @@ public:
      * Get Unit's damage points.
      * @return Current damage size.
      */
-    unsigned int getDamage() const { return this->damage; };
+    Damage getDamage() const
+    {
+        return this->damage;
+    };
 
     /**
      * Gets maximum health points of the unit.

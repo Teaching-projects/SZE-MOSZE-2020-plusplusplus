@@ -25,7 +25,7 @@ bool Unit::hit(Unit *otherUnit)
 unsigned int Unit::calculateDamage(Unit *attackedUnit)
 {
     // Base damage minus the attacked unit's defense
-    const unsigned int damage = this->getDamage() >= attackedUnit->getDefense() ? this->getDamage() - attackedUnit->getDefense() : 0;
+    const unsigned int damage = this->getDamage().sum() >= attackedUnit->getDefense() ? this->getDamage().sum() - attackedUnit->getDefense() : 0;
 
     return attackedUnit->getHealthPoints() <= damage ? attackedUnit->getHealthPoints() : damage;
 }
@@ -44,7 +44,7 @@ void Unit::increaseXP(unsigned int amount)
                   << " XP and leveled up " << requiredLevelUpCount << " times. (+";
     }
     unsigned int oldHp = maxHp;
-    unsigned int oldDmg = damage;
+    unsigned int oldDmg = damage.sum();
     double oldCD = attackCooldown;
 #endif
 
@@ -57,7 +57,7 @@ void Unit::increaseXP(unsigned int amount)
 #if LOG_TO_ERR == 1
     if (oldHp != maxHp)
     {
-        std::cerr << (maxHp - oldHp) << " MAX HP, +" << (damage - oldDmg) << " DMG, " << (attackCooldown - oldCD) << " CD)\n";
+        std::cerr << (maxHp - oldHp) << " MAX HP, +" << (damage.sum() - oldDmg) << " DMG, " << (attackCooldown - oldCD) << " CD)\n";
     }
 #endif
 }
@@ -66,7 +66,7 @@ void Unit::levelUp()
 {
     this->maxHp += healthBonusPerLevel;
     this->hp = this->maxHp;
-    this->damage += damageBonusPerLevel;
+    this->damage.physical += damageBonusPerLevel;
     this->attackCooldown = attackCooldown * cooldownMultiplier;
     this->defense += defenseBonusPerLevel;
 }
