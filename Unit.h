@@ -161,7 +161,7 @@ public:
      * @param attackCooldown Attack cooldown of Unit. **Minimum** time intervall between two attack.
      * @param xp Starter experience point of the character.
      */
-    Unit(const std::string &name, unsigned short maxHp, unsigned short damage, double attackCooldown, unsigned short defense, unsigned short defenseBonusPerLevel) : name(name), maxHp(maxHp), hp(maxHp), damage(damage), attackCooldown(attackCooldown), nextAttack(attackCooldown), defense(defense), defenseBonusPerLevel(defenseBonusPerLevel){};
+    Unit(const std::string &name, unsigned short maxHp, unsigned short damage, double attackCooldown, unsigned short defense) : name(name), maxHp(maxHp), hp(maxHp), damage(damage), attackCooldown(attackCooldown), nextAttack(attackCooldown), defense(defense){};
 
     /**
      * Unit constructor.

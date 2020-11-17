@@ -5,6 +5,5 @@
   "damage": 8,
   "attack_cooldown": 1.2,
   "race": "undead",
-  "defense": 1,
-  "defense_bonus_per_level": 0
+  "defense": 1
 }

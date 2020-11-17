@@ -23,8 +23,7 @@ Monster Monster::parse(const std::string &fileName)
         properties.get<int>("health_points"),
         properties.get<int>("damage"),
         properties.get<double>("attack_cooldown"),
-        properties.get<int>("defense"),
-        properties.get<int>("defense_bonus_per_level"));
+        properties.get<int>("defense"));
 }
 
 void Monster::print(std::ostream &stream) const
