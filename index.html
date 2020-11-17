@@ -24,7 +24,7 @@
    <div id="projectname">RPG Game
    &#160;<span id="projectnumber">1.0</span>
    </div>
-   <div id="projectbrief">Players are fighting with each other for the glory</div>
+   <div id="projectbrief">Heroes fight against the Monsters for the glory</div>
   </td>
  </tr>
  </tbody>
@@ -73,7 +73,7 @@ $(function() {
  <div class="image">
 <object type="image/svg+xml" data="https://github.com/Teaching-projects/SZE-MOSZE-2020-plusplusplus/workflows/Documentation%20workflow/badge.svg" alt="Documentation"></object>
 </div>
-<p> <a href="https://teaching-projects.github.io/SZE-MOSZE-2020-plusplusplus/pages.html"></a></p>
+<p> <a href="https://teaching-projects.github.io/SZE-MOSZE-2020-plusplusplus/"></a></p>
 <ul>
 <li>Balogh Máté</li>
 <li>Baranyai Bence</li>
@@ -95,15 +95,17 @@ $(function() {
 </ul>
 <p>Compiled application should be called with <b>1</b> parameter, what is pointing to a <code>json</code> file with a scenario.</p>
 <p>This scenario is describing a hero object and his/her enemies (<em>monsters</em>) object.</p>
-<div class="fragment"><div class="line">{</div><div class="line">  &quot;hero&quot;: &quot;path/to/hero.json&quot;,</div><div class="line">  &quot;monsters&quot;: &quot;path/to/monster1.json path/to/monster2.json path/to/monster3.json&quot;</div><div class="line">}</div></div><!-- fragment --><p>The <code>hero</code> object is containing a path to the hero's <code>json</code> object what is containing all data for the hero.</p>
-<p>Data:</p><ul>
+<div class="fragment"><div class="line">{</div><div class="line">  &quot;hero&quot;: &quot;path/to/hero.json&quot;,</div><div class="line">  &quot;monsters&quot;: [</div><div class="line">    &quot;path/to/monster1.json&quot;,</div><div class="line">    &quot;path/to/monster2.json&quot;,</div><div class="line">    &quot;path/to/monster3.json&quot;</div><div class="line">  ]</div><div class="line">}</div></div><!-- fragment --><p>The <code>hero</code> object is containing a path to the hero's <code>json</code> object what is containing all data for the hero.</p>
+<p>Data:</p>
+<ul>
 <li>Name (<em>name</em>)</li>
 <li>Base health points - <b>HP</b> (<em>base_health_points</em>)</li>
 <li>Base damage - <b>DMG</b> (<em>base_damage</em>)</li>
 <li>Base attack cooldown - <b>CD</b> (<em>base_attack_cooldown</em>)</li>
 </ul>
-<div class="fragment"><div class="line">{</div><div class="line">  &quot;name&quot;: &quot;Hero&quot;,</div><div class="line">  &quot;base_health_points&quot;: 100,</div><div class="line">  &quot;base_damage&quot;: 10,</div><div class="line">  &quot;base_attack_cooldown&quot;: 12.3</div><div class="line">}</div></div><!-- fragment --><p>The <code>monsters</code> object is containing one ore more paths for monster <code>json</code> objects. The paths is separted by a 'space'</p>
-<p>Data:</p><ul>
+<div class="fragment"><div class="line">{</div><div class="line">  &quot;name&quot;: &quot;Hero&quot;,</div><div class="line">  &quot;base_health_points&quot;: 100,</div><div class="line">  &quot;base_damage&quot;: 10,</div><div class="line">  &quot;base_attack_cooldown&quot;: 12.3</div><div class="line">}</div></div><!-- fragment --><p>The <code>monsters</code> array is containing one or more paths for monster <code>json</code> objects.</p>
+<p>Data:</p>
+<ul>
 <li>Name (<em>name</em>)</li>
 <li>Health points - <b>HP</b> (<em>base_health_point</em>)</li>
 <li>Damage - <b>DMG</b> (<em>damage</em>)</li>
@@ -111,17 +113,18 @@ $(function() {
 </ul>
 <div class="fragment"><div class="line">{</div><div class="line">  &quot;name&quot;: &quot;Monster&quot;,</div><div class="line">  &quot;health_points&quot;: 100,</div><div class="line">  &quot;damage&quot;: 10,</div><div class="line">  &quot;attack_cooldown&quot;: 12.3</div><div class="line">}</div></div><!-- fragment --><p>Example command: <code>./a.out scenarios/scenario1.json</code></p>
 <p>All predefined scenario for the testing can be foind in the <code>scenarios</code> folder. All predefined hero/monster for testing can be found in the <code>units</code> folder.</p>
-<p>The program read in the given <code>sceanrio</code> and read in the defined <code>hero</code> and <code>monster</code>. The hero start fight with each monster until death. If the hero can kill every monster without death, he will be the winner. If he dies, the game is over.</p>
+<p>The program read in the given <code>scenario</code> and read in the defined <code>hero</code> and <code>monster</code>. The hero start fight with each monster until death. If the hero can kill every monster without death, he will be the winner. If he dies, the game is over.</p>
 <p>Every player has a attack cooldown what is defining the time between two hit.</p>
 <p>Every player is gaining <b>XP</b> (<em>experience points</em>) after each hit. The gained <b>XP</b> is equal with the dealed damage.</p>
+<p>After an X amount of <b>XP</b> the character is leveling up. The new level will give him more base <b>HP</b>, <b>DMG</b>, refill the his/her current <b>HP</b> to maximum and reduce the <b>CD</b>.</p>
 <p>Using the predefined main function the <code><a class="el" href="classHero.html" title="It defines a RPG attacker Hero. ">Hero</a></code> class handles the logic, using the <code>Json</code> class for file parsing.</p>
 <p>The program prints to the output, that the hero is won or not.</p>
-<p>We use a <em>bit</em> complex regex matcher to find all key/value pairs. It is looping until it finds new pairs and returns error if more data exists beyond that point.</p>
+<p>We use a <em>bit</em> complex regex matcher to find all key/value pairs. It is looping until it finds new pairs and returns error if more data exists beyond that point. It also parses json arrays with a separate regex matcher, and its values are parsed the same way the normal values (string, int, double).</p>
 <p>3 types of parameters can be used with the parse:</p>
 <ul>
 <li>filename</li>
 <li>istream</li>
-<li>string (containing json) After an X amount of <b>XP</b> the character is leveling up. The new level will give him more base <b>HP</b>, <b>DMG</b>, refill the his/her current <b>HP</b> to maximum and reduce the <b>CD</b>.</li>
+<li>string (containing json)</li>
 </ul>
 <p>There are predefined players in the <code>units/</code> folder and a <code>expected_results.csv</code> file. The variations in the <code>csv</code> file can be executed automatically using the <code>./run_all.sh</code> script. If a test fails (results not equal) the script quits with error code.</p>
 <p>Under the <code>tests/</code> folder cpp test file can be found. The tests use the GTest testing framework and cmake for building.</p>
@@ -146,7 +149,7 @@ $(function() {
 <p><code>run_memory_leak_check.sh</code> executes <code>valgrind</code> to check for memory leaks.</p>
 <p>Doxygen automatically generates the documentation for the master branch and it is deployed on GH Pages.</p>
 <blockquote class="doxtable">
-<p>Url of the Doxygen code documentation: <a href="https://teaching-projects.github.io/SZE-MOSZE-2020-plusplusplus/pages.html">Go to documentation</a>. </p>
+<p>Url of the Doxygen code documentation: <a href="https://teaching-projects.github.io/SZE-MOSZE-2020-plusplusplus/">Go to documentation</a>. </p>
 </blockquote>
 <ul>
 <li>Install doxygen and graphviz pacakages</li>

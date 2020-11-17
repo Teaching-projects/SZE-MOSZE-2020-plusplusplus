@@ -24,7 +24,7 @@
    <div id="projectname">RPG Game
    &#160;<span id="projectnumber">1.0</span>
    </div>
-   <div id="projectbrief">Players are fighting with each other for the glory</div>
+   <div id="projectbrief">Heroes fight against the Monsters for the glory</div>
   </td>
  </tr>
  </tbody>
@@ -86,10 +86,10 @@ Inheritance diagram for Unit:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ab8da344d6d12bf39156187d64595fe8e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUnit.html#ab8da344d6d12bf39156187d64595fe8e">Unit</a> (const std::string &amp;name, unsigned short maxHp, unsigned short damage, float attackCooldown)</td></tr>
-<tr class="separator:ab8da344d6d12bf39156187d64595fe8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ace610b34ea44221e5215b9488167dbde"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUnit.html#ace610b34ea44221e5215b9488167dbde">Unit</a> (const std::string &amp;name, unsigned short maxHp, unsigned short damage, float attackCooldown, unsigned short xpPerLevel, unsigned short healthBonusPerLevel, unsigned short damageBonusPerLevel, float cooldownMultiplier)</td></tr>
-<tr class="separator:ace610b34ea44221e5215b9488167dbde"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af51e80a3e61182f4fd85d4c1672f7bf5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUnit.html#af51e80a3e61182f4fd85d4c1672f7bf5">Unit</a> (const std::string &amp;name, unsigned short maxHp, unsigned short damage, double attackCooldown)</td></tr>
+<tr class="separator:af51e80a3e61182f4fd85d4c1672f7bf5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a88e06881dbfd4242f2907b4c29538bb5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUnit.html#a88e06881dbfd4242f2907b4c29538bb5">Unit</a> (const std::string &amp;name, unsigned short maxHp, unsigned short damage, double attackCooldown, unsigned short xpPerLevel, unsigned short healthBonusPerLevel, unsigned short damageBonusPerLevel, double cooldownMultiplier)</td></tr>
+<tr class="separator:a88e06881dbfd4242f2907b4c29538bb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa1102459c5b17c3378d9060eb1ddc0ae"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUnit.html#aa1102459c5b17c3378d9060eb1ddc0ae">print</a> (std::ostream &amp;stream) const</td></tr>
 <tr class="separator:aa1102459c5b17c3378d9060eb1ddc0ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa07c9e071e7ba300f13077c743169929"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUnit.html#aa07c9e071e7ba300f13077c743169929">getName</a> () const</td></tr>
@@ -100,8 +100,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a2f67bd5faddeff711abde0af7df675b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4488af29589337213a3287e167c794a6"><td class="memItemLeft" align="right" valign="top">unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUnit.html#a4488af29589337213a3287e167c794a6">getHealthPoints</a> () const</td></tr>
 <tr class="separator:a4488af29589337213a3287e167c794a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6c81a6d95853dd444895d9c93a3569f8"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUnit.html#a6c81a6d95853dd444895d9c93a3569f8">getAttackCoolDown</a> () const</td></tr>
-<tr class="separator:a6c81a6d95853dd444895d9c93a3569f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ba9ff456bd52cff5e94ddc159b376a1"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUnit.html#a5ba9ff456bd52cff5e94ddc159b376a1">getAttackCoolDown</a> () const</td></tr>
+<tr class="separator:a5ba9ff456bd52cff5e94ddc159b376a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac604df5d5f235e6e07cb930041a67314"><td class="memItemLeft" align="right" valign="top">unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUnit.html#ac604df5d5f235e6e07cb930041a67314">getXP</a> () const</td></tr>
 <tr class="separator:ac604df5d5f235e6e07cb930041a67314"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a628a7a96dc2a60267616904d3e330340"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUnit.html#a628a7a96dc2a60267616904d3e330340">fightTilDeath</a> (<a class="el" href="classUnit.html">Unit</a> &amp;other)</td></tr>
@@ -122,8 +122,8 @@ Static Public Member Functions</h2></td></tr>
 Protected Member Functions</h2></td></tr>
 <tr class="memitem:ae56b7f6d4769889bf90772a1b35ab513"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUnit.html#ae56b7f6d4769889bf90772a1b35ab513">hit</a> (<a class="el" href="classUnit.html">Unit</a> *otherUnit)</td></tr>
 <tr class="separator:ae56b7f6d4769889bf90772a1b35ab513"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aff5dfc5c7667462e5b0b43b7248b565f"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUnit.html#aff5dfc5c7667462e5b0b43b7248b565f">getNextAttack</a> () const</td></tr>
-<tr class="separator:aff5dfc5c7667462e5b0b43b7248b565f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a271e9aab46b9f2443a59ce0217f88577"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUnit.html#a271e9aab46b9f2443a59ce0217f88577">getNextAttack</a> () const</td></tr>
+<tr class="separator:a271e9aab46b9f2443a59ce0217f88577"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abd10cfe49bfd06cc40f1ac801ad8eef8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUnit.html#abd10cfe49bfd06cc40f1ac801ad8eef8">increaseXP</a> (unsigned short amount)</td></tr>
 <tr class="separator:abd10cfe49bfd06cc40f1ac801ad8eef8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae02102302500b3388be25d6900388475"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUnit.html#ae02102302500b3388be25d6900388475">levelUp</a> ()</td></tr>
@@ -143,8 +143,8 @@ Protected Member Functions</h2></td></tr>
 <dl class="section date"><dt>Date</dt><dd>2020-10-28</dd></dl>
 <p>Created on: 2020-10-28 </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="ab8da344d6d12bf39156187d64595fe8e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab8da344d6d12bf39156187d64595fe8e">&#9670;&nbsp;</a></span>Unit() <span class="overload">[1/2]</span></h2>
+<a id="af51e80a3e61182f4fd85d4c1672f7bf5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af51e80a3e61182f4fd85d4c1672f7bf5">&#9670;&nbsp;</a></span>Unit() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -173,7 +173,7 @@ Protected Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">float&#160;</td>
+          <td class="paramtype">double&#160;</td>
           <td class="paramname"><em>attackCooldown</em>&#160;</td>
         </tr>
         <tr>
@@ -201,8 +201,8 @@ Protected Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ace610b34ea44221e5215b9488167dbde"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ace610b34ea44221e5215b9488167dbde">&#9670;&nbsp;</a></span>Unit() <span class="overload">[2/2]</span></h2>
+<a id="a88e06881dbfd4242f2907b4c29538bb5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a88e06881dbfd4242f2907b4c29538bb5">&#9670;&nbsp;</a></span>Unit() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -231,7 +231,7 @@ Protected Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">float&#160;</td>
+          <td class="paramtype">double&#160;</td>
           <td class="paramname"><em>attackCooldown</em>, </td>
         </tr>
         <tr>
@@ -255,7 +255,7 @@ Protected Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">float&#160;</td>
+          <td class="paramtype">double&#160;</td>
           <td class="paramname"><em>cooldownMultiplier</em>&#160;</td>
         </tr>
         <tr>
@@ -371,8 +371,8 @@ Protected Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a6c81a6d95853dd444895d9c93a3569f8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6c81a6d95853dd444895d9c93a3569f8">&#9670;&nbsp;</a></span>getAttackCoolDown()</h2>
+<a id="a5ba9ff456bd52cff5e94ddc159b376a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5ba9ff456bd52cff5e94ddc159b376a1">&#9670;&nbsp;</a></span>getAttackCoolDown()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -381,7 +381,7 @@ Protected Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">float Unit::getAttackCoolDown </td>
+          <td class="memname">double Unit::getAttackCoolDown </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -527,8 +527,8 @@ Protected Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="aff5dfc5c7667462e5b0b43b7248b565f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aff5dfc5c7667462e5b0b43b7248b565f">&#9670;&nbsp;</a></span>getNextAttack()</h2>
+<a id="a271e9aab46b9f2443a59ce0217f88577"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a271e9aab46b9f2443a59ce0217f88577">&#9670;&nbsp;</a></span>getNextAttack()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -537,7 +537,7 @@ Protected Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">float Unit::getNextAttack </td>
+          <td class="memname">double Unit::getNextAttack </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
