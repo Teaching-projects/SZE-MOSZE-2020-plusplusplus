@@ -30,7 +30,7 @@ public:
      * @param attackCooldown Attack cooldown of Monster. **Minimum** time intervall between two attack.
      * @param xp Starter experience point of the character.
      */
-    explicit Monster(const std::string &name, unsigned short maxHp, unsigned short damage, float attackCooldown) : Unit(name, maxHp, damage, attackCooldown){};
+    explicit Monster(const std::string &name, unsigned short maxHp, unsigned short damage, double attackCooldown) : Unit(name, maxHp, damage, attackCooldown){};
 
     /**
      * It parse a JSON object (from a JSON file) to a Monster instance.

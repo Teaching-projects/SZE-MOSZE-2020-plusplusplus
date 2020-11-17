@@ -8,10 +8,10 @@ TEST(JsonTest, ParseInts)
     ASSERT_NO_THROW(JSON::parseFromString("{\"normalvalue\": 9999}"));
 }
 
-TEST(JsonTest, ParseFloats)
+TEST(JsonTest, ParseDoubles)
 {
-    ASSERT_THROW(JSON::parseFromString("{\"largevalue\": 999999999999999999999999999999999999999.99999}"), std::out_of_range);
-    ASSERT_NO_THROW(JSON::parseFromString("{\"normalvalue\": 99.99}"));
+    ASSERT_NO_THROW(JSON::parseFromString("{\"normalvalue\": 99.945674139}"));
+    ASSERT_NO_THROW(JSON::parseFromString("{\"normalvalue\": 99.9}"));
 }
 
 TEST(JsonTest, Casts)
@@ -19,8 +19,8 @@ TEST(JsonTest, Casts)
     ASSERT_NO_THROW(JSON::parseFromString("{\"normalvalue\": 9999}").get<int>("normalvalue"));
     ASSERT_NO_THROW(JSON::parseFromString("{\"normalvalue\": 9}").get<int>("normalvalue"));
 
-    ASSERT_NO_THROW(JSON::parseFromString("{\"normalvalue\": 5.43}").get<float>("normalvalue"));
-    ASSERT_NO_THROW(JSON::parseFromString("{\"normalvalue\": 522.1}").get<float>("normalvalue"));
+    ASSERT_NO_THROW(JSON::parseFromString("{\"normalvalue\": 5.43}").get<double>("normalvalue"));
+    ASSERT_NO_THROW(JSON::parseFromString("{\"normalvalue\": 522.1}").get<double>("normalvalue"));
 
     ASSERT_NO_THROW(JSON::parseFromString("{\"value\": \"itsAValue\"}").get<std::string>("value"));
     ASSERT_NO_THROW(JSON::parseFromString("{\"value\": \"itsAv   Valu \n\t  e01234\"}").get<std::string>("value"));
@@ -62,4 +62,46 @@ TEST(JsonTest, ParseError)
     ASSERT_THROW(JSON::parseFromString("{\"good\": \"start\", \"bad\": }"), JSON::ParseException);
     // missing key
     ASSERT_THROW(JSON::parseFromString("{\"good\": \"start\", \"bad\" }"), JSON::ParseException);
+}
+
+TEST(JsonTest, ParseArray)
+{
+    ASSERT_THROW(JSON::parseFromString("{\"array\": [1111,]}"), JSON::ParseException);
+    ASSERT_THROW(JSON::parseFromString("{\"array\": [abcd]}"), JSON::ParseException);
+    ASSERT_THROW(JSON::parseFromString("{\"array\": [,1111]}"), JSON::ParseException);
+    ASSERT_THROW(JSON::parseFromString("{\"array\": 1111]}"), JSON::ParseException);
+    ASSERT_THROW(JSON::parseFromString("{\"array\": [1234}"), JSON::ParseException);
+    ASSERT_THROW(JSON::parseFromString("{\"array\": [\"key\": 1234]}"), JSON::ParseException);
+
+    ASSERT_NO_THROW(JSON::parseFromString("{\"array\": [1234]}"));
+    ASSERT_NO_THROW(JSON::parseFromString("{\"array\": [1234, \"abcd\", 12.34]}"));
+    ASSERT_NO_THROW(JSON::parseFromString("{    \"array\":   \n\r[  \t  1234   \t, \t\"abcd\"             , \t  12.34       \r\n     ]\t    }"));
+}
+
+TEST(JsonTest, ArrayCasts)
+{
+    JSON json = JSON::parseFromString("{\"array\": [1234, \"abcd\", 12.34]}");
+
+    ASSERT_NO_THROW(json.get<JSON::list>("array"));
+
+    JSON::list list = json.get<JSON::list>("array");
+
+    int i = 0;
+    for (auto value : list)
+    {
+        switch (i++)
+        {
+        case 0:
+            ASSERT_THROW(std::get<double>(value), std::bad_variant_access);
+            ASSERT_NO_THROW(std::get<int>(value));
+            break;
+        case 1:
+            ASSERT_NO_THROW(std::get<std::string>(value));
+            break;
+        case 2:
+            ASSERT_THROW(std::get<int>(value), std::bad_variant_access);
+            ASSERT_NO_THROW(std::get<double>(value));
+            break;
+        }
+    }
 }

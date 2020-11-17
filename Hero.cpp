@@ -22,11 +22,11 @@ Hero Hero::parse(const std::string &fileName)
         properties.get<std::string>("name"),
         properties.get<int>("base_health_points"),
         properties.get<int>("base_damage"),
-        properties.get<float>("base_attack_cooldown"),
+        properties.get<double>("base_attack_cooldown"),
         properties.get<int>("experience_per_level"),
         properties.get<int>("health_point_bonus_per_level"),
         properties.get<int>("damage_bonus_per_level"),
-        properties.get<float>("cooldown_multiplier_per_level"));
+        properties.get<double>("cooldown_multiplier_per_level"));
 }
 
 void Hero::print(std::ostream &stream) const

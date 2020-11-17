@@ -56,13 +56,13 @@ private:
     /**
      * The attack cooldown of the character.
      */
-    float attackCooldown;
+    double attackCooldown;
 
     /**
      * The time of the next attack (**in seconds**).
      * Zero by default.
      */
-    float nextAttack = 0;
+    double nextAttack = 0;
 
     /**
      * The xp of the character.
@@ -91,7 +91,7 @@ private:
      *  The multiplier of cooldown decrease, per levelup.
      *  Defaults to define directive
      */
-    float cooldownMultiplier = COOLDOWN_MULTIPLIER;
+    double cooldownMultiplier = COOLDOWN_MULTIPLIER;
 
 protected:
     /**
@@ -107,7 +107,7 @@ protected:
      * It returns with the next attack's time (**in seconds**). 
      * @return next attack identifier.
      */
-    float getNextAttack() const { return nextAttack; };
+    double getNextAttack() const { return nextAttack; };
 
     /**
      * Increase the unit's XP by the given amount.
@@ -147,7 +147,7 @@ public:
      * @param attackCooldown Attack cooldown of Unit. **Minimum** time intervall between two attack.
      * @param xp Starter experience point of the character.
      */
-    Unit(const std::string &name, unsigned short maxHp, unsigned short damage, float attackCooldown) : name(name), maxHp(maxHp), hp(maxHp), damage(damage), attackCooldown(attackCooldown), nextAttack(attackCooldown){};
+    Unit(const std::string &name, unsigned short maxHp, unsigned short damage, double attackCooldown) : name(name), maxHp(maxHp), hp(maxHp), damage(damage), attackCooldown(attackCooldown), nextAttack(attackCooldown){};
 
     /**
      * Unit constructor.
@@ -161,7 +161,7 @@ public:
      * @param damageBonusPerLevel The extra damage added per levelups.
      * @param cooldownMultiplier Multiplier for cooldown on levelup
      */
-    Unit(const std::string &name, unsigned short maxHp, unsigned short damage, float attackCooldown, unsigned short xpPerLevel, unsigned short healthBonusPerLevel, unsigned short damageBonusPerLevel, float cooldownMultiplier) : name(name), maxHp(maxHp), hp(maxHp), damage(damage), attackCooldown(attackCooldown), nextAttack(attackCooldown), xpPerLevel(xpPerLevel), healthBonusPerLevel(healthBonusPerLevel), damageBonusPerLevel(damageBonusPerLevel), cooldownMultiplier(cooldownMultiplier){};
+    Unit(const std::string &name, unsigned short maxHp, unsigned short damage, double attackCooldown, unsigned short xpPerLevel, unsigned short healthBonusPerLevel, unsigned short damageBonusPerLevel, double cooldownMultiplier) : name(name), maxHp(maxHp), hp(maxHp), damage(damage), attackCooldown(attackCooldown), nextAttack(attackCooldown), xpPerLevel(xpPerLevel), healthBonusPerLevel(healthBonusPerLevel), damageBonusPerLevel(damageBonusPerLevel), cooldownMultiplier(cooldownMultiplier){};
 
     /**
      * It parse a JSON object (from a JSON file) to a Unit instance.
@@ -207,7 +207,7 @@ public:
      * Gets the cooldown of the unit.
      * @return Unit Attack Cooldown.
      */
-    float getAttackCoolDown() const { return attackCooldown; };
+    double getAttackCoolDown() const { return attackCooldown; };
 
     /**
      * Gets xp of the unit.

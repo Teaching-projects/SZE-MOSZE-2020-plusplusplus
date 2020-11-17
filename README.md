@@ -7,7 +7,7 @@
 ![Test Workflow](https://github.com/Teaching-projects/SZE-MOSZE-2020-plusplusplus/workflows/Test%20Workflow/badge.svg)
 ![Unit Tests](https://github.com/Teaching-projects/SZE-MOSZE-2020-plusplusplus/workflows/Unit%20Tests/badge.svg)
 ![Documentation](https://github.com/Teaching-projects/SZE-MOSZE-2020-plusplusplus/workflows/Documentation%20workflow/badge.svg)
-[![Documentation](https://img.shields.io/badge/Documentation-Here!-blue)](https://teaching-projects.github.io/SZE-MOSZE-2020-plusplusplus/pages.html)
+[![Documentation](https://img.shields.io/badge/Documentation-Here!-blue)](https://teaching-projects.github.io/SZE-MOSZE-2020-plusplusplus/)
 
 #### Team Members:
 
@@ -36,22 +36,27 @@
 
 Compiled application should be called with **1** parameter, what is pointing to a `json` file with a scenario.
 
-This scenario is describing a hero object and his/her enemies (*monsters*) object.
+This scenario is describing a hero object and his/her enemies (_monsters_) object.
 
 ```json
 {
   "hero": "path/to/hero.json",
-  "monsters": "path/to/monster1.json path/to/monster2.json path/to/monster3.json"
+  "monsters": [
+    "path/to/monster1.json",
+    "path/to/monster2.json",
+    "path/to/monster3.json"
+  ]
 }
 ```
 
 The `hero` object is containing a path to the hero's `json` object what is containing all data for the hero.
 
 Data:
-- Name (*name*)
-- Base health points - **HP** (*base_health_points*)
-- Base damage - **DMG** (*base_damage*)
-- Base attack cooldown - **CD** (*base_attack_cooldown*)
+
+- Name (_name_)
+- Base health points - **HP** (_base_health_points_)
+- Base damage - **DMG** (_base_damage_)
+- Base attack cooldown - **CD** (_base_attack_cooldown_)
 
 ```json
 {
@@ -62,13 +67,14 @@ Data:
 }
 ```
 
-The `monsters` object is containing one ore more paths for monster `json` objects. The paths is separted by a 'space'
+The `monsters` array is containing one or more paths for monster `json` objects.
 
 Data:
-- Name (*name*)
-- Health points - **HP** (*base_health_point*)
-- Damage - **DMG** (*damage*)
-- Attack cooldown - **CD** (*attack_cooldown*)
+
+- Name (_name_)
+- Health points - **HP** (_base_health_point_)
+- Damage - **DMG** (_damage_)
+- Attack cooldown - **CD** (_attack_cooldown_)
 
 ```json
 {
@@ -86,7 +92,7 @@ All predefined hero/monster for testing can be found in the `units` folder.
 
 ### How it works:
 
-The program read in the given `sceanrio` and read in the defined `hero` and `monster`.
+The program read in the given `scenario` and read in the defined `hero` and `monster`.
 The hero start fight with each monster until death.
 If the hero can kill every monster without death, he will be the winner. If he dies, the game is over.
 
@@ -94,7 +100,9 @@ If the hero can kill every monster without death, he will be the winner. If he d
 
 Every player has a attack cooldown what is defining the time between two hit.
 
-Every player is gaining **XP** (*experience points*) after each hit. The gained **XP** is equal with the dealed damage.
+Every player is gaining **XP** (_experience points_) after each hit. The gained **XP** is equal with the dealed damage.
+
+After an X amount of **XP** the character is leveling up. The new level will give him more base **HP**, **DMG**, refill the his/her current **HP** to maximum and reduce the **CD**.
 
 #### Leveling:
 
@@ -106,14 +114,13 @@ The program prints to the output, that the hero is won or not.
 
 #### Json parser
 
-We use a _bit_ complex regex matcher to find all key/value pairs. It is looping until it finds new pairs and returns error if more data exists beyond that point.
+We use a _bit_ complex regex matcher to find all key/value pairs. It is looping until it finds new pairs and returns error if more data exists beyond that point. It also parses json arrays with a separate regex matcher, and its values are parsed the same way the normal values (string, int, double).
 
 3 types of parameters can be used with the parse:
 
 - filename
 - istream
 - string (containing json)
-After an X amount of **XP** the character is leveling up. The new level will give him more base **HP**, **DMG**, refill the his/her current **HP** to maximum and reduce the **CD**.
 
 ### Output test:
 
@@ -147,7 +154,7 @@ A workflow automatically runs SCA on the repository with two levels using `cppch
 
 Doxygen automatically generates the documentation for the master branch and it is deployed on GH Pages.
 
-> Url of the Doxygen code documentation: [Go to documentation](https://teaching-projects.github.io/SZE-MOSZE-2020-plusplusplus/pages.html).
+> Url of the Doxygen code documentation: [Go to documentation](https://teaching-projects.github.io/SZE-MOSZE-2020-plusplusplus/).
 
 #### Manual Generation
 
