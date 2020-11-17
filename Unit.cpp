@@ -8,8 +8,10 @@
 
 bool Unit::hit(Unit *otherUnit)
 {
+    // Base damage counted the attack unit's defense
+    const unsigned short damage = this->getDamage() >= otherUnit->getDefense() ? this->getDamage() - otherUnit->getDefense() : 0;
     // Dealed damage
-    unsigned short damageAmount = otherUnit->getHealthPoints() <= this->getDamage() ? otherUnit->getHealthPoints() : this->getDamage();
+    const unsigned short damageAmount = otherUnit->getHealthPoints() <= damage ? otherUnit->getHealthPoints() : damage;
 
     // Modify healthPoints with the damage
     otherUnit->decreaseHealthPoints(damageAmount);
@@ -60,6 +62,7 @@ void Unit::levelUp()
     this->hp = this->maxHp;
     this->damage = round(damage + damageBonusPerLevel);
     this->attackCooldown = attackCooldown * cooldownMultiplier;
+    this->defense = round(defense + defenseBonusPerLevel);
 }
 
 void Unit::print(std::ostream &stream) const
@@ -70,6 +73,7 @@ void Unit::print(std::ostream &stream) const
            << ", DMG: " << this->damage
            << ", XP: " << this->xp
            << ", COOLDOWN: " << this->attackCooldown
+           << ", DEFENSE: " << this->defense
            << ", LEVEL: " << this->getLevel();
 }
 
