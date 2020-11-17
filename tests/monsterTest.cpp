@@ -15,8 +15,8 @@ TEST(MonsterTest, Parse)
 
 TEST(MonsterTest, PrintFormat)
 {
-    Monster m1("M1", 201, 11, 0.1);
-    std::string expect1("M1 (HP:201, DMG:11, CD:0.1)");
+    Monster m1("M1", 201, 11, 0.1, 1, 1);
+    std::string expect1("M1 (HP:201, DMG:11, CD:0.1, DEFENSE:1)");
 
     std::stringstream res1;
     m1.print(res1);
