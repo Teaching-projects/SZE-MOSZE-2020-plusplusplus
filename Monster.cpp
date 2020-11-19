@@ -9,7 +9,7 @@ Monster Monster::parse(const std::string &fileName)
 {
     JSON properties = JSON::parseFromFile(fileName);
 
-    const std::vector<std::string> expectedProps{"name", "health_points", "damage", "attack_cooldown"};
+    const std::vector<std::string> expectedProps{"name", "health_points", "damage", "attack_cooldown", "defense"};
     for (unsigned int i = 0; i < expectedProps.size(); i++)
     {
         if (!properties.count(expectedProps[i]))

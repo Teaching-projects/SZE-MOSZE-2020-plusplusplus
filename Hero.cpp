@@ -9,7 +9,7 @@ Hero Hero::parse(const std::string &fileName)
 {
     JSON properties = JSON::parseFromFile(fileName);
 
-    const std::vector<std::string> expectedProps{"name", "base_health_points", "base_damage", "base_attack_cooldown", "experience_per_level", "health_point_bonus_per_level", "damage_bonus_per_level", "cooldown_multiplier_per_level"};
+    const std::vector<std::string> expectedProps{"name", "base_health_points", "base_damage", "base_attack_cooldown", "experience_per_level", "health_point_bonus_per_level", "damage_bonus_per_level", "cooldown_multiplier_per_level", "defense", "defense_bonus_per_level"};
     for (unsigned int i = 0; i < expectedProps.size(); i++)
     {
         if (!properties.count(expectedProps[i]))
