@@ -138,6 +138,7 @@ protected:
 
     /**
      * Decrease current health according to parameter.
+     * @param damage The amount of decreased damage.
      */
     void decreaseHealthPoints(unsigned int damage)
     {
@@ -169,6 +170,7 @@ public:
      * @param damage Attack damage of Unit.
      * @param attackCooldown Attack cooldown of Unit. **Minimum** time intervall between two attack.
      * @param xp Starter experience point of the character.
+     * @param defense Defense of the character.
      */
     Unit(const std::string &name, unsigned int maxHp, unsigned int damage, double attackCooldown, unsigned int defense) : name(name), maxHp(maxHp), hp(maxHp), damage(damage), attackCooldown(attackCooldown), nextAttack(attackCooldown), defense(defense){};
 
@@ -182,7 +184,9 @@ public:
      * @param xpPerLevel XP needed for a levelup
      * @param healthBonusPerLevel The extra healthpoints added per levelups.
      * @param damageBonusPerLevel The extra damage added per levelups.
-     * @param cooldownMultiplier Multiplier for cooldown on levelup
+     * @param cooldownMultiplier Multiplier for cooldown on levelup.
+     * @param defense Defense of the character.
+     * @param defenseBonusPerLevel The extra defense added per levelups.
      */
     Unit(const std::string &name, unsigned int maxHp, unsigned int damage, double attackCooldown, unsigned int xpPerLevel, unsigned int healthBonusPerLevel, unsigned int damageBonusPerLevel, double cooldownMultiplier, unsigned int defense, unsigned int defenseBonusPerLevel) : name(name), maxHp(maxHp), hp(maxHp), damage(damage), attackCooldown(attackCooldown), nextAttack(attackCooldown), xpPerLevel(xpPerLevel), healthBonusPerLevel(healthBonusPerLevel), damageBonusPerLevel(damageBonusPerLevel), cooldownMultiplier(cooldownMultiplier), defense(defense), defenseBonusPerLevel(defenseBonusPerLevel){};
 

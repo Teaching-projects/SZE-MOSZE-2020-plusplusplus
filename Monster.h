@@ -28,7 +28,8 @@ public:
      * @param hp Health points of Monster.
      * @param damage Attack damage of Monster.
      * @param attackCooldown Attack cooldown of Monster. **Minimum** time intervall between two attack.
-     * @param xp Starter experience point of the character.
+     * @param xp Starter experience point of the Monster.
+     * @param damage Defense of the Monster.
      */
     explicit Monster(const std::string &name, unsigned short maxHp, unsigned short damage, double attackCooldown, unsigned short defense) : Unit(name, maxHp, damage, attackCooldown, defense){};
 
@@ -44,6 +45,7 @@ public:
 
     /**
      * Override the parent class method, print custom format.
+     * @param stream Output stream for print.
      */
     void print(std::ostream &stream) const override;
 };
