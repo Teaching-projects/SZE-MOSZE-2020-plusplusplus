@@ -55,11 +55,13 @@ Data:
 
 - Name (_name_)
 - Base health points - **HP** (_base_health_points_)
-- Base damage - **DMG** (_base_damage_)
+- Damage - **DMG** (_damage_) (optional - default 0)
+- Damage - **MAGIC DMG** (_magical_damage_) (optional - default 0)
 - Base attack cooldown - **CD** (_base_attack_cooldown_)
 - Experience per level (_experience_per_level_)
 - Health point bonus per level - **HP BONUS** (_health_point_bonus_per_level_)
-- Damage bonus per level - **DMG BONUS** (_damage_bonus_per_level_)
+- Damage bonus per level - **DMG BONUS** (_damage_bonus_per_level_) (optional - default 0)
+- Magical damage bonus per level - **MAGIC DMG BONUS** (_magical_damage_bonus_per_level_) (optional - default 0)
 - Cooldown multiplier per level - **CD BONUS** (_cooldown_multiplier_per_level_)
 - Defense - **DEF** (_defense_)
 - Defense bonus per level - **DEF BONUS** (_defense_bonus_per_level_)
@@ -68,11 +70,13 @@ Data:
 {
   "name": "Hero",
   "base_health_points": 100,
-  "base_damage": 10,
+  "damage": 10,
+  "magical_damage": 4,
   "base_attack_cooldown": 12.3,
   "experience_per_level": 8,
   "health_point_bonus_per_level": 10,
   "damage_bonus_per_level": 2,
+  "magical_damage_bonus_per_level": 1,
   "cooldown_multiplier_per_level": 0.2,
   "defense": 4,
   "defense_bonus_per_level": 1
@@ -85,7 +89,8 @@ Data:
 
 - Name (_name_)
 - Health points - **HP** (_base_health_point_)
-- Damage - **DMG** (_damage_)
+- Damage - **DMG** (_damage_) (optional - default 0)
+- Magical damage - **MAGIC DMG** (_magical_damage_) (optional - default 0)
 - Attack cooldown - **CD** (_attack_cooldown_)
 - Defense - **DEF** (_defense_)
 
@@ -94,6 +99,7 @@ Data:
   "name": "Monster",
   "health_points": 100,
   "damage": 10,
+  "magical_damage": 9,
   "attack_cooldown": 12.3,
   "defense": 7
 }
@@ -116,9 +122,9 @@ Every player has a attack cooldown what is defining the time between two hit.
 
 Every player is gaining **XP** (_experience points_) after each hit. The gained **XP** is equal with the dealed damage.
 
-Every unit is hit the other with his **DMG** amount, but the attacked unit has possiblity to decrease the **DMG** amount with his **DEF** points.
+Every unit is hit the other with his **DMG** and **MAGICAL DMG** amount, but the attacked unit has possiblity to decrease the **DMG** amount with his **DEF** points.
 
-After an X amount of **XP** the character is leveling up. The new level will give him more base **HP**, **DMG**, refill the his/her current **HP** to maximum and reduce the **CD**.
+After an X amount of **XP** the character is leveling up. The new level will give him more base **HP**, **DMG**, **MAGICAL DMG** refill the his/her current **HP** to maximum and reduce the **CD**.
 
 #### Leveling:
 
