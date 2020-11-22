@@ -115,7 +115,7 @@ private:
 	/**
 	 * The Monster(s) of the game.
 	 */
-	std::list<Monster *> monsters;
+	std::list<Monster> monsters;
 
 	/**
 	 * The state of the game.

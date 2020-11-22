@@ -9,7 +9,7 @@ using namespace std;
 unsigned int Game::getMonsterCountInField(const int x, const int y) const
 {
 	return count_if(monsters.begin(), monsters.end(),
-					[x, y](const Monster *monster) { return monster->getX() == x && monster->getY() == y; });
+					[x, y](const Monster &monster) { return monster.getX() == x && monster.getY() == y; });
 }
 
 void Game::setMap(const Map &map)
@@ -57,17 +57,20 @@ void Game::putMonster(Monster &monster, const int x, const int y)
 	checkFieldAvailability(x, y);
 
 	monster.setLocation(Unit::Location(x, y));
-	monsters.push_back(&monster);
+	monsters.push_back(Monster(monster));
 }
 
 void Game::removeHero()
 {
+	if (this->hero != nullptr)
+		delete this->hero;
+
 	this->hero = nullptr;
 }
 
 void Game::removeFallenMonsters()
 {
-	this->monsters.remove_if([](Monster *monster) { return !monster->isAlive(); });
+	this->monsters.remove_if([](Monster &monster) { return !monster.isAlive(); });
 }
 
 void Game::checkFieldAvailability(const int x, const int y) const
@@ -202,11 +205,11 @@ void Game::move(const Game::Direction direction)
 	}
 
 	// Fight
-	for (Monster *monster : this->monsters)
+	for (Monster &monster : this->monsters)
 	{
-		if (monster->getLocation() == hero->getLocation())
+		if (monster.getLocation() == hero->getLocation())
 		{
-			this->hero->fightTilDeath(*monster);
+			this->hero->fightTilDeath(monster);
 		}
 	}
 
