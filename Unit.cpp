@@ -25,7 +25,7 @@ bool Unit::hit(Unit *otherUnit)
 unsigned int Unit::calculateDamage(Unit *attackedUnit)
 {
     // Base damage minus the attacked unit's defense
-    const unsigned int damage = this->getDamage().sum() >= attackedUnit->getDefense() ? this->getDamage().sum() - attackedUnit->getDefense() : 0;
+    const unsigned int damage = this->getDamage().sum(attackedUnit->getDefense());
 
     return attackedUnit->getHealthPoints() <= damage ? attackedUnit->getHealthPoints() : damage;
 }
@@ -66,7 +66,7 @@ void Unit::levelUp()
 {
     this->maxHp += healthBonusPerLevel;
     this->hp = this->maxHp;
-    this->damage.physical += damageBonusPerLevel;
+    this->damage.increaseDamage(damageBonusPerLevel, magicalDamageBonusPerLevel);
     this->attackCooldown = attackCooldown * cooldownMultiplier;
     this->defense += defenseBonusPerLevel;
 }

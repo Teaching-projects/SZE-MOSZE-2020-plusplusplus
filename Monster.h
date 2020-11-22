@@ -32,7 +32,7 @@ public:
      * @param xp Starter experience point of the Monster.
      * @param damage Defense of the Monster.
      */
-    explicit Monster(const std::string &name, unsigned short maxHp, Damage damage, double attackCooldown, unsigned short defense) : Unit(name, maxHp, damage, attackCooldown, defense){};
+    explicit Monster(const std::string &name, unsigned int maxHp, Damage damage, double attackCooldown, unsigned int defense) : Unit(name, maxHp, damage, attackCooldown, defense){};
 
     /**
      * It parse a JSON object (from a JSON file) to a Monster instance.

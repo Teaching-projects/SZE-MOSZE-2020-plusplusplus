@@ -10,7 +10,7 @@ Hero Hero::parse(const std::string &fileName)
 {
     JSON properties = JSON::parseFromFile(fileName);
 
-    const std::vector<std::string> expectedProps{"name", "base_health_points", "base_attack_cooldown", "experience_per_level", "health_point_bonus_per_level", "damage_bonus_per_level", "cooldown_multiplier_per_level", "defense", "defense_bonus_per_level"};
+    const std::vector<std::string> expectedProps{"name", "base_health_points", "base_attack_cooldown", "experience_per_level", "health_point_bonus_per_level", "cooldown_multiplier_per_level", "defense", "defense_bonus_per_level"};
     for (unsigned int i = 0; i < expectedProps.size(); i++)
     {
         if (!properties.count(expectedProps[i]))
@@ -23,6 +23,8 @@ Hero Hero::parse(const std::string &fileName)
 
     dmg.physical = properties.getOrElse("damage", 0);
     dmg.magical = properties.getOrElse("magical_damage", 0);
+    int damageBonusPerLevel = properties.getOrElse("damage_bonus_per_level", 0);
+    int magicalDamageBonusPerLevel = properties.getOrElse("magical_damage_bonus_per_level", 0);
 
     return Hero(
         properties.get<std::string>("name"),
@@ -31,7 +33,8 @@ Hero Hero::parse(const std::string &fileName)
         properties.get<double>("base_attack_cooldown"),
         properties.get<int>("experience_per_level"),
         properties.get<int>("health_point_bonus_per_level"),
-        properties.get<int>("damage_bonus_per_level"),
+        damageBonusPerLevel,
+        magicalDamageBonusPerLevel,
         properties.get<double>("cooldown_multiplier_per_level"),
         properties.get<int>("defense"),
         properties.get<int>("defense_bonus_per_level"));

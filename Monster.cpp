@@ -36,7 +36,7 @@ void Monster::print(std::ostream &stream) const
 {
     stream << getName()
            << " (HP:" << getHealthPoints()
-           << ", DMG:" << getDamage()
+           << ", " << getDamage()
            << ", CD:" << getAttackCoolDown()
            << ", DEFENSE:" << getDefense()
            << ")";

@@ -7,6 +7,7 @@
 #define LEVEL_SIZE 0
 #define HEALTH_BONUS 0
 #define DAMAGE_BONUS 0
+#define MAGICAL_DAMAGE_BONUS 0
 #define DEFENSE_BONUS 0
 #define COOLDOWN_MULTIPLIER 1 // 1 to avoid changing value
 
@@ -90,6 +91,12 @@ private:
     unsigned int damageBonusPerLevel = DAMAGE_BONUS;
 
     /**
+     *  The extra magical damage added per levelups.
+     *  Defaults to define directive
+     */
+    unsigned int magicalDamageBonusPerLevel = MAGICAL_DAMAGE_BONUS;
+
+    /**
      *  The multiplier of cooldown decrease, per levelup.
      *  Defaults to define directive
      */
@@ -155,7 +162,7 @@ protected:
     /**
      * Calculate delead damage to the given other Unit.
      * Dealed damage cannot be bigger than the other unit's HP.
-     * Dealed damage is defendable by defense points.
+     * Dealed damage is defendable by defense points (only physical damage).
      * Dealed damage is cannot be less than 0.
      * @param attackedUnit The attacked unit.
      * @return Damage.
@@ -185,11 +192,12 @@ public:
      * @param xpPerLevel XP needed for a levelup
      * @param healthBonusPerLevel The extra healthpoints added per levelups.
      * @param damageBonusPerLevel The extra damage added per levelups.
+     * @param magicalDamageBonusPerLevel The extra magical damage added per levelups.
      * @param cooldownMultiplier Multiplier for cooldown on levelup.
      * @param defense Defense of the character.
      * @param defenseBonusPerLevel The extra defense added per levelups.
      */
-    Unit(const std::string &name, unsigned int maxHp, Damage damage, double attackCooldown, unsigned int xpPerLevel, unsigned int healthBonusPerLevel, unsigned int damageBonusPerLevel, double cooldownMultiplier, unsigned int defense, unsigned int defenseBonusPerLevel) : name(name), maxHp(maxHp), hp(maxHp), damage(damage), attackCooldown(attackCooldown), nextAttack(attackCooldown), xpPerLevel(xpPerLevel), healthBonusPerLevel(healthBonusPerLevel), damageBonusPerLevel(damageBonusPerLevel), cooldownMultiplier(cooldownMultiplier), defense(defense), defenseBonusPerLevel(defenseBonusPerLevel){};
+    Unit(const std::string &name, unsigned int maxHp, Damage damage, double attackCooldown, unsigned int xpPerLevel, unsigned int healthBonusPerLevel, unsigned int damageBonusPerLevel, unsigned int magicalDamageBonusPerLevel, double cooldownMultiplier, unsigned int defense, unsigned int defenseBonusPerLevel) : name(name), maxHp(maxHp), hp(maxHp), damage(damage), attackCooldown(attackCooldown), nextAttack(attackCooldown), xpPerLevel(xpPerLevel), healthBonusPerLevel(healthBonusPerLevel), damageBonusPerLevel(damageBonusPerLevel), magicalDamageBonusPerLevel(magicalDamageBonusPerLevel), cooldownMultiplier(cooldownMultiplier), defense(defense), defenseBonusPerLevel(defenseBonusPerLevel){};
 
     /**
      * It parse a JSON object (from a JSON file) to a Unit instance.
