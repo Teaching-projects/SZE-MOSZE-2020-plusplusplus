@@ -45,5 +45,5 @@ public:
     /**
      * Override the parent class method, print custom format.
      */
-    void print(std::ostream &stream) const;
+    void print(std::ostream &stream) const override;
 };

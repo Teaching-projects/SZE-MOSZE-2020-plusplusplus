@@ -4,6 +4,7 @@ OBJS = JSON.o Unit.o Hero.o Monster.o main.o
 OUT = a.out
 CFLAGS = -Wall -Wextra -std=c++17
 CC = g++-9
+SCENARIO = ./scenarios/scenario1.json
 
 default: build
 

@@ -109,7 +109,7 @@ public:
     };
 
 private:
-    JSON(std::map<std::string, listedValueVariant> data) : data(data){};
+    explicit JSON(const std::map<std::string, listedValueVariant> &data) : data(data){};
 
     /** Handle the real parsing
      * 
