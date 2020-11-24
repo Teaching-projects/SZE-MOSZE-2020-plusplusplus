@@ -15,8 +15,8 @@ TEST(HeroTest, Parse)
 
 TEST(HeroTest, PrintFormat)
 {
-    Hero h1("H1", 201, 11, 0.1, 10, 20, 10, 0.2);
-    std::string expect1("H1 - LVL1 (HP:201/201, DMG:11, CD:0.1, XP:0)");
+    Hero h1("H1", 201, 11, 0.1, 10, 20, 10, 0.2, 1, 1);
+    std::string expect1("H1 - LVL1 (HP:201/201, DMG:11, CD:0.1, XP:0, DEFENSE:1)");
 
     std::stringstream res1;
     h1.print(res1);

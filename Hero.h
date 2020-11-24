@@ -34,9 +34,11 @@ public:
      * @param xpPerLevel XP needed for a levelup
      * @param healthBonusPerLevel The extra healthpoints added per levelups.
      * @param damageBonusPerLevel The extra damage added per levelups.
-     * @param cooldownMultiplier Multiplier for cooldown on levelup
+     * @param cooldownMultiplier Multiplier for cooldown on levelup.
+     * @param damage Defense of the Hero.
+     * @param damageBonusPerLevel The extra defense added per levelups.
     */
-    Hero(const std::string &name, unsigned short maxHp, unsigned short damage, double attackCooldown, unsigned short xpPerLevel, unsigned short healthBonusPerLevel, unsigned short damageBonusPerLevel, double cooldownMultiplier) : Unit(name, maxHp, damage, attackCooldown, xpPerLevel, healthBonusPerLevel, damageBonusPerLevel, cooldownMultiplier){};
+    Hero(const std::string &name, unsigned short maxHp, unsigned short damage, double attackCooldown, unsigned short xpPerLevel, unsigned short healthBonusPerLevel, unsigned short damageBonusPerLevel, double cooldownMultiplier, unsigned short defense, unsigned short defenseBonusPerLevel) : Unit(name, maxHp, damage, attackCooldown, xpPerLevel, healthBonusPerLevel, damageBonusPerLevel, cooldownMultiplier, defense, defenseBonusPerLevel){};
 
     /**
      * It parse a JSON object (from a JSON file) to a Hero instance.
@@ -51,6 +53,7 @@ public:
 
     /**
      * Override the parent class method, print custom format.
+     * @param stream Output stream for print.
      */
-    void print(std::ostream &stream) const;
+    void print(std::ostream &stream) const override;
 };

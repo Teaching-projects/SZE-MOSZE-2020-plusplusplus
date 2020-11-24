@@ -6,6 +6,7 @@
 #define LEVEL_SIZE 0
 #define HEALTH_BONUS 0
 #define DAMAGE_BONUS 0
+#define DEFENSE_BONUS 0
 #define COOLDOWN_MULTIPLIER 1 // 1 to avoid changing value
 
 /**
@@ -41,17 +42,17 @@ private:
     /**
      * The maximum health point of the character.
      */
-    unsigned short maxHp;
+    unsigned int maxHp;
 
     /**
      * The health point of the character.
      */
-    unsigned short hp;
+    unsigned int hp;
 
     /**
      * The damage of the character.
      */
-    unsigned short damage;
+    unsigned int damage;
 
     /**
      * The attack cooldown of the character.
@@ -67,31 +68,43 @@ private:
     /**
      * The xp of the character.
      */
-    unsigned short xp = 0;
+    unsigned int xp = 0;
 
     /**
      * The experince per level.
      * Defauls to the define directive
      */
-    unsigned short xpPerLevel = LEVEL_SIZE;
+    unsigned int xpPerLevel = LEVEL_SIZE;
 
     /**
      *  The extra healthpoints added per levelups.
      *  Defaults to define directive
      */
-    unsigned short healthBonusPerLevel = HEALTH_BONUS;
+    unsigned int healthBonusPerLevel = HEALTH_BONUS;
 
     /**
      *  The extra damage added per levelups.
      *  Defaults to define directive
      */
-    unsigned short damageBonusPerLevel = DAMAGE_BONUS;
+    unsigned int damageBonusPerLevel = DAMAGE_BONUS;
 
     /**
      *  The multiplier of cooldown decrease, per levelup.
      *  Defaults to define directive
      */
     double cooldownMultiplier = COOLDOWN_MULTIPLIER;
+
+    /**
+     * Defense abality size.
+     * How many damage can the player defend.
+     */
+    unsigned int defense;
+
+    /**
+     * The defense added per levelups.
+     * Defaults to define directive.
+     */
+    unsigned int defenseBonusPerLevel = DEFENSE_BONUS;
 
 protected:
     /**
@@ -113,7 +126,7 @@ protected:
      * Increase the unit's XP by the given amount.
      * @param amount Addation XP score.
      */
-    void increaseXP(unsigned short amount);
+    void increaseXP(unsigned int amount);
 
     /**
      * Modify the unit settings for the next level.
@@ -125,8 +138,9 @@ protected:
 
     /**
      * Decrease current health according to parameter.
+     * @param damage The amount of decreased damage.
      */
-    void decreaseHealthPoints(unsigned short damage)
+    void decreaseHealthPoints(unsigned int damage)
     {
         this->hp -= damage;
     };
@@ -137,6 +151,16 @@ protected:
      */
     void fight(Unit &other);
 
+    /**
+     * Calculate delead damage to the given other Unit.
+     * Dealed damage cannot be bigger than the other unit's HP.
+     * Dealed damage is defendable by defense points.
+     * Dealed damage is cannot be less than 0.
+     * @param attackedUnit The attacked unit.
+     * @return Damage.
+     */
+    unsigned int calculateDamage(Unit *attackedUnit);
+
 public:
     /**
      * Unit constructor.
@@ -146,8 +170,9 @@ public:
      * @param damage Attack damage of Unit.
      * @param attackCooldown Attack cooldown of Unit. **Minimum** time intervall between two attack.
      * @param xp Starter experience point of the character.
+     * @param defense Defense of the character.
      */
-    Unit(const std::string &name, unsigned short maxHp, unsigned short damage, double attackCooldown) : name(name), maxHp(maxHp), hp(maxHp), damage(damage), attackCooldown(attackCooldown), nextAttack(attackCooldown){};
+    Unit(const std::string &name, unsigned int maxHp, unsigned int damage, double attackCooldown, unsigned int defense) : name(name), maxHp(maxHp), hp(maxHp), damage(damage), attackCooldown(attackCooldown), nextAttack(attackCooldown), defense(defense){};
 
     /**
      * Unit constructor.
@@ -159,9 +184,11 @@ public:
      * @param xpPerLevel XP needed for a levelup
      * @param healthBonusPerLevel The extra healthpoints added per levelups.
      * @param damageBonusPerLevel The extra damage added per levelups.
-     * @param cooldownMultiplier Multiplier for cooldown on levelup
+     * @param cooldownMultiplier Multiplier for cooldown on levelup.
+     * @param defense Defense of the character.
+     * @param defenseBonusPerLevel The extra defense added per levelups.
      */
-    Unit(const std::string &name, unsigned short maxHp, unsigned short damage, double attackCooldown, unsigned short xpPerLevel, unsigned short healthBonusPerLevel, unsigned short damageBonusPerLevel, double cooldownMultiplier) : name(name), maxHp(maxHp), hp(maxHp), damage(damage), attackCooldown(attackCooldown), nextAttack(attackCooldown), xpPerLevel(xpPerLevel), healthBonusPerLevel(healthBonusPerLevel), damageBonusPerLevel(damageBonusPerLevel), cooldownMultiplier(cooldownMultiplier){};
+    Unit(const std::string &name, unsigned int maxHp, unsigned int damage, double attackCooldown, unsigned int xpPerLevel, unsigned int healthBonusPerLevel, unsigned int damageBonusPerLevel, double cooldownMultiplier, unsigned int defense, unsigned int defenseBonusPerLevel) : name(name), maxHp(maxHp), hp(maxHp), damage(damage), attackCooldown(attackCooldown), nextAttack(attackCooldown), xpPerLevel(xpPerLevel), healthBonusPerLevel(healthBonusPerLevel), damageBonusPerLevel(damageBonusPerLevel), cooldownMultiplier(cooldownMultiplier), defense(defense), defenseBonusPerLevel(defenseBonusPerLevel){};
 
     /**
      * It parse a JSON object (from a JSON file) to a Unit instance.
@@ -189,19 +216,19 @@ public:
      * Get Unit's damage points.
      * @return Current damage size.
      */
-    unsigned short getDamage() const { return this->damage; };
+    unsigned int getDamage() const { return this->damage; };
 
     /**
      * Gets maximum health points of the unit.
      * @return Unit Max HP.
      */
-    unsigned short getMaxHealthPoints() const { return maxHp; };
+    unsigned int getMaxHealthPoints() const { return maxHp; };
 
     /**
      * Gets remaining health points of the unit.
      * @return Unit HP.
      */
-    unsigned short getHealthPoints() const { return hp; };
+    unsigned int getHealthPoints() const { return hp; };
 
     /**
      * Gets the cooldown of the unit.
@@ -213,7 +240,7 @@ public:
      * Gets xp of the unit.
      * @return Unit XP.
      */
-    unsigned short getXP() const { return xp; };
+    unsigned int getXP() const { return xp; };
 
     /**
      * Duel with an other unit.
@@ -234,8 +261,9 @@ public:
 
     /**
      * Gets the unit's current level determined from the character's XP score.
+     * @return Current level.
      */
-    unsigned short getLevel() const { return xpPerLevel == 0 ? 1 : ((xp / xpPerLevel) + 1); };
+    unsigned int getLevel() const { return xpPerLevel == 0 ? 1 : ((xp / xpPerLevel) + 1); };
 
     /**
      * The unit is alive or dead.
@@ -246,4 +274,10 @@ public:
     {
         return this->getHealthPoints() != 0;
     };
+
+    /**
+     * Gets the unit's defense points.
+     * @return Amount of defense.
+     */
+    unsigned int getDefense() const { return this->defense; };
 };

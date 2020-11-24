@@ -57,13 +57,25 @@ Data:
 - Base health points - **HP** (_base_health_points_)
 - Base damage - **DMG** (_base_damage_)
 - Base attack cooldown - **CD** (_base_attack_cooldown_)
+- Experience per level (_experience_per_level_)
+- Health point bonus per level - **HP BONUS** (_health_point_bonus_per_level_)
+- Damage bonus per level - **DMG BONUS** (_damage_bonus_per_level_)
+- Cooldown multiplier per level - **CD BONUS** (_cooldown_multiplier_per_level_)
+- Defense - **DEF** (_defense_)
+- Defense bonus per level - **DEF BONUS** (_defense_bonus_per_level_)
 
 ```json
 {
   "name": "Hero",
   "base_health_points": 100,
   "base_damage": 10,
-  "base_attack_cooldown": 12.3
+  "base_attack_cooldown": 12.3,
+  "experience_per_level": 8,
+  "health_point_bonus_per_level": 10,
+  "damage_bonus_per_level": 2,
+  "cooldown_multiplier_per_level": 0.2,
+  "defense": 4,
+  "defense_bonus_per_level": 1
 }
 ```
 
@@ -75,13 +87,15 @@ Data:
 - Health points - **HP** (_base_health_point_)
 - Damage - **DMG** (_damage_)
 - Attack cooldown - **CD** (_attack_cooldown_)
+- Defense - **DEF** (_defense_)
 
 ```json
 {
   "name": "Monster",
   "health_points": 100,
   "damage": 10,
-  "attack_cooldown": 12.3
+  "attack_cooldown": 12.3,
+  "defense": 7
 }
 ```
 
@@ -101,6 +115,8 @@ If the hero can kill every monster without death, he will be the winner. If he d
 Every player has a attack cooldown what is defining the time between two hit.
 
 Every player is gaining **XP** (_experience points_) after each hit. The gained **XP** is equal with the dealed damage.
+
+Every unit is hit the other with his **DMG** amount, but the attacked unit has possiblity to decrease the **DMG** amount with his **DEF** points.
 
 After an X amount of **XP** the character is leveling up. The new level will give him more base **HP**, **DMG**, refill the his/her current **HP** to maximum and reduce the **CD**.
 

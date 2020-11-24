@@ -8,8 +8,8 @@
 
 bool Unit::hit(Unit *otherUnit)
 {
-    // Dealed damage
-    unsigned short damageAmount = otherUnit->getHealthPoints() <= this->getDamage() ? otherUnit->getHealthPoints() : this->getDamage();
+    // Dealing damage
+    const unsigned int damageAmount = calculateDamage(otherUnit);
 
     // Modify healthPoints with the damage
     otherUnit->decreaseHealthPoints(damageAmount);
@@ -22,12 +22,20 @@ bool Unit::hit(Unit *otherUnit)
     return !otherUnit->isAlive();
 }
 
-void Unit::increaseXP(unsigned short amount)
+unsigned int Unit::calculateDamage(Unit *attackedUnit)
 {
-    unsigned short currentLevel = this->getLevel();
+    // Base damage minus the attacked unit's defense
+    const unsigned int damage = this->getDamage() >= attackedUnit->getDefense() ? this->getDamage() - attackedUnit->getDefense() : 0;
+
+    return attackedUnit->getHealthPoints() <= damage ? attackedUnit->getHealthPoints() : damage;
+}
+
+void Unit::increaseXP(unsigned int amount)
+{
+    unsigned int currentLevel = this->getLevel();
     this->xp += amount;
-    unsigned short properLevel = this->getLevel();
-    unsigned short requiredLevelUpCount = properLevel - currentLevel;
+    unsigned int properLevel = this->getLevel();
+    unsigned int requiredLevelUpCount = properLevel - currentLevel;
 
 #if LOG_TO_ERR == 1
     if (requiredLevelUpCount > 0)
@@ -35,8 +43,8 @@ void Unit::increaseXP(unsigned short amount)
         std::cerr << getName() << " gained " << amount
                   << " XP and leveled up " << requiredLevelUpCount << " times. (+";
     }
-    unsigned short oldHp = maxHp;
-    unsigned short oldDmg = damage;
+    unsigned int oldHp = maxHp;
+    unsigned int oldDmg = damage;
     double oldCD = attackCooldown;
 #endif
 
@@ -56,10 +64,11 @@ void Unit::increaseXP(unsigned short amount)
 
 void Unit::levelUp()
 {
-    this->maxHp = round(maxHp + healthBonusPerLevel);
+    this->maxHp += healthBonusPerLevel;
     this->hp = this->maxHp;
-    this->damage = round(damage + damageBonusPerLevel);
+    this->damage += damageBonusPerLevel;
     this->attackCooldown = attackCooldown * cooldownMultiplier;
+    this->defense += defenseBonusPerLevel;
 }
 
 void Unit::print(std::ostream &stream) const
@@ -70,6 +79,7 @@ void Unit::print(std::ostream &stream) const
            << ", DMG: " << this->damage
            << ", XP: " << this->xp
            << ", COOLDOWN: " << this->attackCooldown
+           << ", DEFENSE: " << this->defense
            << ", LEVEL: " << this->getLevel();
 }
 

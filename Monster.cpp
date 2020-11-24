@@ -9,7 +9,7 @@ Monster Monster::parse(const std::string &fileName)
 {
     JSON properties = JSON::parseFromFile(fileName);
 
-    const std::vector<std::string> expectedProps{"name", "health_points", "damage", "attack_cooldown"};
+    const std::vector<std::string> expectedProps{"name", "health_points", "damage", "attack_cooldown", "defense"};
     for (unsigned int i = 0; i < expectedProps.size(); i++)
     {
         if (!properties.count(expectedProps[i]))
@@ -22,7 +22,8 @@ Monster Monster::parse(const std::string &fileName)
         properties.get<std::string>("name"),
         properties.get<int>("health_points"),
         properties.get<int>("damage"),
-        properties.get<double>("attack_cooldown"));
+        properties.get<double>("attack_cooldown"),
+        properties.get<int>("defense"));
 }
 
 void Monster::print(std::ostream &stream) const
@@ -30,5 +31,7 @@ void Monster::print(std::ostream &stream) const
     stream << getName()
            << " (HP:" << getHealthPoints()
            << ", DMG:" << getDamage()
-           << ", CD:" << getAttackCoolDown() << ")";
+           << ", CD:" << getAttackCoolDown()
+           << ", DEFENSE:" << getDefense()
+           << ")";
 }
