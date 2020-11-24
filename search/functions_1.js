@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['decreasehealthpoints',['decreaseHealthPoints',['../classUnit.html#a8f10a4f093b471605b476e3b5eb3cfe1',1,'Unit']]]
+  ['decreasehealthpoints',['decreaseHealthPoints',['../classUnit.html#a3f18740ff0d15266717b502e48b7d462',1,'Unit']]]
 ];
