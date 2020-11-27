@@ -103,17 +103,7 @@ public:
     template <typename T>
     T getOrElse(const std::string &key, T elseEl)
     {
-        return keyExists(key) ? get<T>(key) : elseEl;
-    }
-
-    /**
-     * Checks the given key existance inside the map.
-     * @param key Map element key.
-     * @return Existance of the key.
-     */
-    bool keyExists(const std::string &key)
-    {
-        return data.find(key) != data.end();
+        return count(key) ? get<T>(key) : elseEl;
     }
 
     /** 
