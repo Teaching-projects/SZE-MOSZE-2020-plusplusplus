@@ -1,13 +1,15 @@
-#include "Map.h"
 #include <iostream>
 #include <fstream>
 #include <string>
+
+#include "Map.h"
 
 using namespace std;
 
 Map::Map(const std::string &fileName)
 {
 	ifstream file(fileName);
+	this->width = 0;
 
 	if (file.is_open())
 	{
@@ -34,7 +36,7 @@ Map::Field Map::getField(const int x, const int y) const
 		throw Map::WrongIndexException("Field at the provided indicies is not exist in the map!");
 	}
 
-	Field field = ' ';
+	Field field = Map::Free;
 
 	if (static_cast<int>(this->fields[y].size()) > x)
 	{

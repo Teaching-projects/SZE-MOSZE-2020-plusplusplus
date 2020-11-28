@@ -35,6 +35,45 @@
 
 class Unit
 {
+public:
+	/**
+	 * Location object.
+	 */
+	class Location
+	{
+	public:
+		/**
+		 * The X coordinate of the location.
+		 */
+		int x;
+
+		/**
+		 * The Y coordinate of the location.
+		 */
+		int y;
+
+		/**
+		 * Constructor of the location.
+		 */
+		Location(){};
+
+		/**
+		 * Constructor of the location.
+		 * @param x The X coordinate
+		 * @param y The Y coordinate
+		 */
+		Location(int x, int y) : x(x), y(y){};
+
+		/**
+		 * The equal operator.
+		 * @param location The other Location object
+		 */
+		bool operator==(const Location &location)
+		{
+			return x == location.x && y == location.y;
+		}
+	};
+
 private:
     /**
      * The name of the character.
@@ -101,6 +140,12 @@ private:
      *  Defaults to define directive
      */
     double cooldownMultiplier = COOLDOWN_MULTIPLIER;
+
+	/**
+     *  Location of the Unit.
+	 *	Contains X and Y coordinates with 0 value by default.
+     */
+	Location location;
 
     /**
      * Defense abality size.
@@ -199,7 +244,12 @@ public:
      */
     Unit(const std::string &name, unsigned int maxHp, Damage damage, double attackCooldown, unsigned int xpPerLevel, unsigned int healthBonusPerLevel, unsigned int damageBonusPerLevel, unsigned int magicalDamageBonusPerLevel, double cooldownMultiplier, unsigned int defense, unsigned int defenseBonusPerLevel) : name(name), maxHp(maxHp), hp(maxHp), damage(damage), attackCooldown(attackCooldown), nextAttack(attackCooldown), xpPerLevel(xpPerLevel), healthBonusPerLevel(healthBonusPerLevel), damageBonusPerLevel(damageBonusPerLevel), magicalDamageBonusPerLevel(magicalDamageBonusPerLevel), cooldownMultiplier(cooldownMultiplier), defense(defense), defenseBonusPerLevel(defenseBonusPerLevel){};
 
-    /**
+	/**
+	 * Unit destructor.
+	 */
+	virtual ~Unit(){};
+
+	/**
      * It parse a JSON object (from a JSON file) to a Unit instance.
      * Does not matter the order of the object properties, but it have to contain all required propertiy.
      * @param filename Json file's path.
@@ -292,4 +342,60 @@ public:
      * @return Amount of defense.
      */
     unsigned int getDefense() const { return this->defense; };
+
+	/**
+	 * Get the X coordinate of the Unit.
+	 */
+	int getX() const { return location.x; }
+
+	/**
+	 * Get the Y coordinate of the Unit.
+	 */
+	int getY() const { return location.y; }
+
+	/**
+	 * Set the X coordinate of the Unit.
+	 * @param x The new X coordinate
+	 */
+	Unit &setX(const int x)
+	{
+		location.x = x;
+		return *this;
+	}
+
+	/**
+	 * Set the Y coordinate of the Unit.
+	 * @param x The new Y coordinate
+	 */
+	Unit &setY(const int y)
+	{
+		location.y = y;
+		return *this;
+	}
+
+	/**
+	 * Get the location of the Unit.
+	 */
+	Location getLocation() { return location; }
+
+	/**
+	 * Set the location coordinate of the Unit.
+	 * @param location The new location
+	 */
+	Unit &setLocation(Location location)
+	{
+		this->location = location;
+		return *this;
+	}
+
+	/**
+	 * Set the location coordinate of the Unit.
+	 * @param location The new location
+	 */
+	Unit &setLocation(int x, int y)
+	{
+		this->location.x = x;
+		this->location.y = y;
+		return *this;
+	}
 };
