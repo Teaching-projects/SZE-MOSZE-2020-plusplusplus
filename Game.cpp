@@ -128,63 +128,80 @@ void Game::loop()
 	// Change game state
 	this->isGameInProgress = true;
 
-	string direction;
+	string directionKey;
 	cout << "Move the Hero with the following commands:"
 		 << endl
-		 << NORTH << " \t Move up"
+		 << "north\tMove up"
 		 << endl
-		 << SOUTH << " \t Move down"
+		 << "south\tMove down"
 		 << endl
-		 << WEST << " \t Move left"
+		 << "west\tMove left"
 		 << endl
-		 << EAST << " \t Move right" << endl;
+		 << "east\tMove right" << endl;
 
 	while (hero->isAlive() && !this->monsters.empty())
 	{
 		// Get direction
-		cout << "Move to direction: ";
-		cin >> direction;
+		do
+		{
+			cout << "Move to direction:";
+			cin >> directionKey;
+
+		} while (directions.count(directionKey) == 0);
 
 		// Move Hero
-		move(direction);
+		move(directions.at(directionKey));
 
 		// Show Game board
 		print(cout);
 	}
 }
 
-void Game::move(const string &direction)
+void Game::move(const Game::Direction direction)
 {
 	int x, y;
 
 	// Move to direction
-	if (direction == NORTH)
+	switch (direction)
+	{
+	case Game::Direction::NORTH:
 	{
 		y = hero->getY() - 1;
 
 		if (y >= 0 && map->isFieldFree(hero->getX(), y))
 			hero->setY(y);
+		break;
 	}
-	else if (direction == SOUTH)
+
+	case Game::Direction::SOUTH:
 	{
 		y = hero->getY() + 1;
 
 		if (y < map->getHeight() && map->isFieldFree(hero->getX(), y))
 			hero->setY(y);
+		break;
 	}
-	else if (direction == WEST)
+
+	case Game::Direction::WEST:
 	{
 		x = hero->getX() - 1;
 
 		if (x >= 0 && map->isFieldFree(x, hero->getY()))
 			hero->setX(x);
+		break;
 	}
-	else if (direction == EAST)
+
+	case Game::Direction::EAST:
 	{
 		x = hero->getX() + 1;
 
 		if (x < map->getWidth() && map->isFieldFree(x, hero->getY()))
 			hero->setX(x);
+		break;
+	}
+
+	default:
+		break;
 	}
 
 	// Fight
@@ -204,41 +221,41 @@ void Game::print(ostream &stream) const
 {
 	// Top border
 	stream << endl
-		   << TOP_LEFT;
+		   << icons.at(Game::Icon::TOP_LEFT);
 
 	for (int x = 0; x < map->getWidth(); x++)
 	{
-		stream << HORIZONTAL;
+		stream << icons.at(Game::Icon::HORIZONTAL);
 	}
-	stream << TOP_RIGHT << endl;
+	stream << icons.at(Game::Icon::TOP_RIGHT) << endl;
 
 	// Side borders and Game board
 	for (int y = 0; y < map->getHeight(); y++)
 	{
-		stream << VERTICAL;
+		stream << icons.at(Game::Icon::VERTICAL);
 		for (int x = 0; x < map->getWidth(); x++)
 		{
 			const unsigned int monsterCountInField = getMonsterCountInField(x, y);
 			if (hero->isAlive() && hero->getLocation() == Unit::Location(x, y))
 			{
-				stream << HERO;
+				stream << icons.at(Game::Icon::HERO);
 			}
 			else if (monsterCountInField != 0)
 			{
-				stream << (monsterCountInField > 1 ? MONSTERS : (MONSTER + HALF_FREE_FIELD));
+				stream << (monsterCountInField > 1 ? icons.at(Game::Icon::MONSTERS) : icons.at(Game::Icon::MONSTER));
 			}
 			else
-				stream << (map->getFieldType(x, y) == Map::Wall ? WALL_FIELD : FREE_FIELD);
+				stream << (map->getFieldType(x, y) == Map::Wall ? icons.at(Game::Icon::WALL_FIELD) : icons.at(Game::Icon::FREE_FIELD));
 		}
-		stream << VERTICAL << endl;
+		stream << icons.at(Game::Icon::VERTICAL) << endl;
 	}
 
 	// Bottom border
-	stream << BOTTOM_LEFT;
+	stream << icons.at(Game::Icon::BOTTOM_LEFT);
 
 	for (int x = 0; x < map->getWidth(); x++)
 	{
-		stream << HORIZONTAL;
+		stream << icons.at(Game::Icon::HORIZONTAL);
 	}
-	stream << BOTTOM_RIGHT << endl;
+	stream << icons.at(Game::Icon::BOTTOM_RIGHT) << endl;
 }

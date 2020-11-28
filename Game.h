@@ -1,5 +1,6 @@
 #include <iostream>
 #include <list>
+#include <map>
 
 #include "Map.h"
 #include "Hero.h"
@@ -28,28 +29,68 @@ class Game
 {
 private:
 	/**
-	 * Character definitions supporting the printed game border
+	 * Enum type for the gameboard icon definitions.
 	 */
-	inline static const std::string TOP_LEFT = "\u2554";
-	inline static const std::string TOP_RIGHT = "\u2557";
-	inline static const std::string BOTTOM_LEFT = "\u255A";
-	inline static const std::string BOTTOM_RIGHT = "\u255D";
-	inline static const std::string HORIZONTAL = "\u2550\u2550";
-	inline static const std::string VERTICAL = "\u2551";
-	inline static const std::string HALF_FREE_FIELD = "\u2592";
-	inline static const std::string FREE_FIELD = HALF_FREE_FIELD + HALF_FREE_FIELD;
-	inline static const std::string WALL_FIELD = "\u2598\u2598";
-	inline static const std::string HERO = "\u2523\u252B";
-	inline static const std::string MONSTER = "\u004D";
-	inline static const std::string MONSTERS = MONSTER + MONSTER;
+	enum Icon
+	{
+		TOP_LEFT,
+		TOP_RIGHT,
+		BOTTOM_LEFT,
+		BOTTOM_RIGHT,
+		HORIZONTAL,
+		VERTICAL,
+		FREE_FIELD,
+		WALL_FIELD,
+		HERO,
+		MONSTER,
+		MONSTERS
+	};
 
 	/**
-	 * Command definitions supporting the hero movement
+	 * Enum type for the move direction definitons.
 	 */
-	inline static const std::string NORTH = "north";
-	inline static const std::string EAST = "east";
-	inline static const std::string WEST = "west";
-	inline static const std::string SOUTH = "south";
+	enum Direction
+	{
+		NORTH,
+		EAST,
+		WEST,
+		SOUTH
+	};
+
+	/**
+	 * Type definition for the mapped Directions.
+	 */
+	typedef std::map<std::string, Direction> directionKeyMap;
+
+	/**
+	 * Type definition for the mapped Icons.
+	 */
+	typedef std::map<Icon, std::string> iconKeyMap;
+
+	/**
+	 * The Directions mapped with their key.
+	 */
+	inline static const directionKeyMap directions = {
+		{"north", Direction::NORTH},
+		{"east", Direction::EAST},
+		{"west", Direction::WEST},
+		{"south", Direction::SOUTH}};
+
+	/**
+	 * The Icons mapped with their key.
+	 */
+	inline static const iconKeyMap icons = {
+		{Icon::TOP_LEFT, "\u2554"},
+		{Icon::TOP_RIGHT, "\u2557"},
+		{Icon::BOTTOM_LEFT, "\u255A"},
+		{Icon::BOTTOM_RIGHT, "\u255D"},
+		{Icon::HORIZONTAL, "\u2550\u2550"},
+		{Icon::VERTICAL, "\u2551"},
+		{Icon::FREE_FIELD, "\u2591\u2591"},
+		{Icon::WALL_FIELD, "\u2588\u2588"},
+		{Icon::HERO, "\u2523\u252B"},
+		{Icon::MONSTER, "\u004D\u2591"},
+		{Icon::MONSTERS, "\u004D\u004D"}};
 
 	/**
 	 * The map of the game.
@@ -199,9 +240,9 @@ public:
 
 	/**
 	 * Move the Hero on the map.
-	 * @param direction The direction where the Hero shoul move to.
+	 * @param direction The direction where the Hero should move to.
 	 */
-	void move(const std::string &direction);
+	void move(const Game::Direction direction);
 
 	/**
 	 * Show the actual state of the game with the set map and the placed Hero, Monster(s) on it.
