@@ -14,13 +14,13 @@ build: $(OBJS)
 run: ./$(OUT)
 	./$(OUT) $(SCENARIO)
 
-Unit.o: Unit.cpp Unit.h
+Unit.o: Unit.cpp Unit.h Damage.h
 	$(CC) $(CFLAGS) -c Unit.cpp
 
-Hero.o: Hero.cpp Hero.h Unit.h JSON.h
+Hero.o: Hero.cpp Hero.h Unit.h JSON.h Damage.h
 	$(CC) $(CFLAGS) -c Hero.cpp
 
-Monster.o: Monster.cpp Monster.h Unit.h JSON.h
+Monster.o: Monster.cpp Monster.h Unit.h JSON.h Damage.h
 	$(CC) $(CFLAGS) -c Monster.cpp
 
 JSON.o: JSON.cpp JSON.h

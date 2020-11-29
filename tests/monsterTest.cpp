@@ -1,5 +1,6 @@
 #include "../Monster.h"
 #include "../JSON.h"
+#include "../Damage.h"
 
 #include <gtest/gtest.h>
 
@@ -15,8 +16,10 @@ TEST(MonsterTest, Parse)
 
 TEST(MonsterTest, PrintFormat)
 {
-    Monster m1("M1", 201, 11, 0.1, 1);
-    std::string expect1("M1 (HP:201, DMG:11, CD:0.1, DEFENSE:1)");
+    Damage dmg;
+    dmg.physical = 11;
+    Monster m1("M1", 201, dmg, 0.1, 1);
+    std::string expect1("M1 (HP:201, PHYSICAL DAMAGE:11, MAGICAL DAMAGE:0, CD:0.1, DEFENSE:1)");
 
     std::stringstream res1;
     m1.print(res1);

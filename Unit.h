@@ -1,11 +1,13 @@
 #pragma once
 
 #include <string>
+#include "Damage.h"
 
 // By default these are set to 0 to "disable" the feature
 #define LEVEL_SIZE 0
 #define HEALTH_BONUS 0
 #define DAMAGE_BONUS 0
+#define MAGICAL_DAMAGE_BONUS 0
 #define DEFENSE_BONUS 0
 #define COOLDOWN_MULTIPLIER 1 // 1 to avoid changing value
 
@@ -52,7 +54,7 @@ private:
     /**
      * The damage of the character.
      */
-    unsigned int damage;
+    Damage damage;
 
     /**
      * The attack cooldown of the character.
@@ -87,6 +89,12 @@ private:
      *  Defaults to define directive
      */
     unsigned int damageBonusPerLevel = DAMAGE_BONUS;
+
+    /**
+     *  The extra magical damage added per levelups.
+     *  Defaults to define directive
+     */
+    unsigned int magicalDamageBonusPerLevel = MAGICAL_DAMAGE_BONUS;
 
     /**
      *  The multiplier of cooldown decrease, per levelup.
@@ -154,7 +162,7 @@ protected:
     /**
      * Calculate delead damage to the given other Unit.
      * Dealed damage cannot be bigger than the other unit's HP.
-     * Dealed damage is defendable by defense points.
+     * Dealed damage is defendable by defense points (only physical damage).
      * Dealed damage is cannot be less than 0.
      * @param attackedUnit The attacked unit.
      * @return Damage.
@@ -172,7 +180,7 @@ public:
      * @param xp Starter experience point of the character.
      * @param defense Defense of the character.
      */
-    Unit(const std::string &name, unsigned int maxHp, unsigned int damage, double attackCooldown, unsigned int defense) : name(name), maxHp(maxHp), hp(maxHp), damage(damage), attackCooldown(attackCooldown), nextAttack(attackCooldown), defense(defense){};
+    Unit(const std::string &name, unsigned int maxHp, Damage damage, double attackCooldown, unsigned int defense) : name(name), maxHp(maxHp), hp(maxHp), damage(damage), attackCooldown(attackCooldown), nextAttack(attackCooldown), defense(defense){};
 
     /**
      * Unit constructor.
@@ -184,11 +192,12 @@ public:
      * @param xpPerLevel XP needed for a levelup
      * @param healthBonusPerLevel The extra healthpoints added per levelups.
      * @param damageBonusPerLevel The extra damage added per levelups.
+     * @param magicalDamageBonusPerLevel The extra magical damage added per levelups.
      * @param cooldownMultiplier Multiplier for cooldown on levelup.
      * @param defense Defense of the character.
      * @param defenseBonusPerLevel The extra defense added per levelups.
      */
-    Unit(const std::string &name, unsigned int maxHp, unsigned int damage, double attackCooldown, unsigned int xpPerLevel, unsigned int healthBonusPerLevel, unsigned int damageBonusPerLevel, double cooldownMultiplier, unsigned int defense, unsigned int defenseBonusPerLevel) : name(name), maxHp(maxHp), hp(maxHp), damage(damage), attackCooldown(attackCooldown), nextAttack(attackCooldown), xpPerLevel(xpPerLevel), healthBonusPerLevel(healthBonusPerLevel), damageBonusPerLevel(damageBonusPerLevel), cooldownMultiplier(cooldownMultiplier), defense(defense), defenseBonusPerLevel(defenseBonusPerLevel){};
+    Unit(const std::string &name, unsigned int maxHp, Damage damage, double attackCooldown, unsigned int xpPerLevel, unsigned int healthBonusPerLevel, unsigned int damageBonusPerLevel, unsigned int magicalDamageBonusPerLevel, double cooldownMultiplier, unsigned int defense, unsigned int defenseBonusPerLevel) : name(name), maxHp(maxHp), hp(maxHp), damage(damage), attackCooldown(attackCooldown), nextAttack(attackCooldown), xpPerLevel(xpPerLevel), healthBonusPerLevel(healthBonusPerLevel), damageBonusPerLevel(damageBonusPerLevel), magicalDamageBonusPerLevel(magicalDamageBonusPerLevel), cooldownMultiplier(cooldownMultiplier), defense(defense), defenseBonusPerLevel(defenseBonusPerLevel){};
 
     /**
      * It parse a JSON object (from a JSON file) to a Unit instance.
@@ -216,7 +225,10 @@ public:
      * Get Unit's damage points.
      * @return Current damage size.
      */
-    unsigned int getDamage() const { return this->damage; };
+    Damage getDamage() const
+    {
+        return this->damage;
+    };
 
     /**
      * Gets maximum health points of the unit.

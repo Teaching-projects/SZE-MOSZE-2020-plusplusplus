@@ -1,5 +1,6 @@
 #include "Monster.h"
 #include "JSON.h"
+#include "Damage.h"
 
 #include <fstream>
 #include <vector>
@@ -9,7 +10,7 @@ Monster Monster::parse(const std::string &fileName)
 {
     JSON properties = JSON::parseFromFile(fileName);
 
-    const std::vector<std::string> expectedProps{"name", "health_points", "damage", "attack_cooldown", "defense"};
+    const std::vector<std::string> expectedProps{"name", "health_points", "attack_cooldown", "defense"};
     for (unsigned int i = 0; i < expectedProps.size(); i++)
     {
         if (!properties.count(expectedProps[i]))
@@ -18,10 +19,15 @@ Monster Monster::parse(const std::string &fileName)
         }
     }
 
+    Damage dmg;
+
+    dmg.physical = properties.getOrElse("damage", 0);
+    dmg.magical = properties.getOrElse("magical_damage", 0);
+
     return Monster(
         properties.get<std::string>("name"),
         properties.get<int>("health_points"),
-        properties.get<int>("damage"),
+        dmg,
         properties.get<double>("attack_cooldown"),
         properties.get<int>("defense"));
 }
@@ -30,7 +36,7 @@ void Monster::print(std::ostream &stream) const
 {
     stream << getName()
            << " (HP:" << getHealthPoints()
-           << ", DMG:" << getDamage()
+           << ", " << getDamage()
            << ", CD:" << getAttackCoolDown()
            << ", DEFENSE:" << getDefense()
            << ")";

@@ -1,7 +1,7 @@
 #pragma once
 
 #include <string>
-
+#include "Damage.h"
 #include "Unit.h"
 
 /**
@@ -38,7 +38,7 @@ public:
      * @param damage Defense of the Hero.
      * @param damageBonusPerLevel The extra defense added per levelups.
     */
-    Hero(const std::string &name, unsigned short maxHp, unsigned short damage, double attackCooldown, unsigned short xpPerLevel, unsigned short healthBonusPerLevel, unsigned short damageBonusPerLevel, double cooldownMultiplier, unsigned short defense, unsigned short defenseBonusPerLevel) : Unit(name, maxHp, damage, attackCooldown, xpPerLevel, healthBonusPerLevel, damageBonusPerLevel, cooldownMultiplier, defense, defenseBonusPerLevel){};
+    Hero(const std::string &name, unsigned int maxHp, Damage damage, double attackCooldown, unsigned int xpPerLevel, unsigned int healthBonusPerLevel, unsigned int damageBonusPerLevel, unsigned int magicalDamageBonusPerLevel, double cooldownMultiplier, unsigned int defense, unsigned int defenseBonusPerLevel) : Unit(name, maxHp, damage, attackCooldown, xpPerLevel, healthBonusPerLevel, damageBonusPerLevel, magicalDamageBonusPerLevel, cooldownMultiplier, defense, defenseBonusPerLevel){};
 
     /**
      * It parse a JSON object (from a JSON file) to a Hero instance.
