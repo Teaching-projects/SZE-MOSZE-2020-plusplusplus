@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['unit',['Unit',['../classUnit.html#a681cab5561357314d0ce7b64649c8a50',1,'Unit::Unit(const std::string &amp;name, unsigned int maxHp, unsigned int damage, double attackCooldown, unsigned int defense)'],['../classUnit.html#ab28dbf6edf278d4580bf29ab29e0508a',1,'Unit::Unit(const std::string &amp;name, unsigned int maxHp, unsigned int damage, double attackCooldown, unsigned int xpPerLevel, unsigned int healthBonusPerLevel, unsigned int damageBonusPerLevel, double cooldownMultiplier, unsigned int defense, unsigned int defenseBonusPerLevel)']]]
+  ['sum',['sum',['../structDamage.html#a5b3d531d72eb0f05472e03183d4c14ee',1,'Damage::sum()'],['../structDamage.html#ab15a011cc9336bcbd0f8fd3487ad9f12',1,'Damage::sum(unsigned int defense)']]]
 ];

@@ -100,31 +100,34 @@ $(function() {
 <ul>
 <li>Name (<em>name</em>)</li>
 <li>Base health points - <b>HP</b> (<em>base_health_points</em>)</li>
-<li>Base damage - <b>DMG</b> (<em>base_damage</em>)</li>
+<li><a class="el" href="structDamage.html">Damage</a> - <b>DMG</b> (<em>damage</em>) (optional - default 0)</li>
+<li><a class="el" href="structDamage.html">Damage</a> - <b>MAGIC DMG</b> (<em>magical_damage</em>) (optional - default 0)</li>
 <li>Base attack cooldown - <b>CD</b> (<em>base_attack_cooldown</em>)</li>
 <li>Experience per level (<em>experience_per_level</em>)</li>
 <li>Health point bonus per level - <b>HP BONUS</b> (<em>health_point_bonus_per_level</em>)</li>
-<li>Damage bonus per level - <b>DMG BONUS</b> (<em>damage_bonus_per_level</em>)</li>
+<li><a class="el" href="structDamage.html">Damage</a> bonus per level - <b>DMG BONUS</b> (<em>damage_bonus_per_level</em>) (optional - default 0)</li>
+<li>Magical damage bonus per level - <b>MAGIC DMG BONUS</b> (<em>magical_damage_bonus_per_level</em>) (optional - default 0)</li>
 <li>Cooldown multiplier per level - <b>CD BONUS</b> (<em>cooldown_multiplier_per_level</em>)</li>
 <li>Defense - <b>DEF</b> (<em>defense</em>)</li>
 <li>Defense bonus per level - <b>DEF BONUS</b> (<em>defense_bonus_per_level</em>)</li>
 </ul>
-<div class="fragment"><div class="line">{</div><div class="line">  &quot;name&quot;: &quot;Hero&quot;,</div><div class="line">  &quot;base_health_points&quot;: 100,</div><div class="line">  &quot;base_damage&quot;: 10,</div><div class="line">  &quot;base_attack_cooldown&quot;: 12.3,</div><div class="line">  &quot;experience_per_level&quot;: 8,</div><div class="line">  &quot;health_point_bonus_per_level&quot;: 10,</div><div class="line">  &quot;damage_bonus_per_level&quot;: 2,</div><div class="line">  &quot;cooldown_multiplier_per_level&quot;: 0.2,</div><div class="line">  &quot;defense&quot;: 4,</div><div class="line">  &quot;defense_bonus_per_level&quot;: 1</div><div class="line">}</div></div><!-- fragment --><p>The <code>monsters</code> array is containing one or more paths for monster <code>json</code> objects.</p>
+<div class="fragment"><div class="line">{</div><div class="line">  &quot;name&quot;: &quot;Hero&quot;,</div><div class="line">  &quot;base_health_points&quot;: 100,</div><div class="line">  &quot;damage&quot;: 10,</div><div class="line">  &quot;magical_damage&quot;: 4,</div><div class="line">  &quot;base_attack_cooldown&quot;: 12.3,</div><div class="line">  &quot;experience_per_level&quot;: 8,</div><div class="line">  &quot;health_point_bonus_per_level&quot;: 10,</div><div class="line">  &quot;damage_bonus_per_level&quot;: 2,</div><div class="line">  &quot;magical_damage_bonus_per_level&quot;: 1,</div><div class="line">  &quot;cooldown_multiplier_per_level&quot;: 0.2,</div><div class="line">  &quot;defense&quot;: 4,</div><div class="line">  &quot;defense_bonus_per_level&quot;: 1</div><div class="line">}</div></div><!-- fragment --><p>The <code>monsters</code> array is containing one or more paths for monster <code>json</code> objects.</p>
 <p>Data:</p>
 <ul>
 <li>Name (<em>name</em>)</li>
 <li>Health points - <b>HP</b> (<em>base_health_point</em>)</li>
-<li>Damage - <b>DMG</b> (<em>damage</em>)</li>
+<li><a class="el" href="structDamage.html">Damage</a> - <b>DMG</b> (<em>damage</em>) (optional - default 0)</li>
+<li>Magical damage - <b>MAGIC DMG</b> (<em>magical_damage</em>) (optional - default 0)</li>
 <li>Attack cooldown - <b>CD</b> (<em>attack_cooldown</em>)</li>
 <li>Defense - <b>DEF</b> (<em>defense</em>)</li>
 </ul>
-<div class="fragment"><div class="line">{</div><div class="line">  &quot;name&quot;: &quot;Monster&quot;,</div><div class="line">  &quot;health_points&quot;: 100,</div><div class="line">  &quot;damage&quot;: 10,</div><div class="line">  &quot;attack_cooldown&quot;: 12.3,</div><div class="line">  &quot;defense&quot;: 7</div><div class="line">}</div></div><!-- fragment --><p>Example command: <code>./a.out scenarios/scenario1.json</code></p>
+<div class="fragment"><div class="line">{</div><div class="line">  &quot;name&quot;: &quot;Monster&quot;,</div><div class="line">  &quot;health_points&quot;: 100,</div><div class="line">  &quot;damage&quot;: 10,</div><div class="line">  &quot;magical_damage&quot;: 9,</div><div class="line">  &quot;attack_cooldown&quot;: 12.3,</div><div class="line">  &quot;defense&quot;: 7</div><div class="line">}</div></div><!-- fragment --><p>Example command: <code>./a.out scenarios/scenario1.json</code></p>
 <p>All predefined scenario for the testing can be foind in the <code>scenarios</code> folder. All predefined hero/monster for testing can be found in the <code>units</code> folder.</p>
 <p>The program read in the given <code>scenario</code> and read in the defined <code>hero</code> and <code>monster</code>. The hero start fight with each monster until death. If the hero can kill every monster without death, he will be the winner. If he dies, the game is over.</p>
 <p>Every player has a attack cooldown what is defining the time between two hit.</p>
 <p>Every player is gaining <b>XP</b> (<em>experience points</em>) after each hit. The gained <b>XP</b> is equal with the dealed damage.</p>
-<p>Every unit is hit the other with his <b>DMG</b> amount, but the attacked unit has possiblity to decrease the <b>DMG</b> amount with his <b>DEF</b> points.</p>
-<p>After an X amount of <b>XP</b> the character is leveling up. The new level will give him more base <b>HP</b>, <b>DMG</b>, refill the his/her current <b>HP</b> to maximum and reduce the <b>CD</b>.</p>
+<p>Every unit is hit the other with his <b>DMG</b> and <b>MAGICAL DMG</b> amount, but the attacked unit has possiblity to decrease the <b>DMG</b> amount with his <b>DEF</b> points.</p>
+<p>After an X amount of <b>XP</b> the character is leveling up. The new level will give him more base <b>HP</b>, <b>DMG</b>, <b>MAGICAL DMG</b> refill the his/her current <b>HP</b> to maximum and reduce the <b>CD</b>.</p>
 <p>Using the predefined main function the <code><a class="el" href="classHero.html" title="It defines a RPG attacker Hero. ">Hero</a></code> class handles the logic, using the <code>Json</code> class for file parsing.</p>
 <p>The program prints to the output, that the hero is won or not.</p>
 <p>We use a <em>bit</em> complex regex matcher to find all key/value pairs. It is looping until it finds new pairs and returns error if more data exists beyond that point. It also parses json arrays with a separate regex matcher, and its values are parsed the same way the normal values (string, int, double).</p>
