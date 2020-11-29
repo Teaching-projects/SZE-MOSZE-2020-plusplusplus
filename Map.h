@@ -56,6 +56,7 @@ public:
 	 * @param x The horizontal position (index) on the map.
 	 * @param y The vertical position (index) on the map.
 	 * @return Map::Field The type of the field.
+	 * @throw Map::WrongIndexException When the field at the given position is not exist
 	 */
 	Field getField(const int x, const int y) const;
 

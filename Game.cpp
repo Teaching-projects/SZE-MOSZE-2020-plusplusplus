@@ -14,13 +14,13 @@ unsigned int Game::getMonsterCountInField(const int x, const int y) const
 
 void Game::setMap(const Map &map)
 {
-	if (hero != nullptr || !monsters.empty())
-	{
-		throw Game::AlreadyHasUnitsException();
-	}
-	else if (this->isGameInProgress)
+	if (this->gameState == Game::GameState::started)
 	{
 		throw Game::GameAlreadyStartedException();
+	}
+	else if (hero != nullptr || !monsters.empty())
+	{
+		throw Game::AlreadyHasUnitsException();
 	}
 
 	// Delete map
@@ -36,13 +36,13 @@ void Game::putHero(const Hero &hero, const int x, const int y)
 	// Check the availability of the field located at the provided location
 	checkFieldAvailability(x, y);
 
-	if (this->hero != nullptr)
-	{
-		throw Game::AlreadyHasHeroException();
-	}
-	else if (this->isGameInProgress)
+	if (this->gameState == Game::GameState::started)
 	{
 		throw Game::GameAlreadyStartedException();
+	}
+	else if (this->hero != nullptr)
+	{
+		throw Game::AlreadyHasHeroException();
 	}
 	else
 	{
@@ -117,7 +117,7 @@ void Game::run()
 	}
 
 	// Change game state
-	this->isGameInProgress = false;
+	setGameState(Game::GameState::notStarted);
 
 	// Show the result of the game
 	cout << resultString << endl;
@@ -126,7 +126,7 @@ void Game::run()
 void Game::loop()
 {
 	// Change game state
-	this->isGameInProgress = true;
+	setGameState(Game::GameState::started);
 
 	string directionKey;
 	cout << "Move the Hero with the following commands:"
@@ -236,7 +236,7 @@ void Game::print(ostream &stream) const
 		for (int x = 0; x < map->getWidth(); x++)
 		{
 			const unsigned int monsterCountInField = getMonsterCountInField(x, y);
-			if (hero->isAlive() && hero->getLocation() == Unit::Location(x, y))
+			if (hero != nullptr && hero->isAlive() && hero->getLocation() == Unit::Location(x, y))
 			{
 				stream << icons.at(Game::Icon::HERO);
 			}

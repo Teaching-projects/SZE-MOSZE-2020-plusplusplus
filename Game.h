@@ -27,6 +27,16 @@
 */
 class Game
 {
+public:
+	/**
+	 * Enum type for the game state definitions.
+	 */
+	enum GameState
+	{
+		started,
+		notStarted
+	};
+
 private:
 	/**
 	 * Enum type for the gameboard icon definitions.
@@ -110,7 +120,7 @@ private:
 	/**
 	 * The state of the game.
 	 */
-	bool isGameInProgress;
+	GameState gameState;
 
 	/**
 	 * Get the count of Monster(s) in an actual on a field located at the position provided by the indicies.
@@ -124,27 +134,23 @@ public:
 	/**
 	 * Game constructor.
 	 * It creates an empty Game object.
-	 * @param name Name of Unit.
-	 * @param hp Health points of Unit.
-	 * @param damage Attack damage of Unit.
-	 * @param attackCooldown Attack cooldown of Unit. **Minimum** time intervall between two attack.
-	 * @param xp Starter experience point of the character.
+	 * 
 	 */
-	Game() : map(nullptr), hero(nullptr), isGameInProgress(false){};
+	Game() : map(nullptr), hero(nullptr), gameState(GameState::notStarted){};
 
 	/**
 	 * Game constructor.
 	 * It creates a Unit object with a map from the given parameters.
 	 * @param mapfilename Name of the file of the map.
 	 */
-	explicit Game(const std::string &mapfilename) : map(new Map(mapfilename)), hero{nullptr}, isGameInProgress(false){};
+	explicit Game(const std::string &mapfilename) : map(new Map(mapfilename)), hero{nullptr}, gameState(GameState::notStarted){};
 
 	/**
 	 * Game copy constructor.
 	 * It creates a new Unit object with the values of the given Game object.
 	 * @param mapfilename Name of the file of the map.
 	 */
-	Game(const Game &game) : map(new Map(*game.map)), hero(new Hero(*game.hero)), isGameInProgress(game.isGameInProgress){};
+	Game(const Game &game) : map(new Map(*game.map)), hero(new Hero(*game.hero)), gameState(game.gameState){};
 
 	/**
 	 * Game copy assignment.
@@ -162,7 +168,7 @@ public:
 
 			this->map = new Map(*game.map);
 			this->hero = new Hero(*game.hero);
-			this->isGameInProgress = game.isGameInProgress;
+			this->gameState = game.gameState;
 		}
 
 		return *this;
@@ -181,6 +187,12 @@ public:
 	};
 
 	/**
+	 * Set state of the game.
+	 * @param gameState The state to be set.
+	 */
+	void setGameState(const GameState &gameState) { this->gameState = gameState; };
+
+	/**
 	 * Set map for the game.
 	 * @param map The map to be set.
 	 * @throw Game::GameAlreadyStartedException When the game has started.
@@ -193,7 +205,8 @@ public:
 	 * @param hero The Hero to be put to the map.
 	 * @param x The horizontal position (index) of the Hero on the map.
 	 * @param y The vertical position (index) of the Hero on the map.
-	 * @throw Map::WrongIndexException When the provided position of the Hero is a Wall block, a not existing one or no map is set.
+	 * @throw Map::WrongIndexException When the provided position of the Hero is a not existing one or no map is set.
+	 * @throw Game::OccupiedException When the provided position of the Hero is a Wall block.
 	 * @throw Game::AlreadyHasHeroException When there is another Hero on the map.
 	 * @throw Game::GameAlreadyStartedException When the game has started.
 	 */
@@ -204,8 +217,9 @@ public:
 	 * @param monster The Monster to be put to the map.
 	 * @param x The horizontal position (index) of the Monster on the map.
 	 * @param y The vertical position (index) of the Monster on the map.
-	 * @throw Map::WrongIndexException When the provided position of the Monster is a Wall block, a not existing one or no map is set.
-	 */
+	 * @throw Map::WrongIndexException When the provided position of the Monster is a not existing one or no map is set.
+	 * @throw Game::OccupiedException When the provided position of the Monster is a Wall block.
+	  */
 	void putMonster(Monster monster, const int x, const int y);
 
 	/**
@@ -223,13 +237,14 @@ public:
 	 * Check whether the block located on the provided index positions is available or not.
 	 * @param x The horizontal position (index) on the map to be checked.
 	 * @param y The vertical position (index) on the map to be checked.
-	 * @throw Map::WrongIndexException When the block of the map on the provided index positions is a Wall block, a not existing one or no map is set.
+	 * @throw Map::WrongIndexException When the block of the map on the provided index positions is a not existing one or no map is set.
+	 * @throw Game::WrongIndexException When the block of the map on the provided index positions is a Wall block.
 	 */
 	void checkFieldAvailability(const int x, const int y) const;
 
 	/**
 	 * Start the running of the game.
-	 * @throw Game::NotInitializedException When no Hero or no Monster has been put on the map.
+	 * @throw Game::NotInitializedException When no Hero has been put on the map or the map is not set.
 	 */
 	void run();
 
