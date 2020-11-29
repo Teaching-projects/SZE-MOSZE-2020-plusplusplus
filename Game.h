@@ -115,7 +115,7 @@ private:
 	/**
 	 * The Monster(s) of the game.
 	 */
-	std::list<Monster> monsters;
+	std::list<Monster *> monsters;
 
 	/**
 	 * The state of the game.
@@ -150,7 +150,7 @@ public:
 	 * It creates a new Unit object with the values of the given Game object.
 	 * @param mapfilename Name of the file of the map.
 	 */
-	Game(const Game &game) : map(new Map(*game.map)), hero(new Hero(*game.hero)), gameState(game.gameState){};
+	Game(const Game &game) : map(new Map(*game.map)), hero(game.hero), gameState(game.gameState){};
 
 	/**
 	 * Game copy assignment.
@@ -181,9 +181,10 @@ public:
 	~Game()
 	{
 		if (this->map != nullptr)
+		{
 			delete this->map;
-		if (this->hero != nullptr)
-			delete this->hero;
+			this->map = nullptr;
+		}
 	};
 
 	/**
@@ -210,7 +211,7 @@ public:
 	 * @throw Game::AlreadyHasHeroException When there is another Hero on the map.
 	 * @throw Game::GameAlreadyStartedException When the game has started.
 	 */
-	void putHero(const Hero &hero, const int x, const int y);
+	void putHero(Hero &hero, const int x, const int y);
 
 	/**
 	 * Put Monster to the map.
@@ -220,7 +221,7 @@ public:
 	 * @throw Map::WrongIndexException When the provided position of the Monster is a not existing one or no map is set.
 	 * @throw Game::OccupiedException When the provided position of the Monster is a Wall block.
 	  */
-	void putMonster(Monster monster, const int x, const int y);
+	void putMonster(Monster &monster, const int x, const int y);
 
 	/**
 	 * Remove the hero from the map and from the game.

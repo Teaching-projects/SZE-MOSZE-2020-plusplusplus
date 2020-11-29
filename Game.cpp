@@ -9,7 +9,7 @@ using namespace std;
 unsigned int Game::getMonsterCountInField(const int x, const int y) const
 {
 	return count_if(monsters.begin(), monsters.end(),
-					[x, y](const Monster &monster) { return monster.getX() == x && monster.getY() == y; });
+					[x, y](const Monster *monster) { return monster->getX() == x && monster->getY() == y; });
 }
 
 void Game::setMap(const Map &map)
@@ -31,7 +31,7 @@ void Game::setMap(const Map &map)
 	this->map = new Map(map);
 }
 
-void Game::putHero(const Hero &hero, const int x, const int y)
+void Game::putHero(Hero &hero, const int x, const int y)
 {
 	// Check the availability of the field located at the provided location
 	checkFieldAvailability(x, y);
@@ -46,31 +46,29 @@ void Game::putHero(const Hero &hero, const int x, const int y)
 	}
 	else
 	{
-		this->hero = new Hero(hero);
+		this->hero = &hero;
 		this->hero->setLocation(Unit::Location(x, y));
 	}
 }
 
-void Game::putMonster(Monster monster, const int x, const int y)
+void Game::putMonster(Monster &monster, const int x, const int y)
 {
 	// Check the availability of the field located at the provided location
 	checkFieldAvailability(x, y);
 
 	monster.setLocation(Unit::Location(x, y));
-	monsters.push_back(Monster(monster));
+	monsters.push_back(&monster);
 }
 
 void Game::removeHero()
 {
 	if (this->hero != nullptr)
-		delete this->hero;
-
-	this->hero = nullptr;
+		this->hero = nullptr;
 }
 
 void Game::removeFallenMonsters()
 {
-	this->monsters.remove_if([](Monster &monster) { return !monster.isAlive(); });
+	this->monsters.remove_if([](Monster *monster) { return !monster->isAlive(); });
 }
 
 void Game::checkFieldAvailability(const int x, const int y) const
@@ -205,11 +203,11 @@ void Game::move(const Game::Direction direction)
 	}
 
 	// Fight
-	for (Monster &monster : this->monsters)
+	for (Monster *monster : this->monsters)
 	{
-		if (monster.getLocation() == hero->getLocation())
+		if (monster->getLocation() == hero->getLocation())
 		{
-			this->hero->fightTilDeath(monster);
+			this->hero->fightTilDeath(*monster);
 		}
 	}
 
