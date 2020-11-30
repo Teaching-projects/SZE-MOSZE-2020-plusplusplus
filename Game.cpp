@@ -3,6 +3,7 @@
 #include "Game.h"
 #include "Hero.h"
 #include "Map.h"
+#include "Location.h"
 
 using namespace std;
 
@@ -47,7 +48,7 @@ void Game::putHero(Hero &hero, const int x, const int y)
 	else
 	{
 		this->hero = &hero;
-		this->hero->setLocation(Unit::Location(x, y));
+		this->hero->setLocation(Location(x, y));
 	}
 }
 
@@ -56,8 +57,8 @@ void Game::putMonster(Monster &monster, const int x, const int y)
 	// Check the availability of the field located at the provided location
 	checkFieldAvailability(x, y);
 
-	monster.setLocation(Unit::Location(x, y));
-	monsters.push_back(Monster(monster));
+	monster.setLocation(Location(x, y));
+	monsters.push_back(monster);
 }
 
 void Game::removeHero()
@@ -236,7 +237,7 @@ void Game::print(ostream &stream) const
 		for (int x = 0; x < map->getWidth(); x++)
 		{
 			const unsigned int monsterCountInField = getMonsterCountInField(x, y);
-			if (hero != nullptr && hero->isAlive() && hero->getLocation() == Unit::Location(x, y))
+			if (hero != nullptr && hero->isAlive() && hero->getLocation() == Location(x, y))
 			{
 				stream << icons.at(Game::Icon::HERO);
 			}
