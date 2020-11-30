@@ -29,7 +29,7 @@ public:
      * The equal operator.
      * @param location The other Location object
      */
-    bool operator==(const Location &location)
+    bool operator==(const Location &location) const
     {
         return x == location.x && y == location.y;
     }

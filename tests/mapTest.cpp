@@ -1,4 +1,5 @@
 #include "../Map.h"
+#include "../MarkedMap.h"
 
 #include <gtest/gtest.h>
 
@@ -68,4 +69,31 @@ TEST(MapTest, IsFieldFree)
     ASSERT_FALSE(map.isFieldFree(0, 0));
 
     ASSERT_TRUE(map.isFieldFree(1, 0));
+}
+
+TEST(MapTest, MarkedMapGetHero)
+{
+    MarkedMap map("../maps/map2.txt");
+
+    Location loc = map.getHeroPosition();
+    ASSERT_EQ(loc.x, 2);
+    ASSERT_EQ(loc.y, 1);
+
+    MarkedMap map2("../maps/map1.txt");
+    ASSERT_THROW(map2.getHeroPosition(), MarkedMap::HeroNotFoundException);
+}
+
+TEST(MapTest, MarkedMapGetMonsters)
+{
+    MarkedMap map("../maps/map2.txt");
+
+    auto locs = map.getMonsterPositions('1');
+    ASSERT_EQ(locs[0], Location(2, 3));
+    ASSERT_EQ(locs[1], Location(3, 4));
+    ASSERT_EQ(locs[2], Location(6, 5));
+
+    auto locs2 = map.getMonsterPositions('2');
+    ASSERT_EQ(locs2[0], Location(6, 2));
+    ASSERT_EQ(locs2[1], Location(7, 2));
+    ASSERT_EQ(locs2[2], Location(3, 3));
 }
