@@ -98,9 +98,12 @@ void scenarioMode(std::string scenarioFile)
 
         // Put a Monster to the gameboard
         game.putMonster(monsters.front(), 4, 0);
-        monsters.pop_front();
-        monsters.pop_front();
-        game.putMonster(monsters.front(), 3, 0);
+        if (monsters.size() >= 4)
+        {
+            monsters.pop_front();
+            monsters.pop_front();
+            game.putMonster(monsters.front(), 3, 0);
+        }
 
         // Start the game
         game.run();

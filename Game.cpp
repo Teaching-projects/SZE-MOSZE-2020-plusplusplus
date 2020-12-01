@@ -146,7 +146,7 @@ void Game::loop()
 		do
 		{
 			cout << "Move to direction:";
-			cin >> directionKey;
+			getline(cin, directionKey);
 
 		} while (directions.count(directionKey) == 0);
 
