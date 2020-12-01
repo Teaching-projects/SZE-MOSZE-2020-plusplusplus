@@ -15,7 +15,7 @@ Monster Monster::parse(const std::string &fileName)
     {
         if (!properties.count(expectedProps[i]))
         {
-            throw std::invalid_argument("File does not contain all property for the Monster initalization: " + fileName + " " + expectedProps[i]);
+            throw std::invalid_argument("File does not contain all property for Monster initialization: " + fileName + " " + expectedProps[i]);
         }
     }
 
