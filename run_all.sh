@@ -26,7 +26,7 @@ do
     expect=$(echo -e "$expect")
     echo "Scenario: ${data[0]}"
     echo "Expected Result: \"${expect}\""
-    real="$(./a.out scenarios/${data[0]} < input.txt 2> /dev/null)"
+    real="$(./a.out scenario scenarios/${data[0]} < input.txt 2> /dev/null)"
     echo "Real Result: \"$real\""
 
     if [ "$real" = "$expect" ]

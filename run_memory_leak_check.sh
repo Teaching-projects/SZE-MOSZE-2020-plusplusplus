@@ -1,7 +1,7 @@
 #!/bin/bash
 
 IFS=$'\n'
-memory_leak_check_cmd="$(valgrind --leak-check=yes --log-file=memory_leak_check.txt ./a.out scenarios/scenario1.json < input.txt)"
+memory_leak_check_cmd="$(valgrind --leak-check=yes --log-file=memory_leak_check.txt ./a.out scenario scenarios/scenario1.json < input.txt)"
 memory_leak_check_result="$(cat ./memory_leak_check.txt)"
 echo $memory_leak_check_result
 detected_errors="$(echo $memory_leak_check_result | sed 's/^.*ERROR SUMMARY: \([0-9]*\) errors.*$/\1/')"

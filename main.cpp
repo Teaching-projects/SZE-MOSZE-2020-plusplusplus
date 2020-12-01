@@ -11,8 +11,6 @@
  *
  * For: MOSZE - GKNB_INTM006
  * 
- * The code below is included from "refactor_revised_20201129" main.cpp
- * Updated with json array parsing
 */
 #include <iostream>
 #include <map>
@@ -28,12 +26,25 @@
 #include "Monster.h"
 #include "Map.h"
 #include "Game.h"
+#include "PreparedGame.h"
 
 const std::map<int, std::string> error_messages = {
-    {1, "Bad number of arguments. Only a single scenario file should be provided."},
-    {2, "The provided scenario file is not accessible."},
-    {3, "The provided scenario file is invalid."},
-    {4, "JSON parsing error."}};
+    {1, "Bad number of arguments. Operation mode and data file should be provided."},
+    {2, "The provided mode is invalid (scenario / prepare)"},
+    {3, "The provided data file is not accessible."},
+    {4, "The provided data file is invalid."},
+    {5, "JSON parsing error."}};
+
+enum mode
+{
+    Scenario,
+    Prepare
+};
+
+const std::map<std::string, mode> modes = {
+    {"scenario", mode::Scenario},
+    {"prepare", mode::Prepare},
+};
 
 void bad_exit(int exitcode)
 {
@@ -43,20 +54,16 @@ void bad_exit(int exitcode)
     exit(exitcode);
 }
 
-int main(int argc, char **argv)
+void scenarioMode(std::string scenarioFile)
 {
-    if (argc != 2)
-        bad_exit(1);
-    if (!std::filesystem::exists(argv[1]))
-        bad_exit(2);
-
     std::string hero_file;
     std::list<std::string> monster_files;
+
     try
     {
-        JSON scenario = JSON::parseFromFile(argv[1]);
+        JSON scenario = JSON::parseFromFile(scenarioFile);
         if (!(scenario.count("hero") && scenario.count("monsters")))
-            bad_exit(3);
+            bad_exit(4);
         else
         {
             hero_file = scenario.get<std::string>("hero");
@@ -67,7 +74,7 @@ int main(int argc, char **argv)
     }
     catch (const JSON::ParseException &e)
     {
-        bad_exit(4);
+        bad_exit(5);
     }
 
     try
@@ -91,13 +98,48 @@ int main(int argc, char **argv)
 
         // Put a Monster to the gameboard
         game.putMonster(monsters.front(), 4, 0);
+        monsters.pop_front();
+        monsters.pop_front();
+        game.putMonster(monsters.front(), 3, 0);
 
         // Start the game
         game.run();
     }
     catch (const JSON::ParseException &e)
     {
-        bad_exit(4);
+        bad_exit(5);
     }
+}
+
+int main(int argc, char **argv)
+{
+    if (argc != 3)
+    {
+        bad_exit(1);
+    }
+
+    if (!modes.count(argv[1]))
+    {
+        bad_exit(2);
+    }
+
+    if (!std::filesystem::exists(argv[2]))
+    {
+        bad_exit(3);
+    }
+
+    switch (modes.at(argv[1]))
+    {
+    case mode::Scenario:
+        scenarioMode(argv[2]);
+        break;
+
+    case mode::Prepare:
+        PreparedGame game(argv[2]);
+
+        game.run();
+        break;
+    }
+
     return 0;
 }

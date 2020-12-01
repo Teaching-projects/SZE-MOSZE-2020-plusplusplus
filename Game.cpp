@@ -32,7 +32,7 @@ void Game::setMap(const Map &map)
 	this->map = new Map(map);
 }
 
-void Game::putHero(Hero &hero, const int x, const int y)
+void Game::putHero(const Hero &hero, const int x, const int y)
 {
 	// Check the availability of the field located at the provided location
 	checkFieldAvailability(x, y);
@@ -47,18 +47,18 @@ void Game::putHero(Hero &hero, const int x, const int y)
 	}
 	else
 	{
-		this->hero = &hero;
+		this->hero = new Hero(hero);
 		this->hero->setLocation(Location(x, y));
 	}
 }
 
-void Game::putMonster(Monster &monster, const int x, const int y)
+void Game::putMonster(Monster monster, const int x, const int y)
 {
 	// Check the availability of the field located at the provided location
 	checkFieldAvailability(x, y);
 
 	monster.setLocation(Location(x, y));
-	monsters.push_back(monster);
+	monsters.emplace_back(monster);
 }
 
 void Game::removeHero()
@@ -71,7 +71,7 @@ void Game::removeHero()
 
 void Game::removeFallenMonsters()
 {
-	this->monsters.remove_if([](Monster &monster) { return !monster.isAlive(); });
+	this->monsters.remove_if([](const Monster &monster) { return !monster.isAlive(); });
 }
 
 void Game::checkFieldAvailability(const int x, const int y) const

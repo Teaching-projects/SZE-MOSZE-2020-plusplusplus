@@ -1,3 +1,5 @@
+#pragma once
+
 #include <iostream>
 #include <list>
 #include <map>
@@ -211,7 +213,7 @@ public:
 	 * @throw Game::AlreadyHasHeroException When there is another Hero on the map.
 	 * @throw Game::GameAlreadyStartedException When the game has started.
 	 */
-	void putHero(Hero &hero, const int x, const int y);
+	void putHero(const Hero &hero, const int x, const int y);
 
 	/**
 	 * Put Monster to the map.
@@ -221,7 +223,7 @@ public:
 	 * @throw Map::WrongIndexException When the provided position of the Monster is a not existing one or no map is set.
 	 * @throw Game::OccupiedException When the provided position of the Monster is a Wall block.
 	  */
-	void putMonster(Monster &monster, const int x, const int y);
+	void putMonster(Monster monster, const int x, const int y);
 
 	/**
 	 * Remove the hero from the map and from the game.
