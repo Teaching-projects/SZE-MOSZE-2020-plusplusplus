@@ -1,5 +1,20 @@
 #pragma once
 
+/**
+ * @class Location 
+ * 
+ * @brief It defines a simple 2d location object.
+ * 
+ * 
+ * @author +++ Team
+ * 
+ * @version 1.0
+ * 
+ * @date 2020-12-01
+ * 
+ * Created on: 2020-11-28
+ * 
+*/
 class Location
 {
 public:
