@@ -185,7 +185,10 @@ public:
 		if (this->map != nullptr)
 		{
 			delete this->map;
-			this->map = nullptr;
+		}
+		if (this->hero != nullptr)
+		{
+			delete this->hero;
 		}
 	};
 
