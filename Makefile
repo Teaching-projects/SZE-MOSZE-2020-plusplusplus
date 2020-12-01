@@ -12,7 +12,7 @@ build: $(OBJS)
 	$(CC) $(CFLAGS) -o $(OUT) $(OBJS)
 
 run: ./$(OUT)
-	./$(OUT) scenario $(SCENARIO)
+	./$(OUT) $(MODE) $(FILE)
 
 Unit.o: Unit.cpp Unit.h Damage.h
 	$(CC) $(CFLAGS) -c Unit.cpp
