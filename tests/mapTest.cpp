@@ -94,6 +94,6 @@ TEST(MapTest, MarkedMapGetMonsters)
 
     auto locs2 = map.getMonsterPositions('2');
     ASSERT_EQ(locs2[0], Location(6, 2));
-    ASSERT_EQ(locs2[1], Location(7, 2));
-    ASSERT_EQ(locs2[2], Location(3, 3));
+    ASSERT_EQ(locs2[1], Location(3, 3));
+    ASSERT_EQ(locs2[2], Location(6, 3));
 }
