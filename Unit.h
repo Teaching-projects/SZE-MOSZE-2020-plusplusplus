@@ -126,7 +126,7 @@ private:
     * Light radius.
     * Visual range of Hero.
     */
-    unsigned int lightRadius;
+    unsigned int lightRadius = 3;
 
     /**
      * Light radius bonus per level.

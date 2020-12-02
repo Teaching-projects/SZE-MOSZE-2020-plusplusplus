@@ -28,7 +28,7 @@ public:
      * 
      * @param file prepare data file
      */
-    PreparedGame(const std::string &file);
+    explicit PreparedGame(const std::string &file);
 
     /**
      * Run the game, in loop
