@@ -62,8 +62,7 @@ void Game::putMonster(Monster &monster, const int x, const int y)
 
 void Game::removeHero()
 {
-	if (this->hero != nullptr)
-		this->hero = nullptr;
+	this->hero = nullptr;
 }
 
 void Game::removeFallenMonsters()

@@ -77,27 +77,27 @@ int main(int argc, char **argv)
         for (const auto &monster_file : monster_files)
             monsters.push_back(Monster::parse(monster_file));
 
-		// Create map from file
-		Map map("maps/map1.txt");
+        // Create map from file
+        Map map("maps/map1.txt");
 
-		// Create the empty game
-		Game game;
+        // Create the empty game
+        Game game;
 
-		// Set map for the game
-		game.setMap(map);
+        // Set map for the game
+        game.setMap(map);
 
-		// Put the Hero to the gameboard
-		game.putHero(hero, 1, 0);
+        // Put the Hero to the gameboard
+        game.putHero(hero, 1, 0);
 
-		// Put a Monster to the gameboard
-		game.putMonster(monsters.front(), 4, 0);
+        // Put a Monster to the gameboard
+        game.putMonster(monsters.front(), 4, 0);
 
-		// Start the game
-		game.run();
-	}
-	catch (const JSON::ParseException &e)
-	{
-		bad_exit(4);
-	}
-	return 0;
+        // Start the game
+        game.run();
+    }
+    catch (const JSON::ParseException &e)
+    {
+        bad_exit(4);
+    }
+    return 0;
 }

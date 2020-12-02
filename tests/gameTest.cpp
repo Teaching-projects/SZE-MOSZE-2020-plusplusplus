@@ -9,8 +9,11 @@ TEST(GameTest, SetMap)
 {
     // Map and Units
     Map map("../maps/map1.txt");
-    Hero h1("H1", 201, 11, 0.1, 10, 20, 10, 0.2);
-    Monster m1("M1", 201, 11, 0.1);
+    Damage dmg;
+    dmg.physical = 11;
+    dmg.magical = 2;
+    Hero h1("H1", 201, dmg, 0.1, 10, 20, 10, 2, 0.2, 1, 1);
+    Monster m1("M1", 201, dmg, 0.1, 1);
 
     // Empty game
     Game g1;
@@ -56,7 +59,10 @@ TEST(GameTest, PutHero)
     // Map and Hero
     std::string mapString = "../maps/map1.txt";
     Map map(mapString);
-    Hero h1("H1", 201, 11, 0.1, 10, 20, 10, 0.2);
+    Damage dmg;
+    dmg.physical = 11;
+    dmg.magical = 2;
+    Hero h1("H1", 201, dmg, 0.1, 10, 20, 10, 2, 0.2, 1, 1);
 
     // Empty game
     Game g1;
@@ -90,7 +96,10 @@ TEST(GameTest, PutMonster)
     // Map and Monster
     std::string mapString = "../maps/map1.txt";
     Map map(mapString);
-    Monster m1("M1", 201, 11, 0.1);
+    Damage dmg;
+    dmg.physical = 11;
+    dmg.magical = 2;
+    Monster m1("M1", 201, dmg, 0.1, 1);
 
     // Game with map
     Game g1(mapString);
@@ -109,7 +118,10 @@ TEST(GameTest, CheckFieldAvailability)
     // Map and Monster
     std::string mapString = "../maps/map1.txt";
     Map map(mapString);
-    Monster m1("M1", 201, 11, 0.1);
+    Damage dmg;
+    dmg.physical = 11;
+    dmg.magical = 2;
+    Monster m1("M1", 201, dmg, 0.1, 1);
 
     // Game with map
     Game g1(mapString);
