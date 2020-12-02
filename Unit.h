@@ -122,6 +122,18 @@ private:
      */
     unsigned int defenseBonusPerLevel = DEFENSE_BONUS;
 
+    /**
+    * Light radius.
+    * Visual range of Hero.
+    */
+    unsigned int lightRadius;
+
+    /**
+     * Light radius bonus per level.
+     * Default is 1.
+     */
+    unsigned int lightRadiusBonusPerLevel = 1;
+
 protected:
     /**
      * The unit hit an other unit.
@@ -204,8 +216,10 @@ public:
      * @param cooldownMultiplier Multiplier for cooldown on levelup.
      * @param defense Defense of the character.
      * @param defenseBonusPerLevel The extra defense added per levelups.
+     * @param lightRadius Light radius of Hero.
+     * @param lightRadiusBonusPerLevel Addational range on every levels.
      */
-    Unit(const std::string &name, unsigned int maxHp, Damage damage, double attackCooldown, unsigned int xpPerLevel, unsigned int healthBonusPerLevel, unsigned int damageBonusPerLevel, unsigned int magicalDamageBonusPerLevel, double cooldownMultiplier, unsigned int defense, unsigned int defenseBonusPerLevel) : name(name), maxHp(maxHp), hp(maxHp), damage(damage), attackCooldown(attackCooldown), nextAttack(attackCooldown), xpPerLevel(xpPerLevel), healthBonusPerLevel(healthBonusPerLevel), damageBonusPerLevel(damageBonusPerLevel), magicalDamageBonusPerLevel(magicalDamageBonusPerLevel), cooldownMultiplier(cooldownMultiplier), defense(defense), defenseBonusPerLevel(defenseBonusPerLevel){};
+    Unit(const std::string &name, unsigned int maxHp, Damage damage, double attackCooldown, unsigned int xpPerLevel, unsigned int healthBonusPerLevel, unsigned int damageBonusPerLevel, unsigned int magicalDamageBonusPerLevel, double cooldownMultiplier, unsigned int defense, unsigned int defenseBonusPerLevel, unsigned int lightRadius, unsigned int lightRadiusBonusPerLevel) : name(name), maxHp(maxHp), hp(maxHp), damage(damage), attackCooldown(attackCooldown), nextAttack(attackCooldown), xpPerLevel(xpPerLevel), healthBonusPerLevel(healthBonusPerLevel), damageBonusPerLevel(damageBonusPerLevel), magicalDamageBonusPerLevel(magicalDamageBonusPerLevel), cooldownMultiplier(cooldownMultiplier), defense(defense), defenseBonusPerLevel(defenseBonusPerLevel), lightRadius(lightRadius), lightRadiusBonusPerLevel(lightRadiusBonusPerLevel){};
 
     /**
 	 * Unit destructor.

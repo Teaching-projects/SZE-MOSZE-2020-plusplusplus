@@ -69,6 +69,7 @@ void Unit::levelUp()
     this->damage.increaseDamage(damageBonusPerLevel, magicalDamageBonusPerLevel);
     this->attackCooldown = attackCooldown * cooldownMultiplier;
     this->defense += defenseBonusPerLevel;
+    this->lightRadius += lightRadiusBonusPerLevel;
 }
 
 void Unit::print(std::ostream &stream) const
