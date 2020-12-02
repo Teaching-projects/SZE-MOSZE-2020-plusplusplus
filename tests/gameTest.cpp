@@ -12,7 +12,7 @@ TEST(GameTest, SetMap)
     Damage dmg;
     dmg.physical = 11;
     dmg.magical = 2;
-    Hero h1("H1", 201, dmg, 0.1, 10, 20, 10, 2, 0.2, 1, 1);
+    Hero h1("H1", 201, dmg, 0.1, 10, 20, 10, 2, 0.2, 1, 1, 3, 1);
     Monster m1("M1", 201, dmg, 0.1, 1);
 
     // Empty game
@@ -62,7 +62,7 @@ TEST(GameTest, PutHero)
     Damage dmg;
     dmg.physical = 11;
     dmg.magical = 2;
-    Hero h1("H1", 201, dmg, 0.1, 10, 20, 10, 2, 0.2, 1, 1);
+    Hero h1("H1", 201, dmg, 0.1, 10, 20, 10, 2, 0.2, 1, 1, 3, 1);
 
     // Empty game
     Game g1;
