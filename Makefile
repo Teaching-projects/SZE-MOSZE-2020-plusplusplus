@@ -1,6 +1,6 @@
 SHELL=/bin/bash
 
-OBJS = JSON.o Unit.o Hero.o Monster.o main.o
+OBJS = JSON.o Unit.o Hero.o Monster.o Map.o Game.o main.o
 OUT = a.out
 CFLAGS = -Wall -Wextra -std=c++17
 CC = g++-9
@@ -28,7 +28,13 @@ JSON.o: JSON.cpp JSON.h
 
 main.o: main.cpp Hero.h Monster.h JSON.h
 	$(CC) $(CFLAGS) -c main.cpp
-
+	
+Map.o: Map.cpp Map.h
+	$(CC) $(CFLAGS) -c Map.cpp
+	
+Game.o: Game.cpp Game.h Map.h Hero.h Monster.h
+	$(CC) $(CFLAGS) -c Game.cpp
+	
 test:
 	bash -c "./run_all.sh"
 
