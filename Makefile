@@ -60,4 +60,5 @@ unittest:
 	cd tests && ./tests
 	
 clean:
-	rm -rf $(OBJS) $(OUT)
+	rm -rf $(OBJS) $(OUT) code_analysis*.txt memory_leak_*.txt
+	cd tests; make clean
