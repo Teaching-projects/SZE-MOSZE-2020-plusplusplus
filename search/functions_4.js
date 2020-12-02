@@ -1,5 +1,25 @@
 var searchData=
 [
-  ['hero',['Hero',['../classHero.html#a56878ed7ab9adeed136855d30a9cf800',1,'Hero']]],
-  ['hit',['hit',['../classUnit.html#ae56b7f6d4769889bf90772a1b35ab513',1,'Unit']]]
+  ['game',['Game',['../classGame.html#ad59df6562a58a614fda24622d3715b65',1,'Game::Game()'],['../classGame.html#a77dfcde1a12c4d13e6e6e38a149fdb2c',1,'Game::Game(const std::string &amp;mapfilename)'],['../classGame.html#a9a89f5c68680c2e133306d6a3db5043a',1,'Game::Game(const Game &amp;game)']]],
+  ['gamealreadystartedexception',['GameAlreadyStartedException',['../classGame_1_1GameAlreadyStartedException.html#a173b886c1b6d0adf4586974b896859bd',1,'Game::GameAlreadyStartedException']]],
+  ['get',['get',['../classJSON.html#aebfe4eae3134bdc249f9695c6406bdba',1,'JSON']]],
+  ['getattackcooldown',['getAttackCoolDown',['../classUnit.html#a5ba9ff456bd52cff5e94ddc159b376a1',1,'Unit']]],
+  ['getdamage',['getDamage',['../classUnit.html#a83bf3fcbd94e455174cbfa2f59dcc109',1,'Unit']]],
+  ['getdefense',['getDefense',['../classUnit.html#aff88cbfd1955570f934e118b5653073b',1,'Unit']]],
+  ['getfield',['getField',['../classMap.html#aea456ecc2d2be70957a2a1c1ad8a310f',1,'Map']]],
+  ['getfields',['getFields',['../classMap.html#a6114b01e68ff67882c20e24136ff37e1',1,'Map']]],
+  ['getfieldtype',['getFieldType',['../classMap.html#ad85ebc5b5e3ce02048aada146bd706f6',1,'Map::getFieldType(const int x, const int y) const'],['../classMap.html#a34027d5574a13648d61e0a87367e9700',1,'Map::getFieldType(const char &amp;value) const']]],
+  ['gethealthpoints',['getHealthPoints',['../classUnit.html#a791e8df8ff388e9b686d4708ddcc21bf',1,'Unit']]],
+  ['getheight',['getHeight',['../classMap.html#a67113f1ffac80d9a20b15fa18a58edc2',1,'Map']]],
+  ['getlevel',['getLevel',['../classUnit.html#a5f51a098db7b75815629f906cbf3f6ed',1,'Unit']]],
+  ['getlocation',['getLocation',['../classUnit.html#a2c5540ac106e71d63362734a2737308c',1,'Unit']]],
+  ['getmaxhealthpoints',['getMaxHealthPoints',['../classUnit.html#a543de207d43d3e4d851ea0abb56a90c0',1,'Unit']]],
+  ['getname',['getName',['../classUnit.html#aa07c9e071e7ba300f13077c743169929',1,'Unit']]],
+  ['getnextattack',['getNextAttack',['../classUnit.html#a271e9aab46b9f2443a59ce0217f88577',1,'Unit']]],
+  ['getnextattacker',['getNextAttacker',['../classUnit.html#aa7ede7a18be12e1ab1448df0f63cd022',1,'Unit']]],
+  ['getorelse',['getOrElse',['../classJSON.html#a24f3201c4a1a8b77b4af648c051138cd',1,'JSON']]],
+  ['getwidth',['getWidth',['../classMap.html#ab3181204ba96eb15b96ee1ced85e198e',1,'Map']]],
+  ['getx',['getX',['../classUnit.html#ac6f32dbdb00857d57546ece5d72fea13',1,'Unit']]],
+  ['getxp',['getXP',['../classUnit.html#ac85ce91baf7e90013d5d6d36ee90e9cc',1,'Unit']]],
+  ['gety',['getY',['../classUnit.html#af4aafe262d1246adbefeb87a7d7debf8',1,'Unit']]]
 ];
