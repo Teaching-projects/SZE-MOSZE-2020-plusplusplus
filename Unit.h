@@ -375,4 +375,13 @@ public:
         this->location.y = y;
         return *this;
     }
+
+    /**
+     * Get unit's light radius range.
+     * @return Light radius.
+     */
+    unsigned int getLightRadius() const
+    {
+        return lightRadius;
+    };
 };

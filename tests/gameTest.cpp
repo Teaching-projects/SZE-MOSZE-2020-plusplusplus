@@ -136,7 +136,7 @@ TEST(GameTest, CheckFieldAvailability)
     ASSERT_NO_THROW(g1.checkFieldAvailability(2, 0));
 }
 
-TEST(UnitTest, PrintGameBoard)
+TEST(GameTest, PrintGameBoard)
 {
     Game g1("../maps/map1.txt");
     std::string expect1("\n╔════════════════════════════╗\n║██░░░░░░░░░░░░░░████░░░░████║\n║██░░░░████░░░░░░░░██████░░░░║\n║████░░░░██░░░░░░██░░░░██░░░░║\n║██████░░░░░░░░░░░░░░██░░░░░░║\n║████░░░░░░░░░░░░░░░░░░██░░░░║\n╚════════════════════════════╝\n");

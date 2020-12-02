@@ -70,6 +70,17 @@ private:
 	};
 
 	/**
+	 * Enum type for light range corner detection.
+	 */
+	enum CornerType
+	{
+		TOP_LEFT_CORNER,
+		TOP_RIGHT_CORNER,
+		BOTTOM_LEFT_CORNER,
+		BOTTOM_RIGHT_CORNER
+	};
+
+	/**
 	 * Type definition for the mapped Directions.
 	 */
 	typedef std::map<std::string, Direction> directionKeyMap;
@@ -131,6 +142,14 @@ private:
 	 * @return Count of the Monster(s) located at the actual field.
 	 */
 	unsigned int getMonsterCountInField(const int x, const int y) const;
+
+	/**
+	 * Get corner location for corner type.
+	 * @param ct Corner type.
+	 * @param mapCorner Get corners for the full map.
+	 * @return Location of the corner.
+	 */
+	Location getCorner(CornerType ct, bool mapCorner) const;
 
 public:
 	/**
