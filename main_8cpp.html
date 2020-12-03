@@ -61,6 +61,7 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a> &#124;
 <a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
@@ -83,26 +84,40 @@ $(function() {
 <code>#include &quot;Monster.h&quot;</code><br />
 <code>#include &quot;Map.h&quot;</code><br />
 <code>#include &quot;Game.h&quot;</code><br />
+<code>#include &quot;PreparedGame.h&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for main.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="main_8cpp__incl.png" border="0" usemap="#main_8cpp" alt=""/></div>
 <map name="main_8cpp" id="main_8cpp">
-<area shape="rect" id="node10" href="JSON_8h_source.html" title="JSON.h" alt="" coords="57,80,124,107"/>
-<area shape="rect" id="node13" href="Hero_8h_source.html" title="Hero.h" alt="" coords="601,155,666,181"/>
-<area shape="rect" id="node16" href="Monster_8h_source.html" title="Monster.h" alt="" coords="691,155,776,181"/>
-<area shape="rect" id="node17" href="Map_8h_source.html" title="Map.h" alt="" coords="851,155,912,181"/>
-<area shape="rect" id="node19" href="Game_8h_source.html" title="Game.h" alt="" coords="719,80,793,107"/>
-<area shape="rect" id="node14" href="Damage_8h_source.html" title="Damage.h" alt="" coords="654,304,743,331"/>
-<area shape="rect" id="node15" href="Unit_8h_source.html" title="Unit.h" alt="" coords="649,229,711,256"/>
+<area shape="rect" id="node10" href="JSON_8h_source.html" title="JSON.h" alt="" coords="43,155,109,181"/>
+<area shape="rect" id="node13" href="Hero_8h_source.html" title="Hero.h" alt="" coords="665,229,730,256"/>
+<area shape="rect" id="node17" href="Monster_8h_source.html" title="Monster.h" alt="" coords="831,229,916,256"/>
+<area shape="rect" id="node18" href="Map_8h_source.html" title="Map.h" alt="" coords="963,229,1024,256"/>
+<area shape="rect" id="node20" href="Game_8h_source.html" title="Game.h" alt="" coords="725,155,798,181"/>
+<area shape="rect" id="node21" href="PreparedGame_8h_source.html" title="PreparedGame.h" alt="" coords="825,80,956,107"/>
+<area shape="rect" id="node14" href="Damage_8h_source.html" title="Damage.h" alt="" coords="695,379,785,405"/>
+<area shape="rect" id="node15" href="Unit_8h_source.html" title="Unit.h" alt="" coords="724,304,785,331"/>
+<area shape="rect" id="node16" href="Location_8h_source.html" title="Location.h" alt="" coords="861,379,950,405"/>
+<area shape="rect" id="node22" href="MarkedMap_8h_source.html" title="MarkedMap.h" alt="" coords="1031,155,1140,181"/>
 </map>
 </div>
 </div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:a1a6b6fb557d8d37d59700faf4e4c9167"><td class="memItemLeft" align="right" valign="top"><a id="a1a6b6fb557d8d37d59700faf4e4c9167"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>mode</b> { <b>Scenario</b>, 
+<b>Prepare</b>
+ }</td></tr>
+<tr class="separator:a1a6b6fb557d8d37d59700faf4e4c9167"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a1ce890c481f9c234aa8c899acfb8f92b"><td class="memItemLeft" align="right" valign="top"><a id="a1ce890c481f9c234aa8c899acfb8f92b"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>bad_exit</b> (int exitcode)</td></tr>
 <tr class="separator:a1ce890c481f9c234aa8c899acfb8f92b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8927749e2d6a06ea4db38be5fc69eaf"><td class="memItemLeft" align="right" valign="top"><a id="ac8927749e2d6a06ea4db38be5fc69eaf"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>scenarioMode</b> (std::string scenarioFile)</td></tr>
+<tr class="separator:ac8927749e2d6a06ea4db38be5fc69eaf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3c04138a5bfe5d72780bb7e82a18e627"><td class="memItemLeft" align="right" valign="top"><a id="a3c04138a5bfe5d72780bb7e82a18e627"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>main</b> (int argc, char **argv)</td></tr>
 <tr class="separator:a3c04138a5bfe5d72780bb7e82a18e627"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -111,6 +126,8 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>main</b> (int argc, ch
 Variables</h2></td></tr>
 <tr class="memitem:a9ca20cf4b105dec9533e2f85921a1373"><td class="memItemLeft" align="right" valign="top">const std::map&lt; int, std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>error_messages</b></td></tr>
 <tr class="separator:a9ca20cf4b105dec9533e2f85921a1373"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5512d0bd37ad2b6dc020a3adbb8d6539"><td class="memItemLeft" align="right" valign="top">const std::map&lt; std::string, mode &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>modes</b></td></tr>
+<tr class="separator:a5512d0bd37ad2b6dc020a3adbb8d6539"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This file contains the 'main' function. Program execution begins and ends there. </p>
@@ -120,8 +137,7 @@ Variables</h2></td></tr>
 <li>Karcag Tamás</li>
 </ul>
 </dd></dl>
-<p>For: MOSZE - GKNB_INTM006</p>
-<p>The code below is included from "refactor_revised_20201129" <a class="el" href="main_8cpp.html" title="This file contains the &#39;main&#39; function. Program execution begins and ends there. ">main.cpp</a> Updated with json array parsing </p>
+<p>For: MOSZE - GKNB_INTM006 </p>
 </div><h2 class="groupheader">Variable Documentation</h2>
 <a id="a9ca20cf4b105dec9533e2f85921a1373"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9ca20cf4b105dec9533e2f85921a1373">&#9670;&nbsp;</a></span>error_messages</h2>
@@ -134,7 +150,21 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">= {</div><div class="line">    {1, <span class="stringliteral">&quot;Bad number of arguments. Only a single scenario file should be provided.&quot;</span>},</div><div class="line">    {2, <span class="stringliteral">&quot;The provided scenario file is not accessible.&quot;</span>},</div><div class="line">    {3, <span class="stringliteral">&quot;The provided scenario file is invalid.&quot;</span>},</div><div class="line">    {4, <span class="stringliteral">&quot;JSON parsing error.&quot;</span>}}</div></div><!-- fragment -->
+<b>Initial value:</b><div class="fragment"><div class="line">= {</div><div class="line">    {1, <span class="stringliteral">&quot;Bad number of arguments. Operation mode and data file should be provided.&quot;</span>},</div><div class="line">    {2, <span class="stringliteral">&quot;The provided mode is invalid (scenario / prepare)&quot;</span>},</div><div class="line">    {3, <span class="stringliteral">&quot;The provided data file is not accessible.&quot;</span>},</div><div class="line">    {4, <span class="stringliteral">&quot;The provided data file is invalid.&quot;</span>},</div><div class="line">    {5, <span class="stringliteral">&quot;JSON parsing error.&quot;</span>}}</div></div><!-- fragment -->
+</div>
+</div>
+<a id="a5512d0bd37ad2b6dc020a3adbb8d6539"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5512d0bd37ad2b6dc020a3adbb8d6539">&#9670;&nbsp;</a></span>modes</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::map&lt;std::string, mode&gt; modes</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">= {</div><div class="line">    {<span class="stringliteral">&quot;scenario&quot;</span>, mode::Scenario},</div><div class="line">    {<span class="stringliteral">&quot;prepare&quot;</span>, mode::Prepare},</div><div class="line">}</div></div><!-- fragment -->
 </div>
 </div>
 </div><!-- contents -->

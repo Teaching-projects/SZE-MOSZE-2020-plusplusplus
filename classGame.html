@@ -74,6 +74,14 @@ $(function() {
  <a href="classGame.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="Game_8h_source.html">Game.h</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for Game:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGame__inherit__graph.png" border="0" usemap="#Game_inherit__map" alt="Inheritance graph"/></div>
+<map name="Game_inherit__map" id="Game_inherit__map">
+<area shape="rect" id="node2" href="classPreparedGame.html" title="It defines an extended Game, loading a prepared game definition, with MarkedMap. " alt="" coords="5,80,124,107"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
@@ -113,10 +121,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aa7f118866df80763df991ca94af87373"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2da2d4e53f7b25a9763b45ce3439628a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGame.html#a2da2d4e53f7b25a9763b45ce3439628a">setMap</a> (const <a class="el" href="classMap.html">Map</a> &amp;map)</td></tr>
 <tr class="separator:a2da2d4e53f7b25a9763b45ce3439628a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac6cb6510f6d49d108065184a5036264b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGame.html#ac6cb6510f6d49d108065184a5036264b">putHero</a> (<a class="el" href="classHero.html">Hero</a> &amp;hero, const int x, const int y)</td></tr>
-<tr class="separator:ac6cb6510f6d49d108065184a5036264b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3cf1110bfb7d49634e9eff2eb4f43e5d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGame.html#a3cf1110bfb7d49634e9eff2eb4f43e5d">putMonster</a> (<a class="el" href="classMonster.html">Monster</a> &amp;monster, const int x, const int y)</td></tr>
-<tr class="separator:a3cf1110bfb7d49634e9eff2eb4f43e5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae5e721efdd9401f6eb80ec165f85ff28"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGame.html#ae5e721efdd9401f6eb80ec165f85ff28">putHero</a> (const <a class="el" href="classHero.html">Hero</a> &amp;hero, const int x, const int y)</td></tr>
+<tr class="separator:ae5e721efdd9401f6eb80ec165f85ff28"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf83570bd63a29beb9819a9bd2f1e075"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGame.html#abf83570bd63a29beb9819a9bd2f1e075">putMonster</a> (<a class="el" href="classMonster.html">Monster</a> monster, const int x, const int y)</td></tr>
+<tr class="separator:abf83570bd63a29beb9819a9bd2f1e075"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1150293628cda2f0d8b54fb37e8d9a7f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGame.html#a1150293628cda2f0d8b54fb37e8d9a7f">removeHero</a> ()</td></tr>
 <tr class="separator:a1150293628cda2f0d8b54fb37e8d9a7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae7ba2a4f4f9b02fa70fd34d139081d67"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGame.html#ae7ba2a4f4f9b02fa70fd34d139081d67">removeFallenMonsters</a> ()</td></tr>
@@ -414,8 +422,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ac6cb6510f6d49d108065184a5036264b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac6cb6510f6d49d108065184a5036264b">&#9670;&nbsp;</a></span>putHero()</h2>
+<a id="ae5e721efdd9401f6eb80ec165f85ff28"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae5e721efdd9401f6eb80ec165f85ff28">&#9670;&nbsp;</a></span>putHero()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -423,7 +431,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">void Game::putHero </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classHero.html">Hero</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classHero.html">Hero</a> &amp;&#160;</td>
           <td class="paramname"><em>hero</em>, </td>
         </tr>
         <tr>
@@ -465,8 +473,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a3cf1110bfb7d49634e9eff2eb4f43e5d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3cf1110bfb7d49634e9eff2eb4f43e5d">&#9670;&nbsp;</a></span>putMonster()</h2>
+<a id="abf83570bd63a29beb9819a9bd2f1e075"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abf83570bd63a29beb9819a9bd2f1e075">&#9670;&nbsp;</a></span>putMonster()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -474,7 +482,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">void Game::putMonster </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classMonster.html">Monster</a> &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="classMonster.html">Monster</a>&#160;</td>
           <td class="paramname"><em>monster</em>, </td>
         </tr>
         <tr>

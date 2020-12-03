@@ -83,7 +83,11 @@ $(function() {
 <ul>
 <li><code>make</code>:<ul>
 <li><code>build</code>: Builds the application (./a.out) (<em>default target</em>)</li>
-<li><code>run</code>: Executes the built binary (You should add the file parameters as <code>UNIT1</code> and <code>UNIT2</code> named arguments)</li>
+<li><code>run</code>: Executes the built binary (You should add the <code>MODE</code> and <code>FILE</code> parameters)<ul>
+<li><code>make run MODE=scenario FILE=scenarios/scenario1.json</code></li>
+<li><code>make run MODE=prepare FILE=prepare/prepare1.json</code></li>
+</ul>
+</li>
 <li><code>test</code>: Run all tests</li>
 <li><code>unittest</code>: Run unit tests</li>
 <li><code>documentation</code>: Generate the documentation</li>
@@ -93,9 +97,10 @@ $(function() {
 </ul>
 </li>
 </ul>
-<p>Compiled application should be called with <b>1</b> parameter, what is pointing to a <code>json</code> file with a scenario.</p>
+<p>Compiled application should be called with <b>2</b> parameters, first a game mode (<em>scenario</em> or <em>prepare</em>), and a data file pointing to a <code>json</code> file with a scenario or a prepared scene.</p>
 <p>This scenario is describing a hero object and his/her enemies (<em>monsters</em>) object.</p>
-<div class="fragment"><div class="line">{</div><div class="line">  &quot;hero&quot;: &quot;path/to/hero.json&quot;,</div><div class="line">  &quot;monsters&quot;: [</div><div class="line">    &quot;path/to/monster1.json&quot;,</div><div class="line">    &quot;path/to/monster2.json&quot;,</div><div class="line">    &quot;path/to/monster3.json&quot;</div><div class="line">  ]</div><div class="line">}</div></div><!-- fragment --><p>The <code>hero</code> object is containing a path to the hero's <code>json</code> object what is containing all data for the hero.</p>
+<div class="fragment"><div class="line">{</div><div class="line">  &quot;hero&quot;: &quot;path/to/hero.json&quot;,</div><div class="line">  &quot;monsters&quot;: [</div><div class="line">    &quot;path/to/monster1.json&quot;,</div><div class="line">    &quot;path/to/monster2.json&quot;,</div><div class="line">    &quot;path/to/monster3.json&quot;</div><div class="line">  ]</div><div class="line">}</div></div><!-- fragment --><p>The prepared file also includes a map and the monsters can be numbered, the map here can be also marked.</p>
+<div class="fragment"><div class="line">{</div><div class="line">  &quot;map&quot;: &quot;maps/map2.txt&quot;,</div><div class="line">  &quot;hero&quot;: &quot;units/Dark_Wanderer.json&quot;,</div><div class="line">  &quot;monster-1&quot;: &quot;units/Fallen.json&quot;,</div><div class="line">  &quot;monster-2&quot;: &quot;units/Zombie.json&quot;,</div><div class="line">  &quot;monster-3&quot;: &quot;units/Blood_Raven.json&quot;</div><div class="line">}</div></div><!-- fragment --><p>The <code>hero</code> object is containing a path to the hero's <code>json</code> object what is containing all data for the hero.</p>
 <p>Data:</p>
 <ul>
 <li>Name (<em>name</em>)</li>
@@ -121,15 +126,20 @@ $(function() {
 <li>Attack cooldown - <b>CD</b> (<em>attack_cooldown</em>)</li>
 <li>Defense - <b>DEF</b> (<em>defense</em>)</li>
 </ul>
-<div class="fragment"><div class="line">{</div><div class="line">  &quot;name&quot;: &quot;Monster&quot;,</div><div class="line">  &quot;health_points&quot;: 100,</div><div class="line">  &quot;damage&quot;: 10,</div><div class="line">  &quot;magical_damage&quot;: 9,</div><div class="line">  &quot;attack_cooldown&quot;: 12.3,</div><div class="line">  &quot;defense&quot;: 7</div><div class="line">}</div></div><!-- fragment --><p>Example command: <code>./a.out scenarios/scenario1.json</code></p>
+<div class="fragment"><div class="line">{</div><div class="line">  &quot;name&quot;: &quot;Monster&quot;,</div><div class="line">  &quot;health_points&quot;: 100,</div><div class="line">  &quot;damage&quot;: 10,</div><div class="line">  &quot;magical_damage&quot;: 9,</div><div class="line">  &quot;attack_cooldown&quot;: 12.3,</div><div class="line">  &quot;defense&quot;: 7</div><div class="line">}</div></div><!-- fragment --><p>Example command: <code>./a.out scenario scenarios/scenario1.json</code></p>
 <p>All predefined scenario for the testing can be foind in the <code>scenarios</code> folder. All predefined hero/monster for testing can be found in the <code>units</code> folder.</p>
-<p>The program read in the given <code>scenario</code> and read in the defined <code>hero</code> and <code>monster</code>. The hero start fight with each monster until death. If the hero can kill every monster without death, he will be the winner. If he dies, the game is over.</p>
+<p>A <a class="el" href="classMap.html">Map</a> with the extra ability to define the hero and monster positions. Monsters are marked with numbers (0-9) and the hero will be in the <code>H</code> position.</p>
+<div class="fragment"><div class="line">##############</div><div class="line"># H #  ####  #</div><div class="line"># ####22##  #</div><div class="line"># 12# 3##  #</div><div class="line">###1# ##  #</div><div class="line">#     1   #</div><div class="line">#########</div></div><!-- fragment --><ul>
+<li>Scenario: Only hero and a list of monsters can be given. <a class="el" href="classMap.html">Map</a> and positions are hardcoded.</li>
+<li>Prepare: <a class="el" href="classMap.html">Map</a> can be selected and it can contain the position definitions <b>[Recommended mode]</b>.</li>
+</ul>
+<p>The program read in the given <code>scenario</code> and read in the defined <code>hero</code> and <code>monster</code>. The user can navigate through the map using the right keywords, displayed in first round. The hero start fight with each monster until death, if they step on the same field. If the hero can kill every monster without death, he will be the winner. If he dies, the game is over.</p>
 <p>Every player has a attack cooldown what is defining the time between two hit.</p>
 <p>Every player is gaining <b>XP</b> (<em>experience points</em>) after each hit. The gained <b>XP</b> is equal with the dealed damage.</p>
 <p>Every unit is hit the other with his <b>DMG</b> and <b>MAGICAL DMG</b> amount, but the attacked unit has possiblity to decrease the <b>DMG</b> amount with his <b>DEF</b> points.</p>
 <p>After an X amount of <b>XP</b> the character is leveling up. The new level will give him more base <b>HP</b>, <b>DMG</b>, <b>MAGICAL DMG</b> refill the his/her current <b>HP</b> to maximum and reduce the <b>CD</b>.</p>
 <p>Using the predefined main function the <code><a class="el" href="classHero.html" title="It defines a RPG attacker Hero. ">Hero</a></code> class handles the logic, using the <code>Json</code> class for file parsing.</p>
-<p>The program prints to the output, that the hero is won or not.</p>
+<p>The program prints to the output, whether the hero won or not.</p>
 <p>We use a <em>bit</em> complex regex matcher to find all key/value pairs. It is looping until it finds new pairs and returns error if more data exists beyond that point. It also parses json arrays with a separate regex matcher, and its values are parsed the same way the normal values (string, int, double).</p>
 <p>3 types of parameters can be used with the parse:</p>
 <ul>

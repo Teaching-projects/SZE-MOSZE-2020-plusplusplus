@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['y',['y',['../classUnit_1_1Location.html#a6a53ed94c125d1c27d63cf7dde68e98f',1,'Unit::Location']]]
+  ['y',['y',['../classLocation.html#a307809776b981810147af56d9304e273',1,'Location']]]
 ];

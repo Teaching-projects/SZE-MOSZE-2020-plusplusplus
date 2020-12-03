@@ -1,3 +1,4 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
 <area shape="rect" id="node1" href="$classGame.html" title="It defines a Game board. " alt="" coords="5,5,67,32"/>
+<area shape="rect" id="node2" href="$classPreparedGame.html" title="It defines an extended Game, loading a prepared game definition, with MarkedMap. " alt="" coords="115,5,233,32"/>
 </map>
