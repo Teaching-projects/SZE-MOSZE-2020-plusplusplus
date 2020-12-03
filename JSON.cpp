@@ -26,7 +26,7 @@ JSON JSON::parseFromStream(std::istream &stream)
 JSON JSON::parse(const std::string &input)
 {
     //                                              key                 int     double       string                 array            jsonend
-    static const std::regex jsonParseRegex("\\s*\"([a-z_]*)\"\\s*:\\s*([0-9]*\\.?[0-9]+|\"[\\w\\s\\.\\/]+\")?(\\[([\\S\\s]*)\\])?\\s*([,}])\\s*");
+    static const std::regex jsonParseRegex("\\s*\"([a-z\\_\\-0-9]*)\"\\s*:\\s*([0-9]*\\.?[0-9]+|\"[\\w\\s\\.\\/]+\")?(\\[([\\S\\s]*)\\])?\\s*([,}])\\s*");
 
     bool foundLast = false;
     std::string worker(input);

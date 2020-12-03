@@ -22,7 +22,9 @@
 - `make`:
 
   - `build`: Builds the application (./a.out) (_default target_)
-  - `run`: Executes the built binary (You should add the file parameters as `UNIT1` and `UNIT2` named arguments)
+  - `run`: Executes the built binary (You should add the `MODE` and `FILE` parameters)
+    - `make run MODE=scenario FILE=scenarios/scenario1.json`
+    - `make run MODE=prepare FILE=prepare/prepare1.json`
   - `test`: Run all tests
   - `unittest`: Run unit tests
   - `documentation`: Generate the documentation
@@ -34,7 +36,7 @@
 
 #### Inputs:
 
-Compiled application should be called with **1** parameter, what is pointing to a `json` file with a scenario.
+Compiled application should be called with **2** parameters, first a game mode (_scenario_ or _prepare_), and a data file pointing to a `json` file with a scenario or a prepared scene.
 
 This scenario is describing a hero object and his/her enemies (_monsters_) object.
 
@@ -46,6 +48,18 @@ This scenario is describing a hero object and his/her enemies (_monsters_) objec
     "path/to/monster2.json",
     "path/to/monster3.json"
   ]
+}
+```
+
+The prepared file also includes a map and the monsters can be numbered, the map here can be also marked.
+
+```json
+{
+  "map": "maps/map2.txt",
+  "hero": "units/Dark_Wanderer.json",
+  "monster-1": "units/Fallen.json",
+  "monster-2": "units/Zombie.json",
+  "monster-3": "units/Blood_Raven.json"
 }
 ```
 
@@ -105,15 +119,35 @@ Data:
 }
 ```
 
-Example command: `./a.out scenarios/scenario1.json`
+Example command: `./a.out scenario scenarios/scenario1.json`
 
 All predefined scenario for the testing can be foind in the `scenarios` folder.
 All predefined hero/monster for testing can be found in the `units` folder.
 
+### Marked Map
+
+A Map with the extra ability to define the hero and monster positions. Monsters are marked with numbers (0-9) and the hero will be in the `H` position.
+
+```
+##############
+# H #  ####  #
+# ####22##  #
+# 12# 3##  #
+###1# ##  #
+#     1   #
+#########
+```
+
+### Game Modes
+
+- Scenario: Only hero and a list of monsters can be given. Map and positions are hardcoded.
+- Prepare: Map can be selected and it can contain the position definitions **[Recommended mode]**.
+
 ### How it works:
 
 The program read in the given `scenario` and read in the defined `hero` and `monster`.
-The hero start fight with each monster until death.
+The user can navigate through the map using the right keywords, displayed in first round.
+The hero start fight with each monster until death, if they step on the same field.
 If the hero can kill every monster without death, he will be the winner. If he dies, the game is over.
 
 #### Fight:
@@ -132,7 +166,7 @@ Using the predefined main function the `Hero` class handles the logic, using the
 
 #### END:
 
-The program prints to the output, that the hero is won or not.
+The program prints to the output, whether the hero won or not.
 
 #### Json parser
 

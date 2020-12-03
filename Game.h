@@ -1,3 +1,5 @@
+#pragma once
+
 #include <iostream>
 #include <list>
 #include <map>
@@ -115,7 +117,7 @@ private:
 	/**
 	 * The Monster(s) of the game.
 	 */
-	std::list<Monster *> monsters;
+	std::list<Monster> monsters;
 
 	/**
 	 * The state of the game.
@@ -183,7 +185,10 @@ public:
 		if (this->map != nullptr)
 		{
 			delete this->map;
-			this->map = nullptr;
+		}
+		if (this->hero != nullptr)
+		{
+			delete this->hero;
 		}
 	};
 
@@ -211,7 +216,7 @@ public:
 	 * @throw Game::AlreadyHasHeroException When there is another Hero on the map.
 	 * @throw Game::GameAlreadyStartedException When the game has started.
 	 */
-	void putHero(Hero &hero, const int x, const int y);
+	void putHero(const Hero &hero, const int x, const int y);
 
 	/**
 	 * Put Monster to the map.
@@ -221,7 +226,7 @@ public:
 	 * @throw Map::WrongIndexException When the provided position of the Monster is a not existing one or no map is set.
 	 * @throw Game::OccupiedException When the provided position of the Monster is a Wall block.
 	  */
-	void putMonster(Monster &monster, const int x, const int y);
+	void putMonster(Monster monster, const int x, const int y);
 
 	/**
 	 * Remove the hero from the map and from the game.

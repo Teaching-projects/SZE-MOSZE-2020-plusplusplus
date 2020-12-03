@@ -1,6 +1,6 @@
 SHELL=/bin/bash
 
-OBJS = JSON.o Unit.o Hero.o Monster.o Map.o Game.o main.o
+OBJS = JSON.o Unit.o Hero.o Monster.o Map.o MarkedMap.o Game.o PreparedGame.o main.o
 OUT = a.out
 CFLAGS = -Wall -Wextra -std=c++17
 CC = g++-9
@@ -12,7 +12,7 @@ build: $(OBJS)
 	$(CC) $(CFLAGS) -o $(OUT) $(OBJS)
 
 run: ./$(OUT)
-	./$(OUT) $(SCENARIO)
+	./$(OUT) $(MODE) $(FILE)
 
 Unit.o: Unit.cpp Unit.h Damage.h
 	$(CC) $(CFLAGS) -c Unit.cpp
@@ -28,12 +28,18 @@ JSON.o: JSON.cpp JSON.h
 
 main.o: main.cpp Hero.h Monster.h JSON.h
 	$(CC) $(CFLAGS) -c main.cpp
-	
+
 Map.o: Map.cpp Map.h
 	$(CC) $(CFLAGS) -c Map.cpp
+
+MarkedMap.o: MarkedMap.cpp MarkedMap.h
+	$(CC) $(CFLAGS) -c MarkedMap.cpp
 	
-Game.o: Game.cpp Game.h Map.h Hero.h Monster.h
+Game.o: Game.cpp Game.h Map.h MarkedMap.h Hero.h Monster.h Location.h
 	$(CC) $(CFLAGS) -c Game.cpp
+
+PreparedGame.o: PreparedGame.cpp PreparedGame.h Game.cpp Game.h
+	$(CC) $(CFLAGS) -c PreparedGame.cpp
 	
 test:
 	bash -c "./run_all.sh"

@@ -15,7 +15,7 @@ Hero Hero::parse(const std::string &fileName)
     {
         if (!properties.count(expectedProps[i]))
         {
-            throw std::invalid_argument("File does not contain all property for the Player initalization: " + fileName + " " + expectedProps[i]);
+            throw std::invalid_argument("File does not contain all property for Hero initialization: " + fileName + " " + expectedProps[i]);
         }
     }
 

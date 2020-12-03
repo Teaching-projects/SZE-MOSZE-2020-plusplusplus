@@ -71,5 +71,5 @@ bool Map::isFieldExist(const int x, const int y) const
 
 bool Map::isFieldFree(const int x, const int y) const
 {
-	return this->getFieldType(x, y) == Map::Free;
+	return this->getFieldType(x, y) != Map::Wall;
 }
