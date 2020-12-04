@@ -4,6 +4,21 @@
 
 #include "Renderer.h"
 
+/**
+ * @class TextRenderer
+ *
+ * Render the map to an output stream
+ * Render processing class, writes to the stream
+ * 
+ * @author +++ Team
+ *
+ * @version 1.0
+ *
+ * @date 2020-12-04
+ *
+ * Created on: 2020-12-04
+ *
+*/
 class TextRenderer : public Renderer
 {
     /**
@@ -23,7 +38,6 @@ class TextRenderer : public Renderer
         MONSTER,
         MONSTERS
     };
-
     /**
 	 * Type definition for the mapped Icons.
 	 */
@@ -45,17 +59,34 @@ class TextRenderer : public Renderer
         {Icon::MONSTERS, "\u004D\u004D"}};
 
 protected:
+    /**
+     * Output stream to be written
+     */
     std::ostream *output = &std::cout;
 
-    void renderOutput(const Game &game, bool withLightRadius) const;
+    /**
+     * Print the game state to the stream
+     * @param withLightRadius if true, Hero light radius will be respected
+     */
+    void renderOutput(const Game &game, bool withLightRadius) const override;
 
 public:
+    /**
+     * Default constructor, writes to std::cout
+     */
     TextRenderer(){};
-    TextRenderer(std::ostream &output)
+
+    /**
+     * Constructor, set a custom stream for output
+     */
+    explicit TextRenderer(std::ostream &output)
     {
         setOutputStream(output);
     };
 
+    /**
+     * Set the output stream
+     */
     void setOutputStream(std::ostream &output)
     {
         this->output = &output;

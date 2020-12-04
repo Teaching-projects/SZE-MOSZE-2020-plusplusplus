@@ -1,4 +1,5 @@
 #pragma once
+#pragma GCC diagnostic ignored "-Wdelete-incomplete"
 
 #include <iostream>
 #include <list>
@@ -9,6 +10,7 @@
 #include "Monster.h"
 #include "renderer/Renderer.h"
 
+// Forward declaration
 class Renderer;
 
 /**
@@ -156,6 +158,11 @@ public:
 		{
 			delete this->hero;
 		}
+
+		for (auto &&renderer : renderers)
+		{
+			delete renderer;
+		}
 	};
 
 	/**
@@ -231,10 +238,13 @@ public:
 	 */
 	void move(const Game::Direction direction);
 
+	/**
+	 * Register a new renderer function.
+	 */
 	void registerRenderer(Renderer *renderer);
 
 	/**
-	 * Show the actual state of the game with the set map and the placed Hero, Monster(s) on it.
+	 * Call all registered renderers render function and render the current state.
 	 */
 	void print() const;
 

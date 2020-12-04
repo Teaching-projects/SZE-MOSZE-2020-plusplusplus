@@ -37,5 +37,9 @@ public:
      */
     void run();
 
+    /**
+     * Register a renderer class to print the game state
+     * @relatealso Game::registerRenderer
+     */
     void registerRenderer(Renderer *renderer);
 };

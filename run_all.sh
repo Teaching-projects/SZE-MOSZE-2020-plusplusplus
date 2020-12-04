@@ -25,7 +25,7 @@ do
     done
     expect=$(echo -e "$expect")
     echo "Scenario: ${data[0]}"
-    real="$(./a.out scenario scenarios/${data[0]} < input.txt 2> /dev/null)"
+    real="$(./build/game.out scenario scenarios/${data[0]} < input.txt 2> /dev/null)"
 
     if [ "$real" = "$expect" ]
     then
@@ -66,7 +66,7 @@ do
     done
     expect=$(echo -e "$expect")
     echo "Scenario: ${data[0]}"
-    real="$(./a.out prepare prepare/${data[0]} < prepare/input 2> /dev/null)"
+    real="$(./build/game.out prepare prepare/${data[0]} < prepare/input 2> /dev/null)"
 
     if [ "$real" = "$expect" ]
     then

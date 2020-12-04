@@ -29,7 +29,7 @@ documentation:
 
 unittest:
 	cd tests && cmake .
-	cd tests && make
+	cd tests && make --no-print-directory
 	cd tests && ./tests
 	
 clean:

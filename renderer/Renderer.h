@@ -12,7 +12,7 @@ protected:
 
 public:
     Renderer(){};
-    ~Renderer(){};
+    virtual ~Renderer(){};
 
     virtual void render(const Game &) const = 0;
 };
