@@ -9,7 +9,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build project
-        run: make build
+        run: make
       - name: Memory leak check
         run: make memory_leak_check
       - name: Run I/O tests
