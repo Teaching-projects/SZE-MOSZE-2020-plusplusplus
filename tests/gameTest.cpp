@@ -12,7 +12,7 @@ TEST(GameTest, SetMap)
     Damage dmg;
     dmg.physical = 11;
     dmg.magical = 2;
-    Hero h1("H1", 201, dmg, 0.1, 10, 20, 10, 2, 0.2, 1, 1);
+    Hero h1("H1", 201, dmg, 0.1, 10, 20, 10, 2, 0.2, 1, 1, 3, 1);
     Monster m1("M1", 201, dmg, 0.1, 1);
 
     // Empty game
@@ -62,7 +62,7 @@ TEST(GameTest, PutHero)
     Damage dmg;
     dmg.physical = 11;
     dmg.magical = 2;
-    Hero h1("H1", 201, dmg, 0.1, 10, 20, 10, 2, 0.2, 1, 1);
+    Hero h1("H1", 201, dmg, 0.1, 10, 20, 10, 2, 0.2, 1, 1, 3, 1);
 
     // Empty game
     Game g1;
@@ -136,13 +136,72 @@ TEST(GameTest, CheckFieldAvailability)
     ASSERT_NO_THROW(g1.checkFieldAvailability(2, 0));
 }
 
-TEST(UnitTest, PrintGameBoard)
+TEST(GameTest, PrintGameBoard)
 {
     Game g1("../maps/map1.txt");
     std::string expect1("\n╔════════════════════════════╗\n║██░░░░░░░░░░░░░░████░░░░████║\n║██░░░░████░░░░░░░░██████░░░░║\n║████░░░░██░░░░░░██░░░░██░░░░║\n║██████░░░░░░░░░░░░░░██░░░░░░║\n║████░░░░░░░░░░░░░░░░░░██░░░░║\n╚════════════════════════════╝\n");
-
     std::stringstream res1;
     g1.print(res1);
-
     ASSERT_EQ(res1.str(), expect1);
+
+    Game g2("../maps/map2.txt");
+    std::string expect2("\n╔════════════════════════════╗\n║████████████████████████████║\n║██░░░░░░██░░░░████████░░░░██║\n║██░░████████░░░░████░░░░██░░║\n║██░░░░░░██░░░░████░░░░██░░░░║\n║██████░░██░░████░░░░██░░░░░░║\n║██░░░░░░░░░░░░░░░░░░██░░░░░░║\n║██████████████████░░░░░░░░░░║\n╚════════════════════════════╝\n");
+    std::stringstream res2;
+    g2.print(res2);
+    ASSERT_EQ(res2.str(), expect2);
+}
+
+TEST(GameTest, PrintHeroVisionFromCenter)
+{
+    Game g("../maps/map3.txt");
+    Damage dmg;
+    Hero h("H", 100, dmg, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0);
+    g.putHero(h, 2, 2);
+
+    std::string expect("\n╔══════╗\n║░░░░░░║\n║░░┣┫░░║\n║░░██░░║\n╚══════╝\n");
+    std::stringstream res;
+    g.print(res);
+    ASSERT_EQ(res.str(), expect);
+}
+
+TEST(GameTest, PrintHeroVisionFromBorder)
+{
+    Game g("../maps/map3.txt");
+    Damage dmg;
+    Hero h("H", 100, dmg, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0);
+    g.putHero(h, 0, 2);
+
+    std::string expect("\n╔════╗\n║██░░║\n║┣┫░░║\n║██░░║\n╚════╝\n");
+    std::stringstream res;
+    g.print(res);
+    ASSERT_EQ(res.str(), expect);
+
+    Game g2("../maps/map3.txt");
+    g2.putHero(h, 2, 5);
+
+    std::string expect2("\n╔══════╗\n║░░░░░░║\n║██┣┫██║\n╚══════╝\n");
+    std::stringstream res2;
+    g2.print(res2);
+    ASSERT_EQ(res2.str(), expect2);
+
+    Game g3("../maps/map3.txt");
+    g3.putHero(h, 4, 0);
+
+    std::string expect3("\n╔══════╗\n║██┣┫██║\n║░░░░██║\n╚══════╝\n");
+    std::stringstream res3;
+    g3.print(res3);
+    ASSERT_EQ(res3.str(), expect3);
+}
+
+TEST(GameTest, PrintHeroVisionFromCorner)
+{
+    Game g("../maps/map3.txt");
+    Damage dmg;
+    Hero h("H", 100, dmg, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0);
+    g.putHero(h, 5, 5);
+
+    std::string expect("\n╔════╗\n║░░██║\n║██┣┫║\n╚════╝\n");
+    std::stringstream res;
+    g.print(res);
+    ASSERT_EQ(res.str(), expect);
 }

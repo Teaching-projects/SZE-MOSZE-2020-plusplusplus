@@ -13,7 +13,7 @@ TEST(UnitTest, ConstructTest)
     Unit u1("LevelTest", 100, dmg, 1.0, 1);
     ASSERT_EQ(u1.getLevel(), 1);
 
-    Unit u2("LevelTest", 100, dmg, 2.1, 10, 30, 30, 2, 0.7, 1, 1);
+    Unit u2("LevelTest", 100, dmg, 2.1, 10, 30, 30, 2, 0.7, 1, 1, 3, 1);
     ASSERT_EQ(u1.getLevel(), 1);
 }
 
@@ -46,7 +46,7 @@ TEST(UnitTest, DuelUnitUnit)
     ASSERT_EQ(u1.getAttackCoolDown(), 0.7);
     ASSERT_EQ(u1.isAlive(), false);
 
-    Unit u3("DuelTest3", 200, dmg, 0.7, 10, 30, 10, 1, 0.5, 2, 1);
+    Unit u3("DuelTest3", 200, dmg, 0.7, 10, 30, 10, 1, 0.5, 2, 1, 3, 1);
     Unit u4("DuelTest4", 100, dmg2, 1.0, 0);
 
     ASSERT_NO_THROW(u3.fightTilDeath(u4));
@@ -72,7 +72,7 @@ TEST(UnitTest, DuelHeroMonster)
     hdmg.physical = 10;
     Damage mdmg;
     mdmg.physical = 13;
-    Hero h("H", 100, hdmg, 2.1, 10, 30, 5, 0, 0.4, 1, 2);
+    Hero h("H", 100, hdmg, 2.1, 10, 30, 5, 0, 0.4, 1, 2, 3, 1);
     Monster m("M", 200, mdmg, 0.9, 1);
 
     ASSERT_NO_THROW(h.fightTilDeath(m));

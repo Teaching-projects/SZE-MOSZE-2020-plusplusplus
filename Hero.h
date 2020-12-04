@@ -37,8 +37,10 @@ public:
      * @param cooldownMultiplier Multiplier for cooldown on levelup.
      * @param damage Defense of the Hero.
      * @param damageBonusPerLevel The extra defense added per levelups.
+     * @param lightRadius Light radius of Hero.
+     * @param lightRadiusBonusPerLevel Addational range on every levels.
     */
-    Hero(const std::string &name, unsigned int maxHp, Damage damage, double attackCooldown, unsigned int xpPerLevel, unsigned int healthBonusPerLevel, unsigned int damageBonusPerLevel, unsigned int magicalDamageBonusPerLevel, double cooldownMultiplier, unsigned int defense, unsigned int defenseBonusPerLevel) : Unit(name, maxHp, damage, attackCooldown, xpPerLevel, healthBonusPerLevel, damageBonusPerLevel, magicalDamageBonusPerLevel, cooldownMultiplier, defense, defenseBonusPerLevel){};
+    Hero(const std::string &name, unsigned int maxHp, Damage damage, double attackCooldown, unsigned int xpPerLevel, unsigned int healthBonusPerLevel, unsigned int damageBonusPerLevel, unsigned int magicalDamageBonusPerLevel, double cooldownMultiplier, unsigned int defense, unsigned int defenseBonusPerLevel, unsigned int lightRadius, unsigned int lightRadiusBonusPerLevel) : Unit(name, maxHp, damage, attackCooldown, xpPerLevel, healthBonusPerLevel, damageBonusPerLevel, magicalDamageBonusPerLevel, cooldownMultiplier, defense, defenseBonusPerLevel, lightRadius, lightRadiusBonusPerLevel){};
 
     /**
      * It parse a JSON object (from a JSON file) to a Hero instance.

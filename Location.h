@@ -1,5 +1,7 @@
 #pragma once
 
+#include <iostream>
+
 /**
  * @class Location 
  * 
@@ -47,5 +49,11 @@ public:
     bool operator==(const Location &location) const
     {
         return x == location.x && y == location.y;
-    }
+    };
+
+    friend std::ostream &operator<<(std::ostream &os, const Location &location)
+    {
+        os << "Location(" << location.x << ", " << location.y << ")";
+        return os;
+    };
 };

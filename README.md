@@ -79,6 +79,8 @@ Data:
 - Cooldown multiplier per level - **CD BONUS** (_cooldown_multiplier_per_level_)
 - Defense - **DEF** (_defense_)
 - Defense bonus per level - **DEF BONUS** (_defense_bonus_per_level_)
+- Light radius - **Visual Range** (_light_radius_)
+- Light radius per level - **Visual Range BONUS** (_light_radius_bonus_per_level_) (default 1)
 
 ```json
 {
@@ -93,7 +95,9 @@ Data:
   "magical_damage_bonus_per_level": 1,
   "cooldown_multiplier_per_level": 0.2,
   "defense": 4,
-  "defense_bonus_per_level": 1
+  "defense_bonus_per_level": 1,
+  "light_radius": 3,
+  "light_radius_bonus_per_level": 1
 }
 ```
 
