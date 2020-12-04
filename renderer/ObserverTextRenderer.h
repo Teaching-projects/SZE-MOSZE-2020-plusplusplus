@@ -5,8 +5,8 @@
 class ObserverTextRenderer : public TextRenderer
 {
 public:
-    void render(const Game &) const
+    void render(const Game &game) const
     {
-        TextRenderer::renderOutput(false);
+        TextRenderer::renderOutput(game, false);
     };
 };

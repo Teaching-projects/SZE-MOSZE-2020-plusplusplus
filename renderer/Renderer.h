@@ -7,7 +7,7 @@
 class Renderer
 {
 protected:
-    virtual void renderOutput(bool withLightRadius) const;
+    virtual void renderOutput(const Game &game, bool withLightRadius) const;
 
 public:
     Renderer(){};

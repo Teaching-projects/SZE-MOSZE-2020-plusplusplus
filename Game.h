@@ -39,25 +39,25 @@ public:
 		notStarted
 	};
 
-private:
 	/**
-	 * Enum type for the gameboard icon definitions.
+	 * The map of the game.
 	 */
-	enum Icon
-	{
-		TOP_LEFT,
-		TOP_RIGHT,
-		BOTTOM_LEFT,
-		BOTTOM_RIGHT,
-		HORIZONTAL,
-		VERTICAL,
-		FREE_FIELD,
-		WALL_FIELD,
-		HERO,
-		MONSTER,
-		MONSTERS
-	};
+	Map *map;
 
+	/**
+	 * The Hero of the game.
+	 */
+	Hero *hero;
+
+	/**
+	 * Get the count of Monster(s) in an actual on a field located at the position provided by the indicies.
+	 * @param x The horizontal position (index) on the map to be checked.
+	 * @param y The vertical position (index) on the map to be checked.
+	 * @return Count of the Monster(s) located at the actual field.
+	 */
+	unsigned int getMonsterCountInField(const int x, const int y) const;
+
+private:
 	/**
 	 * Enum type for the move direction definitons.
 	 */
@@ -70,25 +70,9 @@ private:
 	};
 
 	/**
-	 * Enum type for light range corner detection.
-	 */
-	enum CornerType
-	{
-		TOP_LEFT_CORNER,
-		TOP_RIGHT_CORNER,
-		BOTTOM_LEFT_CORNER,
-		BOTTOM_RIGHT_CORNER
-	};
-
-	/**
 	 * Type definition for the mapped Directions.
 	 */
 	typedef std::map<std::string, Direction> directionKeyMap;
-
-	/**
-	 * Type definition for the mapped Icons.
-	 */
-	typedef std::map<Icon, std::string> iconKeyMap;
 
 	/**
 	 * The Directions mapped with their key.
@@ -100,32 +84,6 @@ private:
 		{"south", Direction::SOUTH}};
 
 	/**
-	 * The Icons mapped with their key.
-	 */
-	inline static const iconKeyMap icons = {
-		{Icon::TOP_LEFT, "\u2554"},
-		{Icon::TOP_RIGHT, "\u2557"},
-		{Icon::BOTTOM_LEFT, "\u255A"},
-		{Icon::BOTTOM_RIGHT, "\u255D"},
-		{Icon::HORIZONTAL, "\u2550\u2550"},
-		{Icon::VERTICAL, "\u2551"},
-		{Icon::FREE_FIELD, "\u2591\u2591"},
-		{Icon::WALL_FIELD, "\u2588\u2588"},
-		{Icon::HERO, "\u2523\u252B"},
-		{Icon::MONSTER, "\u004D\u2591"},
-		{Icon::MONSTERS, "\u004D\u004D"}};
-
-	/**
-	 * The map of the game.
-	 */
-	Map *map;
-
-	/**
-	 * The Hero of the game.
-	 */
-	Hero *hero;
-
-	/**
 	 * The Monster(s) of the game.
 	 */
 	std::list<Monster> monsters;
@@ -134,22 +92,6 @@ private:
 	 * The state of the game.
 	 */
 	GameState gameState;
-
-	/**
-	 * Get the count of Monster(s) in an actual on a field located at the position provided by the indicies.
-	 * @param x The horizontal position (index) on the map to be checked.
-	 * @param y The vertical position (index) on the map to be checked.
-	 * @return Count of the Monster(s) located at the actual field.
-	 */
-	unsigned int getMonsterCountInField(const int x, const int y) const;
-
-	/**
-	 * Get corner location for corner type.
-	 * @param ct Corner type.
-	 * @param mapCorner Get corners for the full map.
-	 * @return Location of the corner.
-	 */
-	Location getCorner(CornerType ct, bool mapCorner) const;
 
 public:
 	/**
@@ -286,9 +228,8 @@ public:
 
 	/**
 	 * Show the actual state of the game with the set map and the placed Hero, Monster(s) on it.
-	 * @param stream The destination output stream.
 	 */
-	void print(std::ostream &stream) const;
+	void print() const;
 
 	/**
 	 * @class OccupiedException

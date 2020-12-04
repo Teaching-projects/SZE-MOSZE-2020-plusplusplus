@@ -5,8 +5,8 @@
 class HeroSVGRenderer : public SVGRenderer
 {
 public:
-    void render(const Game &) const
+    void render(const Game &game) const
     {
-        SVGRenderer::renderOutput(true);
+        SVGRenderer::renderOutput(game, true);
     };
 };

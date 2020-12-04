@@ -1,5 +1,5 @@
 #include "SVGRenderer.h"
 
-void SVGRenderer::renderOutput(bool withLightRadius) const
+void SVGRenderer::renderOutput(const Game &game, bool withLightRadius) const
 {
 }
