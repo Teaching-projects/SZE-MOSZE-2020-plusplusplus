@@ -1,45 +1,17 @@
 SHELL=/bin/bash
 
-OBJS = JSON.o Unit.o Hero.o Monster.o Map.o MarkedMap.o Game.o PreparedGame.o main.o
-OUT = a.out
-CFLAGS = -Wall -Wextra -std=c++17
-CC = g++-9
-SCENARIO = ./scenarios/scenario1.json
+OUT = build/game.out
 
 default: build
 
-build: $(OBJS)
-	$(CC) $(CFLAGS) -o $(OUT) $(OBJS)
+build:
+	cd build; cmake .; make
+
+rebuild:
+	cd build; make
 
 run: ./$(OUT)
 	./$(OUT) $(MODE) $(FILE)
-
-Unit.o: Unit.cpp Unit.h Damage.h
-	$(CC) $(CFLAGS) -c Unit.cpp
-
-Hero.o: Hero.cpp Hero.h Unit.h JSON.h Damage.h
-	$(CC) $(CFLAGS) -c Hero.cpp
-
-Monster.o: Monster.cpp Monster.h Unit.h JSON.h Damage.h
-	$(CC) $(CFLAGS) -c Monster.cpp
-
-JSON.o: JSON.cpp JSON.h
-	$(CC) $(CFLAGS) -c JSON.cpp
-
-main.o: main.cpp Hero.h Monster.h JSON.h
-	$(CC) $(CFLAGS) -c main.cpp
-
-Map.o: Map.cpp Map.h
-	$(CC) $(CFLAGS) -c Map.cpp
-
-MarkedMap.o: MarkedMap.cpp MarkedMap.h
-	$(CC) $(CFLAGS) -c MarkedMap.cpp
-	
-Game.o: Game.cpp Game.h Map.h MarkedMap.h Hero.h Monster.h Location.h
-	$(CC) $(CFLAGS) -c Game.cpp
-
-PreparedGame.o: PreparedGame.cpp PreparedGame.h Game.cpp Game.h
-	$(CC) $(CFLAGS) -c PreparedGame.cpp
 	
 test:
 	bash -c "./run_all.sh"
@@ -60,5 +32,6 @@ unittest:
 	cd tests && ./tests
 	
 clean:
-	rm -rf $(OBJS) $(OUT) code_analysis*.txt memory_leak_*.txt
+	rm -rf code_analysis*.txt memory_leak_*.txt
+	cd build; make clean
 	cd tests; make clean
