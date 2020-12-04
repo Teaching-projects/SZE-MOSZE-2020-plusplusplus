@@ -2,6 +2,7 @@
 #include "../Monster.h"
 #include "../Map.h"
 #include "../Game.h"
+#include "../renderer/HeroTextRenderer.h"
 
 #include <gtest/gtest.h>
 
@@ -141,13 +142,15 @@ TEST(GameTest, PrintGameBoard)
     Game g1("../maps/map1.txt");
     std::string expect1("\n╔════════════════════════════╗\n║██░░░░░░░░░░░░░░████░░░░████║\n║██░░░░████░░░░░░░░██████░░░░║\n║████░░░░██░░░░░░██░░░░██░░░░║\n║██████░░░░░░░░░░░░░░██░░░░░░║\n║████░░░░░░░░░░░░░░░░░░██░░░░║\n╚════════════════════════════╝\n");
     std::stringstream res1;
-    g1.print(res1);
+    g1.registerRenderer(new HeroTextRenderer(res1));
+    g1.print();
     ASSERT_EQ(res1.str(), expect1);
 
     Game g2("../maps/map2.txt");
     std::string expect2("\n╔════════════════════════════╗\n║████████████████████████████║\n║██░░░░░░██░░░░████████░░░░██║\n║██░░████████░░░░████░░░░██░░║\n║██░░░░░░██░░░░████░░░░██░░░░║\n║██████░░██░░████░░░░██░░░░░░║\n║██░░░░░░░░░░░░░░░░░░██░░░░░░║\n║██████████████████░░░░░░░░░░║\n╚════════════════════════════╝\n");
     std::stringstream res2;
-    g2.print(res2);
+    g2.registerRenderer(new HeroTextRenderer(res2));
+    g2.print();
     ASSERT_EQ(res2.str(), expect2);
 }
 
@@ -160,7 +163,8 @@ TEST(GameTest, PrintHeroVisionFromCenter)
 
     std::string expect("\n╔══════╗\n║░░░░░░║\n║░░┣┫░░║\n║░░██░░║\n╚══════╝\n");
     std::stringstream res;
-    g.print(res);
+    g.registerRenderer(new HeroTextRenderer(res));
+    g.print();
     ASSERT_EQ(res.str(), expect);
 }
 
@@ -173,7 +177,8 @@ TEST(GameTest, PrintHeroVisionFromBorder)
 
     std::string expect("\n╔════╗\n║██░░║\n║┣┫░░║\n║██░░║\n╚════╝\n");
     std::stringstream res;
-    g.print(res);
+    g.registerRenderer(new HeroTextRenderer(res));
+    g.print();
     ASSERT_EQ(res.str(), expect);
 
     Game g2("../maps/map3.txt");
@@ -181,7 +186,8 @@ TEST(GameTest, PrintHeroVisionFromBorder)
 
     std::string expect2("\n╔══════╗\n║░░░░░░║\n║██┣┫██║\n╚══════╝\n");
     std::stringstream res2;
-    g2.print(res2);
+    g2.registerRenderer(new HeroTextRenderer(res2));
+    g2.print();
     ASSERT_EQ(res2.str(), expect2);
 
     Game g3("../maps/map3.txt");
@@ -189,7 +195,9 @@ TEST(GameTest, PrintHeroVisionFromBorder)
 
     std::string expect3("\n╔══════╗\n║██┣┫██║\n║░░░░██║\n╚══════╝\n");
     std::stringstream res3;
-    g3.print(res3);
+
+    g3.registerRenderer(new HeroTextRenderer(res3));
+    g3.print();
     ASSERT_EQ(res3.str(), expect3);
 }
 
@@ -202,6 +210,7 @@ TEST(GameTest, PrintHeroVisionFromCorner)
 
     std::string expect("\n╔════╗\n║░░██║\n║██┣┫║\n╚════╝\n");
     std::stringstream res;
-    g.print(res);
+    g.registerRenderer(new HeroTextRenderer(res));
+    g.print();
     ASSERT_EQ(res.str(), expect);
 }
