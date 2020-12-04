@@ -13,6 +13,7 @@ var searchData=
   ['getheight',['getHeight',['../classMap.html#a67113f1ffac80d9a20b15fa18a58edc2',1,'Map']]],
   ['getheroposition',['getHeroPosition',['../classMarkedMap.html#ac5aeb80591c1eeb8c26c41f90c0ab2e9',1,'MarkedMap']]],
   ['getlevel',['getLevel',['../classUnit.html#a5f51a098db7b75815629f906cbf3f6ed',1,'Unit']]],
+  ['getlightradius',['getLightRadius',['../classUnit.html#a9e832d107a12266da29869a9b37d079d',1,'Unit']]],
   ['getlocation',['getLocation',['../classUnit.html#a2c5540ac106e71d63362734a2737308c',1,'Unit']]],
   ['getmaxhealthpoints',['getMaxHealthPoints',['../classUnit.html#a543de207d43d3e4d851ea0abb56a90c0',1,'Unit']]],
   ['getmonsterpositions',['getMonsterPositions',['../classMarkedMap.html#ae1221349e5e972603afc109e81814c28',1,'MarkedMap']]],
