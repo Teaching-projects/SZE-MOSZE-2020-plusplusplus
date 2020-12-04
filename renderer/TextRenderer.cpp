@@ -1,14 +1,14 @@
 #include <ostream>
 
 #include "TextRenderer.h"
-#include "../Location.h"
+#include "Corner.h"
 
 void TextRenderer::renderOutput(const Game &game, bool withLightRadius) const
 {
-    const Location topLeft = Location::getCorner(Location::CornerType::TOP_LEFT, game.map, game.hero);
-    const Location topRight = Location::getCorner(Location::CornerType::TOP_RIGHT, game.map, game.hero);
-    const Location bottomLeft = Location::getCorner(Location::CornerType::BOTTOM_LEFT, game.map, game.hero);
-    const Location bottomRight = Location::getCorner(Location::CornerType::BOTTOM_RIGHT, game.map, game.hero);
+    const Location topLeft = Corner::Get(Corner::Type::TOP_LEFT, withLightRadius, game);
+    const Location topRight = Corner::Get(Corner::Type::TOP_RIGHT, withLightRadius, game);
+    const Location bottomLeft = Corner::Get(Corner::Type::BOTTOM_LEFT, withLightRadius, game);
+    const Location bottomRight = Corner::Get(Corner::Type::BOTTOM_RIGHT, withLightRadius, game);
 
     // Top border
     *output << std::endl

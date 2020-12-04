@@ -1,65 +1,59 @@
-#include "Location.h"
+#include "Corner.h"
 
-Location Location::getCorner(CornerType type, Map *map, Hero *hero)
-
+Location Corner::Get(Type type, bool withLightRadius, const Game &game)
 {
-    int x = 0, y = 0;
-    bool hasHero = hero != nullptr;
-    const unsigned int range = hasHero ? hero->getLightRadius() : 0;
-    const Location heroLoc = hasHero ? hero->getLocation() : Location(0, 0);
-    const int heightIndex = map->getHeight() - 1;
-    const int widthIndex = map->getWidth() - 1;
+    withLightRadius = game.hero != nullptr && withLightRadius;
+    const int range = withLightRadius ? game.hero->getLightRadius() : 0;
+    const Location heroLoc = withLightRadius ? game.hero->getLocation() : Location(0, 0);
+    const int heightIndex = game.map->getHeight() - 1;
+    const int widthIndex = game.map->getWidth() - 1;
 
     switch (type)
     {
-    case Location::CornerType::TOP_LEFT:
-        return Location(!hasHero
+    case Type::TOP_LEFT:
+        return Location(!withLightRadius
                             ? 0
-                            : (heroLoc.x - range) <= 0
-                                  ? 0
-                                  : (heroLoc.x - range),
-                        !hasHero
-                            ? 0
-                            : (heroLoc.y - range) <= 0
-                                  ? 0
-                                  : (heroLoc.y - range));
-        break;
-    case Location::CornerType::TOP_RIGHT:
-        return Location(!hasHero
-                            ? widthIndex
-                            : (heroLoc.x + range) >= widthIndex
-                                  ? widthIndex
-                                  : (heroLoc.x + range),
-                        !hasHero
+                            : ((heroLoc.x - range) <= 0
+                                   ? 0
+                                   : (heroLoc.x - range)),
+                        !withLightRadius
                             ? 0
                             : (heroLoc.y - range) <= 0
                                   ? 0
                                   : (heroLoc.y - range));
-        break;
-    case Location::CornerType::BOTTOM_LEFT:
-        return Location(!hasHero
-                            ? 0
-                            : (heroLoc.x - range) <= 0
-                                  ? 0
-                                  : (heroLoc.x - range),
-                        !hasHero
-                            ? heightIndex
-                            : (heroLoc.y + range) >= heightIndex
-                                  ? heightIndex
-                                  : (heroLoc.y + range));
-        break;
-    case Location::CornerType::BOTTOM_RIGHT:
-        return Location(!hasHero
+    case Type::TOP_RIGHT:
+        return Location(!withLightRadius
                             ? widthIndex
                             : (heroLoc.x + range) >= widthIndex
                                   ? widthIndex
                                   : (heroLoc.x + range),
-                        !hasHero
+                        !withLightRadius
+                            ? 0
+                            : (heroLoc.y - range) <= 0
+                                  ? 0
+                                  : (heroLoc.y - range));
+    case Type::BOTTOM_LEFT:
+        return Location(!withLightRadius
+                            ? 0
+                            : (heroLoc.x - range) <= 0
+                                  ? 0
+                                  : (heroLoc.x - range),
+                        !withLightRadius
                             ? heightIndex
                             : (heroLoc.y + range) >= heightIndex
                                   ? heightIndex
                                   : (heroLoc.y + range));
-        break;
+    case Type::BOTTOM_RIGHT:
+        return Location(!withLightRadius
+                            ? widthIndex
+                            : (heroLoc.x + range) >= widthIndex
+                                  ? widthIndex
+                                  : (heroLoc.x + range),
+                        !withLightRadius
+                            ? heightIndex
+                            : (heroLoc.y + range) >= heightIndex
+                                  ? heightIndex
+                                  : (heroLoc.y + range));
     }
 
     throw std::runtime_error("Unknown CornerType!");

@@ -2,13 +2,14 @@ SHELL=/bin/bash
 
 OUT = build/game.out
 
-default: build
+default: compile
 
-build:
-	cd build; cmake .; make
+compile:
+	cd build; cmake .
+	cd build; make --no-print-directory
 
 rebuild:
-	cd build; make
+	cd build; make --no-print-directory
 
 run: ./$(OUT)
 	./$(OUT) $(MODE) $(FILE)

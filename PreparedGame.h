@@ -2,6 +2,7 @@
 
 #include "Game.h"
 #include "MarkedMap.h"
+#include "renderer/Renderer.h"
 
 /**
  * @class PreparedGame 
@@ -35,4 +36,6 @@ public:
      * @relatealso Game::run
      */
     void run();
+
+    void registerRenderer(Renderer *renderer);
 };

@@ -2,9 +2,6 @@
 
 #include <iostream>
 
-#include "Hero.h"
-#include "Map.h"
-
 /**
  * @class Location 
  * 
@@ -23,17 +20,6 @@
 class Location
 {
 public:
-    /**
-	 * Enum type for light range corner detection.
-	 */
-    enum CornerType
-    {
-        TOP_LEFT,
-        TOP_RIGHT,
-        BOTTOM_LEFT,
-        BOTTOM_RIGHT
-    };
-
     /**
      * The X coordinate of the location.
      */
@@ -55,8 +41,6 @@ public:
      * @param y The Y coordinate
      */
     Location(int x, int y) : x(x), y(y){};
-
-    static Location getCorner(CornerType type, Map *map, Hero *hero);
 
     /**
      * The equal operator.

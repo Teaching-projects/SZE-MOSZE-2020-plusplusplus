@@ -5,8 +5,5 @@
 class ObserverSVGRenderer : public SVGRenderer
 {
 public:
-    void render(const Game &game) const
-    {
-        SVGRenderer::renderOutput(game, false);
-    };
+    void render(const Game &game) const;
 };

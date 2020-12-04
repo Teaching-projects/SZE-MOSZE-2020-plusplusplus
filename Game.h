@@ -7,6 +7,9 @@
 #include "Map.h"
 #include "Hero.h"
 #include "Monster.h"
+#include "renderer/Renderer.h"
+
+class Renderer;
 
 /**
  * @class Game
@@ -92,6 +95,8 @@ private:
 	 * The state of the game.
 	 */
 	GameState gameState;
+
+	std::list<Renderer *> renderers;
 
 public:
 	/**
@@ -225,6 +230,8 @@ public:
 	 * @param direction The direction where the Hero should move to.
 	 */
 	void move(const Game::Direction direction);
+
+	void registerRenderer(Renderer *renderer);
 
 	/**
 	 * Show the actual state of the game with the set map and the placed Hero, Monster(s) on it.

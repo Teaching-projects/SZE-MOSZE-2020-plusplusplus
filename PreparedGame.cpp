@@ -40,3 +40,8 @@ void PreparedGame::run()
 {
     Game::run();
 }
+
+void PreparedGame::registerRenderer(Renderer *renderer)
+{
+    Game::registerRenderer(renderer);
+}

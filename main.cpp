@@ -16,6 +16,7 @@
 #include <map>
 #include <string>
 #include <filesystem>
+#include <fstream>
 #include <sstream>
 #include <algorithm>
 #include <iterator>
@@ -27,6 +28,9 @@
 #include "Map.h"
 #include "Game.h"
 #include "PreparedGame.h"
+
+#include "renderer/HeroTextRenderer.h"
+#include "renderer/ObserverTextRenderer.h"
 
 const std::map<int, std::string> error_messages = {
     {1, "Bad number of arguments. Operation mode and data file should be provided."},
@@ -105,6 +109,10 @@ void scenarioMode(std::string scenarioFile)
             game.putMonster(monsters.front(), 3, 0);
         }
 
+        game.registerRenderer(new HeroTextRenderer());
+        auto out = std::ofstream("log.txt");
+        game.registerRenderer(new ObserverTextRenderer(out));
+
         // Start the game
         game.run();
     }
@@ -139,6 +147,10 @@ int main(int argc, char **argv)
 
     case mode::Prepare:
         PreparedGame game(argv[2]);
+
+        game.registerRenderer(new HeroTextRenderer());
+        auto out = std::ofstream("log.txt");
+        game.registerRenderer(new ObserverTextRenderer(out));
 
         game.run();
         break;

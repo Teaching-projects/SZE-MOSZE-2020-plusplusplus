@@ -218,3 +218,16 @@ void Game::move(const Game::Direction direction)
 	// Remove fallen units
 	removeFallenMonsters();
 }
+
+void Game::registerRenderer(Renderer *renderer)
+{
+	renderers.emplace_back(renderer);
+}
+
+void Game::print() const
+{
+	for (auto renderer : renderers)
+	{
+		renderer->render(*this);
+	}
+}

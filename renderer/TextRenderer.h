@@ -51,14 +51,13 @@ protected:
 
 public:
     TextRenderer(){};
-    TextRenderer(std::ostream *output)
+    TextRenderer(std::ostream &output)
     {
         setOutputStream(output);
     };
 
-    virtual void render(const Game &) const;
-    void setOutputStream(std::ostream *output)
+    void setOutputStream(std::ostream &output)
     {
-        this->output = output;
+        this->output = &output;
     };
 };
