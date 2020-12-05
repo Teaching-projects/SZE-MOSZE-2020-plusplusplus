@@ -19,10 +19,10 @@
 class HeroSVGRenderer : public SVGRenderer
 {
 public:
-    HeroSVGRenderer(const std::string &filename) : SVGRenderer(filename){};
+    explicit HeroSVGRenderer(const std::string &filename) : SVGRenderer(filename){};
 
     /**
      * Render the game map into SVG
      */
-    void render(const Game &game) const;
+    void render(const Game &game) const override;
 };

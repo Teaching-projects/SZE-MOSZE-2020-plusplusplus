@@ -74,8 +74,10 @@ void scenarioMode(std::string scenarioFile)
         {
             hero_file = scenario.get<std::string>("hero");
             JSON::list monster_file_list = scenario.get<JSON::list>("monsters");
-            for (auto monster_file : monster_file_list)
-                monster_files.push_back(std::get<std::string>(monster_file));
+
+            std::transform(monster_file_list.begin(), monster_file_list.end(), std::back_inserter(monster_files), [&](const auto &v) {
+                return std::get<std::string>(v);
+            });
         }
     }
     catch (const JSON::ParseException &e)
@@ -87,8 +89,10 @@ void scenarioMode(std::string scenarioFile)
     {
         Hero hero{Hero::parse(hero_file)};
         std::list<Monster> monsters;
-        for (const auto &monster_file : monster_files)
-            monsters.push_back(Monster::parse(monster_file));
+
+        std::transform(monster_files.begin(), monster_files.end(), std::back_inserter(monsters), [&](const auto &v) {
+            return Monster::parse(v);
+        });
 
         // Create map from file
         Map map("maps/map1.txt");

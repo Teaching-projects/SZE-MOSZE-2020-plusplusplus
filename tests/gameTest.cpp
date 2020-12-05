@@ -13,8 +13,8 @@ TEST(GameTest, SetMap)
     Damage dmg;
     dmg.physical = 11;
     dmg.magical = 2;
-    Hero h1("H1", 201, dmg, 0.1, 10, 20, 10, 2, 0.2, 1, 1, 3, 1);
-    Monster m1("M1", 201, dmg, 0.1, 1);
+    Hero h1("H1", 201, dmg, 0.1, 10, 20, 10, 2, 0.2, 1, 1, 3, 1, "");
+    Monster m1("M1", 201, dmg, 0.1, 1, "");
 
     // Empty game
     Game g1;
@@ -63,7 +63,7 @@ TEST(GameTest, PutHero)
     Damage dmg;
     dmg.physical = 11;
     dmg.magical = 2;
-    Hero h1("H1", 201, dmg, 0.1, 10, 20, 10, 2, 0.2, 1, 1, 3, 1);
+    Hero h1("H1", 201, dmg, 0.1, 10, 20, 10, 2, 0.2, 1, 1, 3, 1, "");
 
     // Empty game
     Game g1;
@@ -100,7 +100,7 @@ TEST(GameTest, PutMonster)
     Damage dmg;
     dmg.physical = 11;
     dmg.magical = 2;
-    Monster m1("M1", 201, dmg, 0.1, 1);
+    Monster m1("M1", 201, dmg, 0.1, 1, "");
 
     // Game with map
     Game g1(mapString);
@@ -122,7 +122,7 @@ TEST(GameTest, CheckFieldAvailability)
     Damage dmg;
     dmg.physical = 11;
     dmg.magical = 2;
-    Monster m1("M1", 201, dmg, 0.1, 1);
+    Monster m1("M1", 201, dmg, 0.1, 1, "");
 
     // Game with map
     Game g1(mapString);
@@ -158,7 +158,7 @@ TEST(GameTest, PrintHeroVisionFromCenter)
 {
     Game g("../maps/map3.txt");
     Damage dmg;
-    Hero h("H", 100, dmg, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0);
+    Hero h("H", 100, dmg, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, "");
     g.putHero(h, 2, 2);
 
     std::string expect("\n╔══════╗\n║░░░░░░║\n║░░┣┫░░║\n║░░██░░║\n╚══════╝\n");
@@ -172,7 +172,7 @@ TEST(GameTest, PrintHeroVisionFromBorder)
 {
     Game g("../maps/map3.txt");
     Damage dmg;
-    Hero h("H", 100, dmg, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0);
+    Hero h("H", 100, dmg, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, "");
     g.putHero(h, 0, 2);
 
     std::string expect("\n╔════╗\n║██░░║\n║┣┫░░║\n║██░░║\n╚════╝\n");
@@ -205,7 +205,7 @@ TEST(GameTest, PrintHeroVisionFromCorner)
 {
     Game g("../maps/map3.txt");
     Damage dmg;
-    Hero h("H", 100, dmg, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0);
+    Hero h("H", 100, dmg, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, "");
     g.putHero(h, 5, 5);
 
     std::string expect("\n╔════╗\n║░░██║\n║██┣┫║\n╚════╝\n");

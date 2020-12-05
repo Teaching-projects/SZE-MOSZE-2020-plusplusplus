@@ -18,7 +18,7 @@ TEST(HeroTest, PrintFormat)
 {
     Damage dmg;
     dmg.physical = 11;
-    Hero h1("H1", 201, dmg, 0.1, 10, 20, 10, 3, 0.2, 1, 1, 3, 1);
+    Hero h1("H1", 201, dmg, 0.1, 10, 20, 10, 3, 0.2, 1, 1, 3, 1, "");
     std::string expect1("H1 - LVL1 (HP:201/201, PHYSICAL DAMAGE:11, MAGICAL DAMAGE:0, CD:0.1, XP:0, DEFENSE:1)");
 
     std::stringstream res1;

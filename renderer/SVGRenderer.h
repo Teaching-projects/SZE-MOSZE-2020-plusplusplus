@@ -38,5 +38,5 @@ public:
      * Constructor to be initialized with an output filename
      * @param filename Output file
      */
-    SVGRenderer(const std::string &filename) : outFile(filename){};
+    explicit SVGRenderer(const std::string &filename) : outFile(filename){};
 };
