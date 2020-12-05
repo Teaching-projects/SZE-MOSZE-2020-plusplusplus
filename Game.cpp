@@ -13,6 +13,20 @@ unsigned int Game::getMonsterCountInField(const int x, const int y) const
 					[x, y](const Monster &monster) { return monster.getX() == x && monster.getY() == y; });
 }
 
+std::string Game::getMonsterTextureInField(const int x, const int y) const
+{
+	Location loc(x, y);
+	for (Monster monster : monsters)
+	{
+		if (monster.getLocation() == loc)
+		{
+			return monster.getTexture();
+		}
+	}
+
+	throw MonsterNotFoundException("Can't get monster texture if no monster placed at the Location.");
+}
+
 void Game::setMap(const Map &map)
 {
 	if (this->gameState == Game::GameState::started)

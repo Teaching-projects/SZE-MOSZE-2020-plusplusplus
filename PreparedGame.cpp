@@ -5,7 +5,7 @@ PreparedGame::PreparedGame(const std::string &file)
 {
     JSON properties = JSON::parseFromFile(file);
 
-    const std::vector<std::string> expectedProps{"map", "hero"};
+    const std::vector<std::string> expectedProps{"map", "hero", "wall-texture", "free-texture"};
     for (unsigned int i = 0; i < expectedProps.size(); i++)
     {
         if (!properties.count(expectedProps[i]))
@@ -13,6 +13,8 @@ PreparedGame::PreparedGame(const std::string &file)
             throw std::invalid_argument("File does not contain all property for PreparedGame initialization: " + file + " " + expectedProps[i]);
         }
     }
+
+    setTextures(properties.get<std::string>("wall-texture"), properties.get<std::string>("free-texture"));
 
     MarkedMap markedMap(properties.get<std::string>("map"));
     setMap((Map)markedMap);

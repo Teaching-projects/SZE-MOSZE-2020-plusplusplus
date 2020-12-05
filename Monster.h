@@ -31,8 +31,9 @@ public:
      * @param attackCooldown Attack cooldown of Monster. **Minimum** time intervall between two attack.
      * @param xp Starter experience point of the Monster.
      * @param damage Defense of the Monster.
+     * @param texture Texture image file
      */
-    explicit Monster(const std::string &name, unsigned int maxHp, Damage damage, double attackCooldown, unsigned int defense) : Unit(name, maxHp, damage, attackCooldown, defense){};
+    explicit Monster(const std::string &name, unsigned int maxHp, Damage damage, double attackCooldown, unsigned int defense, const std::string &texture) : Unit(name, maxHp, damage, attackCooldown, defense, texture){};
 
     /**
      * It parse a JSON object (from a JSON file) to a Monster instance.

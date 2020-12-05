@@ -31,6 +31,8 @@
 
 #include "renderer/HeroTextRenderer.h"
 #include "renderer/ObserverTextRenderer.h"
+#include "renderer/HeroSVGRenderer.h"
+#include "renderer/ObserverSVGRenderer.h"
 
 const std::map<int, std::string> error_messages = {
     {1, "Bad number of arguments. Operation mode and data file should be provided."},
@@ -92,7 +94,7 @@ void scenarioMode(std::string scenarioFile)
         Map map("maps/map1.txt");
 
         // Create the empty game
-        Game game;
+        Game game("svg/wall.svg", "svg/free.svg");
 
         // Set map for the game
         game.setMap(map);
@@ -112,6 +114,9 @@ void scenarioMode(std::string scenarioFile)
         game.registerRenderer(new HeroTextRenderer());
         auto out = std::ofstream("log.txt");
         game.registerRenderer(new ObserverTextRenderer(out));
+
+        game.registerRenderer(new HeroSVGRenderer("pretty.svg"));
+        game.registerRenderer(new ObserverSVGRenderer("pretty-obs.svg"));
 
         // Start the game
         game.run();
@@ -151,6 +156,9 @@ int main(int argc, char **argv)
         game.registerRenderer(new HeroTextRenderer());
         auto out = std::ofstream("log.txt");
         game.registerRenderer(new ObserverTextRenderer(out));
+
+        game.registerRenderer(new HeroSVGRenderer("pretty.svg"));
+        game.registerRenderer(new ObserverSVGRenderer("pretty-obs.svg"));
 
         game.run();
         break;

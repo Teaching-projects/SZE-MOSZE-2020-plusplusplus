@@ -19,5 +19,7 @@
 class ObserverSVGRenderer : public SVGRenderer
 {
 public:
+    ObserverSVGRenderer(const std::string &filename) : SVGRenderer(filename){};
+
     void render(const Game &game) const;
 };

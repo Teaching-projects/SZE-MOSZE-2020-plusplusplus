@@ -19,6 +19,8 @@
 class HeroSVGRenderer : public SVGRenderer
 {
 public:
+    HeroSVGRenderer(const std::string &filename) : SVGRenderer(filename){};
+
     /**
      * Render the game map into SVG
      */

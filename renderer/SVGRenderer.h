@@ -31,7 +31,7 @@ protected:
      * Render the game map to the file
      * @param withLightRadius if true, Hero light radius will be respected
      */
-    void renderOutput(const Game &game, bool withLightRadius) const;
+    void renderOutput(const Game &game, bool withLightRadius) const override;
 
 public:
     /**

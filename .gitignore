@@ -8,6 +8,7 @@
 /docs
 tests/tests
 */Makefile
+pretty*.svg
 
 CMakeLists.txt.user
 CMakeCache.txt

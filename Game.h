@@ -62,6 +62,15 @@ public:
 	 */
 	unsigned int getMonsterCountInField(const int x, const int y) const;
 
+	/**
+	 * Get the texture of the (first) monster at the coordinate
+	 * @param x The horiziontal position
+	 * @param y The vertical position
+	 * @return The texture property of the monster found
+	 * @throw MonsterNotFoundException if no monster placed in the given location
+	 */
+	std::string getMonsterTextureInField(const int x, const int y) const;
+
 private:
 	/**
 	 * Enum type for the move direction definitons.
@@ -98,7 +107,33 @@ private:
 	 */
 	GameState gameState;
 
+	/**
+	 * List of registered renderer to be called on print
+	 * @relatealso print
+	 */
 	std::list<Renderer *> renderers;
+
+	/**
+	 * The texture image file of Wall
+	 */
+	std::string wallTexture = "";
+
+	/**
+	 * The Texture image file of Free
+	 */
+	std::string freeTexture = "";
+
+protected:
+	/**
+	 * Set the texture files
+	 * @param wall Wall texture file
+	 * @param free Free texture file
+	 */
+	void setTextures(const std::string &wall, const std::string &free)
+	{
+		wallTexture = wall;
+		freeTexture = free;
+	}
 
 public:
 	/**
@@ -111,9 +146,26 @@ public:
 	/**
 	 * Game constructor.
 	 * It creates a Unit object with a map from the given parameters.
+	 * @param wallTexture Wall texture file.
+	 * @param freeTexture Free texture file.
+	 */
+	explicit Game(const std::string &wallTexture, const std::string &freeTexture) : map(nullptr), hero{nullptr}, gameState(GameState::notStarted), wallTexture(wallTexture), freeTexture(freeTexture){};
+
+	/**
+	 * Game constructor.
+	 * It creates a Unit object with a map from the given parameters.
 	 * @param mapfilename Name of the file of the map.
 	 */
 	explicit Game(const std::string &mapfilename) : map(new Map(mapfilename)), hero{nullptr}, gameState(GameState::notStarted){};
+
+	/**
+	 * Game constructor.
+	 * It creates a Unit object with a map from the given parameters.
+	 * @param mapfilename Name of the file of the map.
+	 * @param wallTexture Wall texture file.
+	 * @param freeTexture Free texture file.
+	 */
+	explicit Game(const std::string &mapfilename, const std::string &wallTexture, const std::string &freeTexture) : map(new Map(mapfilename)), hero{nullptr}, gameState(GameState::notStarted), wallTexture(wallTexture), freeTexture(freeTexture){};
 
 	/**
 	 * Game copy constructor.
@@ -247,6 +299,36 @@ public:
 	 * Call all registered renderers render function and render the current state.
 	 */
 	void print() const;
+
+	/**
+	 * Get the Wall texture
+	 */
+	const std::string &getWallTexture() const
+	{
+		return wallTexture;
+	}
+
+	/**
+	 * Get the Free texture
+	 */
+	const std::string &getFreeTexture() const
+	{
+		return freeTexture;
+	}
+
+	/**
+	 * @class MonsterNotFoundException
+	 * @brief Not found exception to be called if no monster found in the given Location.
+	 */
+	class MonsterNotFoundException : virtual public std::runtime_error
+	{
+	public:
+		/**
+		 * Constructor which takes a description as parameter.
+		 * @param description Description of wrong index error.
+		*/
+		explicit MonsterNotFoundException(const std::string &description) : std::runtime_error("MonsterNotFoundException" + description) {}
+	};
 
 	/**
 	 * @class OccupiedException
