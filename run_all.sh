@@ -30,13 +30,23 @@ do
     if [ "$real" = "$expect" ]
     then
         echo "Test success."
-        echo
     else
         echo "Expected Result: \"${expect}\""
         echo "Real Result: \"$real\""
         echo "Test fail. Quitting."
         exit 1
     fi
+
+    svg_diff=$(diff pretty.svg scenarios/${data[0]}.svg)
+    if [ "$svg_diff" != "" ]
+    then
+        echo "Invalid SVG."
+        exit 1
+    else
+        echo "Valid SVG."
+    fi
+
+    echo
     
     i=$((i+c))
 done
@@ -65,19 +75,29 @@ do
         fi
     done
     expect=$(echo -e "$expect")
-    echo "Scenario: ${data[0]}"
+    echo "Prepare: ${data[0]}"
     real="$(./build/game.out prepare prepare/${data[0]} < prepare/input 2> /dev/null)"
 
     if [ "$real" = "$expect" ]
     then
         echo "Test success."
-        echo
     else
         echo "Real Result: \"$real\""
         echo "Expected Result: \"${expect}\""
         echo "Test fail. Quitting."
         exit 1
     fi
+
+    svg_diff=$(diff pretty.svg prepare/${data[0]}.svg)
+    if [ "$svg_diff" != "" ]
+    then
+        echo "Invalid SVG."
+        exit 1
+    else
+        echo "Valid SVG."
+    fi
+
+    echo
     
     i=$((i+c))
 done
