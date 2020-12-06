@@ -19,7 +19,15 @@
 class ObserverSVGRenderer : public SVGRenderer
 {
 public:
+    /**
+     * Default constructor
+     * @param filename SVG file path to be created by renderer
+     * @relatealso ObserverSVGRenderer::ObserverSVGRenderer()
+     */
     explicit ObserverSVGRenderer(const std::string &filename) : SVGRenderer(filename){};
 
+    /**
+     * Render the game map to the svg file
+     */
     void render(const Game &game) const override;
 };

@@ -19,6 +19,11 @@
 class HeroSVGRenderer : public SVGRenderer
 {
 public:
+    /**
+     * Default constructor
+     * @param filename SVG file path to be created by renderer
+     * @relatealso ObserverSVGRenderer::ObserverSVGRenderer()
+     */
     explicit HeroSVGRenderer(const std::string &filename) : SVGRenderer(filename){};
 
     /**
