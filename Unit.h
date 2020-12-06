@@ -361,7 +361,7 @@ public:
     /**
 	 * Get the location of the Unit.
 	 */
-    Location getLocation() { return location; }
+    Location getLocation() const { return location; }
 
     /**
 	 * Set the location coordinate of the Unit.

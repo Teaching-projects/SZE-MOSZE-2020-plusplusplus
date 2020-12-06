@@ -16,7 +16,7 @@ unsigned int Game::getMonsterCountInField(const int x, const int y) const
 std::string Game::getMonsterTextureInField(const int x, const int y) const
 {
 	Location loc(x, y);
-	for (Monster monster : monsters)
+	for (const Monster &monster : monsters)
 	{
 		if (monster.getLocation() == loc)
 		{
