@@ -7,7 +7,8 @@
 *.o
 /docs
 tests/tests
-tests/Makefile
+*/Makefile
+pretty*.svg
 
 CMakeLists.txt.user
 CMakeCache.txt
@@ -23,3 +24,4 @@ _deps
 # Exceptions
 !maps/*.txt
 !input.txt
+!CMakeLists.txt

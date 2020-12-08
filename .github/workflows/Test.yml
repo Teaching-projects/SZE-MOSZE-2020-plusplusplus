@@ -9,7 +9,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build project
-        run: make build
+        run: make
+        env:
+          CC: gcc-9
+          CXX: g++-9
       - name: Memory leak check
         run: make memory_leak_check
       - name: Run I/O tests

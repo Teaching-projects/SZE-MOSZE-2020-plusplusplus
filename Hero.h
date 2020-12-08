@@ -39,8 +39,9 @@ public:
      * @param damageBonusPerLevel The extra defense added per levelups.
      * @param lightRadius Light radius of Hero.
      * @param lightRadiusBonusPerLevel Addational range on every levels.
+     * @param texture Texture image file
     */
-    Hero(const std::string &name, unsigned int maxHp, Damage damage, double attackCooldown, unsigned int xpPerLevel, unsigned int healthBonusPerLevel, unsigned int damageBonusPerLevel, unsigned int magicalDamageBonusPerLevel, double cooldownMultiplier, unsigned int defense, unsigned int defenseBonusPerLevel, unsigned int lightRadius, unsigned int lightRadiusBonusPerLevel) : Unit(name, maxHp, damage, attackCooldown, xpPerLevel, healthBonusPerLevel, damageBonusPerLevel, magicalDamageBonusPerLevel, cooldownMultiplier, defense, defenseBonusPerLevel, lightRadius, lightRadiusBonusPerLevel){};
+    Hero(const std::string &name, unsigned int maxHp, Damage damage, double attackCooldown, unsigned int xpPerLevel, unsigned int healthBonusPerLevel, unsigned int damageBonusPerLevel, unsigned int magicalDamageBonusPerLevel, double cooldownMultiplier, unsigned int defense, unsigned int defenseBonusPerLevel, unsigned int lightRadius, unsigned int lightRadiusBonusPerLevel, const std::string &texture) : Unit(name, maxHp, damage, attackCooldown, xpPerLevel, healthBonusPerLevel, damageBonusPerLevel, magicalDamageBonusPerLevel, cooldownMultiplier, defense, defenseBonusPerLevel, lightRadius, lightRadiusBonusPerLevel, texture){};
 
     /**
      * It parse a JSON object (from a JSON file) to a Hero instance.

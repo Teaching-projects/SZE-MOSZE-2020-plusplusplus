@@ -1,4 +1,5 @@
 #pragma once
+#pragma GCC diagnostic ignored "-Wenum-compare"
 
 #include <vector>
 

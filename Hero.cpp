@@ -37,7 +37,8 @@ Hero Hero::parse(const std::string &fileName)
         properties.get<int>("defense"),
         properties.get<int>("defense_bonus_per_level"),
         properties.get<int>("light_radius"),
-        properties.getOrElse<int>("light_radius_bonus_per_level", 1));
+        properties.getOrElse<int>("light_radius_bonus_per_level", 1),
+        properties.getOrElse<std::string>("texture", ""));
 }
 
 void Hero::print(std::ostream &stream) const

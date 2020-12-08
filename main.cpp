@@ -16,6 +16,7 @@
 #include <map>
 #include <string>
 #include <filesystem>
+#include <fstream>
 #include <sstream>
 #include <algorithm>
 #include <iterator>
@@ -27,6 +28,11 @@
 #include "Map.h"
 #include "Game.h"
 #include "PreparedGame.h"
+
+#include "renderer/HeroTextRenderer.h"
+#include "renderer/ObserverTextRenderer.h"
+#include "renderer/HeroSVGRenderer.h"
+#include "renderer/ObserverSVGRenderer.h"
 
 const std::map<int, std::string> error_messages = {
     {1, "Bad number of arguments. Operation mode and data file should be provided."},
@@ -68,8 +74,10 @@ void scenarioMode(std::string scenarioFile)
         {
             hero_file = scenario.get<std::string>("hero");
             JSON::list monster_file_list = scenario.get<JSON::list>("monsters");
-            for (auto monster_file : monster_file_list)
-                monster_files.push_back(std::get<std::string>(monster_file));
+
+            std::transform(monster_file_list.begin(), monster_file_list.end(), std::back_inserter(monster_files), [&](const auto &v) {
+                return std::get<std::string>(v);
+            });
         }
     }
     catch (const JSON::ParseException &e)
@@ -81,14 +89,16 @@ void scenarioMode(std::string scenarioFile)
     {
         Hero hero{Hero::parse(hero_file)};
         std::list<Monster> monsters;
-        for (const auto &monster_file : monster_files)
-            monsters.push_back(Monster::parse(monster_file));
+
+        std::transform(monster_files.begin(), monster_files.end(), std::back_inserter(monsters), [&](const auto &v) {
+            return Monster::parse(v);
+        });
 
         // Create map from file
         Map map("maps/map1.txt");
 
         // Create the empty game
-        Game game;
+        Game game("svg/wall.svg", "svg/free.svg");
 
         // Set map for the game
         game.setMap(map);
@@ -104,6 +114,13 @@ void scenarioMode(std::string scenarioFile)
             monsters.pop_front();
             game.putMonster(monsters.front(), 3, 0);
         }
+
+        game.registerRenderer(new HeroTextRenderer());
+        auto out = std::ofstream("log.txt");
+        game.registerRenderer(new ObserverTextRenderer(out));
+
+        game.registerRenderer(new HeroSVGRenderer("pretty.svg"));
+        game.registerRenderer(new ObserverSVGRenderer("pretty-obs.svg"));
 
         // Start the game
         game.run();
@@ -139,6 +156,13 @@ int main(int argc, char **argv)
 
     case mode::Prepare:
         PreparedGame game(argv[2]);
+
+        game.registerRenderer(new HeroTextRenderer());
+        auto out = std::ofstream("log.txt");
+        game.registerRenderer(new ObserverTextRenderer(out));
+
+        game.registerRenderer(new HeroSVGRenderer("pretty.svg"));
+        game.registerRenderer(new ObserverSVGRenderer("pretty-obs.svg"));
 
         game.run();
         break;

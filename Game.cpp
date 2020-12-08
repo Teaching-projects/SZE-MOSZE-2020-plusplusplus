@@ -13,6 +13,20 @@ unsigned int Game::getMonsterCountInField(const int x, const int y) const
 					[x, y](const Monster &monster) { return monster.getX() == x && monster.getY() == y; });
 }
 
+std::string Game::getMonsterTextureInField(const int x, const int y) const
+{
+	Location loc(x, y);
+	for (const Monster &monster : monsters)
+	{
+		if (monster.getLocation() == loc)
+		{
+			return monster.getTexture();
+		}
+	}
+
+	throw MonsterNotFoundException("Can't get monster texture if no monster placed at the Location.");
+}
+
 void Game::setMap(const Map &map)
 {
 	if (this->gameState == Game::GameState::started)
@@ -98,7 +112,7 @@ void Game::run()
 	}
 
 	// Show untouched game board
-	print(cout);
+	print();
 
 	// Start the game loop
 	loop();
@@ -155,7 +169,7 @@ void Game::loop()
 		move(directions.at(directionKey));
 
 		// Show Game board
-		print(cout);
+		print();
 	}
 }
 
@@ -219,117 +233,15 @@ void Game::move(const Game::Direction direction)
 	removeFallenMonsters();
 }
 
-void Game::print(ostream &stream) const
+void Game::registerRenderer(Renderer *renderer)
 {
-	const bool hasHero = this->hero != nullptr;
-	const Location topLeft = this->getCorner(CornerType::TOP_LEFT_CORNER, !hasHero);
-	const Location topRight = this->getCorner(CornerType::TOP_RIGHT_CORNER, !hasHero);
-	const Location bottomLeft = this->getCorner(CornerType::BOTTOM_LEFT_CORNER, !hasHero);
-	const Location bottomRight = this->getCorner(CornerType::BOTTOM_RIGHT_CORNER, !hasHero);
-
-	// Top border
-	stream << endl
-		   << icons.at(Game::Icon::TOP_LEFT);
-	for (int x = topLeft.x; x <= topRight.x; x++)
-	{
-		stream << icons.at(Game::Icon::HORIZONTAL);
-	}
-	stream << icons.at(Game::Icon::TOP_RIGHT) << endl;
-
-	// Side borders and Game board
-	for (int y = topLeft.y; y <= bottomLeft.y; y++)
-	{
-		stream << icons.at(Game::Icon::VERTICAL);
-		for (int x = topLeft.x; x <= bottomRight.x; x++)
-		{
-			const unsigned int monsterCountInField = getMonsterCountInField(x, y);
-			if (hero != nullptr && hero->isAlive() && hero->getLocation() == Location(x, y))
-			{
-				stream << icons.at(Game::Icon::HERO);
-			}
-			else if (monsterCountInField != 0)
-			{
-				stream << (monsterCountInField > 1 ? icons.at(Game::Icon::MONSTERS) : icons.at(Game::Icon::MONSTER));
-			}
-			else
-				stream << (map->getFieldType(x, y) == Map::Wall ? icons.at(Game::Icon::WALL_FIELD) : icons.at(Game::Icon::FREE_FIELD));
-		}
-		stream << icons.at(Game::Icon::VERTICAL) << endl;
-	}
-
-	// Bottom border
-	stream << icons.at(Game::Icon::BOTTOM_LEFT);
-
-	for (int x = bottomLeft.x; x <= bottomRight.x; x++)
-	{
-		stream << icons.at(Game::Icon::HORIZONTAL);
-	}
-	stream << icons.at(Game::Icon::BOTTOM_RIGHT) << endl;
+	renderers.emplace_back(renderer);
 }
 
-Location Game::getCorner(CornerType ct, bool mapCorner) const
+void Game::print() const
 {
-	int x = 0, y = 0;
-	if (!mapCorner && this->hero == nullptr)
+	for (auto renderer : renderers)
 	{
-		mapCorner = true;
+		renderer->render(*this);
 	}
-	const int range = !mapCorner ? (int)this->hero->getLightRadius() : 1;
-	const Location heroLoc = !mapCorner ? this->hero->getLocation() : Location(0, 0);
-	const int heightIndex = map->getHeight() - 1;
-	const int widthIndex = map->getWidth() - 1;
-
-	switch (ct)
-	{
-	case CornerType::TOP_LEFT_CORNER:
-		x = mapCorner
-				? 0
-				: (heroLoc.x - range) <= 0
-					  ? 0
-					  : (heroLoc.x - range);
-		y = mapCorner
-				? 0
-				: (heroLoc.y - range) <= 0
-					  ? 0
-					  : (heroLoc.y - range);
-		break;
-	case CornerType::TOP_RIGHT_CORNER:
-		x = mapCorner
-				? widthIndex
-				: (heroLoc.x + range) >= widthIndex
-					  ? widthIndex
-					  : (heroLoc.x + range);
-		y = mapCorner
-				? 0
-				: (heroLoc.y - range) <= 0
-					  ? 0
-					  : (heroLoc.y - range);
-		break;
-	case CornerType::BOTTOM_LEFT_CORNER:
-		x = mapCorner
-				? 0
-				: (heroLoc.x - range) <= 0
-					  ? 0
-					  : (heroLoc.x - range);
-		y = mapCorner
-				? heightIndex
-				: (heroLoc.y + range) >= heightIndex
-					  ? heightIndex
-					  : (heroLoc.y + range);
-		break;
-	case CornerType::BOTTOM_RIGHT_CORNER:
-		x = mapCorner
-				? widthIndex
-				: (heroLoc.x + range) >= widthIndex
-					  ? widthIndex
-					  : (heroLoc.x + range);
-		y = mapCorner
-				? heightIndex
-				: (heroLoc.y + range) >= heightIndex
-					  ? heightIndex
-					  : (heroLoc.y + range);
-		break;
-	}
-
-	return Location(x, y);
 }

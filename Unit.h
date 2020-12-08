@@ -134,6 +134,12 @@ private:
      */
     unsigned int lightRadiusBonusPerLevel = 1;
 
+    /**
+     * Texture image file
+     * Default is no texture.
+     */
+    std::string texture;
+
 protected:
     /**
      * The unit hit an other unit.
@@ -199,8 +205,9 @@ public:
      * @param attackCooldown Attack cooldown of Unit. **Minimum** time intervall between two attack.
      * @param xp Starter experience point of the character.
      * @param defense Defense of the character.
+     * @param texture Texture image file.
      */
-    Unit(const std::string &name, unsigned int maxHp, Damage damage, double attackCooldown, unsigned int defense) : name(name), maxHp(maxHp), hp(maxHp), damage(damage), attackCooldown(attackCooldown), nextAttack(attackCooldown), defense(defense){};
+    Unit(const std::string &name, unsigned int maxHp, Damage damage, double attackCooldown, unsigned int defense, const std::string &texture) : name(name), maxHp(maxHp), hp(maxHp), damage(damage), attackCooldown(attackCooldown), nextAttack(attackCooldown), defense(defense), texture(texture){};
 
     /**
      * Unit constructor.
@@ -218,8 +225,9 @@ public:
      * @param defenseBonusPerLevel The extra defense added per levelups.
      * @param lightRadius Light radius of Hero.
      * @param lightRadiusBonusPerLevel Addational range on every levels.
+     * @param texture Texture image file.
      */
-    Unit(const std::string &name, unsigned int maxHp, Damage damage, double attackCooldown, unsigned int xpPerLevel, unsigned int healthBonusPerLevel, unsigned int damageBonusPerLevel, unsigned int magicalDamageBonusPerLevel, double cooldownMultiplier, unsigned int defense, unsigned int defenseBonusPerLevel, unsigned int lightRadius, unsigned int lightRadiusBonusPerLevel) : name(name), maxHp(maxHp), hp(maxHp), damage(damage), attackCooldown(attackCooldown), nextAttack(attackCooldown), xpPerLevel(xpPerLevel), healthBonusPerLevel(healthBonusPerLevel), damageBonusPerLevel(damageBonusPerLevel), magicalDamageBonusPerLevel(magicalDamageBonusPerLevel), cooldownMultiplier(cooldownMultiplier), defense(defense), defenseBonusPerLevel(defenseBonusPerLevel), lightRadius(lightRadius), lightRadiusBonusPerLevel(lightRadiusBonusPerLevel){};
+    Unit(const std::string &name, unsigned int maxHp, Damage damage, double attackCooldown, unsigned int xpPerLevel, unsigned int healthBonusPerLevel, unsigned int damageBonusPerLevel, unsigned int magicalDamageBonusPerLevel, double cooldownMultiplier, unsigned int defense, unsigned int defenseBonusPerLevel, unsigned int lightRadius, unsigned int lightRadiusBonusPerLevel, const std::string &texture) : name(name), maxHp(maxHp), hp(maxHp), damage(damage), attackCooldown(attackCooldown), nextAttack(attackCooldown), xpPerLevel(xpPerLevel), healthBonusPerLevel(healthBonusPerLevel), damageBonusPerLevel(damageBonusPerLevel), magicalDamageBonusPerLevel(magicalDamageBonusPerLevel), cooldownMultiplier(cooldownMultiplier), defense(defense), defenseBonusPerLevel(defenseBonusPerLevel), lightRadius(lightRadius), lightRadiusBonusPerLevel(lightRadiusBonusPerLevel), texture(texture){};
 
     /**
 	 * Unit destructor.
@@ -353,7 +361,7 @@ public:
     /**
 	 * Get the location of the Unit.
 	 */
-    Location getLocation() { return location; }
+    Location getLocation() const { return location; }
 
     /**
 	 * Set the location coordinate of the Unit.
@@ -384,4 +392,12 @@ public:
     {
         return lightRadius;
     };
+
+    /**
+     * Get the current texture file.
+     */
+    const std::string &getTexture() const
+    {
+        return texture;
+    }
 };

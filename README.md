@@ -21,7 +21,7 @@
 
 - `make`:
 
-  - `build`: Builds the application (./a.out) (_default target_)
+  - `compile`: Builds the application (./build/game.out) (_default target_)
   - `run`: Executes the built binary (You should add the `MODE` and `FILE` parameters)
     - `make run MODE=scenario FILE=scenarios/scenario1.json`
     - `make run MODE=prepare FILE=prepare/prepare1.json`
@@ -181,6 +181,19 @@ We use a _bit_ complex regex matcher to find all key/value pairs. It is looping 
 - filename
 - istream
 - string (containing json)
+
+#### Rendering
+
+It supports multiple rendering methods, which can be set for the `Game` classes with `registerRenderer` function.
+
+_Currently_ It writes **HeroTextRenderer** to the console output and **ObserverTextRenderer** to log.txt file.
+
+Supported renderers:
+
+- `HeroTextRenderer`
+- `ObserverTextRenderer`
+- `HeroSVGRenderer` (_coming soon_)
+- `ObserverSVGRenderer` (_coming soon_)
 
 ### Output test:
 
