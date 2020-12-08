@@ -1,10 +1,10 @@
 # Tagok
 
-| Név                     | Github azonosító | Javasolt relatív érdemjegy | Becsült óra | Indoklás                                                                                                  |
-| ----------------------- | ---------------- | -------------------------- | ----------- | --------------------------------------------------------------------------------------------------------- |
-| Balogh Máté             | @Cerberuuus      | (4 - by @Cerberuuus)       | ~25         | (Határidőre elkészűlt és approve-olt megoldások, de egyben kevesebb feladat elvállalása - by @Cerberuuus) |
-| Baranyai Bence Bendegúz | @bencebaranyai   | (5 - by @Cerberuuus)       | ~40         | (Minőségi, részletes munka, gyors reagálás a kiírt feladatokra - by @Cerberuuus)                          |
-| Karcag Tamás            | @karcagtamas     | (5 - by @Cerberuuus)       | ~50         | (Minőségi, részletes munka, gyors reagálás a kiírt feladatokra - by @Cerberuuus)                          |
+| Név                     | Github azonosító | Javasolt relatív érdemjegy | Becsült óra | Indoklás                                                                                                                                      |
+| ----------------------- | ---------------- | -------------------------- | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| Balogh Máté             | @Cerberuuus      | 0                          | ~25         | Rendesen elkészített, körültekintően feltöltött megoldások, de egyben kevesebb feladat elvállalása. Alapos review végzése.                    |
+| Baranyai Bence Bendegúz | @bencebaranyai   | +1                         | ~40         | Minőségi, részletes munka, gyors reagálás a kiírt feladatokra, gondos részletre figyelés, akár komplexebb feladatoknál is.                    |
+| Karcag Tamás            | @karcagtamas     | +1                         | ~50         | Kiosztott feladatok határidőn belüli, kidolgozott formában való leadása. Körültekintő review végzés a saját és a pár csapat számára egyaránt. |
 
 # Videók
 
@@ -37,31 +37,31 @@
 
 # Unit tesztek
 
-| Osztály                  | Publikus metódusok | Unit tesztelt metódusok sáma         | Unit tesztek száma |
-| ------------------------ | ------------------ | ------------------------------------ | ------------------ |
-| JSON                     | 6                  | 4                                    | 9                  |
-| Game                     | 16                 | 10                                   | 4                  |
-| Unit                     | 21                 | 15                                   | 5                  |
-| Map                      | 8                  | 7                                    | 7                  |
-| Hero                     | 2                  | 2                                    | 2                  |
-| Monster                  | 2                  | 2                                    | 2                  |
-| Renderer (absztrakt)     | -                  | 1                                    | 5                  |
-| PreparedGame             | 2                  | Game osztállyal egyben tesztelve     |
-| MarkedMap                | 10                 | Map osztállyal egyben tesztelve      |
-| Location                 | 0                  |                                      |
-| Corner                   | 1                  | Renderer osztállyal egyben tesztelve |
-| HeroSVGRenderer          | 1                  | Renderer osztállyal egyben tesztelve |
-| HeroTextRenderer         | 1                  | Renderer osztállyal egyben tesztelve |
-| ObserverSVGRenderer      | 1                  | Renderer osztállyal egyben tesztelve |
-| ObserverTextRenderer     | 1                  | Renderer osztállyal egyben tesztelve |
-| SVGRenderer (absztrakt)  | -                  | Renderer osztállyal egyben tesztelve |
-| TextRenderer (absztrakt) | -                  | Renderer osztállyal egyben tesztelve |
+| Osztály                    | Publikus metódusok | Unit tesztelt metódusok sáma         | Unit tesztek száma |
+| -------------------------- | ------------------ | ------------------------------------ | ------------------ |
+| `JSON`                     | 6                  | 4                                    | 9                  |
+| `Game`                     | 16                 | 10                                   | 4                  |
+| `Unit`                     | 21                 | 15                                   | 5                  |
+| `Map`                      | 8                  | 7                                    | 7                  |
+| `Hero`                     | 2                  | 2                                    | 2                  |
+| `Monster`                  | 2                  | 2                                    | 2                  |
+| `Renderer (absztrakt)`     | -                  | 1                                    | 5                  |
+| `PreparedGame`             | 2                  | Game osztállyal egyben tesztelve     |
+| `MarkedMap`                | 10                 | Map osztállyal egyben tesztelve      |
+| `Location`                 | 0                  |                                      |
+| `Corner`                   | 1                  | Renderer osztállyal egyben tesztelve |
+| `HeroSVGRenderer`          | 1                  | Renderer osztállyal egyben tesztelve |
+| `HeroTextRenderer`         | 1                  | Renderer osztállyal egyben tesztelve |
+| `ObserverSVGRenderer`      | 1                  | Renderer osztállyal egyben tesztelve |
+| `ObserverTextRenderer`     | 1                  | Renderer osztállyal egyben tesztelve |
+| `SVGRenderer` (absztrakt)  | -                  | Renderer osztállyal egyben tesztelve |
+| `TextRenderer` (absztrakt) | -                  | Renderer osztállyal egyben tesztelve |
 
 # Kód dokumentáció
 
-| Teljesen dokumentált osztályok        | Részben dokumentált osztályok | Nem dokumentált osztályok |
-| ------------------------------------- | ----------------------------- | ------------------------- |
-| Minden osztály ./ és ./renderer alatt | -                             | -                         |
+| Teljesen dokumentált osztályok                                            | Részben dokumentált osztályok | Nem dokumentált osztályok |
+| ------------------------------------------------------------------------- | ----------------------------- | ------------------------- |
+| Minden osztály `./` és `./renderer` alatt és az össze publikus függvényük | -                             | -                         |
 
 # Mindenféle számok
 
@@ -77,12 +77,21 @@
 
 # Implicit megtanult dolgok
 
-_TODO:_
+- Container megfelelő és körültekintő használata
+- SVG renderelés
+- JSON fájlbeolvasás
+- Megfelelő `sh` szkript írás a különböző tesztek és elleőrzések futtatásához
 
 # Feedback (optional)
 
-_TODO:_
+Véleményünk szerint kifejezetten jó volt az online videós megoldás. Habár előre nem volt tervezhető az egyes videők kijövetele, kifejezetten kényelmes volt, hogy akkor nézzük meg amikor az időnk engedi, így megfelelően tudtunk hozzákezdeni az anyag elsajátításához, illetve az videó követése és esetleg a videóval való együtt dolgozás is sokkal egyszerábbé vált.
+
+Nagyon hasznosnak találtuk a GitHub-on adott hetente kijövő feladatokat és az ezzel kapcsolatos tanóra anyagához kapcsolodó fejlesztéseket, sokkal hasznosabb volt egy konkrét projektbe való különféle eszközök beépítése és ezeknek a tovább fejlesztése a projekttel együtt.
+
+Én (@karcagtamas) magam a Github Actions használat, bemutatását találtam a leghasznosabb dolognak, a legtöbb dologgal már foglalkoztam korábban szoftverfejlesztői tanulmányaim és munkáim során, viszont az ilyes fél automatizmussal még nem foglalkoztam elötte. Szerintem kifejezetten hasznos volt.
 
 # Üzenet a jövőbe (optional)
 
-_TODO:_
+Nem igazán találtunk ide megfelelő gondolatot.
+
+[More about the game and some attractive gif and video :D](https://mosze.apps.benswork.hu)
