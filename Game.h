@@ -40,8 +40,8 @@ public:
 	 */
 	enum GameState
 	{
-		started,
-		notStarted
+		started,   //< The game already started
+		notStarted //< The game can be started
 	};
 
 	/**
@@ -77,10 +77,10 @@ private:
 	 */
 	enum Direction
 	{
-		NORTH,
-		EAST,
-		WEST,
-		SOUTH
+		NORTH, //< Up
+		EAST,  //< Right
+		WEST,  //< Left
+		SOUTH  //< Down
 	};
 
 	/**
@@ -109,7 +109,7 @@ private:
 
 	/**
 	 * List of registered renderer to be called on print
-	 * @relatealso print
+	 * @relatesalso print
 	 */
 	std::list<Renderer *> renderers;
 
@@ -170,7 +170,7 @@ public:
 	/**
 	 * Game copy constructor.
 	 * It creates a new Unit object with the values of the given Game object.
-	 * @param mapfilename Name of the file of the map.
+	 * @param game Game state to copy
 	 */
 	Game(const Game &game) : map(new Map(*game.map)), hero(game.hero), gameState(game.gameState){};
 
@@ -327,7 +327,9 @@ public:
 		 * Constructor which takes a description as parameter.
 		 * @param description Description of wrong index error.
 		*/
-		explicit MonsterNotFoundException(const std::string &description) : std::runtime_error("MonsterNotFoundException" + description) {}
+		explicit MonsterNotFoundException(const std::string &description) : std::runtime_error("MonsterNotFoundException" + description)
+		{
+		}
 	};
 
 	/**
@@ -345,7 +347,7 @@ public:
 	};
 
 	/**
-	 * @class OccupiedException
+	 * @class AlreadyHasHeroException
 	 * @brief Already Has Hero exception to be called when permitted operations are about to be run while there are still Hero on the map. 
 	*/
 	class AlreadyHasHeroException : virtual public std::runtime_error
@@ -358,7 +360,7 @@ public:
 	};
 
 	/**
-	 * @class OccupiedException
+	 * @class AlreadyHasUnitsException
 	 * @brief Already Has Units exception to be called when permitted operations are about to be run while there are still units on the map. 
 	*/
 	class AlreadyHasUnitsException : virtual public std::runtime_error
@@ -370,7 +372,7 @@ public:
 		explicit AlreadyHasUnitsException() : std::runtime_error("Already has units") {}
 	};
 	/**
-	* @class OccupiedException
+	* @class NotInitializedException
 	* @brief Not Initialized exception to be called when permitted operations are about to be run before the game has been initialized.
 	*/
 	class NotInitializedException : virtual public std::runtime_error

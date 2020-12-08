@@ -28,15 +28,16 @@ public:
      * Hero constructor.
      * It creates a Hero object from the given parameters.
      * @param name Name of Hero.
-     * @param hp Health points of Hero.
+     * @param maxHp Health points of Hero.
      * @param damage Attack damage of Hero.
      * @param attackCooldown Attack cooldown of Hero. **Minimum** time intervall between two attack.
      * @param xpPerLevel XP needed for a levelup
      * @param healthBonusPerLevel The extra healthpoints added per levelups.
      * @param damageBonusPerLevel The extra damage added per levelups.
+     * @param magicalDamageBonusPerLevel The extra magical damage added per levelups.
      * @param cooldownMultiplier Multiplier for cooldown on levelup.
-     * @param damage Defense of the Hero.
-     * @param damageBonusPerLevel The extra defense added per levelups.
+     * @param defense Defense of the Hero.
+     * @param defenseBonusPerLevel The extra defense added per levelups.
      * @param lightRadius Light radius of Hero.
      * @param lightRadiusBonusPerLevel Addational range on every levels.
      * @param texture Texture image file
@@ -46,7 +47,7 @@ public:
     /**
      * It parse a JSON object (from a JSON file) to a Hero instance.
      * Does not matter the order of the object properties, but it have to contain all required propertiy.
-     * @param filename Json file's path.
+     * @param fileName Json file's path.
      * @throw JSON::ParseException When the file does not openable or the file format is invalid
      * @throw out_of_range is thrown if the number to be parsed too large
      * @throw std::invalid_argument When the file does not contain a required field

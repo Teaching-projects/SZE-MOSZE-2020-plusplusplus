@@ -26,11 +26,23 @@
 class JSON
 {
 public:
+    /**
+     * Array value type
+     */
     typedef std::variant<int, double, std::string> valueVariant;
+    /**
+     * Array's type
+     */
     typedef std::list<valueVariant> list;
+    /**
+     * Value type for top level JSON value
+     */
     typedef std::variant<int, double, std::string, list> listedValueVariant;
 
 private:
+    /**
+     * Store the parsed data, with casted values
+     */
     std::map<std::string, listedValueVariant> data;
 
 public:
@@ -42,7 +54,7 @@ public:
      * @return a class initialized with the parsed data structure
      * @throws invalid_argument is thrown if the number to be parsed format not correct
      * @throws out_of_range is thrown if the number to be parsed too large
-     * @relatealso parseFromString
+     * @relatesalso parseFromString
      */
     static JSON parseFromString(const std::string &input);
 
@@ -55,7 +67,7 @@ public:
      * @throws JSON::ParseException is thrown if the given file does not exists or cannot be read
      * @throws invalid_argument is thrown if the number to be parsed format not correct
      * @throws out_of_range is thrown if the number to be parsed too large
-     * @relatealso parseFromString
+     * @relatesalso parseFromString
      */
     static JSON parseFromFile(const std::string &filename);
 
@@ -68,7 +80,7 @@ public:
      * @return a class initialized with the parsed data structure
      * @throws invalid_argument is thrown if the number to be parsed format not correct
      * @throws out_of_range is thrown if the number to be parsed too large
-     * @relatealso parseFromString
+     * @relatesalso parseFromString
      */
     static JSON parseFromStream(std::istream &stream);
 
@@ -122,6 +134,10 @@ public:
     };
 
 private:
+    /**
+     * Private constructor to be called from static parser function
+     * @param data parsed data
+     */
     explicit JSON(const std::map<std::string, listedValueVariant> &data) : data(data){};
 
     /** Handle the real parsing
@@ -133,8 +149,8 @@ private:
      * @throws JSON::ParseException if data found after the closing tag or missing a key / value or the array format is invalid
      * @throws invalid_argument is thrown if the number to be parsed format not correct
      * @throws out_of_range is thrown if the number to be parsed too large
-     * @relatealso simpleTypeParse
-     * @relatealso arrayParse
+     * @see simpleTypeParse
+     * @see arrayParse
      */
     static JSON parse(const std::string &input);
 
@@ -159,11 +175,12 @@ private:
      * @throws JSON::ParseException is thrown if the array format is invalid
      * @throws invalid_argument is thrown if the number to be parsed format not correct
      * @throws out_of_range is thrown if the number to be parsed too large
-     * @relatealso simpleTypeParse
+     * @relatesalso simpleTypeParse
      */
     static list arrayParse(const std::string &match);
 
-    /** Helper struct for variant casting
+    /** 
+     *  Helper struct for variant casting
      *  used for casting valueVariant to listValueVariant
      */
     template <class... Args>

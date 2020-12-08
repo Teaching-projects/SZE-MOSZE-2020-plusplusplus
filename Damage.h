@@ -47,6 +47,11 @@ struct Damage
         magical += mag;
     }
 
+    /**
+     * Add other damage to current.
+     * @param damage other damage struct to be added.
+     * @return current struct.
+     */
     Damage &operator+=(const Damage &damage)
     {
         physical += damage.physical;
@@ -54,6 +59,11 @@ struct Damage
         return *this;
     }
 
+    /**
+     * Multiply current struct with another.
+     * @param damage other damage to multiply with.
+     * @return current struct with the new values.
+     */
     Damage &operator*=(const Damage &damage)
     {
         physical *= damage.physical;
@@ -61,12 +71,23 @@ struct Damage
         return *this;
     }
 
+    /**
+     * Add 2 structs into one.
+     * @param damage left side of addition.
+     * @param other right side of addition.
+     * @relatesalso operator+=
+     */
     friend Damage operator+(Damage damage, const Damage &other)
     {
         damage += other;
         return damage;
     }
 
+    /**
+     * Print the current damages with labels.
+     * @param os output stream to write.
+     * @param damage struct to write out.
+     */
     friend std::ostream &operator<<(std::ostream &os, const Damage &damage)
     {
         os << "PHYSICAL DAMAGE:" << damage.physical << ", MAGICAL DAMAGE:" << damage.magical;

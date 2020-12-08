@@ -34,6 +34,9 @@
 #include "renderer/HeroSVGRenderer.h"
 #include "renderer/ObserverSVGRenderer.h"
 
+/**
+ * Error messages to be printed on catched exceptions
+ */
 const std::map<int, std::string> error_messages = {
     {1, "Bad number of arguments. Operation mode and data file should be provided."},
     {2, "The provided mode is invalid (scenario / prepare)"},
@@ -41,17 +44,27 @@ const std::map<int, std::string> error_messages = {
     {4, "The provided data file is invalid."},
     {5, "JSON parsing error."}};
 
+/**
+ * Running mode, chosen based on argument
+ */
 enum mode
 {
-    Scenario,
-    Prepare
+    Scenario, //< Use Game class
+    Prepare   //< Use PreparedGame class
 };
 
+/**
+ * Run mode string argument mapping
+ */
 const std::map<std::string, mode> modes = {
     {"scenario", mode::Scenario},
     {"prepare", mode::Prepare},
 };
 
+/**
+ * Exit the application with an error message based on the error code.
+ * @param exitcode the thrown exit code.
+ */
 void bad_exit(int exitcode)
 {
     std::cerr
@@ -60,6 +73,10 @@ void bad_exit(int exitcode)
     exit(exitcode);
 }
 
+/**
+ * Run the game in Scenario mode with the provided file
+ * @param scenarioFile a file containing the Hero and Monster file lists.
+ */
 void scenarioMode(std::string scenarioFile)
 {
     std::string hero_file;
@@ -131,6 +148,12 @@ void scenarioMode(std::string scenarioFile)
     }
 }
 
+/**
+ * Application entrypoint
+ * Based on arguments it will run scenario or prepare game mode.
+ * @param argc number of arguments
+ * @param argv arguments
+ */
 int main(int argc, char **argv)
 {
     if (argc != 3)

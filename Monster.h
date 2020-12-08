@@ -26,11 +26,10 @@ public:
      * Monster constructor.
      * It creates a Monster object from the given parameters.
      * @param name Name of Monster.
-     * @param hp Health points of Monster.
+     * @param maxHp Health points of Monster.
      * @param damage Attack damage of Monster.
      * @param attackCooldown Attack cooldown of Monster. **Minimum** time intervall between two attack.
-     * @param xp Starter experience point of the Monster.
-     * @param damage Defense of the Monster.
+     * @param defense Defense of the Monster.
      * @param texture Texture image file
      */
     explicit Monster(const std::string &name, unsigned int maxHp, Damage damage, double attackCooldown, unsigned int defense, const std::string &texture) : Unit(name, maxHp, damage, attackCooldown, defense, texture){};
@@ -38,7 +37,7 @@ public:
     /**
      * It parse a JSON object (from a JSON file) to a Monster instance.
      * Does not matter the order of the object properties, but it have to contain all required propertiy.
-     * @param filename Json file's path.
+     * @param fileName Json file's path.
      * @throw std::runtime_error When the file does not openable.
      * @throw std::invalid_argument When the file does not contain a required field
      * @return Created Monster instance.
