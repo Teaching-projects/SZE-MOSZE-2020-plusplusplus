@@ -1,3 +1,6 @@
 <map id="PreparedGame" name="PreparedGame">
-<area shape="rect" id="node2" href="$classGame.html" title="It defines a Game board. " alt="" coords="34,5,95,32"/>
+<area shape="rect" id="node2" href="$classGame.html" title="It defines a Game board. " alt="" coords="34,171,95,197"/>
+<area shape="rect" id="node3" href="$classMap.html" title="Map" alt="" coords="8,81,57,108"/>
+<area shape="rect" id="node4" href="$classHero.html" title="It defines a RPG attacker Hero. " alt="" coords="82,81,135,108"/>
+<area shape="rect" id="node5" href="$classUnit.html" title="It defines a RPG attacker Unit. " alt="" coords="84,5,133,32"/>
 </map>

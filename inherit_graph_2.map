@@ -2,9 +2,10 @@
 <area shape="rect" id="node2" href="$classGame_1_1AlreadyHasHeroException.html" title="Game::AlreadyHasHeroException" alt="" coords="176,5,415,32"/>
 <area shape="rect" id="node3" href="$classGame_1_1AlreadyHasUnitsException.html" title="Game::AlreadyHasUnitsException" alt="" coords="174,56,417,83"/>
 <area shape="rect" id="node4" href="$classGame_1_1GameAlreadyStartedException.html" title="Game Already Started exception to be called when permitted operations are about to be run after the g..." alt="" coords="193,107,398,149"/>
-<area shape="rect" id="node5" href="$classGame_1_1NotInitializedException.html" title="Game::NotInitializedException" alt="" coords="185,173,405,200"/>
-<area shape="rect" id="node6" href="$classGame_1_1OccupiedException.html" title="Occupied exception to be called when a field is occupied by a wall object. " alt="" coords="199,224,392,251"/>
-<area shape="rect" id="node7" href="$classJSON_1_1ParseException.html" title="Parse Error exception to be called on invalid input. " alt="" coords="215,275,376,301"/>
-<area shape="rect" id="node8" href="$classMap_1_1WrongIndexException.html" title="Wrong Index exception to be called on retrieving a field by wrong index(es) " alt="" coords="196,325,395,352"/>
-<area shape="rect" id="node9" href="$classMarkedMap_1_1HeroNotFoundException.html" title="Hero is not place on the map while trying to get its position. " alt="" coords="164,376,427,403"/>
+<area shape="rect" id="node5" href="$classGame_1_1MonsterNotFoundException.html" title="Not found exception to be called if no monster found in the given Location. " alt="" coords="172,173,419,200"/>
+<area shape="rect" id="node6" href="$classGame_1_1NotInitializedException.html" title="Game::NotInitializedException" alt="" coords="185,224,405,251"/>
+<area shape="rect" id="node7" href="$classGame_1_1OccupiedException.html" title="Occupied exception to be called when a field is occupied by a wall object. " alt="" coords="199,275,392,301"/>
+<area shape="rect" id="node8" href="$classJSON_1_1ParseException.html" title="Parse Error exception to be called on invalid input. " alt="" coords="215,325,376,352"/>
+<area shape="rect" id="node9" href="$classMap_1_1WrongIndexException.html" title="Wrong Index exception to be called on retrieving a field by wrong index(es) " alt="" coords="196,376,395,403"/>
+<area shape="rect" id="node10" href="$classMarkedMap_1_1HeroNotFoundException.html" title="Hero is not place on the map while trying to get its position. " alt="" coords="164,427,427,453"/>
 </map>

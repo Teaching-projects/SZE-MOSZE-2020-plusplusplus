@@ -6,7 +6,7 @@ var searchData=
   ['parsefromstream',['parseFromStream',['../classJSON.html#a758c56273583ac45534be352849a7879',1,'JSON']]],
   ['parsefromstring',['parseFromString',['../classJSON.html#a8b27ad2033a8406d986408670b8dfb78',1,'JSON']]],
   ['preparedgame',['PreparedGame',['../classPreparedGame.html#ae615f4c4c0168f0ef7aa8a4852e90b31',1,'PreparedGame']]],
-  ['print',['print',['../classGame.html#ae1fee36ffb4fa641b79aa52e71d1ae3d',1,'Game::print()'],['../classHero.html#ae5955508af777a7c4d7fb0f391cbd834',1,'Hero::print()'],['../classMonster.html#a8703504731431101c479e9d8ee780b9d',1,'Monster::print()'],['../classUnit.html#aa1102459c5b17c3378d9060eb1ddc0ae',1,'Unit::print()']]],
+  ['print',['print',['../classGame.html#a78e1a17440eace186f6ae1109e09db2c',1,'Game::print()'],['../classHero.html#ae5955508af777a7c4d7fb0f391cbd834',1,'Hero::print()'],['../classMonster.html#a8703504731431101c479e9d8ee780b9d',1,'Monster::print()'],['../classUnit.html#aa1102459c5b17c3378d9060eb1ddc0ae',1,'Unit::print()']]],
   ['puthero',['putHero',['../classGame.html#ae5e721efdd9401f6eb80ec165f85ff28',1,'Game']]],
   ['putmonster',['putMonster',['../classGame.html#abf83570bd63a29beb9819a9bd2f1e075',1,'Game']]]
 ];

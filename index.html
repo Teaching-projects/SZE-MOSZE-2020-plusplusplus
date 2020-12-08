@@ -82,7 +82,7 @@ $(function() {
 <p><code>Make</code> is useful to have nice and easy commands to run applications. This is the list of commands we have:</p>
 <ul>
 <li><code>make</code>:<ul>
-<li><code>build</code>: Builds the application (./a.out) (<em>default target</em>)</li>
+<li><code>compile</code>: Builds the application (./build/game.out) (<em>default target</em>)</li>
 <li><code>run</code>: Executes the built binary (You should add the <code>MODE</code> and <code>FILE</code> parameters)<ul>
 <li><code>make run MODE=scenario FILE=scenarios/scenario1.json</code></li>
 <li><code>make run MODE=prepare FILE=prepare/prepare1.json</code></li>
@@ -148,6 +148,15 @@ $(function() {
 <li>filename</li>
 <li>istream</li>
 <li>string (containing json)</li>
+</ul>
+<p>It supports multiple rendering methods, which can be set for the <code><a class="el" href="classGame.html" title="It defines a Game board. ">Game</a></code> classes with <code>registerRenderer</code> function.</p>
+<p><em>Currently</em> It writes <b>HeroTextRenderer</b> to the console output and <b>ObserverTextRenderer</b> to log.txt file.</p>
+<p>Supported renderers:</p>
+<ul>
+<li><code>HeroTextRenderer</code></li>
+<li><code>ObserverTextRenderer</code></li>
+<li><code>HeroSVGRenderer</code> (<em>coming soon</em>)</li>
+<li><code>ObserverSVGRenderer</code> (<em>coming soon</em>)</li>
 </ul>
 <p>There are predefined players in the <code>units/</code> folder and a <code>expected_results.csv</code> file. The variations in the <code>csv</code> file can be executed automatically using the <code>./run_all.sh</code> script. If a test fails (results not equal) the script quits with error code.</p>
 <p>Under the <code>tests/</code> folder cpp test file can be found. The tests use the GTest testing framework and cmake for building.</p>
