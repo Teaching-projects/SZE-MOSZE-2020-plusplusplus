@@ -227,10 +227,9 @@ Protected Member Functions</h2></td></tr>
 <p><a class="el" href="classUnit.html" title="It defines a RPG attacker Unit. ">Unit</a> constructor. It creates a <a class="el" href="classUnit.html" title="It defines a RPG attacker Unit. ">Unit</a> object from the given parameters. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">name</td><td>Name of <a class="el" href="classUnit.html" title="It defines a RPG attacker Unit. ">Unit</a>. </td></tr>
-    <tr><td class="paramname">hp</td><td>Health points of <a class="el" href="classUnit.html" title="It defines a RPG attacker Unit. ">Unit</a>. </td></tr>
+    <tr><td class="paramname">maxHp</td><td>Health points of <a class="el" href="classUnit.html" title="It defines a RPG attacker Unit. ">Unit</a>. </td></tr>
     <tr><td class="paramname">damage</td><td>Attack damage of <a class="el" href="classUnit.html" title="It defines a RPG attacker Unit. ">Unit</a>. </td></tr>
     <tr><td class="paramname">attackCooldown</td><td>Attack cooldown of <a class="el" href="classUnit.html" title="It defines a RPG attacker Unit. ">Unit</a>. <b>Minimum</b> time intervall between two attack. </td></tr>
-    <tr><td class="paramname">xp</td><td>Starter experience point of the character. </td></tr>
     <tr><td class="paramname">defense</td><td>Defense of the character. </td></tr>
     <tr><td class="paramname">texture</td><td>Texture image file. </td></tr>
   </table>
@@ -347,7 +346,7 @@ Protected Member Functions</h2></td></tr>
 <p><a class="el" href="classUnit.html" title="It defines a RPG attacker Unit. ">Unit</a> constructor. It creates a <a class="el" href="classUnit.html" title="It defines a RPG attacker Unit. ">Unit</a> object from the given parameters. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">name</td><td>Name of <a class="el" href="classUnit.html" title="It defines a RPG attacker Unit. ">Unit</a>. </td></tr>
-    <tr><td class="paramname">hp</td><td>Health points of <a class="el" href="classUnit.html" title="It defines a RPG attacker Unit. ">Unit</a>. </td></tr>
+    <tr><td class="paramname">maxHp</td><td>Health points of <a class="el" href="classUnit.html" title="It defines a RPG attacker Unit. ">Unit</a>. </td></tr>
     <tr><td class="paramname">damage</td><td>Attack damage of <a class="el" href="classUnit.html" title="It defines a RPG attacker Unit. ">Unit</a>. </td></tr>
     <tr><td class="paramname">attackCooldown</td><td>Attack cooldown of <a class="el" href="classUnit.html" title="It defines a RPG attacker Unit. ">Unit</a>. <b>Minimum</b> time intervall between two attack. </td></tr>
     <tr><td class="paramname">xpPerLevel</td><td>XP needed for a levelup </td></tr>
@@ -948,7 +947,7 @@ Protected Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>The unit hit an other unit. The attacked <a class="el" href="classUnit.html" title="It defines a RPG attacker Unit. ">Unit</a>'s health points will less by the attacker's damage. <em>The HP cannot be less than zero</em>. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">otherPlayer</td><td>The hit unit. </td></tr>
+    <tr><td class="paramname">otherUnit</td><td>The hit unit. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1065,7 +1064,7 @@ Protected Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>It parse a <a class="el" href="classJSON.html" title="JSON parser class, parse to map with casts. ">JSON</a> object (from a <a class="el" href="classJSON.html" title="JSON parser class, parse to map with casts. ">JSON</a> file) to a <a class="el" href="classUnit.html" title="It defines a RPG attacker Unit. ">Unit</a> instance. Does not matter the order of the object properties, but it have to contain all required propertiy. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">filename</td><td>Json file's path. </td></tr>
+    <tr><td class="paramname">fileName</td><td>Json file's path. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1181,7 +1180,8 @@ Protected Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Set the location coordinate of the <a class="el" href="classUnit.html" title="It defines a RPG attacker Unit. ">Unit</a>. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">location</td><td>The new location </td></tr>
+    <tr><td class="paramname">x</td><td>The new X coordinate </td></tr>
+    <tr><td class="paramname">y</td><td>The new Y coordinate </td></tr>
   </table>
   </dd>
 </dl>
@@ -1245,7 +1245,7 @@ Protected Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Set the Y coordinate of the <a class="el" href="classUnit.html" title="It defines a RPG attacker Unit. ">Unit</a>. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">x</td><td>The new Y coordinate </td></tr>
+    <tr><td class="paramname">y</td><td>The new Y coordinate </td></tr>
   </table>
   </dd>
 </dl>

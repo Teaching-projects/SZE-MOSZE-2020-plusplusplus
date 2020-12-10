@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['occupiedexception',['OccupiedException',['../classGame_1_1OccupiedException.html#abae59f2baf88b7652865e088b10edd49',1,'Game::OccupiedException']]],
-  ['operator_3d',['operator=',['../classGame.html#a400871f3835fe6c8d274f464ac11302e',1,'Game']]],
-  ['operator_3d_3d',['operator==',['../classLocation.html#a1a3b68a72a292d3cb75f2f85c5fc02c2',1,'Location']]]
+  ['notinitializedexception',['NotInitializedException',['../classGame_1_1NotInitializedException.html#a940350c425f5d08a07fdeabc3814e552',1,'Game::NotInitializedException']]]
 ];

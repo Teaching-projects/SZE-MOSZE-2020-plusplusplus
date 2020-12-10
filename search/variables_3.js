@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['x',['x',['../classLocation.html#aea76eebc474e30c04c53e5f03c6749e3',1,'Location']]]
+  ['physical',['physical',['../structDamage.html#a8b06c3e39565084ba685c4f872952994',1,'Damage']]]
 ];

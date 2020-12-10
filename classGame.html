@@ -89,7 +89,7 @@ Collaboration diagram for Game:</div>
 <div class="dyncontent">
 <div class="center"><img src="classGame__coll__graph.png" border="0" usemap="#Game_coll__map" alt="Collaboration graph"/></div>
 <map name="Game_coll__map" id="Game_coll__map">
-<area shape="rect" id="node2" href="classMap.html" title="Map" alt="" coords="5,81,55,108"/>
+<area shape="rect" id="node2" href="classMap.html" title="It defines Character map with Walls that can block the way. " alt="" coords="5,81,55,108"/>
 <area shape="rect" id="node3" href="classHero.html" title="It defines a RPG attacker Hero. " alt="" coords="79,81,133,108"/>
 <area shape="rect" id="node4" href="classUnit.html" title="It defines a RPG attacker Unit. " alt="" coords="81,5,131,32"/>
 </map>
@@ -98,8 +98,10 @@ Collaboration diagram for Game:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGame_1_1AlreadyHasHeroException.html">AlreadyHasHeroException</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Already Has <a class="el" href="classHero.html" title="It defines a RPG attacker Hero. ">Hero</a> exception to be called when permitted operations are about to be run while there are still <a class="el" href="classHero.html" title="It defines a RPG attacker Hero. ">Hero</a> on the map.  <a href="classGame_1_1AlreadyHasHeroException.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGame_1_1AlreadyHasUnitsException.html">AlreadyHasUnitsException</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Already Has Units exception to be called when permitted operations are about to be run while there are still units on the map.  <a href="classGame_1_1AlreadyHasUnitsException.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGame_1_1GameAlreadyStartedException.html">GameAlreadyStartedException</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classGame.html" title="It defines a Game board. ">Game</a> Already Started exception to be called when permitted operations are about to be run after the game has been started.  <a href="classGame_1_1GameAlreadyStartedException.html#details">More...</a><br /></td></tr>
@@ -108,6 +110,7 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Not found exception to be called if no monster found in the given <a class="el" href="classLocation.html" title="It defines a simple 2d location object. ">Location</a>.  <a href="classGame_1_1MonsterNotFoundException.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGame_1_1NotInitializedException.html">NotInitializedException</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Not Initialized exception to be called when permitted operations are about to be run before the game has been initialized.  <a href="classGame_1_1NotInitializedException.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGame_1_1OccupiedException.html">OccupiedException</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Occupied exception to be called when a field is occupied by a wall object.  <a href="classGame_1_1OccupiedException.html#details">More...</a><br /></td></tr>
@@ -382,7 +385,7 @@ Protected Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <p><a class="el" href="classGame.html" title="It defines a Game board. ">Game</a> copy constructor. It creates a new <a class="el" href="classUnit.html" title="It defines a RPG attacker Unit. ">Unit</a> object with the values of the given <a class="el" href="classGame.html" title="It defines a Game board. ">Game</a> object. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">mapfilename</td><td>Name of the file of the map. </td></tr>
+    <tr><td class="paramname">game</td><td><a class="el" href="classGame.html" title="It defines a Game board. ">Game</a> state to copy </td></tr>
   </table>
   </dd>
 </dl>
@@ -723,7 +726,7 @@ Protected Member Functions</h2></td></tr>
   <table class="exception">
     <tr><td class="paramname"><a class="el" href="classMap_1_1WrongIndexException.html" title="Wrong Index exception to be called on retrieving a field by wrong index(es) ">Map::WrongIndexException</a></td><td>When the provided position of the <a class="el" href="classHero.html" title="It defines a RPG attacker Hero. ">Hero</a> is a not existing one or no map is set. </td></tr>
     <tr><td class="paramname"><a class="el" href="classGame_1_1OccupiedException.html" title="Occupied exception to be called when a field is occupied by a wall object. ">Game::OccupiedException</a></td><td>When the provided position of the <a class="el" href="classHero.html" title="It defines a RPG attacker Hero. ">Hero</a> is a Wall block. </td></tr>
-    <tr><td class="paramname"><a class="el" href="classGame_1_1AlreadyHasHeroException.html">Game::AlreadyHasHeroException</a></td><td>When there is another <a class="el" href="classHero.html" title="It defines a RPG attacker Hero. ">Hero</a> on the map. </td></tr>
+    <tr><td class="paramname"><a class="el" href="classGame_1_1AlreadyHasHeroException.html" title="Already Has Hero exception to be called when permitted operations are about to be run while there are...">Game::AlreadyHasHeroException</a></td><td>When there is another <a class="el" href="classHero.html" title="It defines a RPG attacker Hero. ">Hero</a> on the map. </td></tr>
     <tr><td class="paramname"><a class="el" href="classGame_1_1GameAlreadyStartedException.html" title="Game Already Started exception to be called when permitted operations are about to be run after the g...">Game::GameAlreadyStartedException</a></td><td>When the game has started. </td></tr>
   </table>
   </dd>
@@ -851,7 +854,7 @@ Protected Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Start the running of the game. </p><dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
-    <tr><td class="paramname"><a class="el" href="classGame_1_1NotInitializedException.html">Game::NotInitializedException</a></td><td>When no <a class="el" href="classHero.html" title="It defines a RPG attacker Hero. ">Hero</a> has been put on the map or the map is not set. </td></tr>
+    <tr><td class="paramname"><a class="el" href="classGame_1_1NotInitializedException.html" title="Not Initialized exception to be called when permitted operations are about to be run before the game ...">Game::NotInitializedException</a></td><td>When no <a class="el" href="classHero.html" title="It defines a RPG attacker Hero. ">Hero</a> has been put on the map or the map is not set. </td></tr>
   </table>
   </dd>
 </dl>
@@ -914,7 +917,7 @@ Protected Member Functions</h2></td></tr>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
     <tr><td class="paramname"><a class="el" href="classGame_1_1GameAlreadyStartedException.html" title="Game Already Started exception to be called when permitted operations are about to be run after the g...">Game::GameAlreadyStartedException</a></td><td>When the game has started. </td></tr>
-    <tr><td class="paramname"><a class="el" href="classGame_1_1AlreadyHasUnitsException.html">Game::AlreadyHasUnitsException</a></td><td>When there are unit(s) in the map. </td></tr>
+    <tr><td class="paramname"><a class="el" href="classGame_1_1AlreadyHasUnitsException.html" title="Already Has Units exception to be called when permitted operations are about to be run while there ar...">Game::AlreadyHasUnitsException</a></td><td>When there are unit(s) in the map. </td></tr>
   </table>
   </dd>
 </dl>

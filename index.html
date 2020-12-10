@@ -130,10 +130,10 @@ $(function() {
 </ul>
 <div class="fragment"><div class="line">{</div><div class="line">  &quot;name&quot;: &quot;Monster&quot;,</div><div class="line">  &quot;health_points&quot;: 100,</div><div class="line">  &quot;damage&quot;: 10,</div><div class="line">  &quot;magical_damage&quot;: 9,</div><div class="line">  &quot;attack_cooldown&quot;: 12.3,</div><div class="line">  &quot;defense&quot;: 7</div><div class="line">}</div></div><!-- fragment --><p>Example command: <code>./a.out scenario scenarios/scenario1.json</code></p>
 <p>All predefined scenario for the testing can be foind in the <code>scenarios</code> folder. All predefined hero/monster for testing can be found in the <code>units</code> folder.</p>
-<p>A <a class="el" href="classMap.html">Map</a> with the extra ability to define the hero and monster positions. Monsters are marked with numbers (0-9) and the hero will be in the <code>H</code> position.</p>
+<p>A <a class="el" href="classMap.html" title="It defines Character map with Walls that can block the way. ">Map</a> with the extra ability to define the hero and monster positions. Monsters are marked with numbers (0-9) and the hero will be in the <code>H</code> position.</p>
 <div class="fragment"><div class="line">##############</div><div class="line"># H #  ####  #</div><div class="line"># ####22##  #</div><div class="line"># 12# 3##  #</div><div class="line">###1# ##  #</div><div class="line">#     1   #</div><div class="line">#########</div></div><!-- fragment --><ul>
-<li>Scenario: Only hero and a list of monsters can be given. <a class="el" href="classMap.html">Map</a> and positions are hardcoded.</li>
-<li>Prepare: <a class="el" href="classMap.html">Map</a> can be selected and it can contain the position definitions <b>[Recommended mode]</b>.</li>
+<li>Scenario: Only hero and a list of monsters can be given. <a class="el" href="classMap.html" title="It defines Character map with Walls that can block the way. ">Map</a> and positions are hardcoded.</li>
+<li>Prepare: <a class="el" href="classMap.html" title="It defines Character map with Walls that can block the way. ">Map</a> can be selected and it can contain the position definitions <b>[Recommended mode]</b>.</li>
 </ul>
 <p>The program read in the given <code>scenario</code> and read in the defined <code>hero</code> and <code>monster</code>. The user can navigate through the map using the right keywords, displayed in first round. The hero start fight with each monster until death, if they step on the same field. If the hero can kill every monster without death, he will be the winner. If he dies, the game is over.</p>
 <p>Every player has a attack cooldown what is defining the time between two hit.</p>

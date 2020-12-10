@@ -286,15 +286,16 @@ Additional Inherited Members</h2></td></tr>
 <p><a class="el" href="classHero.html" title="It defines a RPG attacker Hero. ">Hero</a> constructor. It creates a <a class="el" href="classHero.html" title="It defines a RPG attacker Hero. ">Hero</a> object from the given parameters. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">name</td><td>Name of <a class="el" href="classHero.html" title="It defines a RPG attacker Hero. ">Hero</a>. </td></tr>
-    <tr><td class="paramname">hp</td><td>Health points of <a class="el" href="classHero.html" title="It defines a RPG attacker Hero. ">Hero</a>. </td></tr>
+    <tr><td class="paramname">maxHp</td><td>Health points of <a class="el" href="classHero.html" title="It defines a RPG attacker Hero. ">Hero</a>. </td></tr>
     <tr><td class="paramname">damage</td><td>Attack damage of <a class="el" href="classHero.html" title="It defines a RPG attacker Hero. ">Hero</a>. </td></tr>
     <tr><td class="paramname">attackCooldown</td><td>Attack cooldown of <a class="el" href="classHero.html" title="It defines a RPG attacker Hero. ">Hero</a>. <b>Minimum</b> time intervall between two attack. </td></tr>
     <tr><td class="paramname">xpPerLevel</td><td>XP needed for a levelup </td></tr>
     <tr><td class="paramname">healthBonusPerLevel</td><td>The extra healthpoints added per levelups. </td></tr>
     <tr><td class="paramname">damageBonusPerLevel</td><td>The extra damage added per levelups. </td></tr>
+    <tr><td class="paramname">magicalDamageBonusPerLevel</td><td>The extra magical damage added per levelups. </td></tr>
     <tr><td class="paramname">cooldownMultiplier</td><td>Multiplier for cooldown on levelup. </td></tr>
-    <tr><td class="paramname">damage</td><td>Defense of the <a class="el" href="classHero.html" title="It defines a RPG attacker Hero. ">Hero</a>. </td></tr>
-    <tr><td class="paramname">damageBonusPerLevel</td><td>The extra defense added per levelups. </td></tr>
+    <tr><td class="paramname">defense</td><td>Defense of the <a class="el" href="classHero.html" title="It defines a RPG attacker Hero. ">Hero</a>. </td></tr>
+    <tr><td class="paramname">defenseBonusPerLevel</td><td>The extra defense added per levelups. </td></tr>
     <tr><td class="paramname">lightRadius</td><td>Light radius of <a class="el" href="classHero.html" title="It defines a RPG attacker Hero. ">Hero</a>. </td></tr>
     <tr><td class="paramname">lightRadiusBonusPerLevel</td><td>Addational range on every levels. </td></tr>
     <tr><td class="paramname">texture</td><td>Texture image file </td></tr>
@@ -330,7 +331,7 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 <p>It parse a <a class="el" href="classJSON.html" title="JSON parser class, parse to map with casts. ">JSON</a> object (from a <a class="el" href="classJSON.html" title="JSON parser class, parse to map with casts. ">JSON</a> file) to a <a class="el" href="classHero.html" title="It defines a RPG attacker Hero. ">Hero</a> instance. Does not matter the order of the object properties, but it have to contain all required propertiy. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">filename</td><td>Json file's path. </td></tr>
+    <tr><td class="paramname">fileName</td><td>Json file's path. </td></tr>
   </table>
   </dd>
 </dl>

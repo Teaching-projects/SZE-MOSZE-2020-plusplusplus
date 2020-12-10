@@ -1,8 +1,6 @@
 var searchData=
 [
-  ['increasedamage',['increaseDamage',['../structDamage.html#a6f6fd08f3e915e53115011a3156615a8',1,'Damage']]],
-  ['increasexp',['increaseXP',['../classUnit.html#a0c80c68a7806b19e9af0283e19335023',1,'Unit']]],
-  ['isalive',['isAlive',['../classUnit.html#ad9245732ec5afbdb44b9942ae8ea98cc',1,'Unit']]],
-  ['isfieldexist',['isFieldExist',['../classMap.html#ab78bab340c8429a9567b60fbb32e90e6',1,'Map']]],
-  ['isfieldfree',['isFieldFree',['../classMap.html#a34e8578a8dcda420741855f8cc803ca8',1,'Map']]]
+  ['hero',['Hero',['../classHero.html#af5fdc3f2700b8f94fcdbe1300d99fcda',1,'Hero']]],
+  ['heronotfoundexception',['HeroNotFoundException',['../classMarkedMap_1_1HeroNotFoundException.html#a1d36585232742feb791cdcf70db77e7d',1,'MarkedMap::HeroNotFoundException']]],
+  ['hit',['hit',['../classUnit.html#ae56b7f6d4769889bf90772a1b35ab513',1,'Unit']]]
 ];

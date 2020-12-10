@@ -1,5 +1,5 @@
 <map id="Game" name="Game">
-<area shape="rect" id="node2" href="$classMap.html" title="Map" alt="" coords="5,81,55,108"/>
+<area shape="rect" id="node2" href="$classMap.html" title="It defines Character map with Walls that can block the way. " alt="" coords="5,81,55,108"/>
 <area shape="rect" id="node3" href="$classHero.html" title="It defines a RPG attacker Hero. " alt="" coords="79,81,133,108"/>
 <area shape="rect" id="node4" href="$classUnit.html" title="It defines a RPG attacker Unit. " alt="" coords="81,5,131,32"/>
 </map>

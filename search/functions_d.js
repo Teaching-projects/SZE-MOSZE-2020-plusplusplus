@@ -1,10 +1,7 @@
 var searchData=
 [
-  ['setgamestate',['setGameState',['../classGame.html#aa7f118866df80763df991ca94af87373',1,'Game']]],
-  ['setlocation',['setLocation',['../classUnit.html#a63fa882517ad06955c9e57e902ac8de0',1,'Unit::setLocation(Location location)'],['../classUnit.html#a28623a6d01a314df5d224281a2c139c5',1,'Unit::setLocation(int x, int y)']]],
-  ['setmap',['setMap',['../classGame.html#a2da2d4e53f7b25a9763b45ce3439628a',1,'Game']]],
-  ['settextures',['setTextures',['../classGame.html#ae2c485ac4a0162f8f8643dd451da38ff',1,'Game']]],
-  ['setx',['setX',['../classUnit.html#a26f2921b8b69a1ceffe1245cf48d7f72',1,'Unit']]],
-  ['sety',['setY',['../classUnit.html#a7356ee958a64db1d96985cd63d9003c3',1,'Unit']]],
-  ['sum',['sum',['../structDamage.html#a5b3d531d72eb0f05472e03183d4c14ee',1,'Damage::sum()'],['../structDamage.html#ab15a011cc9336bcbd0f8fd3487ad9f12',1,'Damage::sum(unsigned int defense)']]]
+  ['registerrenderer',['registerRenderer',['../classGame.html#a95dedd778de0fc02a5c045d8212129d0',1,'Game::registerRenderer()'],['../classPreparedGame.html#a8cbc4ba87778b0036fbb3c3252c4e4c5',1,'PreparedGame::registerRenderer()']]],
+  ['removefallenmonsters',['removeFallenMonsters',['../classGame.html#ae7ba2a4f4f9b02fa70fd34d139081d67',1,'Game']]],
+  ['removehero',['removeHero',['../classGame.html#a1150293628cda2f0d8b54fb37e8d9a7f',1,'Game']]],
+  ['run',['run',['../classGame.html#a1ab78f5ed0d5ea879157357cf2fb2afa',1,'Game::run()'],['../classPreparedGame.html#affbffce464ec1b07ad312953436ef0fd',1,'PreparedGame::run()']]]
 ];

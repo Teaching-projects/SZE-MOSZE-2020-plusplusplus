@@ -69,6 +69,11 @@ $(function() {
 <div class="title">Map Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>It defines Character map with Walls that can block the way.  
+ <a href="classMap.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="Map_8h_source.html">Map.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for Map:</div>
 <div class="dyncontent">
@@ -86,18 +91,15 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a526c3e2c3b3bee72b8057edeab5cc139"><td class="memItemLeft" align="right" valign="top"><a id="a526c3e2c3b3bee72b8057edeab5cc139"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>FieldType</b> : char { <b>Free</b> = ' ', 
+<tr class="memitem:a526c3e2c3b3bee72b8057edeab5cc139"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMap.html#a526c3e2c3b3bee72b8057edeab5cc139">FieldType</a> : char { <b>Free</b> = ' ', 
 <b>Wall</b> = '#'
  }</td></tr>
 <tr class="separator:a526c3e2c3b3bee72b8057edeab5cc139"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a961d3e0a8484007c5365167cb8ee7aa6"><td class="memItemLeft" align="right" valign="top"><a id="a961d3e0a8484007c5365167cb8ee7aa6"></a>
-typedef char&#160;</td><td class="memItemRight" valign="bottom"><b>Field</b></td></tr>
+<tr class="memitem:a961d3e0a8484007c5365167cb8ee7aa6"><td class="memItemLeft" align="right" valign="top">typedef char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMap.html#a961d3e0a8484007c5365167cb8ee7aa6">Field</a></td></tr>
 <tr class="separator:a961d3e0a8484007c5365167cb8ee7aa6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1b29507294a1f47dedbe64dbc291a9cc"><td class="memItemLeft" align="right" valign="top"><a id="a1b29507294a1f47dedbe64dbc291a9cc"></a>
-typedef std::string&#160;</td><td class="memItemRight" valign="bottom"><b>FieldRow</b></td></tr>
+<tr class="memitem:a1b29507294a1f47dedbe64dbc291a9cc"><td class="memItemLeft" align="right" valign="top">typedef std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMap.html#a1b29507294a1f47dedbe64dbc291a9cc">FieldRow</a></td></tr>
 <tr class="separator:a1b29507294a1f47dedbe64dbc291a9cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aed13e04dc2465572543e2f4fb748c06f"><td class="memItemLeft" align="right" valign="top"><a id="aed13e04dc2465572543e2f4fb748c06f"></a>
-typedef std::vector&lt; FieldRow &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>Fields</b></td></tr>
+<tr class="memitem:aed13e04dc2465572543e2f4fb748c06f"><td class="memItemLeft" align="right" valign="top">typedef std::vector&lt; <a class="el" href="classMap.html#a1b29507294a1f47dedbe64dbc291a9cc">FieldRow</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMap.html#aed13e04dc2465572543e2f4fb748c06f">Fields</a></td></tr>
 <tr class="separator:aed13e04dc2465572543e2f4fb748c06f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -106,13 +108,13 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a0f5ad0fd4563497b4214038cbca8b582"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3eddbd0d53f206edefa09fd8f3d4c315"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMap.html#a3eddbd0d53f206edefa09fd8f3d4c315">Map</a> (const std::string &amp;fileName)</td></tr>
 <tr class="separator:a3eddbd0d53f206edefa09fd8f3d4c315"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad85ebc5b5e3ce02048aada146bd706f6"><td class="memItemLeft" align="right" valign="top">FieldType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMap.html#ad85ebc5b5e3ce02048aada146bd706f6">getFieldType</a> (const int x, const int y) const</td></tr>
+<tr class="memitem:ad85ebc5b5e3ce02048aada146bd706f6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMap.html#a526c3e2c3b3bee72b8057edeab5cc139">FieldType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMap.html#ad85ebc5b5e3ce02048aada146bd706f6">getFieldType</a> (const int x, const int y) const</td></tr>
 <tr class="separator:ad85ebc5b5e3ce02048aada146bd706f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a34027d5574a13648d61e0a87367e9700"><td class="memItemLeft" align="right" valign="top">FieldType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMap.html#a34027d5574a13648d61e0a87367e9700">getFieldType</a> (const char &amp;value) const</td></tr>
+<tr class="memitem:a34027d5574a13648d61e0a87367e9700"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMap.html#a526c3e2c3b3bee72b8057edeab5cc139">FieldType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMap.html#a34027d5574a13648d61e0a87367e9700">getFieldType</a> (const char &amp;value) const</td></tr>
 <tr class="separator:a34027d5574a13648d61e0a87367e9700"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aea456ecc2d2be70957a2a1c1ad8a310f"><td class="memItemLeft" align="right" valign="top">Field&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMap.html#aea456ecc2d2be70957a2a1c1ad8a310f">getField</a> (const int x, const int y) const</td></tr>
+<tr class="memitem:aea456ecc2d2be70957a2a1c1ad8a310f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMap.html#a961d3e0a8484007c5365167cb8ee7aa6">Field</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMap.html#aea456ecc2d2be70957a2a1c1ad8a310f">getField</a> (const int x, const int y) const</td></tr>
 <tr class="separator:aea456ecc2d2be70957a2a1c1ad8a310f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6114b01e68ff67882c20e24136ff37e1"><td class="memItemLeft" align="right" valign="top">Fields&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMap.html#a6114b01e68ff67882c20e24136ff37e1">getFields</a> () const</td></tr>
+<tr class="memitem:a6114b01e68ff67882c20e24136ff37e1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMap.html#aed13e04dc2465572543e2f4fb748c06f">Fields</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMap.html#a6114b01e68ff67882c20e24136ff37e1">getFields</a> () const</td></tr>
 <tr class="separator:a6114b01e68ff67882c20e24136ff37e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab3181204ba96eb15b96ee1ced85e198e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMap.html#ab3181204ba96eb15b96ee1ced85e198e">getWidth</a> () const</td></tr>
 <tr class="separator:ab3181204ba96eb15b96ee1ced85e198e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -123,6 +125,74 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a34e8578a8dcda420741855f8cc803ca8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMap.html#a34e8578a8dcda420741855f8cc803ca8">isFieldFree</a> (const int x, const int y) const</td></tr>
 <tr class="separator:a34e8578a8dcda420741855f8cc803ca8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>It defines Character map with Walls that can block the way. </p>
+<dl class="section author"><dt>Author</dt><dd>+++ Team</dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0</dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2020-12-08</dd></dl>
+<p>Created on: 2020-11-19 </p>
+</div><h2 class="groupheader">Member Typedef Documentation</h2>
+<a id="a961d3e0a8484007c5365167cb8ee7aa6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a961d3e0a8484007c5365167cb8ee7aa6">&#9670;&nbsp;</a></span>Field</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef char <a class="el" href="classMap.html#a961d3e0a8484007c5365167cb8ee7aa6">Map::Field</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Field character </p>
+
+</div>
+</div>
+<a id="a1b29507294a1f47dedbe64dbc291a9cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b29507294a1f47dedbe64dbc291a9cc">&#9670;&nbsp;</a></span>FieldRow</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef std::string <a class="el" href="classMap.html#a1b29507294a1f47dedbe64dbc291a9cc">Map::FieldRow</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Row of Fields </p>
+
+</div>
+</div>
+<a id="aed13e04dc2465572543e2f4fb748c06f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aed13e04dc2465572543e2f4fb748c06f">&#9670;&nbsp;</a></span>Fields</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef std::vector&lt;<a class="el" href="classMap.html#a1b29507294a1f47dedbe64dbc291a9cc">FieldRow</a>&gt; <a class="el" href="classMap.html#aed13e04dc2465572543e2f4fb748c06f">Map::Fields</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Full map type </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Enumeration Documentation</h2>
+<a id="a526c3e2c3b3bee72b8057edeab5cc139"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a526c3e2c3b3bee72b8057edeab5cc139">&#9670;&nbsp;</a></span>FieldType</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="classMap.html#a526c3e2c3b3bee72b8057edeab5cc139">Map::FieldType</a> : char</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Possible type of <a class="el" href="classMap.html" title="It defines Character map with Walls that can block the way. ">Map</a> fields </p>
+
+</div>
+</div>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a0f5ad0fd4563497b4214038cbca8b582"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0f5ad0fd4563497b4214038cbca8b582">&#9670;&nbsp;</a></span>Map() <span class="overload">[1/2]</span></h2>
@@ -146,7 +216,7 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p><a class="el" href="classMap.html">Map</a> constructor. It creates an empty <a class="el" href="classMap.html">Map</a> object. </p>
+<p><a class="el" href="classMap.html" title="It defines Character map with Walls that can block the way. ">Map</a> constructor. It creates an empty <a class="el" href="classMap.html" title="It defines Character map with Walls that can block the way. ">Map</a> object. </p>
 
 </div>
 </div>
@@ -173,9 +243,9 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p><a class="el" href="classMap.html">Map</a> constructor. It creates a <a class="el" href="classMap.html">Map</a> object from the given parameters. </p><dl class="params"><dt>Parameters</dt><dd>
+<p><a class="el" href="classMap.html" title="It defines Character map with Walls that can block the way. ">Map</a> constructor. It creates a <a class="el" href="classMap.html" title="It defines Character map with Walls that can block the way. ">Map</a> object from the given parameters. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">mapfilename</td><td>Name of the file of the map. </td></tr>
+    <tr><td class="paramname">fileName</td><td>Name of the file of the map. </td></tr>
   </table>
   </dd>
 </dl>
@@ -190,7 +260,7 @@ Public Member Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">Map::Field Map::getField </td>
+          <td class="memname"><a class="el" href="classMap.html#a961d3e0a8484007c5365167cb8ee7aa6">Map::Field</a> Map::getField </td>
           <td>(</td>
           <td class="paramtype">const int&#160;</td>
           <td class="paramname"><em>x</em>, </td>
@@ -215,7 +285,7 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Map::Field The type of the field. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="classMap.html#a961d3e0a8484007c5365167cb8ee7aa6">Map::Field</a> The type of the field. </dd></dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
     <tr><td class="paramname"><a class="el" href="classMap_1_1WrongIndexException.html" title="Wrong Index exception to be called on retrieving a field by wrong index(es) ">Map::WrongIndexException</a></td><td>When the field at the given position is not exist </td></tr>
@@ -235,7 +305,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">Fields Map::getFields </td>
+          <td class="memname"><a class="el" href="classMap.html#aed13e04dc2465572543e2f4fb748c06f">Fields</a> Map::getFields </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -254,7 +324,7 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Map::Fields The type of the field. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="classMap.html#aed13e04dc2465572543e2f4fb748c06f">Map::Fields</a> The type of the field. </dd></dl>
 
 </div>
 </div>
@@ -265,7 +335,7 @@ Public Member Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">Map::FieldType Map::getFieldType </td>
+          <td class="memname"><a class="el" href="classMap.html#a526c3e2c3b3bee72b8057edeab5cc139">Map::FieldType</a> Map::getFieldType </td>
           <td>(</td>
           <td class="paramtype">const int&#160;</td>
           <td class="paramname"><em>x</em>, </td>
@@ -290,7 +360,7 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Map::FieldType The type of the field. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="classMap.html#a526c3e2c3b3bee72b8057edeab5cc139">Map::FieldType</a> The type of the field. </dd></dl>
 
 </div>
 </div>
@@ -301,7 +371,7 @@ Public Member Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">Map::FieldType Map::getFieldType </td>
+          <td class="memname"><a class="el" href="classMap.html#a526c3e2c3b3bee72b8057edeab5cc139">Map::FieldType</a> Map::getFieldType </td>
           <td>(</td>
           <td class="paramtype">const char &amp;&#160;</td>
           <td class="paramname"><em>value</em></td><td>)</td>
@@ -315,7 +385,7 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Map::FieldType The type of the field. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="classMap.html#a526c3e2c3b3bee72b8057edeab5cc139">Map::FieldType</a> The type of the field. </dd></dl>
 
 </div>
 </div>

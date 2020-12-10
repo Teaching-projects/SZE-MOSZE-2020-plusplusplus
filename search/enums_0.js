@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['gamestate',['GameState',['../classGame.html#a7f57a7a8408e554d0a72882c287e1d04',1,'Game']]]
+  ['fieldtype',['FieldType',['../classMap.html#a526c3e2c3b3bee72b8057edeab5cc139',1,'Map::FieldType()'],['../classMarkedMap.html#a14c5221364c7f0d937fb09bb66a04d93',1,'MarkedMap::FieldType()']]]
 ];

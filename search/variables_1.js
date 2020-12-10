@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['magical',['magical',['../structDamage.html#acae41a6cef02d10b4212165fdab5aa75',1,'Damage']]],
-  ['map',['map',['../classGame.html#acef3a39fdf14be2c980b0dc11e7be402',1,'Game']]]
+  ['hero',['hero',['../classGame.html#a349ad267515138c672f12fa0e6961790',1,'Game']]]
 ];

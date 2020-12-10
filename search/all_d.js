@@ -1,8 +1,10 @@
 var searchData=
 [
-  ['rpg_20game',['RPG Game',['../index.html',1,'']]],
-  ['registerrenderer',['registerRenderer',['../classGame.html#a95dedd778de0fc02a5c045d8212129d0',1,'Game::registerRenderer()'],['../classPreparedGame.html#a8cbc4ba87778b0036fbb3c3252c4e4c5',1,'PreparedGame::registerRenderer()']]],
-  ['removefallenmonsters',['removeFallenMonsters',['../classGame.html#ae7ba2a4f4f9b02fa70fd34d139081d67',1,'Game']]],
-  ['removehero',['removeHero',['../classGame.html#a1150293628cda2f0d8b54fb37e8d9a7f',1,'Game']]],
-  ['run',['run',['../classGame.html#a1ab78f5ed0d5ea879157357cf2fb2afa',1,'Game::run()'],['../classPreparedGame.html#affbffce464ec1b07ad312953436ef0fd',1,'PreparedGame::run()']]]
+  ['occupiedexception',['OccupiedException',['../classGame_1_1OccupiedException.html',1,'Game::OccupiedException'],['../classGame_1_1OccupiedException.html#abae59f2baf88b7652865e088b10edd49',1,'Game::OccupiedException::OccupiedException()']]],
+  ['operator_2a_3d',['operator*=',['../structDamage.html#aae340c04099af8bfb8e16eff665e2318',1,'Damage']]],
+  ['operator_2b',['operator+',['../structDamage.html#a1d53231899f9d78a168cdb63aecbfff2',1,'Damage']]],
+  ['operator_2b_3d',['operator+=',['../structDamage.html#a01f053fb6e058cb8c151b85358bdf731',1,'Damage']]],
+  ['operator_3c_3c',['operator&lt;&lt;',['../structDamage.html#a9bf5c4f67ee3c7485897026ee4cfb754',1,'Damage::operator&lt;&lt;()'],['../classLocation.html#aec4517a843218b97cd7d4d6fccc07449',1,'Location::operator&lt;&lt;()']]],
+  ['operator_3d',['operator=',['../classGame.html#a400871f3835fe6c8d274f464ac11302e',1,'Game']]],
+  ['operator_3d_3d',['operator==',['../classLocation.html#a1a3b68a72a292d3cb75f2f85c5fc02c2',1,'Location']]]
 ];
