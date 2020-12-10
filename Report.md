@@ -11,9 +11,11 @@
 - [Gameplay](/videos/gameplay.mp4)
 - [CodeBaseDefense](/videos/codebasedefense.mp4)
 
+[További információk és egy kis gif a játékról :D](https://mosze.apps.benswork.hu)
+
 # Befejezett feladatok
 
-| Feladat      | Merge ideje a határidóhöz (nap) | Change request körök | Reviewer                                                                  | (Fő)fejlesztő                |
+| Feladat      | Merge ideje a határidőhöz (nap) | Change request körök | Reviewer                                                                  | (Fő)fejlesztő                |
 | ------------ | ------------------------------- | -------------------- | ------------------------------------------------------------------------- | ---------------------------- |
 | Feladat 1    | -2                              | 2                    | @oliverosz                                                                | @pluplusplus team            |
 | Feladat 2    | -1                              | 2                    | @oliverosz                                                                | @pluplusplus team            |
@@ -59,15 +61,14 @@
 
 # Kód dokumentáció
 
-| Teljesen dokumentált osztályok                                            | Részben dokumentált osztályok | Nem dokumentált osztályok |
-| ------------------------------------------------------------------------- | ----------------------------- | ------------------------- |
-| Minden osztály `./` és `./renderer` alatt és az össze publikus függvényük | -                             | -                         |
+| Teljesen dokumentált osztályok                                             | Részben dokumentált osztályok | Nem dokumentált osztályok |
+| -------------------------------------------------------------------------- | ----------------------------- | ------------------------- |
+| Minden osztály `./` és `./renderer` alatt és az összes publikus függvényük | -                             | -                         |
 
 # Mindenféle számok
 
-- Összes cpp kódsor : **1781**
-- Összes header kódsor: **1895**
-- Egyéb kódsor (make,doxyfile,shellscript, ...) : **4147**
+- Összes cpp/header kódsor : **3676**
+- Egyéb kódsor (make,doxyfile,shellscript, ...) : **294**
 - cppcheck
   - warning : **0**
   - style : **1**
@@ -80,18 +81,16 @@
 - Container megfelelő és körültekintő használata
 - SVG renderelés
 - JSON fájlbeolvasás
-- Megfelelő `sh` szkript írás a különböző tesztek és elleőrzések futtatásához
+- Megfelelő `bash` szkript írás a különböző tesztek és elleőrzések futtatásához
 
 # Feedback (optional)
 
-Véleményünk szerint kifejezetten jó volt az online videós megoldás. Habár előre nem volt tervezhető az egyes videők kijövetele, kifejezetten kényelmes volt, hogy akkor nézzük meg amikor az időnk engedi, így megfelelően tudtunk hozzákezdeni az anyag elsajátításához, illetve az videó követése és esetleg a videóval való együtt dolgozás is sokkal egyszerábbé vált.
+Véleményünk szerint kifejezetten jó volt az online videós megoldás. Habár előre nem volt tervezhető az egyes videók kijövetele, kifejezetten kényelmes volt, hogy akkor nézzük meg amikor az időnk engedi, így megfelelően tudtunk hozzákezdeni az anyag elsajátításához, illetve az videó követése és esetleg a videóval való együtt dolgozás is sokkal egyszerűbbé vált.
 
-Nagyon hasznosnak találtuk a GitHub-on adott hetente kijövő feladatokat és az ezzel kapcsolatos tanóra anyagához kapcsolodó fejlesztéseket, sokkal hasznosabb volt egy konkrét projektbe való különféle eszközök beépítése és ezeknek a tovább fejlesztése a projekttel együtt.
+Nagyon hasznosnak találtuk a GitHub-on adott hetente kijövő feladatokat és az ezzel kapcsolatos tanóra anyagához kapcsolodó fejlesztéseket, sokkal hasznosabb volt egy konkrét projektbe a különféle eszközök beépítése és ezeknek a továbbfejlesztése a projekttel együtt.
 
-Én (@karcagtamas) magam a Github Actions használat, bemutatását találtam a leghasznosabb dolognak, a legtöbb dologgal már foglalkoztam korábban szoftverfejlesztői tanulmányaim és munkáim során, viszont az ilyes fél automatizmussal még nem foglalkoztam elötte. Szerintem kifejezetten hasznos volt.
+Én (@karcagtamas) magam a Github Actions használat, bemutatását találtam a leghasznosabb dolognak, a legtöbb dologgal már foglalkoztam korábban szoftverfejlesztői tanulmányaim és munkáim során, viszont az ilyen fajta automatizálással még nem foglalkoztam előtte. Szerintem kifejezetten hasznos volt.
 
 # Üzenet a jövőbe (optional)
 
 Nem igazán találtunk ide megfelelő gondolatot.
-
-[More about the game and some attractive gif and video :D](https://mosze.apps.benswork.hu)
