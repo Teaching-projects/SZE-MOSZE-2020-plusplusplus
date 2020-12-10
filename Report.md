@@ -3,8 +3,8 @@
 | Név                     | Github azonosító | Javasolt relatív érdemjegy | Becsült óra | Indoklás                                                                                                                                      |
 | ----------------------- | ---------------- | -------------------------- | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
 | Balogh Máté             | @Cerberuuus      | 0                          | ~25         | Rendesen elkészített, körültekintően feltöltött megoldások, de egyben kevesebb feladat elvállalása. Alapos review végzése.                    |
-| Baranyai Bence Bendegúz | @bencebaranyai   | +1                         | ~40         | Minőségi, részletes munka, gyors reagálás a kiírt feladatokra, gondos részletre figyelés, akár komplexebb feladatoknál is.                    |
-| Karcag Tamás            | @karcagtamas     | +1                         | ~50         | Kiosztott feladatok határidőn belüli, kidolgozott formában való leadása. Körültekintő review végzés a saját és a pár csapat számára egyaránt. |
+| Baranyai Bence Bendegúz | @bencebaranyai   | +2                         | ~40         | Minőségi, részletes munka, gyors reagálás a kiírt feladatokra, gondos részletre figyelés, akár komplexebb feladatoknál is.                    |
+| Karcag Tamás            | @karcagtamas     | +2                         | ~50         | Kiosztott feladatok határidőn belüli, kidolgozott formában való leadása. Körültekintő review végzés a saját és a pár csapat számára egyaránt. |
 
 # Videók
 
@@ -85,7 +85,7 @@
 
 # Feedback (optional)
 
-Véleményünk szerint kifejezetten jó volt az online videós megoldás. Habár előre nem volt tervezhető az egyes videók kijövetele, kifejezetten kényelmes volt, hogy akkor nézzük meg amikor az időnk engedi, így megfelelően tudtunk hozzákezdeni az anyag elsajátításához, illetve az videó követése és esetleg a videóval való együtt dolgozás is sokkal egyszerűbbé vált.
+Véleményünk szerint kifejezetten jó volt az online videós megoldás. Habár előre nem volt tervezhető az egyes videók kijövetele, kifejezetten kényelmes volt, hogy akkor nézzük meg amikor az időnk engedi, így megfelelően tudtunk hozzákezdeni az anyag elsajátításához, illetve a videó követése és esetleg a videóval való együtt dolgozás is sokkal egyszerűbbé vált.
 
 Nagyon hasznosnak találtuk a GitHub-on adott hetente kijövő feladatokat és az ezzel kapcsolatos tanóra anyagához kapcsolodó fejlesztéseket, sokkal hasznosabb volt egy konkrét projektbe a különféle eszközök beépítése és ezeknek a továbbfejlesztése a projekttel együtt.
 
