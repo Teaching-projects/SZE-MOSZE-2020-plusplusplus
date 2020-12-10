@@ -51,6 +51,11 @@ public:
         return x == location.x && y == location.y;
     };
 
+    /**
+     * Print out the current location
+     * @param os Stream to write
+     * @param location current class
+     */
     friend std::ostream &operator<<(std::ostream &os, const Location &location)
     {
         os << "Location(" << location.x << ", " << location.y << ")";

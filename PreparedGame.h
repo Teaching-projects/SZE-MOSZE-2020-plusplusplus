@@ -33,13 +33,13 @@ public:
 
     /**
      * Run the game, in loop
-     * @relatealso Game::run
+     * @relatesalso Game::run
      */
     void run();
 
     /**
      * Register a renderer class to print the game state
-     * @relatealso Game::registerRenderer
+     * @relatesalso Game::registerRenderer
      */
     void registerRenderer(Renderer *renderer);
 };

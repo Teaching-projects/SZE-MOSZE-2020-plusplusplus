@@ -25,13 +25,13 @@ class MarkedMap : public Map
 {
 public:
     /**
-	 * @enum Possible type of Map fields
+	 * Possible type of Map fields
 	*/
     enum FieldType : char
     {
-        Free = ' ',
-        Wall = '#',
-        Hero = 'H',
+        Free = ' ', //< Empty field
+        Wall = '#', //< Blocked field
+        Hero = 'H', //< Hero position
     };
 
     /**

@@ -6,12 +6,12 @@
 #include "Location.h"
 
 // By default these are set to 0 to "disable" the feature
-#define LEVEL_SIZE 0
-#define HEALTH_BONUS 0
-#define DAMAGE_BONUS 0
-#define MAGICAL_DAMAGE_BONUS 0
-#define DEFENSE_BONUS 0
-#define COOLDOWN_MULTIPLIER 1 // 1 to avoid changing value
+#define LEVEL_SIZE 0           //< 0 to disable bonus
+#define HEALTH_BONUS 0         //< 0 to disable bonus
+#define DAMAGE_BONUS 0         //< 0 to disable bonus
+#define MAGICAL_DAMAGE_BONUS 0 //< 0 to disable bonus
+#define DEFENSE_BONUS 0        //< 0 to disable bonus
+#define COOLDOWN_MULTIPLIER 1  //< 1 to avoid changing value
 
 /**
  * @class Unit 
@@ -34,7 +34,6 @@
  * Created on: 2020-10-28
  * 
 */
-
 class Unit
 {
 private:
@@ -145,7 +144,7 @@ protected:
      * The unit hit an other unit.
      * The attacked Unit's health points will less by the attacker's damage.
      * *The HP cannot be less than zero*.
-     * @param otherPlayer The hit unit.
+     * @param otherUnit The hit unit.
      * @return The attacked unit died in the attack or not.
      */
     bool hit(Unit *otherUnit);
@@ -200,10 +199,9 @@ public:
      * Unit constructor.
      * It creates a Unit object from the given parameters.
      * @param name Name of Unit.
-     * @param hp Health points of Unit.
+     * @param maxHp Health points of Unit.
      * @param damage Attack damage of Unit.
      * @param attackCooldown Attack cooldown of Unit. **Minimum** time intervall between two attack.
-     * @param xp Starter experience point of the character.
      * @param defense Defense of the character.
      * @param texture Texture image file.
      */
@@ -213,7 +211,7 @@ public:
      * Unit constructor.
      * It creates a Unit object from the given parameters.
      * @param name Name of Unit.
-     * @param hp Health points of Unit.
+     * @param maxHp Health points of Unit.
      * @param damage Attack damage of Unit.
      * @param attackCooldown Attack cooldown of Unit. **Minimum** time intervall between two attack.
      * @param xpPerLevel XP needed for a levelup
@@ -237,7 +235,7 @@ public:
     /**
      * It parse a JSON object (from a JSON file) to a Unit instance.
      * Does not matter the order of the object properties, but it have to contain all required propertiy.
-     * @param filename Json file's path.
+     * @param fileName Json file's path.
      * @throw std::runtime_error When the file does not openable.
      * @throw std::invalid_argument When the file does not contain a required field
      * @return Created Unit instance.
@@ -350,7 +348,7 @@ public:
 
     /**
 	 * Set the Y coordinate of the Unit.
-	 * @param x The new Y coordinate
+	 * @param y The new Y coordinate
 	 */
     Unit &setY(const int y)
     {
@@ -375,7 +373,8 @@ public:
 
     /**
 	 * Set the location coordinate of the Unit.
-	 * @param location The new location
+	 * @param x The new X coordinate
+     * @param y The new Y coordinate
 	 */
     Unit &setLocation(int x, int y)
     {

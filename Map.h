@@ -2,25 +2,55 @@
 #include <iostream>
 #include <vector>
 
+/**
+ * @class Map 
+ * 
+ * @brief It defines Character map with Walls that can block the way
+ * 
+ * 
+ * @author +++ Team
+ * 
+ * @version 1.0
+ * 
+ * @date 2020-12-08
+ * 
+ * Created on: 2020-11-19
+ * 
+*/
 class Map
 {
 public:
+	/**
+	 * Field character
+	 */
 	typedef char Field;
+	/**
+	 * Row of Fields
+	 */
 	typedef std::string FieldRow;
+	/**
+	 * Full map type
+	 */
 	typedef std::vector<FieldRow> Fields;
 
 private:
+	/**
+	 * Stored map
+	 */
 	Fields fields;
+	/**
+	 * Largest read width
+	 */
 	unsigned int width;
 
 public:
 	/**
-	 * @enum Possible type of Map fields
+	 * Possible type of Map fields
 	*/
 	enum FieldType : char
 	{
-		Free = ' ',
-		Wall = '#'
+		Free = ' ', //< Empty field
+		Wall = '#'	//< Blocked field
 	};
 
 	/**
@@ -32,7 +62,7 @@ public:
 	/**
 	 * Map constructor.
 	 * It creates a Map object from the given parameters.
-	 * @param mapfilename Name of the file of the map.
+	 * @param fileName Name of the file of the map.
 	 */
 	explicit Map(const std::string &fileName);
 
